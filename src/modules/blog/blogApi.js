@@ -5,7 +5,7 @@ import { AsyncStorage } from 'react-native';
 export async function getBlogsApi(page, text) {
     let url = ''
     await AsyncStorage.getItem('url').then((value) => {
-        url = env.API_URL + value + '/blogs?page=' + page + '&search=' + text;
+        url = env.API_NON_TOKEN + value + '/v2/blog/kind/blog?page=' + page + '&search=' + text;
     })
     console.log(url);
     return axios.get(url);
@@ -14,7 +14,7 @@ export async function getBlogsApi(page, text) {
 export async function detailBlogApi(id) {
     let url = ''
     await AsyncStorage.getItem('url').then((value) => {
-        url = env.API_URL + value + '/api/blog/' + id;
+        url = env.API_NON_TOKEN + value + '/v2/blog/' + id;
     })
     console.log(url);
     return axios.get(url);
