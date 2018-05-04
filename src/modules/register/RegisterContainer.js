@@ -23,6 +23,7 @@ import { WELCOME_TITLE, PR_TITLE } from '../../constants/text';
 import { NavigationActions } from 'react-navigation';
 import styles from '../../styles/styles';
 import * as loginAction from '../login/loginActions';
+import stylesLogin from '../../styles/loginRegisterStyle'
 
 
 class RegisterContainer extends Component {
@@ -51,17 +52,17 @@ class RegisterContainer extends Component {
             this.props.registerAction.registerUser(value);
         }
     }
-    saveData(login){
+    saveData(login) {
         this.props.loginAction.setDataLogin(login);
     }
-    componentWillReceiveProps(nextProps){
-        if(nextProps.status === 200){
-            let login = {"email": this.state.email, "password": this.state.password}
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.status === 200) {
+            let login = { "email": this.state.email, "password": this.state.password }
             this.saveData(login);
             const resetAction = NavigationActions.reset({
                 index: 0,
                 actions: [
-                    NavigationActions.navigate({routeName: 'Login'})
+                    NavigationActions.navigate({ routeName: 'Login' })
                 ]
             })
             this.props.navigation.dispatch(resetAction);
@@ -78,35 +79,34 @@ class RegisterContainer extends Component {
 
                     <View style={{ alignItems: 'center', flex: 1 }}>
 
-                        <View style={[styles.wrapperCenter, { flex: 3, flexDirection: 'row' }]}>
-                            <View style={{
-                                height: 40,
-                                position: 'absolute',
-                                right: -60,
-                                top: 20
-                            }}>
-                                <TouchableOpacity
-                                    onPress={() => this.props.navigation.goBack()}
-                                >
-                                    <IconDefault
-                                        name={'Ionicons|md-close'}
-                                        style={{ paddingLeft: 0 }}
-                                        color={this.props.color ? this.props.color : null}
-                                    />
-                                </TouchableOpacity>
-                            </View>
-                            <Image
-                                resizeMode={'contain'}
-                                source={require('../../../assets/image/colorMe.jpg')}
-                                style={[styles.imageLogin]}
-                            />
+                        <View style={stylesLogin.wrapperColorME}>
+                            <View>
+                                <View style ={styles.iconBack}>
+                                    <TouchableOpacity
+                                        onPress={() => this.props.navigation.goBack()}
+                                    >
+                                        <IconDefault
+                                            name={'Ionicons|md-close'}
+                                            style={{ paddingLeft: 0 }}
+                                            color={'white'}
+                                        />
+                                    </TouchableOpacity>
+                                </View>
+                                {/* <Image
+                                    resizeMode={'contain'}
+                                    source={require('../../../assets/image/colorMe.jpg')}
+                                    style={[styles.imageLogin]}
+                                /> */}
 
+                            </View>
+                            <Text style={stylesLogin.textCOLOR}>color</Text>
+                            <Text style={stylesLogin.textME}>ME</Text>
                         </View>
 
                         <KeyboardAvoidingView
                             behavior={Platform.OS === "ios" ? "position" : ""}
-                            style={[styles.wrapperLogin,{flex: 9.5}]}>
-                            <View style={[styles.wrapperFormLogin, styles.shadow,{paddingVertical:20}]}>
+                            style={[styles.wrapperLogin, { flex: 9.5 }]}>
+                            <View style={[styles.wrapperFormLogin, styles.shadow, { paddingVertical: 20 }]}>
                                 <Text style={[styles.textDescriptionDarkBold, { textAlign: 'center' }]}>{WELCOME_TITLE}</Text>
                                 <View style={[styles.wrapperInput, { marginTop: 20 }]}>
                                     <Text style={[styles.textDescriptionGray, { marginLeft: 30 }]}>Name</Text>
@@ -181,7 +181,7 @@ class RegisterContainer extends Component {
                                         />
                                     </Item>
                                 </View>
-                                
+                                <Text style={{height: 10}}></Text>
                                 <TouchableOpacity
                                     activeOpacity={1}
                                     style={[styles.buttonLogin, styles.shadow]}
@@ -217,7 +217,7 @@ function mapStateToProps(state) {
         isLoading: state.register.isLoading,
         status: state.register.status,
         error: state.register.error,
-       
+
     }
 }
 

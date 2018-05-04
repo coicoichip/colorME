@@ -96,7 +96,7 @@ class LoginContainer extends Component {
                             style={styles.wrapperLogin}>
                             <View style={[styles.wrapperFormLogin, styles.shadow]}>
                                 <Text style={[styles.textDescriptionDarkBold, { textAlign: 'center' }]}>{WELCOME_TITLE}</Text>
-
+                                <Text style ={{height: 5}}></Text>
                                 <View style={[styles.wrapperInput, { marginTop: 20 }]}>
                                     <Text style={[styles.textDescriptionGray, { marginLeft: 30 }]}>Email</Text>
                                     <Item style={styles.itemInputInBox}>
@@ -114,7 +114,7 @@ class LoginContainer extends Component {
                                         />
                                     </Item>
                                 </View>
-
+                                <Text style={{height: 5}}></Text>
                                 <View style={[styles.wrapperInput, { marginTop: 20 }]}>
                                     <Text style={[styles.textDescriptionGray, { marginLeft: 30 }]}>Password</Text>
                                     <Item style={styles.itemInputInBox}>
@@ -134,7 +134,7 @@ class LoginContainer extends Component {
                                         />
                                     </Item>
                                 </View>
-
+                                <Text style={{height: 10}}></Text>
                                 <TouchableOpacity
                                     activeOpacity={1}
                                     style={[styles.buttonLogin, styles.shadow]}
@@ -153,6 +153,7 @@ class LoginContainer extends Component {
                                         )
                                     }
                                 </TouchableOpacity>
+                                <Text style={{height: 5}}></Text>
                                 <View style={[styles.wrapperRowCenterHorizontal, { marginTop: 20 }]}>
                                     <Text style={styles.textDescriptionGray}>Bạn chưa có tài khoản? </Text>
                                     <TouchableOpacity onPress={() => this.props.navigation.navigate("Register")}>

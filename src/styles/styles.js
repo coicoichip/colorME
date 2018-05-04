@@ -96,17 +96,15 @@ const style = {
         borderRadius: 20,
         marginBottom: 0,
         alignItems: 'center',
-        justifyContent: 'center',
         backgroundColor: color.NONE_COLOR
     },
     wrapperFormLogin: {
         // flex: 1,
-        margin: 10,
-        padding: 10,
-        width: size.deviceWidth * 0.85,
+        marginTop: -size.deviceHeight*0.1, 
+        padding: 20,
+        width: size.deviceWidth * 0.8,
         maxWidth: 500,
         borderRadius: 20,
-        marginTop: 5,
         marginBottom: 20,
         alignItems: 'center',
         justifyContent: 'center',
@@ -755,17 +753,12 @@ const style = {
         height: size.deviceHeight / 3,
         backgroundColor: "#FFF",
     },
-    categoryInImage:{
+    iconBack: {
+        height: 40,
         position: 'absolute',
-        bottom: 10,
-        right: 10,
-        backgroundColor: color.MAIN_COLOR,
-        padding: 5,
-        paddingLeft: 10,
-        paddingRight: 10,
-        borderRadius: 13,
-        overflow: "hidden"
-    },
+        right: -size.deviceWidth/2 + 30,
+        top: -size.deviceHeight/8 ,
+    }
 }
 
 const styles = StyleSheet.create(style)

@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions, Platform} from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 import * as size from './size';
 import * as color from './color';
 const FONT_MAIN = "Helvetica"
@@ -127,7 +127,7 @@ const stylesLogin = StyleSheet.create({
         backgroundColor: 'rgba(197, 0, 0, 1)',
     },
     textME: {
-        fontFamily: (Platform.OS === 'ios') ? FONT_MAIN : FONT_MAIN,
+        fontFamily: (Platform.OS === 'ios') ? "Montserrat-Bold" : FONT_MAIN,
         backgroundColor: 'transparent',
         color: color.navTitle,
         fontSize: 100,
@@ -135,7 +135,7 @@ const stylesLogin = StyleSheet.create({
         lineHeight: (Platform.OS === 'ios') ? 100 : 70,
     },
     textCOLOR: {
-        fontFamily: (Platform.OS === 'ios') ? FONT_MAIN : FONT_MAIN,
+        fontFamily: (Platform.OS === 'ios') ? "Montserrat-Bold" : FONT_MAIN,
         backgroundColor: 'transparent',
         color: color.navTitle,
         fontSize: 35,
@@ -144,7 +144,7 @@ const stylesLogin = StyleSheet.create({
 
     },
     wrapperColorME: {
-        flex: 2,
+        flex: 10,
         width: size.wid,
         backgroundColor: color.main,
         justifyContent: 'center',
@@ -175,5 +175,6 @@ const stylesLogin = StyleSheet.create({
         color: color.navTitle,
         paddingRight: 10,
     }
+    
 });
 export default stylesLogin
