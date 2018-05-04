@@ -757,7 +757,7 @@ const style = {
         height: 40,
         position: 'absolute',
         right: -size.deviceWidth/2 + 30,
-        top: -size.deviceHeight/8 ,
+        top: -size.deviceHeight/15,
     }
 }
 

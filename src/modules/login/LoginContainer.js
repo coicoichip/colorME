@@ -94,7 +94,7 @@ class LoginContainer extends Component {
                         <KeyboardAvoidingView
                             behavior={Platform.OS === "ios" ? "position" : ""}
                             style={styles.wrapperLogin}>
-                            <View style={[styles.wrapperFormLogin, styles.shadow]}>
+                            <View style={[styles.wrapperFormLogin, styles.shadow, {paddingHorizontal: 10}]}>
                                 <Text style={[styles.textDescriptionDarkBold, { textAlign: 'center' }]}>{WELCOME_TITLE}</Text>
                                 <Text style ={{height: 5}}></Text>
                                 <View style={[styles.wrapperInput, { marginTop: 20 }]}>

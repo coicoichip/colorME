@@ -81,7 +81,7 @@ class RegisterContainer extends Component {
 
                         <View style={stylesLogin.wrapperColorME}>
                             <View>
-                                <View style ={styles.iconBack}>
+                                <View style={styles.iconBack}>
                                     <TouchableOpacity
                                         onPress={() => this.props.navigation.goBack()}
                                     >
@@ -105,8 +105,8 @@ class RegisterContainer extends Component {
 
                         <KeyboardAvoidingView
                             behavior={Platform.OS === "ios" ? "position" : ""}
-                            style={[styles.wrapperLogin, { flex: 9.5 }]}>
-                            <View style={[styles.wrapperFormLogin, styles.shadow, { paddingVertical: 20 }]}>
+                            style={[styles.wrapperLogin, { flex: 14 }]}>
+                            <View style={[styles.wrapperFormLogin, styles.shadow, { paddingVertical: 20, paddingHorizontal: 10 }]}>
                                 <Text style={[styles.textDescriptionDarkBold, { textAlign: 'center' }]}>{WELCOME_TITLE}</Text>
                                 <View style={[styles.wrapperInput, { marginTop: 20 }]}>
                                     <Text style={[styles.textDescriptionGray, { marginLeft: 30 }]}>Name</Text>
@@ -181,7 +181,7 @@ class RegisterContainer extends Component {
                                         />
                                     </Item>
                                 </View>
-                                <Text style={{height: 10}}></Text>
+                                <Text style={{ height: 10 }}></Text>
                                 <TouchableOpacity
                                     activeOpacity={1}
                                     style={[styles.buttonLogin, styles.shadow]}
