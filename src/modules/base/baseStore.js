@@ -11,16 +11,14 @@ export const store = new class baseStore {
     @observable error= false;
 
     @action
-    getListBase(page, token) {
+    getListBase() {
         //console.log(11);
         this.isLoading = true;
-        baseApi.getBasesApi(page, token).then(res => {
-                console.log(1);
+        baseApi.getBasesApi().then(res => {
+            console.log(res);
+            this.bases = res.data.data.bases;
                 this.isLoading = false;
-                console.log(1);
-                this.bases = res.data.bases;
-                this.total_pages = res.data.paginator.total_pages;
-                console.log(this.bases);
+                console.log(res);
             }
         )
             .catch(() => {

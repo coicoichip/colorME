@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import {
-    Image,
-    Text,
     View,
-    TouchableOpacity,
-    TouchableHighlight,
     FlatList,
     RefreshControl
 } from 'react-native';
@@ -13,14 +9,11 @@ import { Container } from 'native-base';
 import Header from '../../commons/Header';
 import {
     BASE_HEADER_TITLE,
-    NULL_DATA, OVERVIEW_HEADER_TITLE
+    NULL_DATA
 } from '../../constants/text';
 import IconDefault from "../../commons/IconDefault"
-import * as baseAction from "./baseAction";
 import ListBase from "./listBase";
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-// import SelectHeader, {returnProvincesValue} from '../../commons/SelectHeader';
 import Loading from '../../commons/Loading';
 import TextNullData from '../../commons/TextNullData';
 
@@ -44,22 +37,12 @@ import { store } from "./baseStore";
     }
 
 
-    // getMoreBases() {
-    //     let page = this.state.page + 1;
-    //     if (page <= this.props.total_pages) {
-    //         this.props.baseAction.getListBase(page, this.props.token)
-    //     }
-    //     this.setState({ page: page })
-    // }
+
     refreshList() {
-        this.props.baseAction.getListBase(1, this.props.token);
+        store.getListBase(1, this.props.token);
         this.setState({ page: 1 })
     }
-    // search(input) {
-    //     this.isLoading();
-    //     this.setState({ page: 1, student: input });
-    //     this.props.studentAction.getStudentRegister(1, input, token)
-    // }
+
     loadingMore() {
         if (this.props.isLoadingMore) {
             return (
@@ -68,26 +51,12 @@ import { store } from "./baseStore";
         }
     }
 
-    returnProvinces() {
-        //returnProvincesValue(provinces_value =>  this.setState({ province_id: provinces_value }));
-        //console.log(this.state.province_id);
-        //setTimeout(() => this.props.baseAction.getListBase(1, this.props.token), 200);
-    }
-
     render() {
-        //console.log(this.props.isRefresh)
         const { navigate} = this.props.navigation;
-        //const { bases } = this.props;
-        console.log(store.bases.length);
+        //console.log(store.bases);
         return (
             <Container style={styles.wrapperContainer}>
                 <Header title={BASE_HEADER_TITLE} navigate={navigate} />
-
-                {/*<SelectHeader*/}
-                    {/*haveProvinces*/}
-                    {/*functionProvinces={() => this.returnProvinces()}*/}
-                {/*/>*/}
-
                 <View style={styles.wrapperContainer}>
                     <View style={{ flex: 1 }}>
                         {store.isLoading || this.state.isLoadingState ?
@@ -103,7 +72,6 @@ import { store } from "./baseStore";
                                             navigation={navigate}
                                         />
                                     }
-                                    //onEndReached={() => this.getMoreBases()}
                                     onEndReachedThreshold={5}
                                     refreshControl={
                                         <RefreshControl
@@ -128,23 +96,11 @@ import { store } from "./baseStore";
 }
 function mapStateToProps(state) {
     return {
-        isLoading: state.base.isLoading,
-        isLoadingMore: state.base.isLoadingMore,
-        isRefresh: state.base.isLoadingRefresh,
-        bases: state.base.bases,
-        total_pages: state.base.total_pages,
-        provinces: state.base.provinces,
         token : (state.login.token === null) ? state.register.token : state.login.token,
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        baseAction: bindActionCreators(baseAction, dispatch)
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(BaseContainer)
+export default connect(mapStateToProps)(BaseContainer)
 
 
 

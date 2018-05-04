@@ -14,6 +14,7 @@ import DetailBlog from '../modules/blog/detailBlog';
 import DrawerContainer from "../modules/drawer/DrawerContainer"
 import Icon from "../commons/Icon"
 import BaseContainer from "../modules/base/BaseContainer"
+import direct from "../modules/base/direct"
 import ProfileContainer from "../modules/profile/ProfileContainer";
 // import HistoryShiftRegisterContainer from "../modules/history-shift-register/HistoryShiftRegisterContainer";
 
@@ -169,6 +170,7 @@ const TAB_BAR_HEIGHT = 50;
                 {
                     Login: { screen: LoginContainer },
                     Register: { screen: RegisterContainer },
+                    Direct: {screen: direct},
                     Drawer: { screen: Drawer },
                 },
                 { headerMode: 'none', mode: 'modal' },
