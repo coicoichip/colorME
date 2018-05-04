@@ -34,7 +34,7 @@ class BlogContainer extends Component {
         this.props.blogAction.getListBlog(1, "");
     }
     loadMore() {
-        if (this.props.isLoading && this.props.current_page > 1 && this.props.blogs.length > 0)
+        if (this.props.isLoading && this.props.current_page >= 1)
             return (<Loading />)
         else
             return null

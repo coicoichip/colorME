@@ -60,22 +60,31 @@ class DetailBlog extends Component {
                                 </Text>
                                 <Text />
                                 <View style={styles.wrapperCenter}>
-                                    <Image
+                                   {
+                                       isLoading ? 
+                                       <Text style={[{ color: "#020202", fontSize: 22, fontFamily: "HelveticaNeue-Thin", textAlign: 'center', paddingLeft: 20, paddingRight: 20 }]} numberOfLines={3}>
+                                       {text.TEXT_ISLOADING}
+                                       </Text>
+                                       :
+                                       <Image
                                         source={{ uri: data.author ? formatImageLink(data.author.avatar_url) : '' }}
                                         style={styles.imageCircleBig} />
+                                       
+                                     }
+                                    
                                 </View>
                                 <Text />
                                 <Text style={[styles.textAuthor, { textAlign: 'center', color: color.BLUE_COLOR }]} numberOfLines={1}>
-                                    Đăng bởi <Text style={[styles.textAuthor, { color: color.textColor }]}>
+    
                                         {
                                             isLoading
                                                 ?
                                                 text.TEXT_ISLOADING
                                                 :
-                                                data.author ? data.author.name : 'Khuyết danh'
+                                                data.author ?    "Đăng bởi " + data.author.name.trim() : 'Khuyết danh'
                                         }
                                     </Text>
-                                </Text>
+                               
                                 <Text style={[styles.textAuthor, { textAlign: 'center', color: color.disableColor, marginTop: 5 }]}
                                     numberOfLines={1}>
                                     {
@@ -94,7 +103,7 @@ class DetailBlog extends Component {
                                                 ?
                                                 text.TEXT_ISLOADING
                                                 :
-                                                data.category
+                                                data.category !== "" ? data.category : "Chưa phân loại"
                                         }
                                     </Text>
                                 </View>
@@ -129,7 +138,7 @@ class DetailBlog extends Component {
                             ?
                             <Loading />
                             :
-                            <WebViewAutoHeight source={data.content ? data.content : ''} />
+                            <WebViewAutoHeight source={data.content ? data.content : "<h1 style = 'text-align : center, font-size : 30px'>Bài viết không có nội dung</h1>"} />
                     }
                 </ParallaxScrollView>
             </Container>

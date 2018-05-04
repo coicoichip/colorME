@@ -755,6 +755,17 @@ const style = {
         height: size.deviceHeight / 3,
         backgroundColor: "#FFF",
     },
+    categoryInImage:{
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
+        backgroundColor: color.MAIN_COLOR,
+        padding: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderRadius: 13,
+        overflow: "hidden"
+    },
 }
 
 const styles = StyleSheet.create(style)
