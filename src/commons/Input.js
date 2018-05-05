@@ -16,20 +16,19 @@ class InputCommon extends Component {
 
     render() {
         const { value } = this.setState
-        const { label} = this.props
+        const { label } = this.props
         return (
-            <Form>
-                <Item fixedLabel>
-                    <Label>{label}</Label>
-                    <Input
-                        value={value}
-                        onChangeText={this.onChangeText}
-                        underlineColorAndroid='rgba(0,0,0,0)'
-                    />
-                </Item>
-            </Form>
+            <Item fixedLabel>
+                <Label>{label}</Label>
+                <Input
+                    value={value}
+                    onChangeText={this.onChangeText}
+                    underlineColorAndroid='rgba(0,0,0,0)'
+                />
+            </Item>
         );
     }
 }
 
-export {InputCommon}
+export { InputCommon }
+

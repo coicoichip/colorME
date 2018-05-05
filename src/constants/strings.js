@@ -1,7 +1,7 @@
 export const STRINGS = {
-    Register: 'Register',
-    Name: 'Name',
-    Email: 'Email',
-    Username: 'Username',
-    Password: 'Password'
+    REGISTER: 'Register',
+    NAME: 'Name',
+    EMAIL: 'Email',
+    USERNAME: 'Username',
+    PASSWORD: 'Password'
 }

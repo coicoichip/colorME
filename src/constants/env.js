@@ -1,3 +1,3 @@
 export const APIS = {
-    colorme: 'http://api.colorme.vn', 
+    COLOR_ME : 'http://api.colorme.vn', 
 }
