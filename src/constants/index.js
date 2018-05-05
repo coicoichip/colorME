@@ -1,2 +1,4 @@
 export * from './env';
-export * from './strings';
+export * from './string';
+export * from './color';
+export * from './size';
