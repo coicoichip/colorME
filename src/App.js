@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import {Main} from './navigation/appRouter';
-
+import RegisterContainer from './modules/register/RegisterContainer';
+import {Start} from './navigation/Router'
 export default class App extends Component {
   render() {
     return (
-      <Main/>
+      <Start/>
     );
   }
 };
