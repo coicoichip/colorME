@@ -35,13 +35,14 @@ class LoginContainer extends Component {
         let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         if (loginStore.login.email == '' || loginStore.login.password == '') {
             Alert.alert("Có lỗi xảy ra", "Bạn cần nhập đầy đủ thông tin ");
-        } else if (reg.test(loginStore.login.email) == false) {
-            Alert.alert("Có lỗi xảy ra", "Địa chỉ email không hợp lệ")
-        } else {
-            loginStore.loginUser(this.props.navigation);
-            loginStore.setDataLogin()
+            return ;
+        }if (reg.test(loginStore.login.email) == false) {
+            Alert.alert("Có lỗi xảy ra", "Địa chỉ email không hợp lệ");
+            return ;
         }
-    }
+            loginStore.loginUser(this.props.navigation);
+            loginStore.setDataLogin();
+        }
 
     signIn() {
         AsyncStorage.setItem('url', this.state.url).then(
@@ -51,7 +52,6 @@ class LoginContainer extends Component {
 
     updateData(name, value) {
         loginStore.login[name] = value;
-      
     }
     render() {
         const { navigate } = this.props.navigation;
