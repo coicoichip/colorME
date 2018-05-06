@@ -1,15 +1,11 @@
-import * as env from '../../constants/env';
+import { APIS } from '../../constants'
 import axios from 'axios';
-import { AsyncStorage } from 'react-native';
 
-export async function register(register) {
-    let url = ''
-    await AsyncStorage.getItem('url').then((value) => {
-        url = env.API_URL + value + '/user'
-    })
-    return axios.post(url,{
-        name : register.name,
-        email : register.email,
+export function register(register) {
+    let url = APIS.COLOR_ME + '/user';
+    return axios.post(url, {
+        name: register.name,
+        email: register.email,
         username: register.username,
         password: register.password,
     });
