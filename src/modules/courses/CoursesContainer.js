@@ -9,6 +9,9 @@ class CoursesContainer extends React.Component {
         return (
             <View style={styles.wrapperContainer}>
                 <Header title={'Khoá học'} navigate={navigate} />
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('DrawerOpen')}>
+                    <Text> DrawerOpen </Text>
+                </TouchableOpacity>
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     <Text>Khoá Học</Text>
                 </View>

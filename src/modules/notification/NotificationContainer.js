@@ -10,11 +10,7 @@ class NotificationContainer extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <Container style={styles.wrapperContainer}>
-                {/* <Header title={'THÔNG BÁO'} navigate={navigate} /> */}
-                <View style={[styles.wrapperHeader, styles.paddingLeftRight, { zIndex: 10000,  }]}>
-                    <Text style={styles.textHeaderScreen} numberOfLines={1}>Thông Báo</Text>
-                    <HamburgerButton navigate={this.props.navigate} />
-                </View>
+                <Header title={'THÔNG BÁO'} navigate={navigate} />
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     <Text>Thông báo</Text>
                 </View>
