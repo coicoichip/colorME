@@ -13,5 +13,8 @@ export const STRINGS = {
     EMPTY_EMAIL: 'Bạn chưa nhập địa chỉ email',
     WRONG_EMAIL: 'Địa chỉ email không hợp lệ',
     REGISTER_ACCOUNT: 'Đăng ký tài khoản',
-    LOGIN: 'Đăng nhập'
+    LOGIN: 'Đăng nhập',
+    WELCOME: { TITLE: 'Chào mừng bạn đến với colorME', DESCRIPTION: 'Mời bản trải nghiệm bản thử nghiệm của colorME App' },
+    EMAIL_ALREADY_EXIST: 'Địa chỉ email đã tồn tại',
+    USERNAME_ALREADY_EXIST: 'Tên người dùng đã tồn tại',
 }

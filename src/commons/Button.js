@@ -9,9 +9,14 @@ class ButtonCommon extends Component {
     }
 
     render() {
-        const { label, onPress, isLoading } = this.props;
+        const { label, onPress, isLoading, style } = this.props;
         return (
-            <Button onPress={onPress} full warning style={{ backgroundColor: COLORS.MAIN_COLOR, borderRadius: 50, marginTop: 20 }}>
+            <Button
+                onPress={() => isLoading ? {} : onPress()}
+                full
+                warning
+                style={[{ backgroundColor: COLORS.MAIN_COLOR, borderRadius: 50}, style]}
+            >
                 {
                     isLoading
                         ?
