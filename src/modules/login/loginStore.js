@@ -18,13 +18,13 @@ export const loginStore = new class LoginStore {
     loginUser(navigation) {
         this.isLoading = true;
         loginApi(this.login).then(res => {
-            const resetAction = NavigationActions.reset({
-                index: 0,
-                actions: [
-                    NavigationActions.navigate({ routeName: 'Drawer' })
-                ]
-            })
-            navigation.dispatch(resetAction);
+            // const resetAction = NavigationActions.reset({
+            //     index: 0,
+            //     actions: [ 
+            //         NavigationActions.navigate({ routeName: 'Drawer' })
+            //     ]
+            // })
+            // navigation.navigate("Drawer");
             this.isLoading = false;
             this.token = res.data.token,
             this.user = res.data.user,

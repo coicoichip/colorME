@@ -17,15 +17,15 @@ class InputCommon extends Component {
 
     render() {
         const { value } = this.setState;
-        const { label } = this.props;
+        const { label, size } = this.props;
         return (
-            <Item stackedLabel>
+            <Item stackedLabel style={size}>
                 {
                     label
                         ?
                         <Label style={{
                             color: COLORS.MAIN_COLOR,
-                            fontFamily: 'Segoe UI Bold',
+                            // fontFamily: 'Segoe UI Bold',
                             fontSize: SIZES.SUBTITLE_SIZE
                         }}>{label}</Label>
                         :
@@ -33,9 +33,14 @@ class InputCommon extends Component {
                 }
                 <Input
                     {...this.props}
+                    autoCorrect={false}
                     value={value}
                     onChangeText={this.onChangeText}
                     underlineColorAndroid='rgba(0,0,0,0)'
+                    style={{
+                        fontFamily: 'Montserrat-Regular',
+
+                    }}
                 />
             </Item>
         );

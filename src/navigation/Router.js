@@ -140,8 +140,8 @@ const Drawer = DrawerNavigator({
 
 export const RootStack = StackNavigator(
     {
-        Register : {screen : RegisterContainer},
         Login : {screen : LoginContainer},
+        Register : {screen : RegisterContainer},
         Drawer: { screen: Drawer },
          
         

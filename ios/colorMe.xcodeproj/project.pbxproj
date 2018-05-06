@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		003B3F6384D34210A8568FB4 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D10A7820ECF4292A37CA063 /* Montserrat-Bold.ttf */; };
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
@@ -41,7 +42,6 @@
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2DF8564C178A4552B44E3FA2 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C7141A96CD04038AB749816 /* Montserrat-SemiBold.ttf */; };
 		47CDECE4E587430FAFC822B9 /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D20B9489D31E43EA90026F3B /* Roboto.ttf */; };
-		485EBC7AF90E44E1852E6A7E /* Segoe UI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F91ED0856DE465DB9C190CB /* Segoe UI.ttf */; };
 		4D8DBE52C1ED4D7C878092BD /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE5B7ADA55C34AFF83A30E73 /* Foundation.ttf */; };
 		4F8C4D21B6374118B0D9E5F7 /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B97A791A55445E5B8422BF0 /* Montserrat-BoldItalic.ttf */; };
 		52583EC66FF14680849D0B87 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3722A96EF3A4B959607B065 /* Montserrat-Light.ttf */; };
@@ -72,7 +72,6 @@
 		AEC27BDF446C411BB44C268C /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 883DEA245D6845AEA65F07D0 /* MaterialCommunityIcons.ttf */; };
 		B41AA4DB2F3D499E8F94B775 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4911AC7A09C843C3B598EE56 /* Montserrat-Thin.ttf */; };
 		C480B22938024325877A65BA /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A6E582F711A44D7A72D0A19 /* libRNVectorIcons.a */; };
-		C7F035E562444C1484F38E70 /* Segoe UI Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 364C6DC3A6E8456F981B2CEB /* Segoe UI Bold.ttf */; };
 		CCCB5FFCB53448F1BA102A00 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 90134E67C4C942BFA1C06C42 /* Montserrat-Italic.ttf */; };
 		D7A92A59B00F4A69A3C4E7B6 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78465F1BB00B4FB3AAF1ECF7 /* Montserrat-Regular.ttf */; };
 		E3E210F651EB40E0A06C82E3 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B77547AD8FBC449E9B9863B3 /* Ionicons.ttf */; };
@@ -455,6 +454,7 @@
 		E58540BE183F454188DE1079 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		EDE202D932654573B88CED13 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Medium.ttf"; path = "../assets/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		F0A17555051C48B2BD51FC02 /* HelveticaWorld-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaWorld-Regular.ttf"; path = "../assets/fonts/HelveticaWorld-Regular.ttf"; sourceTree = "<group>"; };
+		FD326E47D76C498AA355B022 /* SegoeUIBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SegoeUIBold.ttf; path = ../assets/fonts/SegoeUIBold.ttf; sourceTree = "<group>"; };
 		FE5B7ADA55C34AFF83A30E73 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -803,6 +803,7 @@
 				230CEDC1C0DF47CEBC33AE56 /* Zocial.ttf */,
 				5F91ED0856DE465DB9C190CB /* Segoe UI.ttf */,
 				364C6DC3A6E8456F981B2CEB /* Segoe UI Bold.ttf */,
+				FD326E47D76C498AA355B022 /* SegoeUIBold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1327,8 +1328,6 @@
 				47CDECE4E587430FAFC822B9 /* Roboto.ttf in Resources */,
 				A0DF231559944E248225A58F /* SimpleLineIcons.ttf in Resources */,
 				905C5CC7CF5C44E38975EABE /* Zocial.ttf in Resources */,
-				485EBC7AF90E44E1852E6A7E /* Segoe UI.ttf in Resources */,
-				C7F035E562444C1484F38E70 /* Segoe UI Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
