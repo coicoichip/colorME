@@ -31,7 +31,7 @@ class ButtonCommon extends Component {
                             size='small'
                         />
                         :
-                        <Text>{label}</Text>
+                        <Text style = {this.props.text}>{label}</Text>
                 }
             </Button>
         );

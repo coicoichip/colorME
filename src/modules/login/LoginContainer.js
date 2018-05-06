@@ -12,7 +12,7 @@ import {
 
 } from 'react-native';
 import { STRINGS, COLORS, SIZES } from '../../constants';
-import { Container, Button, Text, Input, Form, Item, Label } from 'native-base';
+import { Container, Item, Button, Text, Input, Form, Label } from 'native-base';
 import { InputCommon, ButtonCommon } from '../../commons';
 import { loginStore } from './loginStore';
 import { NavigationActions } from 'react-navigation';
@@ -59,7 +59,7 @@ class LoginContainer extends Component {
             <KeyboardAwareScrollView
                 style={{ flex: 1 }}
                 enableOnAndroid={true}
-                extraHeight={200}
+                extraHeight={50}
             >
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <Container>
@@ -72,7 +72,7 @@ class LoginContainer extends Component {
                         <View style={styles.wrapperLogo}>
                             <View style={{ alignItems: 'flex-end' }}>
                                 <Text style={styles.textLogoColor}>color</Text>
-                                <Text style={{ height: 10 }} />
+                                <Text style={{ height: 15 }} />
                                 <Text style={styles.textLogoMe}>ME</Text>
                             </View>
                         </View>
@@ -81,51 +81,42 @@ class LoginContainer extends Component {
 
                         {/* form input */}
                         <View style={styles.contentForm}>
-
-                            {/* <InputCommon
-                                returnKeyType={'next'}
-                                size={styles.input}
-                                value={loginStore.login.email}
-                                label={STRINGS.EMAIL.toUpperCase()}
-                                onChangeText={this.onChangeData('email')}
-                            /> */}
                             <Item stackedLabel style={styles.input}>
 
                                 <Label style={{
                                     color: COLORS.MAIN_COLOR,
-                                    fontFamily: 'Montserrat-Bold',
+                                    fontFamily: 'Montserrat-SemiBold',
                                     fontSize: SIZES.SUBTITLE_SIZE
-                                }}>{'email'}</Label>
-
-                                }
+                                }}>{'Email'}</Label>
                                 <Input
                                     autoCorrect={false}
                                     value={loginStore.login.email}
                                     onChangeText={this.onChangeData('email')}
                                     underlineColorAndroid='rgba(0,0,0,0)'
                                     style={{
-                                        fontFamily: 'Montserrat-Regular',
-
+                                        fontFamily: 'Montserrat-Medium',
+                                        fontSize : 12,
+                                        color : 'rgba(195, 195, 195)'
                                     }}
                                 />
-                            </Item>
+                            </Item> */}
 
                             <Item stackedLabel style={styles.input}>
                                 <Label style={{
                                     color: COLORS.MAIN_COLOR,
-                                    fontFamily: 'Montserrat-Bold',
+                                    fontFamily: 'Montserrat-SemiBold',
                                     fontSize: SIZES.SUBTITLE_SIZE
-                                }}>{'password'}</Label>
+                                }}>{'Password'}</Label>
 
-                                }
                              <Input
                                     autoCorrect={false}
                                     value={loginStore.login.email}
                                     onChangeText={this.onChangeData('email')}
                                     underlineColorAndroid='rgba(0,0,0,0)'
                                     style={{
-                                        fontFamily: 'Montserrat-Regular',
-
+                                        fontFamily: 'Montserrat-Medium',
+                                        fontSize : 12,
+                                        color : 'rgba(195, 195, 195)'
                                     }}
                                 />
                             </Item>
@@ -134,8 +125,8 @@ class LoginContainer extends Component {
                         <View style={styles.wrapperButton}>
                             <ButtonCommon
                                 isLoading={loginStore.isLoading}
-                                // onPress={this.onRegister}
-                                label={STRINGS.REGISTER_ACCOUNT}
+                                // onPress={() => this.signIn()}
+                                label={'Đăng nhập'}
                                 style={{
                                     elevation: 6, shadowColor: COLORS.SHADOW_COLOR,
                                     shadowOffset: { width: 0, height: 0 },
@@ -144,6 +135,15 @@ class LoginContainer extends Component {
 
                             />
                         </View>
+
+
+                        <View style = {[wrapperCenter, {flexDirection : 'row',  bottom : 50, backgroundColor: 'white'}]}>
+                        <Text style={{color : 'rgb(109, 109, 109)', fontSize : 13}}>Bạn chưa có tài khoản? </Text>
+                                    <TouchableOpacity onPress={() => this.props.navigation.navigate("Register")}>
+                                        <Text style={[ { color: 'black', fontSize : 13 }]}>Đăng kí tại đây </Text>
+                                    </TouchableOpacity>
+                            
+                            </View>
                     </Container>
                 </TouchableWithoutFeedback>
             </KeyboardAwareScrollView>
@@ -157,7 +157,7 @@ const wrapperCenter = {
 }
 
 const textLogo = {
-    fontFamily: 'Montserrat-Bold',
+    fontFamily: 'Montserrat-ExtraBold',
     backgroundColor: 'transparent',
     color: COLORS.LIGHT_COLOR,
 }
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
         ...wrapperCenter,
         width: SIZES.DEVICE_WIDTH_SIZE,
         position: 'absolute',
-        bottom: 60,
+        bottom:  SIZES.DEVICE_HEIGHT_SIZE / 5 - 20,
         paddingHorizontal: 80,
     },
     wrapperLogo: {
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
         shadowColor: COLORS.SHADOW_COLOR,
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 0.4,
-        bottom: 80,
+        bottom: SIZES.DEVICE_HEIGHT_SIZE / 5,
         marginHorizontal: SIZES.DEVICE_WIDTH_SIZE * 0.1,
         padding: SIZES.PADDING_ELEMENT_IN_CARD,
         position: 'absolute',
