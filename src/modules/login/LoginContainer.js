@@ -57,6 +57,7 @@ class LoginContainer extends Component {
         const { navigate } = this.props.navigation;
         return (
             <Container>
+                <Text style = {{height : 100}}></Text>
                 <TextInput
                     value={loginStore.login.email}
                     label={'email'}
