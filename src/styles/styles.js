@@ -83,6 +83,19 @@ const style = {
         fontSize: 12,
 
     },
+    wrapperLogoDrawer: {
+        height: size.deviceHeight / 4,
+        alignItems: 'center',
+    },
+    imageDrawer: {
+        width: size.deviceHeight / 5,
+        height: size.deviceHeight / 5
+    },
+    textDescriptionLightBold: {
+        color: '#FFF',
+        fontFamily: FONT_MAIN_BOLD,
+        fontSize: 14,
+    },
     
 }
 const styles = StyleSheet.create(style)

@@ -10,9 +10,8 @@ import {
 import styles from '../../styles/styles';
 import { Container } from 'native-base';
 import Header from '../../commons/Header';
-import IconDefault from "../../commons/IconDefault";
 import { STRINGS } from "../../constants";
-import { loginStore }  from "../login/loginStore"
+import { loginStore } from "../login/loginStore"
 import Loading from '../../commons/Loading';
 import { coursesStore } from './coursesStore';
 import { observer } from "mobx-react";
@@ -41,7 +40,7 @@ class CoursesContainer extends Component {
             return null
     }
     renderSubject() {
-            if (coursesStore.subjects.length == 0) {
+        if (coursesStore.subjects.length == 0) {
             return <Loading />
         }
         if (coursesStore.errorSubject) {

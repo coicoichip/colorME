@@ -126,12 +126,12 @@ const Drawer = DrawerNavigator({
         contentOptions: {
             activeTintColor: "red",
         },
-        drawerWidth: 300,
+        drawerWidth: size.deviceWidth*3/4,
         drawerPosition: 'right',
         useNativeAnimations: 'false',
         disableOpenGesture: false,
         drawerLockMode: 'locked-closed',
-        // contentComponent: props => (<DrawerContainer {...props} />)
+        contentComponent: props => (<DrawerContainer {...props} />)
     });
 
 export const RootStack = StackNavigator(
