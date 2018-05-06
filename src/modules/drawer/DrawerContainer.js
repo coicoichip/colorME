@@ -13,6 +13,7 @@ import { DrawerItems } from 'react-navigation';
 import styles from "../../styles/styles";
 import * as color from "../../styles/colors";
 import {deviceWidth} from "../../styles/sizes";
+import loginStore from "../login/loginStore";
 class DrawerContainer extends Component {
 
 
@@ -39,7 +40,7 @@ class DrawerContainer extends Component {
                         <TouchableOpacity
                             activeOpacity={0.8}
                             style={[customStyles.wrapperButtonLogout, { backgroundColor: color.MAIN_COLOR }]}
-                            onPress={() => this.logout()}
+                            onPress={() => loginStore.logout(this.props.navigation)}
                         >
                             <Text style={[customStyles.buttonLogout, styles.textDescriptionLightBold]}>{'Đăng xuất'.toUpperCase()}</Text>
                         </TouchableOpacity>

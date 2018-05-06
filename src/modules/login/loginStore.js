@@ -3,7 +3,7 @@ import { observable, action, computed } from "mobx";
 import { loginApi } from "./loginApi";
 import { Alert, AsyncStorage } from "react-native"
 import { NavigationActions } from "react-navigation";
-export const loginStore = new class LoginStore {
+export default loginStore = new class LoginStore {
     @observable login = {};
     @observable loginStatus = false;
     @observable token = null;
@@ -19,8 +19,6 @@ export const loginStore = new class LoginStore {
         this.isLoading = true;
         
         loginApi(this.login).then(res => {
-            console.log(res)
-            console.log(navigation)
             let resetAction = NavigationActions.reset({
                 index: 0,
                 actions: [
@@ -47,7 +45,6 @@ export const loginStore = new class LoginStore {
     }
     @action
     async autoLogin(navigation) {
-        console.log(this.login)
             try {
             let value = await AsyncStorage.getItem('@ColorMe:save');
             if (this.login && this.status == 0 && value) {
@@ -63,11 +60,12 @@ export const loginStore = new class LoginStore {
             try {
                 const email = await AsyncStorage.getItem('@ColorMe:email');
                 const password = await AsyncStorage.getItem('@ColorMe:password');
-                console.log(email, password)
+                
                 this.login['email'] = email;
                 this.login['password'] = password
                 if(email !== null &&  password !== null){
                     this.autoLogin(navigation);
+                    console.log(this.login)
                 }        
             }
             catch (err) {
@@ -85,5 +83,22 @@ export const loginStore = new class LoginStore {
             }
             ;
         }
+    @action
+    async logout(navigation){
+        try {
+            await AsyncStorage.removeItem('@ColorMe:save');
+            let resetAction = NavigationActions.reset({
+                index: 0,
+                actions: [
+                    NavigationActions.navigate({ routeName: 'Login' })
+                ]
+            })
+            
+            navigation.dispatch(resetAction)
+            
+        }
+        catch (error) {
+        }
+    }
     
 }

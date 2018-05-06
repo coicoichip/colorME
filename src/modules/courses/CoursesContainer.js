@@ -11,7 +11,7 @@ import styles from '../../styles/styles';
 import { Container } from 'native-base';
 import Header from '../../commons/Header';
 import { STRINGS } from "../../constants";
-import { loginStore } from "../login/loginStore"
+import loginStore  from "../login/loginStore"
 import Loading from '../../commons/Loading';
 import { coursesStore } from './coursesStore';
 import { observer } from "mobx-react";
