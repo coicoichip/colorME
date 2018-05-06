@@ -54,6 +54,7 @@ export default class RegisterContainer extends Component {
         const { register } = this;
         return (
             <KeyboardAwareScrollView 
+                showsVerticalScrollIndicator={false}
                 style={{ flex: 1 }}
                 enableOnAndroid={true}
                 extraHeight={200}
