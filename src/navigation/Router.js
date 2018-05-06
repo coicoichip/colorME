@@ -15,6 +15,7 @@ import IconDefault from '../commons/IconDefault';
 import Icon from "../commons/Icon"
 import LoginContainer from '../modules/login/LoginContainer';
 import RegisterContainer from '../modules/register/RegisterContainer';
+import DrawerContainer from '../modules/drawer/DrawerContainer';
 const Tab = TabNavigator({
     Course: { 
         screen: CoursesContainer,
@@ -82,18 +83,6 @@ const Tab = TabNavigator({
             )
         } 
     },
-    // Home: {
-    //     screen: HomeScreen,
-    //     navigationOptions: {
-    //         tabBarIcon: ({ tintColor }) => (
-    //             <View style={{ justifyContent: 'center', height: 50 }}>
-    //                 <Icon name="ios-home" size={30} color='red' />
-    //             </View>
-    //         )
-
-    //     }
-
-    // },
 },
     {
         indicatorStyle: {
@@ -124,18 +113,25 @@ const Drawer = DrawerNavigator({
         navigationOptions: ({ navigation }) => ({
             title: 'Tổng Quan',
         })
+
     },
+    New: {
+        screen: NewsContainer,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Tin Tuc',
+        })
+    }
 },
     {
         contentOptions: {
             activeTintColor: "red",
         },
-        drawerWidth: 300,
+        drawerWidth: size.deviceWidth*3/4,
         drawerPosition: 'right',
         useNativeAnimations: 'false',
         disableOpenGesture: false,
         drawerLockMode: 'locked-closed',
-        // contentComponent: props => (<DrawerContainer {...props} />)
+        contentComponent: props => (<DrawerContainer {...props} />)
     });
 
 export const RootStack = StackNavigator(

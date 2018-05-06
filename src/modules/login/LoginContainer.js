@@ -14,11 +14,11 @@ import {
 import { STRINGS, COLORS, SIZES } from '../../constants';
 import { Container, Item, Button, Text, Input, Form, Label } from 'native-base';
 import { InputCommon, ButtonCommon } from '../../commons';
-import { loginStore } from './loginStore';
+import loginStore  from './loginStore';
 import { NavigationActions } from 'react-navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { observer } from "mobx-react";
-
+let _this;
 @observer
 class LoginContainer extends Component {
     constructor(props) {
@@ -26,6 +26,7 @@ class LoginContainer extends Component {
         this.state = {
             url: 'colorme.vn',
         }
+        _this = this;
     }
     componentWillMount() {
         loginStore.getDataLogin(this.props.navigation);
@@ -48,7 +49,9 @@ class LoginContainer extends Component {
     signIn() {
         AsyncStorage.setItem('url', this.state.url).then(
             () => this.signInWithAccount()
+            
         )
+        console.log(loginStore.login)
     }
 
 
@@ -110,8 +113,9 @@ class LoginContainer extends Component {
 
                              <Input
                                     autoCorrect={false}
-                                    value={loginStore.login.email}
-                                    onChangeText={this.onChangeData('email')}
+                                    secureTextEntry = {true}
+                                    value={loginStore.login.password}
+                                    onChangeText={this.onChangeData('password')}
                                     underlineColorAndroid='rgba(0,0,0,0)'
                                     style={{
                                         fontFamily: 'Montserrat-Medium',
@@ -125,7 +129,7 @@ class LoginContainer extends Component {
                         <View style={styles.wrapperButton}>
                             <ButtonCommon
                                 isLoading={loginStore.isLoading}
-                                // onPress={() => this.signIn()}
+                                onPress={() => this.signIn()}
                                 label={'Đăng nhập'}
                                 style={{
                                     elevation: 6, shadowColor: COLORS.SHADOW_COLOR,

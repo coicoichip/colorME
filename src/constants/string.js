@@ -17,4 +17,9 @@ export const STRINGS = {
     WELCOME: { TITLE: 'Chào mừng bạn đến với colorME', DESCRIPTION: 'Mời bản trải nghiệm bản thử nghiệm của colorME App' },
     EMAIL_ALREADY_EXIST: 'Địa chỉ email đã tồn tại',
     USERNAME_ALREADY_EXIST: 'Tên người dùng đã tồn tại',
+    NOTIFICATION_TITLE_HEADER : 'Thông báo',
+    PROFILE_TITLE_HEADER : 'Hồ sơ',
+    COURSE_TITLE_HEADER: 'Khoá học',
+    NEWS_TITLE_HEADER : 'Tin tức',
+    SHARING_EXPERIENCES_TITLE_HEADER: 'Chia sẻ kinh nghiệm',
 }
