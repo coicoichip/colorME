@@ -8,7 +8,7 @@ import styles from "../styles/styles";
 import IconDefault from '../commons/IconDefault';
 import { TabNavigator, StackNavigator, DrawerNavigator } from 'react-navigation';
 import LoginContainer from '../modules/login/LoginContainer';
-import RegisterContainer from '../modules/register/RegisterContainer';
+// import RegisterContainer from '../modules/register/RegisterContainer';
 import BlogContainer from "../modules/blog/BlogContainer"
 import DetailBlog from '../modules/blog/detailBlog';
 import DrawerContainer from "../modules/drawer/DrawerContainer"
@@ -168,7 +168,7 @@ const TAB_BAR_HEIGHT = 50;
            export const Main = StackNavigator(
                 {
                     Login: { screen: LoginContainer },
-                    Register: { screen: RegisterContainer },
+                    // Register: { screen: RegisterContainer },
                     Drawer: { screen: Drawer },
                 },
                 { headerMode: 'none', mode: 'modal' },

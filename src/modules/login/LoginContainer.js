@@ -17,11 +17,13 @@ import { connect } from 'react-redux'
 import TextNullData from '../../commons/TextNullData'
 import * as color from '../../styles/colors';
 import { WELCOME_TITLE, PR_TITLE } from '../../constants/text';
-import * as loginAction from './loginActions';
+import {loginStore} from './loginStore';
 import { NavigationActions } from 'react-navigation';
 import styles from '../../styles/styles';
 import stylesLogin from '../../styles/loginRegisterStyle'
+import { observer } from "mobx-react";
 
+@observer
 class LoginContainer extends Component {
     constructor(props) {
         super(props);
@@ -30,24 +32,19 @@ class LoginContainer extends Component {
         }
     }
     componentWillMount() {
-        console.log(this.props.login);
-        this.props.loginAction.getDataLogin(this.props.status);
-    }
-
-    saveData() {
-        console.log(this.props.login);
-        this.props.loginAction.setDataLogin(this.props.login)
+        loginStore.getDataLogin(this.props.navigation);
+        
     }
 
     signInWithAccount() {
         let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-        if (this.props.login.email == '' || this.props.login.password == '') {
+        if (loginStore.login.email == '' || loginStore.login.password == '') {
             Alert.alert("Có lỗi xảy ra", "Bạn cần nhập đầy đủ thông tin ");
-        } else if (reg.test(this.props.login.email) == false) {
+        } else if (reg.test(loginStore.login.email) == false) {
             Alert.alert("Có lỗi xảy ra", "Địa chỉ email không hợp lệ")
         } else {
-            this.props.loginAction.loginUser(this.props.login);
-            this.saveData();
+            loginStore.loginUser(this.props.navigation);
+            loginStore.setDataLogin()
         }
     }
 
@@ -58,9 +55,8 @@ class LoginContainer extends Component {
     }
 
     updateData(name, value) {
-        let login = this.props.login;
-        login[name] = value;
-        this.props.loginAction.updateDataLogin(login);
+        loginStore.login[name] = value;
+      
     }
 
     // skipLogin() {
@@ -68,17 +64,17 @@ class LoginContainer extends Component {
     //     this.props.navigation.navigate('DrawerMain');
     // }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.status == 200) {
-            const resetAction = NavigationActions.reset({
-                index: 0,
-                actions: [
-                    NavigationActions.navigate({ routeName: 'Drawer' })
-                ]
-            })
-            this.props.navigation.dispatch(resetAction)
-        }
-    }
+    // componentWillReceiveProps(nextProps) {
+    //     if (nextProps.status == 200) {
+    //         const resetAction = NavigationActions.reset({
+    //             index: 0,
+    //             actions: [
+    //                 NavigationActions.navigate({ routeName: 'Drawer' })
+    //             ]
+    //         })
+    //         this.props.navigation.dispatch(resetAction)
+    //     }
+    // }
     render() {
         const { navigate } = this.props.navigation;
         return (
@@ -110,7 +106,7 @@ class LoginContainer extends Component {
                                             onChangeText={(email) => {
                                                 this.updateData('email', email);
                                             }}
-                                            value={this.props.login.email}
+                                            value={loginStore.login.email}
                                         />
                                     </Item>
                                 </View>
@@ -130,7 +126,7 @@ class LoginContainer extends Component {
                                             onChangeText={(password) => {
                                                 this.updateData('password', password);
                                             }}
-                                            value={this.props.login.password}
+                                            value={loginStore.login.password}
                                         />
                                     </Item>
                                 </View>
@@ -142,7 +138,7 @@ class LoginContainer extends Component {
                                         this.signIn()
                                     }}
                                 >
-                                    {(this.props.isLoading) ? (
+                                    {(loginStore.isLoading) ? (
                                         <ActivityIndicator
                                             animated={true}
                                             color={"#FFF"}
@@ -170,22 +166,6 @@ class LoginContainer extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        login: state.login.login,
-        isLoading: state.login.isLoading,
-        status: state.login.status,
-        error: state.login.error,
-        isGetLocalData: state.login.isGetLocalData,
-        isAutoLogin: state.login.isAutoLogin,
-        save: state.login.save
-    }
-}
 
-function mapDispatchToProps(dispatch) {
-    return {
-        loginAction: bindActionCreators(loginAction, dispatch)
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer)
+export default LoginContainer
