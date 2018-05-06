@@ -13,6 +13,8 @@ import SharingExperiencesContainer from '../modules/sharing-experiences/SharingE
 import CoursesContainer from '../modules/courses/CoursesContainer';
 import IconDefault from '../commons/IconDefault';
 import Icon from "../commons/Icon"
+import LoginContainer from '../modules/login/LoginContainer';
+import RegisterContainer from '../modules/register/RegisterContainer';
 const Tab = TabNavigator({
     Course: { 
         screen: CoursesContainer,
@@ -136,18 +138,13 @@ const Drawer = DrawerNavigator({
         // contentComponent: props => (<DrawerContainer {...props} />)
     });
 
-const RootStack = StackNavigator(
+export const RootStack = StackNavigator(
     {
+        Login : {screen : LoginContainer},
+        Register : {screen : RegisterContainer},
         Drawer: { screen: Drawer },
          
         
     },
     { headerMode: 'none' }
 );
-export const Start = StackNavigator({
-    Main: {
-        screen: RootStack,
-    },
-
-},
-{ headerMode: 'none', mode: 'modal' }, )
