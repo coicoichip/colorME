@@ -27,7 +27,9 @@ class InputCommon extends Component {
                             color: COLORS.MAIN_COLOR,
                             fontFamily: 'Segoe UI Bold',
                             fontSize: SIZES.SUBTITLE_SIZE
-                        }}>{label}</Label>
+                        }}>
+                            {label}
+                        </Label>
                         :
                         null
                 }

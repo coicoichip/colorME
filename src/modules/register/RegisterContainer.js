@@ -30,10 +30,6 @@ export default class RegisterContainer extends Component {
         const { register } = this;
         let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
-        if (register.username == 0) {
-            Alert.alert(STRINGS.HAVE_ERROR, STRINGS.EMPTY_USERNAME);
-            return;
-        }
         if (register.name == 0) {
             Alert.alert(STRINGS.HAVE_ERROR, STRINGS.EMPTY_NAME);
             return;
@@ -41,17 +37,17 @@ export default class RegisterContainer extends Component {
         if (register.email == 0) {
             Alert.alert(STRINGS.HAVE_ERROR, STRINGS.EMPTY_EMAIL);
             return;
-        }
-        if (!reg.test(register.email)) {
+        } else if (!reg.test(register.email)) {
             Alert.alert(STRINGS.HAVE_ERROR, STRINGS.WRONG_EMAIL);
             return;
+        } else {
+            register.username = register.email.slice(0, register.email.indexOf("@"));
         }
         if (register.password == 0) {
             Alert.alert(STRINGS.HAVE_ERROR, STRINGS.EMPTY_PASSWORD);
             return;
         }
         registerStore.register(register);
-
     }
 
     render() {
@@ -81,13 +77,6 @@ export default class RegisterContainer extends Component {
 
                         {/* form input */}
                         <View style={styles.contentForm}>
-                            <InputCommon
-                                returnKeyType={'next'}
-                                size={styles.input}
-                                value={register.username}
-                                label={STRINGS.USERNAME.toUpperCase()}
-                                onChangeText={this.onChangeData('username')}
-                            />
                             <InputCommon
                                 returnKeyType={'next'}
                                 size={styles.input}
@@ -134,7 +123,7 @@ const wrapperCenter = {
 }
 
 const textLogo = {
-    fontFamily: 'Segoe UI Bold',
+    fontFamily: 'seguibl',
     backgroundColor: 'transparent',
     color: COLORS.LIGHT_COLOR,
 }
@@ -174,6 +163,7 @@ const styles = StyleSheet.create({
     },
     input: {
         width: SIZES.DEVICE_WIDTH_SIZE * 0.7,
+        marginBottom: 10,
     }
 
 });
