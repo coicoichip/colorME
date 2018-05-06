@@ -113,7 +113,14 @@ const Drawer = DrawerNavigator({
         navigationOptions: ({ navigation }) => ({
             title: 'Tổng Quan',
         })
+
     },
+    New: {
+        screen: NewsContainer,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Tin Tuc',
+        })
+    }
 },
     {
         contentOptions: {
@@ -124,7 +131,7 @@ const Drawer = DrawerNavigator({
         useNativeAnimations: 'false',
         disableOpenGesture: false,
         drawerLockMode: 'locked-closed',
-        contentComponent: props => (<DrawerContainer {...props} />)
+        // contentComponent: props => (<DrawerContainer {...props} />)
     });
 
 export const RootStack = StackNavigator(

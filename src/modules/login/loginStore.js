@@ -14,25 +14,29 @@ export const loginStore = new class LoginStore {
     @observable status = 0;
     @observable user = {};
     
-    @action
+    @action 
     loginUser(navigation) {
         this.isLoading = true;
+        
         loginApi(this.login).then(res => {
-            // const resetAction = NavigationActions.reset({
-            //     index: 0,
-            //     actions: [
-            //         NavigationActions.navigate({ routeName: 'Register' })
-            //     ]
-            // })
-            navigation.navigate("Drawer");
+            console.log(res)
+            console.log(navigation)
+            let resetAction = NavigationActions.reset({
+                index: 0,
+                actions: [
+                    NavigationActions.navigate({ routeName: 'Drawer' })
+                ]
+            })
+            
+            navigation.dispatch(resetAction)
             this.isLoading = false;
             this.token = res.data.token,
             this.user = res.data.user,
             this.status = res.status,
             this.loginStatus = true
-            console.log(res.data)
         })
             .catch(err => {
+                console.log(err);
                 this.isLoading = false;
                 Alert.alert('Đăng nhập thất bại.',
                     'Mời bạn kiểm tra lại thông tin tài khoản hoặc đường truyền kết nối mạng.',
