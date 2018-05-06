@@ -8,7 +8,8 @@ import {
     StatusBar,
     TouchableOpacity, Keyboard,
     View, TouchableWithoutFeedback,
-    StyleSheet
+    StyleSheet,
+    TextInput
 } from 'react-native';
 import { STRINGS, COLORS, SIZES } from '../../constants';
 import { Container, Button, Text } from 'native-base';
@@ -99,42 +100,42 @@ class LoginContainer extends Component {
         )
     }
 }
-const styles = StyleSheet.create({
-    textLogoColor: {
-        fontFamily: 'Segoe UI Bold',
-        backgroundColor: 'transparent',
-        color: COLORS.LIGHT_COLOR,
-        fontSize: SIZES.LOGO_COLOR_SIZE,
-    },
-    textLogoMe: {
-        fontFamily: 'Segoe UI Bold',
-        backgroundColor: 'transparent',
-        color: COLORS.LIGHT_COLOR,
-        fontSize: SIZES.LOGO_ME_SIZE,
-        marginTop: -40,
-    },
-    wrapperLogo: {
-        flex: 1,
-        backgroundColor: COLORS.MAIN_COLOR,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    contentForm: {
-        backgroundColor: COLORS.LIGHT_COLOR,
-        width: SIZES.DEVICE_WIDTH_SIZE * 0.8,
-        borderRadius: SIZES.BORDER_RADIUS_CARD_SIZE,
-        elevation: 5,
-        bottom: 20,
-        marginHorizontal: SIZES.DEVICE_WIDTH_SIZE * 0.1,
-        padding: SIZES.PADDING_ELEMENT_IN_CARD,
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'absolute',
-    },
-    input: {
-        width: SIZES.DEVICE_WIDTH_SIZE * 0.7,
-    }
-});
+// const styles = StyleSheet.create({
+//     textLogoColor: {
+//         fontFamily: 'Segoe UI Bold',
+//         backgroundColor: 'transparent',
+//         color: COLORS.LIGHT_COLOR,
+//         fontSize: SIZES.LOGO_COLOR_SIZE,
+//     },
+//     textLogoMe: {
+//         fontFamily: 'Segoe UI Bold',
+//         backgroundColor: 'transparent',
+//         color: COLORS.LIGHT_COLOR,
+//         fontSize: SIZES.LOGO_ME_SIZE,
+//         marginTop: -40,
+//     },
+//     wrapperLogo: {
+//         flex: 1,
+//         backgroundColor: COLORS.MAIN_COLOR,
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//     },
+//     contentForm: {
+//         backgroundColor: COLORS.LIGHT_COLOR,
+//         width: SIZES.DEVICE_WIDTH_SIZE * 0.8,
+//         borderRadius: SIZES.BORDER_RADIUS_CARD_SIZE,
+//         elevation: 5,
+//         bottom: 20,
+//         marginHorizontal: SIZES.DEVICE_WIDTH_SIZE * 0.1,
+//         padding: SIZES.PADDING_ELEMENT_IN_CARD,
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//         position: 'absolute',
+//     },
+//     input: {
+//         width: SIZES.DEVICE_WIDTH_SIZE * 0.7,
+//     }
+// });
 
 
 

@@ -1,7 +1,7 @@
 import { observable, action } from "mobx";
 import * as registerApi from './registerApi';
 
-export const store = new class RegisterStore {
+export default new class RegisterStore {
     @observable isLoading = false;
     @observable user = {};
 
