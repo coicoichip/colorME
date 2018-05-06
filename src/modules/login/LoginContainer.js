@@ -17,7 +17,7 @@ import {loginStore} from './loginStore';
 import { NavigationActions } from 'react-navigation';
 
 import { observer } from "mobx-react";
-
+let _this;
 @observer
 class LoginContainer extends Component {
     constructor(props) {
@@ -25,6 +25,7 @@ class LoginContainer extends Component {
         this.state = {
             url: 'colorme.vn',
         }
+        _this = this;
     }
     componentWillMount() {
         loginStore.getDataLogin(this.props.navigation);
@@ -40,7 +41,7 @@ class LoginContainer extends Component {
             Alert.alert("Có lỗi xảy ra", "Địa chỉ email không hợp lệ");
             return ;
         }
-            loginStore.loginUser(this.props.navigation);
+            loginStore.loginUser(_this.props.navigation);
             loginStore.setDataLogin();
         }
 
