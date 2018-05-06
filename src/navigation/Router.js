@@ -65,7 +65,7 @@ const Tab = TabNavigator({
                         name="FontAwesome|bell-o" size={size.ICON_SIZE}
                         color={tintColor}
                     />
-                    <Icon name={"FontAwesome|circle"} size={10} color={color.MAIN_COLOR} style={{ position: "absolute", backgroundColor: 'transparent', top: 10, right: size.deviceWidth / 15 }} />
+                    <Icon name={"FontAwesome|circle"} size={10} color={color.MAIN_COLOR} style={{ position: "absolute", backgroundColor: 'transparent', top: 13, right: size.deviceWidth / 14 }} />
                 </View>
             ),
         }

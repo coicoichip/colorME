@@ -22,7 +22,7 @@ class DrawerContainer extends Component {
       return (
           <Container style={styles.wrapperContainer}>
               <View
-                  style={[styles.wrapperLogoDrawer, styles.wrapperCenter]}
+                  style={[styles.wrapperLogoDrawer, styles.wrapperCenter,{backgroundColor: color.MAIN_COLOR}]}
               >
                  <Image
                   source={require("../../../assets/image/colorMe.jpg")}

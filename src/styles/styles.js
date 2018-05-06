@@ -84,7 +84,7 @@ const style = {
 
     },
     wrapperLogoDrawer: {
-        height: size.deviceHeight / 4,
+        height: size.deviceHeight / 5,
         alignItems: 'center',
     },
     imageDrawer: {
