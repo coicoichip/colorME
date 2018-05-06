@@ -2,43 +2,63 @@ import React, { Component } from 'react';
 import {
     Platform,
     StyleSheet,
-    View, ActivityIndicator
+    View, ActivityIndicator, Alert
 } from 'react-native';
 import { Container, Button, Text } from 'native-base';
 import { STRINGS } from '../../constants';
 import { InputCommon } from '../../commons';
 import { observer } from 'mobx-react';
-import { store } from './registerStore';
+import registerStore from './registerStore';
+import { observable } from 'mobx';
 
 @observer
 export default class RegisterContainer extends Component {
+    @observable register = {
+        username: '',
+        email: '',
+        name: '',
+        password: '',
+    }
     constructor(props) {
         super(props);
-        this.state = {
-            register: {
-                username: '',
-                email: '',
-                name: '',
-                password: '',
-            },
-        }
     }
 
-    onChangeData = field => value => {
-        this.state.register[field] = value;
-        console.log('Register Data: ', this.state);
-    };
+    onChangeData = field => value => { this.register[field] = value; console.log(this) };
 
     onRegister = () => {
-        const { register } = this.state;
-        store.register(register);
+        const { register } = this;
+        let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+        if (register.username == 0) {
+            Alert.alert(STRINGS.HAVE_ERROR, STRINGS.EMPTY_USERNAME);
+            return;
+        }
+        if (register.name == 0) {
+            Alert.alert(STRINGS.HAVE_ERROR, STRINGS.EMPTY_NAME);
+            return;
+        }
+        if (register.email == 0) {
+            Alert.alert(STRINGS.HAVE_ERROR, STRINGS.EMPTY_EMAIL);
+            return;
+        }
+        if (reg.test(register.email)) {
+            Alert.alert(STRINGS.HAVE_ERROR, STRINGS.WRONG_EMAIL);
+            return;
+        }
+        if (register.password == 0) {
+            Alert.alert(STRINGS.HAVE_ERROR, STRINGS.EMPTY_PASSWORD);
+            return;
+        }
+        registerStore.register(register);
+
     }
 
     render() {
-        const { register } = this.state;
+        const { register } = this;
         return (
             <Container>
                 <InputCommon
+                    keyboar
                     value={register.username}
                     label={STRINGS.USERNAME}
                     onChangeText={this.onChangeData('username')}
@@ -58,15 +78,13 @@ export default class RegisterContainer extends Component {
                     label={STRINGS.PASSWORD}
                     onChangeText={this.onChangeData('password')}
                 />
-
-
                 <Button
                     style={{ marginTop: 20 }}
                     onPress={this.onRegister}
                     full
                 >
                     {
-                        store.isLoading
+                        registerStore.isLoading
                             ?
                             <ActivityIndicator
                                 animated={true}
@@ -83,11 +101,11 @@ export default class RegisterContainer extends Component {
 
                     }
                 </Button>
-
             </Container>
         );
     }
 }
 
 const styles = StyleSheet.create({
+
 });

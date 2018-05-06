@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Form, Item, Input, Label } from 'native-base';
+import { Form, Item, Input, Label } from 'native-base';
 
 class InputCommon extends Component {
     constructor(props) {
@@ -15,12 +15,13 @@ class InputCommon extends Component {
     }
 
     render() {
-        const { value } = this.setState
-        const { label } = this.props
+        const { value } = this.setState;
+        const { label } = this.props;
         return (
             <Item fixedLabel>
                 <Label>{label}</Label>
                 <Input
+                    {...this.props}
                     value={value}
                     onChangeText={this.onChangeText}
                     underlineColorAndroid='rgba(0,0,0,0)'
