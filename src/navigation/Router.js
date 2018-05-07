@@ -11,14 +11,28 @@ import NotificationContainer from '../modules/notification/NotificationContainer
 import ProfileContainer from '../modules/profile/ProfileContainer';
 import SharingExperiencesContainer from '../modules/sharing-experiences/SharingExperiencesContainer';
 import CoursesContainer from '../modules/courses/CoursesContainer';
+import LearnRegisterContainer from '../modules/courses/LearnRegisterContainer';
+import CourseInformation from '../modules/courses/CourseInFormation';
 import IconDefault from '../commons/IconDefault';
 import Icon from "../commons/Icon"
 import LoginContainer from '../modules/login/LoginContainer';
 import RegisterContainer from '../modules/register/RegisterContainer';
 import DrawerContainer from '../modules/drawer/DrawerContainer';
+const StackNavigatorStyle = {
+    navigationOptions: {
+        header: null,
+    },
+};
+const Courses = StackNavigator(
+    {
+        CourseList: {screen: CoursesContainer},
+        CourseInFormation: {screen: CourseInformation, navigationOptions: {tabBarVisible: false,}},
+        LearnRegister: {screen: LearnRegisterContainer, navigationOptions: {tabBarVisible: false,}},
+    }, StackNavigatorStyle
+);
 const Tab = TabNavigator({
-    Course: { 
-        screen: CoursesContainer,
+    Courses: { 
+        screen: Courses,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
                 <View style={styles.wrapperIconTabNavigator}>

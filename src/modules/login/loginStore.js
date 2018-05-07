@@ -32,6 +32,7 @@ export default loginStore = new class LoginStore {
             this.user = res.data.user,
             this.status = res.status,
             this.loginStatus = true
+            console.log(res)
         })
             .catch(err => {
                 console.log(err);
