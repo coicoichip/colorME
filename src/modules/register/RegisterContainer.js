@@ -68,7 +68,7 @@ export default class RegisterContainer extends Component {
 
                         {/* logo */}
                         <View style={styles.wrapperLogo}>
-                            <View style={{ alignItems: 'flex-end' }}>
+                            <View style={{ alignItems: 'flex-end', marginTop: -40 }}>
                                 <Text style={styles.textLogoColor}>color</Text>
                                 <Text style={styles.textLogoMe}>ME</Text>
                             </View>
@@ -108,7 +108,6 @@ export default class RegisterContainer extends Component {
                                 onPress={this.onRegister}
                                 label={STRINGS.REGISTER_ACCOUNT}
                                 style={{ elevation: 6 }}
-
                             />
                         </View>
                     </Container>
@@ -143,7 +142,7 @@ const styles = StyleSheet.create({
         ...wrapperCenter,
         width: SIZES.DEVICE_WIDTH_SIZE,
         position: 'absolute',
-        bottom: 60,
+        bottom: 40,
         paddingHorizontal: 80,
     },
     wrapperLogo: {
@@ -157,7 +156,7 @@ const styles = StyleSheet.create({
         width: SIZES.DEVICE_WIDTH_SIZE * 0.8,
         borderRadius: SIZES.BORDER_RADIUS_CARD_SIZE,
         elevation: 5,
-        bottom: 80,
+        bottom: 60,
         marginHorizontal: SIZES.DEVICE_WIDTH_SIZE * 0.1,
         padding: SIZES.PADDING_ELEMENT_IN_CARD,
         position: 'absolute',
