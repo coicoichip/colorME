@@ -7,10 +7,13 @@ import {
 import { Container, Button, Text } from 'native-base';
 import { STRINGS, COLORS, SIZES } from '../../constants';
 import { InputCommon, ButtonCommon } from '../../commons';
+import { resetScreen } from '../../helper';
 import { observer } from 'mobx-react';
 import registerStore from './registerStore';
 import { observable } from 'mobx';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { dispatch } from 'react-navigation';
+
 
 @observer
 export default class RegisterContainer extends Component {
@@ -48,12 +51,13 @@ export default class RegisterContainer extends Component {
             return;
         }
         registerStore.register(register);
+        this.props.navigation.navigate('Home')
     }
 
     render() {
         const { register } = this;
         return (
-            <KeyboardAwareScrollView 
+            <KeyboardAwareScrollView
                 showsVerticalScrollIndicator={false}
                 style={{ flex: 1 }}
                 enableOnAndroid={true}
@@ -94,13 +98,13 @@ export default class RegisterContainer extends Component {
                             />
                             <InputCommon
                                 returnKeyType={'send'}
-                                secureTextEntry={true}
+                                me secureTextEntry={true}
                                 size={styles.input}
                                 value={register.password}
                                 label={STRINGS.PASSWORD.toUpperCase()}
                                 onChangeText={this.onChangeData('password')}
                             />
-                            <View height={30}/>
+                            <View height={30} />
                         </View>
                         <View style={styles.wrapperButton}>
                             <ButtonCommon
@@ -138,7 +142,7 @@ const styles = StyleSheet.create({
         fontSize: SIZES.LOGO_ME_SIZE,
         marginTop: -40,
     },
-    wrapperButton : {
+    wrapperButton: {
         ...wrapperCenter,
         width: SIZES.DEVICE_WIDTH_SIZE,
         position: 'absolute',
@@ -153,7 +157,7 @@ const styles = StyleSheet.create({
     contentForm: {
         ...wrapperCenter,
         backgroundColor: COLORS.LIGHT_COLOR,
-        width: SIZES.DEVICE_WIDTH_SIZE * 0.8,
+        width: SIZES.FORM_LOGIN_WIDTH_SIZE,
         borderRadius: SIZES.BORDER_RADIUS_CARD_SIZE,
         elevation: 5,
         bottom: 60,

@@ -2,6 +2,7 @@ import { Dimensions } from 'react-native';
 export const SIZES = {
     DEVICE_WIDTH_SIZE: Dimensions.get('window').width,
     DEVICE_HEIGHT_SIZE: Dimensions.get('window').height,
+    FORM_LOGIN_WIDTH_SIZE: Dimensions.get('window').width * 0.8,
     TITLE_SIZE: 16,
     SUBTITLE_SIZE: 14,
     DESCRIPTION_SIZE: 12,
