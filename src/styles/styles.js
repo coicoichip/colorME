@@ -96,6 +96,22 @@ const style = {
         fontFamily: FONT_MAIN_BOLD,
         fontSize: 14,
     },
+    categoryInImage:{
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
+        backgroundColor: color.MAIN_COLOR,
+        padding: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderRadius: 13,
+        overflow: "hidden"
+    },
+    imageFeature: {
+        borderRadius: 15,
+        height: size.deviceHeight / 3,
+        backgroundColor: color.ANDROID_SHADOW,
+    },
     
 }
 const styles = StyleSheet.create(style)

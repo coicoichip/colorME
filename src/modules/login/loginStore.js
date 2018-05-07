@@ -3,6 +3,7 @@ import { observable, action, computed } from "mobx";
 import { loginApi } from "./loginApi";
 import { Alert, AsyncStorage } from "react-native"
 import { NavigationActions } from "react-navigation";
+
 export default loginStore = new class LoginStore {
     @observable login = {};
     @observable loginStatus = false;
@@ -17,7 +18,6 @@ export default loginStore = new class LoginStore {
     @action 
     loginUser(navigation) {
         this.isLoading = true;
-        
         loginApi(this.login).then(res => {
             let resetAction = NavigationActions.reset({
                 index: 0,
@@ -34,7 +34,6 @@ export default loginStore = new class LoginStore {
             this.loginStatus = true
         })
             .catch(err => {
-                console.log(err);
                 this.isLoading = false;
                 Alert.alert('Đăng nhập thất bại.',
                     'Mời bạn kiểm tra lại thông tin tài khoản hoặc đường truyền kết nối mạng.',
@@ -47,8 +46,9 @@ export default loginStore = new class LoginStore {
     async autoLogin(navigation) {
             try {
             let value = await AsyncStorage.getItem('@ColorMe:save');
+            console.log(this.login);
             if (this.login && this.status == 0 && value) {
-                this.loginUser(navigation)
+                this.loginUser(navigation)      
             }
         }
         catch (err) {
@@ -57,23 +57,22 @@ export default loginStore = new class LoginStore {
     }
     @action
     async getDataLogin(navigation) {
+            this.login = {};
             try {
                 const email = await AsyncStorage.getItem('@ColorMe:email');
                 const password = await AsyncStorage.getItem('@ColorMe:password');
                 
-                this.login['email'] = email;
-                this.login['password'] = password
-                if(email !== null &&  password !== null){
-                    this.autoLogin(navigation);
-                    console.log(this.login)
-                }        
+                    this.login['email'] = email
+                    this.login['password'] = password
+                    this.autoLogin(navigation)
+              
+               
             }
             catch (err) {
             }
     }
     @action
      async setDataLogin() {
-         console.log(this.login)
             try {
                 await AsyncStorage.setItem('@ColorMe:email', this.login.email);
                 await AsyncStorage.setItem('@ColorMe:password', this.login.password);
@@ -93,12 +92,17 @@ export default loginStore = new class LoginStore {
                     NavigationActions.navigate({ routeName: 'Login' })
                 ]
             })
-            
-            navigation.dispatch(resetAction)
-            
+            navigation.dispatch(resetAction)           
         }
         catch (error) {
         }
     }
-    
+    @computed
+    get renderEmail(){
+       return "121212"
+    }
+    @computed
+    get renderPassword(){
+        return "asdasdasda"
+    }
 }
