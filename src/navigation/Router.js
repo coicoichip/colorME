@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
     Text, View
 } from 'react-native';
@@ -7,8 +7,6 @@ import * as size from "../styles/sizes";
 import styles from "../styles/styles";
 import { StackNavigator, TabNavigator, DrawerNavigator, DrawerItems } from 'react-navigation';
 import NewsContainer from '../modules/news/NewsContainer';
-import BaseContainer from '../modules/base/BaseContainer';
-import BaseContainer2 from '../modules/base2/BaseContainer2';
 import NotificationContainer from '../modules/notification/NotificationContainer';
 import ProfileContainer from '../modules/profile/ProfileContainer';
 import SharingExperiencesContainer from '../modules/sharing-experiences/SharingExperiencesContainer';
@@ -27,13 +25,13 @@ const StackNavigatorStyle = {
 };
 const Courses = StackNavigator(
     {
-        CourseList: { screen: CoursesContainer },
-        CourseInFormation: { screen: CourseInformation, navigationOptions: { tabBarVisible: false, } },
-        LearnRegister: { screen: LearnRegisterContainer, navigationOptions: { tabBarVisible: false, } },
+        CourseList: {screen: CoursesContainer},
+        CourseInFormation: {screen: CourseInformation, navigationOptions: {tabBarVisible: false,}},
+        LearnRegister: {screen: LearnRegisterContainer, navigationOptions: {tabBarVisible: false,}},
     }, StackNavigatorStyle
 );
 const Tab = TabNavigator({
-    Courses: {
+    Courses: { 
         screen: Courses,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
@@ -46,7 +44,7 @@ const Tab = TabNavigator({
             )
         }
     },
-    SharingExperiences: {
+    SharingExperiences: { 
         screen: SharingExperiencesContainer,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
@@ -59,7 +57,7 @@ const Tab = TabNavigator({
             )
         }
     },
-    News: {
+    News: { 
         screen: NewsContainer,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
@@ -70,9 +68,9 @@ const Tab = TabNavigator({
                     />
                 </View>
             )
-        }
+        } 
     },
-    Notification: {
+    Notification: { 
         screen: NotificationContainer,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
@@ -86,7 +84,7 @@ const Tab = TabNavigator({
             ),
         }
     },
-    Profile: {
+    Profile: { 
         screen: ProfileContainer,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
@@ -97,31 +95,32 @@ const Tab = TabNavigator({
                     />
                 </View>
             )
-        }
+        } 
     },
-
-    indicatorStyle: {
-        border: 5,
-        backgroundColor: color.NONE_COLOR,
-    },
-    initialRouteName: 'News',
-    tabBarPosition: 'bottom',
-    animationEnabled: true,
-
-    tabBarOptions: {
-        indicatorStyle: { backgroundColor: 'transparent' },
-        showIcon: true,
-        activeTintColor: color.TEXT_COLOR,
-        inactiveTintColor: color.DISABLE_COLOR,
-        style: {
-            borderTopWidth: 0.5,
-            borderTopColor: color.DISABLE_COLOR,
-            backgroundColor: 'rgb(254, 254, 254)',
+},
+    {
+        indicatorStyle: {
+            border: 5,
+            backgroundColor: color.NONE_COLOR,
         },
-        showLabel: false,
-    }
+        initialRouteName: 'News',
+        tabBarPosition: 'bottom',
+        animationEnabled: true,
 
-});
+        tabBarOptions: {
+            indicatorStyle: { backgroundColor: 'transparent' },
+            showIcon: true,
+            activeTintColor: color.TEXT_COLOR,
+            inactiveTintColor: color.DISABLE_COLOR,
+            style: {
+                borderTopWidth: 0.5,
+                borderTopColor: color.DISABLE_COLOR,
+                backgroundColor: 'rgb(254, 254, 254)',
+            },
+            showLabel: false,
+        }
+
+    });
 const Drawer = DrawerNavigator({
     OverView: {
         screen: Tab,
@@ -135,25 +134,13 @@ const Drawer = DrawerNavigator({
         navigationOptions: ({ navigation }) => ({
             title: 'Tin Tuc',
         })
-    },
-    Base: {
-        screen: BaseContainer,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Cơ sở',
-        })
-    },
-    Base2: {
-        screen: BaseContainer2,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Cơ sở 2',
-        })
     }
 },
     {
         contentOptions: {
             activeTintColor: "red",
         },
-        drawerWidth: size.deviceWidth * 3 / 4,
+        drawerWidth: size.deviceWidth*3/4,
         drawerPosition: 'right',
         useNativeAnimations: 'false',
         disableOpenGesture: false,
@@ -163,11 +150,11 @@ const Drawer = DrawerNavigator({
 
 export const RootStack = StackNavigator(
     {
-        Login: { screen: LoginContainer },
-        Register: { screen: RegisterContainer },
+        Login : {screen : LoginContainer},
+        Register : {screen : RegisterContainer},
         Drawer: { screen: Drawer },
-
-
+         
+        
     },
     { headerMode: 'none' }
 );
