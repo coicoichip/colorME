@@ -19,6 +19,8 @@ import DetailBlogContainer from "../modules/blogs/DetailBlogContainer"
 import LoginContainer from '../modules/login/LoginContainer';
 import RegisterContainer from '../modules/register/RegisterContainer';
 import DrawerContainer from '../modules/drawer/DrawerContainer';
+import BaseContainer from '../modules/base/BaseContainer';
+import BaseContainer2 from '../modules/base2/BaseContainer2';
 const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
@@ -34,9 +36,9 @@ const Courses = StackNavigator(
 const Blog = StackNavigator({
     BlogContainer : {screen : BlogContainer},
     DetailBlog : {screen : DetailBlogContainer}
-} , StackNavigatorStyle, { initialRouteName: 'BlogContainer'})
+} , StackNavigatorStyle, { initialRouteName: 'BlogContainer',})
 const Tab = TabNavigator({
-    Course: { 
+    Courses: { 
         screen: Courses,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
@@ -63,7 +65,7 @@ const Tab = TabNavigator({
         }
     },
     Blog: { 
-        screen: Blog,
+        screen: BlogContainer,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
                 <View style={styles.wrapperIconTabNavigator}>
@@ -139,6 +141,18 @@ const Drawer = DrawerNavigator({
         navigationOptions: ({ navigation }) => ({
             title: 'Tin Tuc',
         })
+    },
+    Base: {
+        screen: BaseContainer,
+        navigationOptions: ({navigation}) => ({
+            title: 'Cơ sở',
+        })
+    },
+    Base2: {
+        screen: BaseContainer2,
+        navigationOptions: ({navigation}) => ({
+            title: 'Cơ sở 2',
+        })
     }
 },
     {
@@ -158,6 +172,8 @@ export const RootStack = StackNavigator(
         Login : {screen : LoginContainer},
         Register : {screen : RegisterContainer},
         Drawer: { screen: Drawer },
+         
+        
     },
     { headerMode: 'none' }
 );
