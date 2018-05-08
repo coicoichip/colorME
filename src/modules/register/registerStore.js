@@ -1,4 +1,6 @@
-import { observable, action } from "mobx";
+import { observable, action } from 'mobx';
+import { Alert } from 'react-native';
+import { STRINGS } from '../../constants';
 import * as registerApi from './registerApi';
 
 export default new class RegisterStore {
@@ -12,11 +14,19 @@ export default new class RegisterStore {
             .then(res => {
                 this.isLoading = false;
                 this.user = res.data.user;
-                console.log(res.data.user);
+                Alert.alert(STRINGS.WELCOME.TITLE, STRINGS.WELCOME.DESCRIPTION);
+                console.log(res)
             })
             .catch((err) => {
                 this.isLoading = false;
-                console.log(err)
+                if(err.response.data.error.email){
+                    Alert.alert(STRINGS.HAVE_ERROR, STRINGS.EMAIL_ALREADY_EXIST);
+                    return;
+                }
+                if(err.response.data.error.username){
+                    Alert.alert(STRINGS.HAVE_ERROR, STRINGS.USERNAME_ALREADY_EXIST);
+                    return;
+                }
             })
     }
 }
