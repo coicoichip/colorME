@@ -96,6 +96,52 @@ const style = {
         fontFamily: FONT_MAIN_BOLD,
         fontSize: 14,
     },
+
+
+    wrapperRowCenter: {
+        ...wrapperCenter,
+        flexDirection: 'row',
+    },
+    backgroundColorOfImgInBase: {
+        backgroundColor: '#D3D3D3'
+    },
+
+    //test base
+    imageFeature: {
+        borderRadius: 15,
+        height: size.deviceHeight / 3,
+        backgroundColor: "#FFF",
+    },
+    categoryInImage:{
+        ...wrapperCenter,
+        position: 'absolute',
+        bottom: -17,
+        right: 55,
+        backgroundColor: color.GREEN_COLOR,
+        padding: 5,
+        paddingLeft: 5,
+        paddingRight: 5,
+        borderRadius: 50,
+        overflow: "hidden",
+        width: 40,
+        height:40,
+    },
+    textDescriptionLight: {
+        color: '#FFF',
+        fontFamily: FONT_MAIN,
+        fontSize: 14,
+    },
+    textTitleCard: {
+        color: color.TEXT_COLOR,
+        fontFamily: FONT_MAIN_BOLD,
+        fontSize: 16,
+    },
+    textDescriptionCard: {
+        color: "#2d2d2d",
+        fontFamily: FONT_MAIN,
+        fontSize: 12,
+        backgroundColor: color.NONE_COLOR,
+    },
     
 }
 const styles = StyleSheet.create(style)

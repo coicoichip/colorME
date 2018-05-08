@@ -1,9 +1,17 @@
-/**
- * Created by phanmduong on 5/27/17.
- */
-import {AsyncStorage} from "react-native"
+import { AsyncStorage } from 'react-native';
+import { NavigationActions } from 'react-navigation'
+
+export function resetScreen(navigation, screen){
+    navigation.dispatch(NavigationActions.reset({
+        index: 0,
+        actions: [
+            NavigationActions.navigate({ routeName: screen })
+        ]
+    }))
+}
+
 export function dotNumber(number) {
-    if (number === 0){
+    if (number === 0) {
         return 0;
     }
     if (number) {
@@ -20,6 +28,8 @@ export function maxArray(arr) {
     return max;
 }
 
+
+
 export function formatPhone(phone) {
     if (phone.length === 10) {
         return phone.replace(/(\d{4})(\d{3})(\d{3})/, '$1.$2.$3');
@@ -29,21 +39,25 @@ export function formatPhone(phone) {
 }
 
 export function typeConnect(type) {
-    if (type.toLowerCase() === 'wifi'){
+    if (type.toLowerCase() === 'wifi') {
         return 'WIFI';
     }
-    if (type.toLowerCase() === 'cellular'){
+    if (type.toLowerCase() === 'cellular') {
         return 'Điện thoại';
     }
     return '';
 
 }
-export function formatImageLink(url){
-    if(url == null) {
+
+
+
+
+export function formatImageLink(url) {
+    if (url == null) {
         return "http://"
     }
-    else if(url.indexOf("http://") === -1 && url.split("://")[0] !== "https"){
-        return "http://" + url 
+    else if (url.indexOf("http://") === -1 && url.split("://")[0] !== "https") {
+        return "http://" + url
     }
     else {
         return url
@@ -58,7 +72,7 @@ export function editName(name) {
     else return "chưa có";
 }
 
-export async function uploadImage(token,file, completeHandler, progressHandler, error) {
+export async function uploadImage(token, file, completeHandler, progressHandler, error) {
     let url = ''
     await AsyncStorage.getItem('url').then((value) => {
         url = "http://" + value + "/manageapi/v3/file/upload?token=" + token;
@@ -74,10 +88,10 @@ export async function uploadImage(token,file, completeHandler, progressHandler, 
     ajax.send(formData);
 }
 export function isEmpty(obj) {
-    let  hasOwnProperty = Object.prototype.hasOwnProperty;
+    let hasOwnProperty = Object.prototype.hasOwnProperty;
     if (obj == null) return true;
-    if (obj.length > 0)    return false;
-    if (obj.length === 0)  return true;
+    if (obj.length > 0) return false;
+    if (obj.length === 0) return true;
     if (typeof obj !== "object") return true;
     for (var key in obj) {
         if (hasOwnProperty.call(obj, key)) return false;

@@ -58,7 +58,7 @@
 		87BC31B25B3B4EBD8EF0FE06 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E58540BE183F454188DE1079 /* FontAwesome.ttf */; };
 		886D7AF5E38D4FD480E84C5A /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50B58A4408414C35BFEB370A /* Ionicons.ttf */; };
 		8A618217E9AE4297A292CF69 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E12A6713E6D4CBDB8EA326C /* Montserrat-Black.ttf */; };
-		8FA588E242104EAE9D36FAF5 /* HelveticaWorld-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0A17555051C48B2BD51FC02 /* HelveticaWorld-Regular.ttf */; };
+		8E76D47D023448DD82AFD414 /* seguibl.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 066A5D65B002421C8CD7461B /* seguibl.ttf */; };
 		905C5CC7CF5C44E38975EABE /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 230CEDC1C0DF47CEBC33AE56 /* Zocial.ttf */; };
 		995B4A79415743E9ACC03D41 /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22E0CF075ACA4C9F86C504FA /* Montserrat-ThinItalic.ttf */; };
 		9BB337EBC6D6413EB856B8A7 /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 303B6FC26B2147B0B83B762F /* Montserrat-BlackItalic.ttf */; };
@@ -388,6 +388,7 @@
 		00E356EE1AD99517003FC87E /* colorMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = colorMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* colorMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = colorMeTests.m; sourceTree = "<group>"; };
+		066A5D65B002421C8CD7461B /* seguibl.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = seguibl.ttf; path = ../assets/fonts/seguibl.ttf; sourceTree = "<group>"; };
 		0A44AA1F0A1043659AF7F966 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/native-base/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		0C5176268EA9471692984A63 /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLight.ttf"; path = "../assets/fonts/Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
@@ -452,8 +453,6 @@
 		D20B9489D31E43EA90026F3B /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
 		E58540BE183F454188DE1079 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		EDE202D932654573B88CED13 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Medium.ttf"; path = "../assets/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
-		F0A17555051C48B2BD51FC02 /* HelveticaWorld-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaWorld-Regular.ttf"; path = "../assets/fonts/HelveticaWorld-Regular.ttf"; sourceTree = "<group>"; };
-		FD326E47D76C498AA355B022 /* SegoeUIBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SegoeUIBold.ttf; path = ../assets/fonts/SegoeUIBold.ttf; sourceTree = "<group>"; };
 		FE5B7ADA55C34AFF83A30E73 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -770,7 +769,6 @@
 				98DCCAB4CEA548E78751983D /* Octicons.ttf */,
 				2579E48C1483453680645502 /* SimpleLineIcons.ttf */,
 				297B91D41E784925B31113FD /* Zocial.ttf */,
-				F0A17555051C48B2BD51FC02 /* HelveticaWorld-Regular.ttf */,
 				78465F1BB00B4FB3AAF1ECF7 /* Montserrat-Regular.ttf */,
 				8D10A7820ECF4292A37CA063 /* Montserrat-Bold.ttf */,
 				6E12A6713E6D4CBDB8EA326C /* Montserrat-Black.ttf */,
@@ -802,7 +800,7 @@
 				230CEDC1C0DF47CEBC33AE56 /* Zocial.ttf */,
 				5F91ED0856DE465DB9C190CB /* Segoe UI.ttf */,
 				364C6DC3A6E8456F981B2CEB /* Segoe UI Bold.ttf */,
-				FD326E47D76C498AA355B022 /* SegoeUIBold.ttf */,
+				066A5D65B002421C8CD7461B /* seguibl.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1297,7 +1295,6 @@
 				A08C608431CD4579A40DE21B /* Octicons.ttf in Resources */,
 				E760AAFF031844BC994AA4F0 /* SimpleLineIcons.ttf in Resources */,
 				6226B0C3DEDC4B888E19C19D /* Zocial.ttf in Resources */,
-				8FA588E242104EAE9D36FAF5 /* HelveticaWorld-Regular.ttf in Resources */,
 				D7A92A59B00F4A69A3C4E7B6 /* Montserrat-Regular.ttf in Resources */,
 				003B3F6384D34210A8568FB4 /* Montserrat-Bold.ttf in Resources */,
 				8A618217E9AE4297A292CF69 /* Montserrat-Black.ttf in Resources */,
@@ -1327,6 +1324,7 @@
 				47CDECE4E587430FAFC822B9 /* Roboto.ttf in Resources */,
 				A0DF231559944E248225A58F /* SimpleLineIcons.ttf in Resources */,
 				905C5CC7CF5C44E38975EABE /* Zocial.ttf in Resources */,
+				8E76D47D023448DD82AFD414 /* seguibl.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

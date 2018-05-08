@@ -73,6 +73,7 @@
 		<string>Montserrat-ThinItalic.ttf</string>
 		<string>Roboto_medium.ttf</string>
 		<string>Roboto.ttf</string>
+		<string>seguibl.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
