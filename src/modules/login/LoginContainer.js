@@ -14,7 +14,7 @@ import {
 import { STRINGS, COLORS, SIZES } from '../../constants';
 import { Container, Item, Button, Text, Input, Form, Label } from 'native-base';
 import { InputCommon, ButtonCommon } from '../../commons';
-import loginStore  from './loginStore';
+import loginStore from './loginStore';
 import { NavigationActions } from 'react-navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { observer } from "mobx-react";
@@ -49,7 +49,7 @@ class LoginContainer extends Component {
     signIn() {
         AsyncStorage.setItem('url', this.state.url).then(
             () => this.signInWithAccount()
-            
+
         )
         console.log(loginStore.login)
     }
@@ -75,7 +75,6 @@ class LoginContainer extends Component {
                         <View style={styles.wrapperLogo}>
                             <View style={{ alignItems: 'flex-end' }}>
                                 <Text style={styles.textLogoColor}>color</Text>
-                                <Text style={{ height: 15 }} />
                                 <Text style={styles.textLogoMe}>ME</Text>
                             </View>
                         </View>
@@ -98,11 +97,11 @@ class LoginContainer extends Component {
                                     underlineColorAndroid='rgba(0,0,0,0)'
                                     style={{
                                         fontFamily: 'Montserrat-Medium',
-                                        fontSize : 12,
-                                        color : 'rgba(195, 195, 195)'
+                                        fontSize: 12,
+                                        color: 'rgba(195, 195, 195)'
                                     }}
                                 />
-                            </Item> 
+                            </Item>
 
                             <Item stackedLabel style={styles.input}>
                                 <Label style={{
@@ -111,16 +110,16 @@ class LoginContainer extends Component {
                                     fontSize: SIZES.SUBTITLE_SIZE
                                 }}>{'Password'}</Label>
 
-                             <Input
+                                <Input
                                     autoCorrect={false}
-                                    secureTextEntry = {true}
+                                    secureTextEntry={true}
                                     value={loginStore.login.password}
                                     onChangeText={this.onChangeData('password')}
                                     underlineColorAndroid='rgba(0,0,0,0)'
                                     style={{
                                         fontFamily: 'Montserrat-Medium',
-                                        fontSize : 12,
-                                        color : 'rgba(195, 195, 195)'
+                                        fontSize: 12,
+                                        color: 'rgba(195, 195, 195)'
                                     }}
                                 />
                             </Item>
@@ -141,13 +140,13 @@ class LoginContainer extends Component {
                         </View>
 
 
-                        <View style = {[wrapperCenter, {flexDirection : 'row',  bottom : 50, backgroundColor: 'white'}]}>
-                        <Text style={{color : 'rgb(109, 109, 109)', fontSize : 13}}>Bạn chưa có tài khoản? </Text>
-                                    <TouchableOpacity onPress={() => this.props.navigation.navigate("Register")}>
-                                        <Text style={[ { color: 'black', fontSize : 13 }]}>Đăng kí tại đây </Text>
-                                    </TouchableOpacity>
-                            
-                            </View>
+                        <View style={[wrapperCenter, { flexDirection: 'row', bottom: 50, backgroundColor: 'white' }]}>
+                            <Text style={{ color: 'rgb(109, 109, 109)', fontSize: 13 }}>Bạn chưa có tài khoản? </Text>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate("Register")}>
+                                <Text style={[{ color: 'black', fontSize: 13 }]}>Đăng kí tại đây </Text>
+                            </TouchableOpacity>
+
+                        </View>
                     </Container>
                 </TouchableWithoutFeedback>
             </KeyboardAwareScrollView>
@@ -161,7 +160,7 @@ const wrapperCenter = {
 }
 
 const textLogo = {
-    fontFamily: 'Montserrat-ExtraBold',
+    fontFamily: 'seguibl',
     backgroundColor: 'transparent',
     color: COLORS.LIGHT_COLOR,
 }
@@ -180,7 +179,7 @@ const styles = StyleSheet.create({
         ...wrapperCenter,
         width: SIZES.DEVICE_WIDTH_SIZE,
         position: 'absolute',
-        bottom:  SIZES.DEVICE_HEIGHT_SIZE / 5 - 20,
+        bottom: SIZES.DEVICE_HEIGHT_SIZE / 5 - 20,
         paddingHorizontal: 80,
     },
     wrapperLogo: {

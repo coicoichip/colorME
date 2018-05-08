@@ -1,8 +1,14 @@
-/**
- * Created by phanmduong on 5/27/17.
- */
-import { AsyncStorage } from "react-native";
+import { AsyncStorage } from 'react-native';
+import { NavigationActions } from 'react-navigation'
 
+export function resetScreen(navigation, screen){
+    navigation.dispatch(NavigationActions.reset({
+        index: 0,
+        actions: [
+            NavigationActions.navigate({ routeName: screen })
+        ]
+    }))
+}
 
 export function dotNumber(number) {
     if (number === 0) {

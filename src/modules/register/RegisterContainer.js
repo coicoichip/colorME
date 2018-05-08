@@ -31,27 +31,8 @@ export default class RegisterContainer extends Component {
 
     onRegister = () => {
         const { register } = this;
-        let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-
-        if (register.name == 0) {
-            Alert.alert(STRINGS.HAVE_ERROR, STRINGS.EMPTY_NAME);
-            return;
-        }
-        if (register.email == 0) {
-            Alert.alert(STRINGS.HAVE_ERROR, STRINGS.EMPTY_EMAIL);
-            return;
-        } else if (!reg.test(register.email)) {
-            Alert.alert(STRINGS.HAVE_ERROR, STRINGS.WRONG_EMAIL);
-            return;
-        } else {
-            register.username = register.email.slice(0, register.email.indexOf("@"));
-        }
-        if (register.password == 0) {
-            Alert.alert(STRINGS.HAVE_ERROR, STRINGS.EMPTY_PASSWORD);
-            return;
-        }
-        registerStore.register(register);
-        this.props.navigation.navigate('Home');
+        const { navigation } = this.props;
+        registerStore.register(register, navigation);
     }
 
     render() {
