@@ -139,6 +139,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
     },
     input: {
+        
         width: SIZES.DEVICE_WIDTH_SIZE * 0.7,
     }
 

@@ -102,7 +102,7 @@ class LoginContainer extends Component {
                                         color : 'rgba(195, 195, 195)'
                                     }}
                                 />
-                            </Item> */}
+                            </Item> 
 
                             <Item stackedLabel style={styles.input}>
                                 <Label style={{

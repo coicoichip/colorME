@@ -1,25 +1,25 @@
-import {observable, action, computed} from "mobx";
+import { observable, action, computed } from "mobx";
 import * as baseApi from "./baseApi";
 
 export const store = new class baseStore {
     @observable isLoading = true;
-    @observable isLoadingRefresh: false;
-    @observable isLoadingMore= false;
-    @observable total_pages= 0;
-    @observable bases= [];
-    @observable isLoadingProvinces= false;
-    @observable error= false;
+    @observable isLoadingRefresh = false;
+    @observable isLoadingMore = false;
+    @observable total_pages = 0;
+    @observable bases = [];
+    @observable isLoadingProvinces = false;
+    @observable error = false;
 
     @action
     getListBase() {
         //console.log(11);
         this.isLoading = true;
         baseApi.getBasesApi().then(res => {
-                console.log(res);
-                this.bases = res.data.data.bases;
-                this.isLoading = false;
-                console.log(res);
-            }
+            console.log(res);
+            this.bases = res.data.data.bases;
+            this.isLoading = false;
+            console.log(res);
+        }
         )
             .catch(() => {
                 this.isLoading = false;
@@ -29,7 +29,7 @@ export const store = new class baseStore {
     }
     @computed
     get baseData() {
-        return this.bases.map(function(base) {
+        return this.bases.map(function (base) {
             return {
                 id: base.id,
                 name: base.name
