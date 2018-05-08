@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
         ...wrapperCenter,
         width: SIZES.DEVICE_WIDTH_SIZE,
         position: 'absolute',
-        bottom:  SIZES.DEVICE_HEIGHT_SIZE / 5 - 20,
+        bottom:  SIZES.DEVICE_HEIGHT_SIZE / 4 - 20,
         paddingHorizontal: 80,
     },
     wrapperLogo: {
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
         shadowColor: COLORS.SHADOW_COLOR,
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 0.4,
-        bottom: SIZES.DEVICE_HEIGHT_SIZE / 5,
+        bottom: SIZES.DEVICE_HEIGHT_SIZE / 4,
         marginHorizontal: SIZES.DEVICE_WIDTH_SIZE * 0.1,
         padding: SIZES.PADDING_ELEMENT_IN_CARD,
         position: 'absolute',

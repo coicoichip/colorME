@@ -31,7 +31,7 @@ const Courses = StackNavigator(
     }, StackNavigatorStyle
 );
 const Tab = TabNavigator({
-    Courses: { 
+    Course: { 
         screen: Courses,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
@@ -153,8 +153,6 @@ export const RootStack = StackNavigator(
         Login : {screen : LoginContainer},
         Register : {screen : RegisterContainer},
         Drawer: { screen: Drawer },
-         
-        
     },
     { headerMode: 'none' }
 );
