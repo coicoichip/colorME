@@ -21,7 +21,7 @@ export default loginStore = new class LoginStore {
         loginApi(this.login).then(res => {
             let resetAction = NavigationActions.reset({
                 index: 0,
-                key : null,
+                key: null,
                 actions: [
                     NavigationActions.navigate({ routeName: 'Drawer' })
                 ]

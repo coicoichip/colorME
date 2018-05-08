@@ -12,6 +12,10 @@ export const coursesStore = new class CoursesStore {
     @observable courseInformation = {};
     @observable errorCoursesInfomation = false;
 
+    @observable message = "";
+    @observable isLoadingLearnRegister = false;
+    @observable errorLearnRegister = false;
+
     @action
     getListSubject(page, txt, token) {
         this.isLoadingSubject = true;
@@ -43,30 +47,40 @@ export const coursesStore = new class CoursesStore {
             this.errorCoursesInfomation = true;
         })
     }
-    // @action
-    // learnRegister(class_id, token) {
-    //     return (dispatch) => {
-    //         dispatch(beginLearnRegister(class_id));
-    //         courseApi.learnRegisterApi(class_id, token)
-    //             .then(function (response) {
-    //                 dispatch(learnRegisterSuccess(response, class_id));
-    //                 // Alert.alert(
-    //                 //     'Đăng ký thành công',
-    //                 //     response.data.message,
-    //                 //     [
-    //                 //         {text: 'Xong'},
-    //                 //     ],
-    //                 // )
-    //             })
-    //             .catch(function (error) {
-    //                 dispatch(learnRegisterError(error, class_id));
-    //                 Alert.alert(
-    //                     'Đăng ký thất bại',
-    //                     [
-    //                         { text: 'Xác nhận' },
-    //                     ],
-    //                 )
-    //             });
-    //     }
-    // }
+    @action
+    learnRegister(class_id, token) {
+        this.isLoadingLearnRegister = true;
+        learnRegisterApi(class_id, token).then(res => {
+            this.isLoadingLearnRegister = false;
+            this.message = res.data.message;
+            this.errorLearnRegister = false;
+        })
+        .catch(err => {
+            this.isLoadingLearnRegister = false;
+            this.errorLearnRegister = true;
+        })
+        // return (dispatch) => {
+        //     dispatch(beginLearnRegister(class_id));
+        //     courseApi.learnRegisterApi(class_id, token)
+        //         .then(function (response) {
+        //             dispatch(learnRegisterSuccess(response, class_id));
+        //             // Alert.alert(
+        //             //     'Đăng ký thành công',
+        //             //     response.data.message,
+        //             //     [
+        //             //         {text: 'Xong'},
+        //             //     ],
+        //             // )
+        //         })
+        //         .catch(function (error) {
+        //             dispatch(learnRegisterError(error, class_id));
+        //             Alert.alert(
+        //                 'Đăng ký thất bại',
+        //                 [
+        //                     { text: 'Xác nhận' },
+        //                 ],
+        //             )
+        //         });
+        // }
+    }
 }

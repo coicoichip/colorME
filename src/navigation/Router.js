@@ -36,7 +36,7 @@ const Blog = StackNavigator({
     DetailBlog : {screen : DetailBlogContainer}
 } , StackNavigatorStyle, { initialRouteName: 'BlogContainer'})
 const Tab = TabNavigator({
-    Courses: { 
+    Course: { 
         screen: Courses,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
@@ -158,8 +158,6 @@ export const RootStack = StackNavigator(
         Login : {screen : LoginContainer},
         Register : {screen : RegisterContainer},
         Drawer: { screen: Drawer },
-         
-        
     },
     { headerMode: 'none' }
 );

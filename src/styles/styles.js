@@ -196,7 +196,7 @@ const style = {
         alignItems: 'center',
         height: size.STICKY_HEADER_HEIGHT,
         justifyContent: 'center',
-        backgroundColor: color.backGround
+        backgroundColor: color.BACKGROUND_COLOR
     },
     imageCircleBig: {
         height: 100,
