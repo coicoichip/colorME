@@ -22,4 +22,6 @@ export const STRINGS = {
     COURSE_TITLE_HEADER: 'Khoá học',
     NEWS_TITLE_HEADER : 'Tin tức',
     SHARING_EXPERIENCES_TITLE_HEADER: 'Chia sẻ kinh nghiệm',
+    BASE_HEADER_TITLEL: "Cơ sở",
+    NULL_DATA: "Không có dữ liệu",
 }
