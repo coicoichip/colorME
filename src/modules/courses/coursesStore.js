@@ -1,5 +1,5 @@
 import { observable, action, computed } from "mobx";
-import { coursesApi } from "./coursesApi";
+import { getCoursesApi } from "./coursesApi";
 import { Alert, AsyncStorage } from "react-native";
 export const coursesStore = new class CoursesStore {
     @observable subjects = [];
@@ -11,7 +11,7 @@ export const coursesStore = new class CoursesStore {
     @action
     getListSubject(page, txt, token) {
         this.isLoading = true;
-        coursesApi(page, txt, token).then(res => {
+        getCoursesApi(page, txt, token).then(res => {
             this.isLoading = false;
             this.subjects = res.data.courses ? res.data.courses : [res.data.courses, this.subjects];
             this.total_pages = res.data.paginator.total_pages;
