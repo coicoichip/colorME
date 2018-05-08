@@ -3,7 +3,7 @@ import * as baseApi from "./baseApi";
 
 export const store = new class baseStore {
     @observable isLoading = true;
-    @observable isLoadingRefresh: false;
+    @observable isLoadingRefresh= false;
     @observable isLoadingMore= false;
     @observable total_pages= 0;
     @observable bases= [];

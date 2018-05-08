@@ -26,7 +26,6 @@ export default loginStore = new class LoginStore {
                     NavigationActions.navigate({ routeName: 'Drawer' })
                 ]
             })
-            
             navigation.dispatch(resetAction)
             this.isLoading = false;
             this.token = res.data.token,
