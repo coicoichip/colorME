@@ -1516,6 +1516,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = vn.colorme.keetool.app.colorME;
 				PRODUCT_NAME = colorMe;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1540,6 +1541,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = vn.colorme.keetool.app.colorME;
 				PRODUCT_NAME = colorMe;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

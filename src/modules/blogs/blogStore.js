@@ -1,5 +1,5 @@
 import { observable, action, computed } from "mobx";
-import { blogApi } from "./blogApi";
+import { blogApi, detailBlogApi } from "./blogApi";
 
 import { NavigationActions } from "react-navigation";
 
@@ -10,7 +10,9 @@ export default blogStore = new class BlogStore {
     @observable isLoading = false;
     @observable isSearch = false;
     @observable error = false;
-
+    @observable isLoadingDetail = false;
+    @observable errorDetail = false;
+    @observable detailBlog = {};
 
     @action
     getBlog(page, action) {
@@ -33,5 +35,20 @@ export default blogStore = new class BlogStore {
             this.isSearch = false;
         })
     }
-
-}
+    @action
+    getDetailBlog(slug){
+        this.isLoadingDetail = true;
+        this.errorDetail = false;
+        detailBlogApi(slug).then(res => {
+            
+            this.detailBlog = res.data.data.blog;
+            this.isLoadingDetail = false;
+            console.log(this.isLoadingDetail, this.detailBlog)
+            
+        })
+        .catch(err => {
+            this.errorDetail = true;
+            this.isLoadingDetail = false;
+        })
+        }
+    }

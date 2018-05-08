@@ -5,7 +5,7 @@ import { Alert, AsyncStorage } from "react-native"
 import { NavigationActions } from "react-navigation";
 
 export default loginStore = new class LoginStore {
-    @observable login = {};
+    @observable login = {email : "", password : ""};
     @observable loginStatus = false;
     @observable token = null;
     @observable isLoading = false;
@@ -21,6 +21,7 @@ export default loginStore = new class LoginStore {
         loginApi(this.login).then(res => {
             let resetAction = NavigationActions.reset({
                 index: 0,
+                key : null,
                 actions: [
                     NavigationActions.navigate({ routeName: 'Drawer' })
                 ]
@@ -32,6 +33,7 @@ export default loginStore = new class LoginStore {
             this.user = res.data.user,
             this.status = res.status,
             this.loginStatus = true
+            console.log(res)
         })
             .catch(err => {
                 this.isLoading = false;
@@ -46,7 +48,6 @@ export default loginStore = new class LoginStore {
     async autoLogin(navigation) {
             try {
             let value = await AsyncStorage.getItem('@ColorMe:save');
-            console.log(this.login);
             if (this.login && this.status == 0 && value) {
                 this.loginUser(navigation)      
             }
@@ -61,12 +62,13 @@ export default loginStore = new class LoginStore {
             try {
                 const email = await AsyncStorage.getItem('@ColorMe:email');
                 const password = await AsyncStorage.getItem('@ColorMe:password');
-                
-                    this.login['email'] = email
-                    this.login['password'] = password
+                    this.login = {
+                        email: email,
+                        password: password,
+                    }
+                    console.log(this.login);
+                    console.log(this.status);
                     this.autoLogin(navigation)
-              
-               
             }
             catch (err) {
             }
@@ -88,6 +90,7 @@ export default loginStore = new class LoginStore {
             await AsyncStorage.removeItem('@ColorMe:save');
             let resetAction = NavigationActions.reset({
                 index: 0,
+                key : null,
                 actions: [
                     NavigationActions.navigate({ routeName: 'Login' })
                 ]
@@ -96,13 +99,5 @@ export default loginStore = new class LoginStore {
         }
         catch (error) {
         }
-    }
-    @computed
-    get renderEmail(){
-       return "121212"
-    }
-    @computed
-    get renderPassword(){
-        return "asdasdasda"
     }
 }

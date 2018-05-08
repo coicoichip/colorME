@@ -11,14 +11,33 @@ import NotificationContainer from '../modules/notification/NotificationContainer
 import ProfileContainer from '../modules/profile/ProfileContainer';
 import SharingExperiencesContainer from '../modules/sharing-experiences/SharingExperiencesContainer';
 import CoursesContainer from '../modules/courses/CoursesContainer';
+import LearnRegisterContainer from '../modules/courses/LearnRegisterContainer';
+import CourseInformation from '../modules/courses/CourseInFormation';
 import IconDefault from '../commons/IconDefault';
-import Icon from "../commons/Icon"
+import Icon from "../commons/Icon";
+import DetailBlogContainer from "../modules/blogs/DetailBlogContainer"
 import LoginContainer from '../modules/login/LoginContainer';
 import RegisterContainer from '../modules/register/RegisterContainer';
 import DrawerContainer from '../modules/drawer/DrawerContainer';
+const StackNavigatorStyle = {
+    navigationOptions: {
+        header: null,
+    },
+};
+const Courses = StackNavigator(
+    {
+        CourseList: {screen: CoursesContainer},
+        CourseInFormation: {screen: CourseInformation, navigationOptions: {tabBarVisible: false,}},
+        LearnRegister: {screen: LearnRegisterContainer, navigationOptions: {tabBarVisible: false,}},
+    }, StackNavigatorStyle, { initialRouteName: 'CourseList',}
+);
+const Blog = StackNavigator({
+    BlogContainer : {screen : BlogContainer},
+    DetailBlog : {screen : DetailBlogContainer}
+} , StackNavigatorStyle, { initialRouteName: 'BlogContainer'})
 const Tab = TabNavigator({
-    Course: { 
-        screen: CoursesContainer,
+    Courses: { 
+        screen: Courses,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
                 <View style={styles.wrapperIconTabNavigator}>
@@ -44,7 +63,7 @@ const Tab = TabNavigator({
         }
     },
     Blog: { 
-        screen: BlogContainer,
+        screen: Blog,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
                 <View style={styles.wrapperIconTabNavigator}>
@@ -65,7 +84,7 @@ const Tab = TabNavigator({
                         name="FontAwesome|bell-o" size={size.ICON_SIZE}
                         color={tintColor}
                     />
-                    <Icon name={"FontAwesome|circle"} size={10} color={color.MAIN_COLOR} style={{ position: "absolute", backgroundColor: 'transparent', top: 10, right: size.deviceWidth / 15 }} />
+                    <Icon name={"FontAwesome|circle"} size={10} color={color.MAIN_COLOR} style={{ position: "absolute", backgroundColor: 'transparent', top: 13, right: size.deviceWidth / 14 }} />
                 </View>
             ),
         }

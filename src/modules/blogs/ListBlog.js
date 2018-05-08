@@ -16,16 +16,13 @@ class ListBlog extends Component {
     constructor() {
         super()
     }
-    shouldComponentUpdate(nextProps) {
-       return !_.isEqual(nextProps.item !== this.props.item);
-    }
     render() {
         const { item } = this.props;
         return (
             <View>
                 <TouchableOpacity
                     onPress={() => {
-                        // this.props.navigation.navigate('infoNew', {id: this.props.item.id})
+                        this.props.navigation.navigate('DetailBlog', {slug: item.slug})
                     }}
                     activeOpacity={0.8}
                     style={[styles.marginTopBottom, styles.paddingLeftRight, {marginBottom: 20}]}>
@@ -35,14 +32,14 @@ class ListBlog extends Component {
                             source={{uri: formatImageLink(item.thumb_url)}}
                             style={styles.imageFeature}
                         />
-                        <Text style={[styles.categoryInImage, styles.textDescriptionCardLight]}>
+                        <Text style={[styles.categoryInImage, styles.textDescriptionLightBold]}>
                             {item.category ? item.category : 'Category'}
                         </Text>
                     </View>
                     <View style={{marginTop: 20}}>
                         <Text numberOfLines={1}
-                              style={styles.textTitleCard}>{item.title.toUpperCase()}</Text>
-                        <Text style={styles.textDescriptionCard}>{item.description}</Text>
+                              style={[styles.textTitleBlog, {fontSize : 15}]}>{item.title.toUpperCase()}</Text>
+                        <Text style={styles.textDescriptionCard}>{item.description ? item.description.trim() : "Không có mô tả cho bài viết này"}</Text>
                     </View>
 
                 </TouchableOpacity>
