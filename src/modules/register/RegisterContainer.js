@@ -51,7 +51,7 @@ export default class RegisterContainer extends Component {
             return;
         }
         registerStore.register(register);
-        this.props.navigation.navigate('Home')
+        this.props.navigation.navigate('Home');
     }
 
     render() {
@@ -59,7 +59,7 @@ export default class RegisterContainer extends Component {
         return (
             <KeyboardAwareScrollView
                 showsVerticalScrollIndicator={false}
-                style={{ flex: 1 }}
+                style={{ flex: 1, backgroundColor: COLORS.LIGHT_COLOR }}
                 enableOnAndroid={true}
                 extraHeight={200}
             >
