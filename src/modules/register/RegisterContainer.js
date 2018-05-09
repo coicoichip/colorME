@@ -5,7 +5,7 @@ import {
     View, ActivityIndicator, Alert, StatusBar, TouchableWithoutFeedback, Keyboard, SafeAreaView
 } from 'react-native';
 import { Container, Button, Text } from 'native-base';
-import { STRINGS, COLORS, SIZES } from '../../constants';
+import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
 import { InputCommon, ButtonCommon } from '../../commons';
 import { resetScreen } from '../../helper';
 import { observer } from 'mobx-react';
@@ -108,8 +108,8 @@ const wrapperCenter = {
 }
 
 const textLogo = {
-    fontFamily: 'seguibl',
-    backgroundColor: 'transparent',
+    fontFamily: FONTS.LOGO_FONT,
+    backgroundColor: COLORS.NONE_COLOR,
     color: COLORS.LIGHT_COLOR,
 }
 

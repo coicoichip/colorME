@@ -20,8 +20,9 @@ export const STRINGS = {
     NOTIFICATION_TITLE_HEADER : 'Thông báo',
     PROFILE_TITLE_HEADER : 'Hồ sơ',
     COURSE_TITLE_HEADER: 'Khoá học',
-    NEWS_TITLE_HEADER : 'Tin tức',
+    NEWS_TITLE_HEADER : 'TIN TỨC',
     SHARING_EXPERIENCES_TITLE_HEADER: 'Chia sẻ kinh nghiệm',
-    BASE_HEADER_TITLEL: "Cơ sở",
-    NULL_DATA: "Không có dữ liệu",
+    BASE_HEADER_TITLEL: 'Cơ sở',
+    NULL_DATA: 'Không có dữ liệu', 
+    UPDATE_INFORMATION: 'Cập nhập thông tin',
 }

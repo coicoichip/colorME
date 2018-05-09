@@ -19,6 +19,7 @@ import { NavigationActions } from 'react-navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { observer } from "mobx-react";
 let _this;
+
 @observer
 class LoginContainer extends Component {
     constructor(props) {
