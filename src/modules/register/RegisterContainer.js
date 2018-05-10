@@ -80,7 +80,7 @@ export default class RegisterContainer extends Component {
                             />
                             <InputCommon
                                 returnKeyType={'send'}
-                                me secureTextEntry={true}
+                                secureTextEntry={true}
                                 size={styles.input}
                                 value={register.password}
                                 label={STRINGS.PASSWORD.toUpperCase()}

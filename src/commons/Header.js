@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     },
     textHeaderScreen: {
         color: COLORS.TITLE_HEADER_COLOR,
-        fontFamily: FONTS.MAIN_FONT,
+        fontFamily: FONTS.MAIN_FONT_BOLD,
         fontSize: SIZES.TITLE_HEADER_SIZE,
     },
 })

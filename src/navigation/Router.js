@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
     Text, View, Image, StyleSheet
 } from 'react-native';
-import * as size from "../styles/sizes";
 import { STRINGS, COLORS, SIZES } from '../constants';
 import { StackNavigator, TabNavigator, DrawerNavigator, DrawerItems } from 'react-navigation';
 import NewsContainer from '../modules/news/NewsContainer';
@@ -12,12 +11,26 @@ import NotificationContainer from '../modules/notification/NotificationContainer
 import ProfileContainer from '../modules/profile/ProfileContainer';
 import SharingExperiencesContainer from '../modules/sharing-experiences/SharingExperiencesContainer';
 import CoursesContainer from '../modules/courses/CoursesContainer';
+import LearnRegisterContainer from '../modules/courses/LearnRegisterContainer';
+import CourseInformation from '../modules/courses/CourseInFormation';
 import IconDefault from '../commons/IconDefault';
-import Icon from "../commons/Icon"
+import Icon from "../commons/Icon";
+import DetailBlogContainer from "../modules/blogs/DetailBlogContainer"
 import LoginContainer from '../modules/login/LoginContainer';
 import RegisterContainer from '../modules/register/RegisterContainer';
 import DrawerContainer from '../modules/drawer/DrawerContainer';
-
+const StackNavigatorStyle = {
+    navigationOptions: {
+        header: null,
+    },
+};
+const Courses = StackNavigator(
+    {
+        CourseList: { screen: CoursesContainer },
+        CourseInFormation: { screen: CourseInformation, navigationOptions: { tabBarVisible: false, } },
+        LearnRegister: { screen: LearnRegisterContainer, navigationOptions: { tabBarVisible: false, } },
+    }, StackNavigatorStyle, { initialRouteName: 'CourseList', }
+);
 const Tab = TabNavigator({
     Course: {
         screen: CoursesContainer,
@@ -120,7 +133,7 @@ const Tab = TabNavigator({
             showIcon: true,
             activeTintColor: 1,
             style: {
-                borderTopWidth: 0.5,
+                borderTopWidth: 0.3,
                 borderTopColor: COLORS.BORDER_COLOR,
                 backgroundColor: COLORS.BACKGROUND_GRAY,
             },
@@ -156,7 +169,7 @@ const Drawer = DrawerNavigator({
     }
 },
     {
-        drawerWidth: size.deviceWidth * 3 / 4,
+        drawerWidth: SIZES.DEVICE_WIDTH_SIZE * 3 / 4,
         drawerPosition: 'right',
         useNativeAnimations: 'false',
         disableOpenGesture: false,
@@ -169,8 +182,6 @@ export const RootStack = StackNavigator(
         Login: { screen: LoginContainer },
         Register: { screen: RegisterContainer },
         Drawer: { screen: Drawer },
-
-
     },
     { headerMode: 'none' }
 );

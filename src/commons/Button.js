@@ -15,7 +15,12 @@ class ButtonCommon extends Component {
                 onPress={() => isLoading ? {} : onPress()}
                 full
                 warning
-                style={[{ backgroundColor: COLORS.MAIN_COLOR, borderRadius: 50}, style]}
+                style={[{
+                    backgroundColor: COLORS.MAIN_COLOR, borderRadius: 50,
+                    elevation: 6, shadowColor: COLORS.SHADOW_COLOR,
+                    shadowOffset: { width: 0, height: 0 },
+                    shadowOpacity: 0.4,
+                }, style]}
             >
                 {
                     isLoading
@@ -31,7 +36,7 @@ class ButtonCommon extends Component {
                             size='small'
                         />
                         :
-                        <Text style = {this.props.text}>{label}</Text>
+                        <Text style={this.props.text}>{label}</Text>
                 }
             </Button>
         );

@@ -1,6 +1,7 @@
 export const COLORS = {
     NONE_COLOR: 'transparent',
     MAIN_COLOR: '#c50000',
+    GRAY_COLOR: '#5b5b5b',
     LIGHT_COLOR: '#fff',
     DARK_COLOR: '#000',
     SHADOW_COLOR: 'rgba(0, 0, 0, 0.5)',
