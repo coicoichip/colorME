@@ -152,7 +152,7 @@ const style = {
         backgroundColor: color.NONE_COLOR,
     },
     titleLargeDarkBold: {
-        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Bold',
+        fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'Roboto-Bold',
         fontSize: 30,
         fontWeight: (Platform.OS === 'ios') ? 'bold' : undefined,
         color: color.TEXT_COLOR,
@@ -185,7 +185,7 @@ const style = {
         paddingBottom: 0,
     },
     titlePost: {
-        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Bold',
+        fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'Roboto-Bold',
         color: color.GRAY_COLOR,
         fontSize: 20,
         fontWeight: (Platform.OS === 'ios') ? 'bold' : 'normal',
@@ -198,13 +198,13 @@ const style = {
         position: 'absolute',
     },
     titleSmallDarkGrayBold: {
-        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'Roboto-Medium',
         fontSize: size.titleSmall,
         color: color.GRAY_COLOR,
         fontWeight: (Platform.OS === 'ios') ? '600' : 'normal',
     },
     titleNormalLight: {
-        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'Roboto-Medium',
         fontSize: 11,
         color: color.BACKGROUND_COLOR,
         fontWeight: (Platform.OS === 'ios') ? '500' : 'normal',
@@ -247,13 +247,13 @@ const style = {
         marginRight: 15,
     },
     titleSmallBlue: {
-        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'Roboto-Medium',
         fontSize: 12,
         color: 'rgb(0, 128, 214)',
         fontWeight: (Platform.OS === 'ios') ? '600' : 'normal',
     },
     titleSmallDarkGrayThin: {
-        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'Roboto-Medium',
         fontSize: 12,
         color: 'rgb(109, 109, 109)',
         fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',

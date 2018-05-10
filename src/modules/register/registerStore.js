@@ -37,7 +37,7 @@ export default new class RegisterStore {
                
                 console.log("Register success : ", res);
 
-                resetScreen(navigation, 'Drawer')
+                resetScreen(navigation, 'Drawer');
             })
             .catch((err) => {
                 this.isLoading = false;
