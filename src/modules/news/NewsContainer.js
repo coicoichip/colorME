@@ -1,19 +1,38 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Button } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { Container } from 'native-base';
+import { STRINGS, COLORS, SIZES } from '../../constants';
 import Header from '../../commons/Header';
-import styles from '../../styles/styles';
-import {STRINGS} from "../../constants"
 class NewsContainer extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <View style={styles.wrapperContainer}>
+            <Container style={{ backgroundColor: COLORS.LIGHT_COLOR }}>
                 <Header title={STRINGS.NEWS_TITLE_HEADER} navigate={navigate} />
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text>Tin tức</Text>
+                <View style={styles.wrapperContent}>
                 </View>
-            </View>
+
+            </Container>
         );
     }
 }
+
+const wrapperCenter = {
+    justifyContent: 'center',
+    alignItems: 'center',
+}
+
+
+
+const styles = StyleSheet.create({
+    wrapperContent: {
+        flex: 1,
+        backgroundColor: COLORS.LIGHT_COLOR
+    },
+})
+
 export default NewsContainer
