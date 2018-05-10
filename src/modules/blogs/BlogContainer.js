@@ -8,55 +8,55 @@ import {
     RefreshControl
 } from 'react-native';
 import styles from '../../styles/styles';
-import { Container, Item } from 'native-base';
+import { Container } from 'native-base';
 import Header from '../../commons/Header';
 import { STRINGS } from "../../constants";
-import loginStore from "../login/loginStore"
+import loginStore  from "../login/loginStore"
 import Loading from '../../commons/Loading';
-import { coursesStore } from './coursesStore';
+import  blogStore  from './blogStore';
 import { observer } from "mobx-react";
-import ListSubject from './ListCourses';
+import ListBlog from "./ListBlog";
 import Error from '../../commons/Error';
 import TextNullData from '../../commons/TextNullData';
 @observer
-class CoursesContainer extends Component {
+class BlogContainer extends Component {
     constructor() {
         super();
         this.state = {
         }
     }
     componentWillMount() {
-        coursesStore.getListSubject(1, '', loginStore.token)
+        blogStore.getBlog(1);
     }
-    getMoreSubjects() {
-        if (coursesStore.current_page < coursesStore.total_pages && coursesStore.isLoadingSubject == false) {
-            coursesStore.getListSubject(coursesStore.current_page + 1, "", loginStore.token)
+    getMoreBlogs() {
+        if (blogStore.current_page < blogStore.total_pages && blogStore.isLoading == false) {
+            blogStore.getBlog(blogStore.current_page + 1)
         }
     }
     loadMore() {
-        if (coursesStore.isLoadingSubject && coursesStore.current_page > 1 && coursesStore.subjects.length > 0)
+        if (blogStore.isLoading && blogStore.current_page >= 1)
             return (<Loading />)
         else
             return null
     }
     renderSubject() {
-        if (coursesStore.subjects.length == 0) {
+        if (blogStore.blogs.length == 0|| blogStore.isSearch) {
             return <Loading />
         }
-        if (coursesStore.errorSubject) {
+        if (blogStore.error) {
             return (
                 <Error onPress={() => this.componentWillMount()} />
             )
         }
-        if (coursesStore.subjects.length !== 0) {
+        if (blogStore.blogs.length !== 0) {
             return (
                 <FlatList
                     showsVerticalScrollIndicator={false}
-                    data={coursesStore.subjects}
-                    onEndReached={() => this.getMoreSubjects()}
+                    data={blogStore.blogs}
+                    onEndReached={() => this.getMoreBlogs()}
                     refreshControl={
                         <RefreshControl
-                            refreshing={coursesStore.isLoadingSubject}
+                            refreshing={blogStore.isLoading}
                             onRefresh={
                                 () => this.componentWillMount()
                             }
@@ -66,12 +66,12 @@ class CoursesContainer extends Component {
                         this.loadMore()
                     }
                     renderItem={({ item }) =>
-                        <ListSubject item={item} navigation={this.props.navigation} />
+                        <ListBlog item={item} navigation={this.props.navigation} />
                     }
                 />
             )
         }
-        if (coursesStore.subjects.length == 0 && coursesStore.isLoadingSubject == false && coursesStore.errorSubject == false) {
+        if (coursesStore.subjects.length == 0 && coursesStore.isLoading == false && coursesStore.errorSubject == false) {
             return (
                 <TextNullData text={NULL_DATA} />
             )
@@ -89,4 +89,4 @@ class CoursesContainer extends Component {
         );
     }
 }
-export default CoursesContainer
+export default BlogContainer

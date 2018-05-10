@@ -9,6 +9,10 @@ const wrapperCenter = {
     justifyContent: 'center',
 };
 const style = {
+    wrapperCenter :{
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     wrapperContainer: {
         flex: 1,
         backgroundColor: color.BACKGROUND_COLOR,
@@ -28,6 +32,11 @@ const style = {
     textHeaderScreen: {
         color: color.TEXT_COLOR,
         fontFamily: FONT_MAIN,
+        fontSize: 25,
+    },
+    textTitleBlog : {
+        color: color.TEXT_COLOR,
+        fontFamily: FONT_MAIN_BOLD,
         fontSize: 25,
     },
     wrapperIconTabNavigator: {
@@ -113,28 +122,28 @@ const style = {
         backgroundColor: "#FFF",
     },
     categoryInImage:{
-        ...wrapperCenter,
         position: 'absolute',
-        bottom: -17,
-        right: 55,
-        backgroundColor: color.GREEN_COLOR,
+        bottom: 10,
+        right: 10,
+        backgroundColor: color.MAIN_COLOR,
         padding: 5,
-        paddingLeft: 5,
-        paddingRight: 5,
-        borderRadius: 50,
-        overflow: "hidden",
-        width: 40,
-        height:40,
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderRadius: 13,
+        overflow: "hidden"
     },
-    textDescriptionLight: {
-        color: '#FFF',
-        fontFamily: FONT_MAIN,
-        fontSize: 14,
+    category:{
+        backgroundColor: color.MAIN_COLOR,
+        padding: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderRadius: 13,
+        overflow: "hidden"
     },
-    textTitleCard: {
-        color: color.TEXT_COLOR,
-        fontFamily: FONT_MAIN_BOLD,
-        fontSize: 16,
+    imageFeature: {
+        borderRadius: 15,
+        height: size.deviceHeight / 3,
+        backgroundColor: color.ANDROID_SHADOW,
     },
     textDescriptionCard: {
         color: "#2d2d2d",
@@ -210,6 +219,55 @@ const style = {
         height: size.STICKY_HEADER_HEIGHT,
         justifyContent: 'center',
         backgroundColor: color.BACKGROUND_COLOR
+    },
+    imageCircleBig: {
+        height: 100,
+        width: 100,
+        borderRadius: 50,
+    },
+    //learn register
+    padding: {
+        padding: 10,
+    },
+    haveBorderBottom: {
+        borderBottomWidth: 0.5,
+        borderColor: 'rgb(214, 214, 214)',
+    },
+    cardCmt: {
+        flexDirection: 'row',
+        flex: 1,
+    },
+    avatarUserNormal: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        backgroundColor: '#fff',
+    },
+    marginRightFar: {
+        marginRight: 15,
+    },
+    titleSmallBlue: {
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontSize: 12,
+        color: 'rgb(0, 128, 214)',
+        fontWeight: (Platform.OS === 'ios') ? '600' : 'normal',
+    },
+    titleSmallDarkGrayThin: {
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontSize: 12,
+        color: 'rgb(109, 109, 109)',
+        fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
+
+    },
+    buttonLeftRegisterGray: {
+        borderRadius: 100,
+        marginTop: 5,
+        backgroundColor: 'rgb(214, 214, 214)',
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingRight: 20,
+        paddingLeft: 20,
+
     },
     
 }

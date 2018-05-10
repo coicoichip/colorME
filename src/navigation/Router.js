@@ -6,7 +6,7 @@ import * as color from "../styles/colors";
 import * as size from "../styles/sizes";
 import styles from "../styles/styles";
 import { StackNavigator, TabNavigator, DrawerNavigator, DrawerItems } from 'react-navigation';
-import NewsContainer from '../modules/news/NewsContainer';
+import BlogContainer from '../modules/blogs/BlogContainer';
 import NotificationContainer from '../modules/notification/NotificationContainer';
 import ProfileContainer from '../modules/profile/ProfileContainer';
 import SharingExperiencesContainer from '../modules/sharing-experiences/SharingExperiencesContainer';
@@ -14,10 +14,13 @@ import CoursesContainer from '../modules/courses/CoursesContainer';
 import LearnRegisterContainer from '../modules/courses/LearnRegisterContainer';
 import CourseInformation from '../modules/courses/CourseInFormation';
 import IconDefault from '../commons/IconDefault';
-import Icon from "../commons/Icon"
+import Icon from "../commons/Icon";
+import DetailBlogContainer from "../modules/blogs/DetailBlogContainer"
 import LoginContainer from '../modules/login/LoginContainer';
 import RegisterContainer from '../modules/register/RegisterContainer';
 import DrawerContainer from '../modules/drawer/DrawerContainer';
+import BaseContainer from '../modules/base/BaseContainer';
+import BaseContainer2 from '../modules/base2/BaseContainer2';
 const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
@@ -28,8 +31,12 @@ const Courses = StackNavigator(
         CourseList: {screen: CoursesContainer},
         CourseInFormation: {screen: CourseInformation, navigationOptions: {tabBarVisible: false,}},
         LearnRegister: {screen: LearnRegisterContainer, navigationOptions: {tabBarVisible: false,}},
-    }, StackNavigatorStyle
+    }, StackNavigatorStyle, { initialRouteName: 'CourseList',}
 );
+const Blog = StackNavigator({
+    BlogContainer : {screen : BlogContainer},
+    DetailBlog : {screen : DetailBlogContainer}
+} , StackNavigatorStyle, { initialRouteName: 'BlogContainer',})
 const Tab = TabNavigator({
     Courses: { 
         screen: Courses,
@@ -57,8 +64,8 @@ const Tab = TabNavigator({
             )
         }
     },
-    News: { 
-        screen: NewsContainer,
+    Blog: { 
+        screen: BlogContainer,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
                 <View style={styles.wrapperIconTabNavigator}>
@@ -103,7 +110,7 @@ const Tab = TabNavigator({
             border: 5,
             backgroundColor: color.NONE_COLOR,
         },
-        initialRouteName: 'News',
+        initialRouteName: 'Blog',
         tabBarPosition: 'bottom',
         animationEnabled: true,
 
@@ -129,10 +136,22 @@ const Drawer = DrawerNavigator({
         })
 
     },
-    New: {
-        screen: NewsContainer,
+    Blog: {
+        screen: BlogContainer,
         navigationOptions: ({ navigation }) => ({
             title: 'Tin Tuc',
+        })
+    },
+    Base: {
+        screen: BaseContainer,
+        navigationOptions: ({navigation}) => ({
+            title: 'Cơ sở',
+        })
+    },
+    Base2: {
+        screen: BaseContainer2,
+        navigationOptions: ({navigation}) => ({
+            title: 'Cơ sở 2',
         })
     }
 },
