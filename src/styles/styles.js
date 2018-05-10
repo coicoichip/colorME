@@ -9,6 +9,10 @@ const wrapperCenter = {
     justifyContent: 'center',
 };
 const style = {
+    wrapperCenter :{
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     wrapperContainer: {
         flex: 1,
         backgroundColor: color.BACKGROUND_COLOR,
@@ -28,6 +32,11 @@ const style = {
     textHeaderScreen: {
         color: color.TEXT_COLOR,
         fontFamily: FONT_MAIN,
+        fontSize: 25,
+    },
+    textTitleBlog : {
+        color: color.TEXT_COLOR,
+        fontFamily: FONT_MAIN_BOLD,
         fontSize: 25,
     },
     wrapperIconTabNavigator: {
@@ -84,7 +93,7 @@ const style = {
 
     },
     wrapperLogoDrawer: {
-        height: size.deviceHeight / 4,
+        height: size.deviceHeight / 5,
         alignItems: 'center',
     },
     imageDrawer: {
@@ -96,51 +105,103 @@ const style = {
         fontFamily: FONT_MAIN_BOLD,
         fontSize: 14,
     },
-
-
-    wrapperRowCenter: {
-        ...wrapperCenter,
-        flexDirection: 'row',
+    categoryInImage:{
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
+        backgroundColor: color.MAIN_COLOR,
+        padding: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderRadius: 13,
+        overflow: "hidden"
     },
-    backgroundColorOfImgInBase: {
-        backgroundColor: '#D3D3D3'
+    category:{
+        backgroundColor: color.MAIN_COLOR,
+        padding: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderRadius: 13,
+        overflow: "hidden"
     },
-
-    //test base
     imageFeature: {
         borderRadius: 15,
         height: size.deviceHeight / 3,
-        backgroundColor: "#FFF",
+        backgroundColor: color.ANDROID_SHADOW,
     },
-    categoryInImage:{
-        ...wrapperCenter,
-        position: 'absolute',
-        bottom: -17,
-        right: 55,
-        backgroundColor: color.GREEN_COLOR,
-        padding: 5,
-        paddingLeft: 5,
-        paddingRight: 5,
-        borderRadius: 50,
-        overflow: "hidden",
-        width: 40,
-        height:40,
-    },
-    textDescriptionLight: {
-        color: '#FFF',
-        fontFamily: FONT_MAIN,
-        fontSize: 14,
-    },
-    textTitleCard: {
+    titleLargeDarkBold: {
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Bold',
+        fontSize: 30,
+        fontWeight: (Platform.OS === 'ios') ? 'bold' : undefined,
         color: color.TEXT_COLOR,
-        fontFamily: FONT_MAIN_BOLD,
-        fontSize: 16,
     },
-    textDescriptionCard: {
-        color: "#2d2d2d",
-        fontFamily: FONT_MAIN,
-        fontSize: 12,
+    paddingLineFar: {
+        paddingTop: 20,
+        paddingBottom: 20,
+    },
+    noBorder: {
+        borderBottomWidth: 0,
+        borderTopWidth: 0,
+        borderLeftWidth: 0,
+        borderRightWidth: 0,
+    },
+
+    //InfomationCourse
+    wrapperImageInGetFull: {
+        position: 'relative',
+        width: size.deviceWidth,
+        height: 250,
+        justifyContent: 'center',
+        backgroundColor: color.BACKGROUND_COLOR,
+    },
+    cardHeader: {
+        margin: 0,
         backgroundColor: color.NONE_COLOR,
+    },
+    noPaddingTopBottom: {
+        paddingTop: 0,
+        paddingBottom: 0,
+    },
+    titlePost: {
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Bold',
+        color: color.GRAY_COLOR,
+        fontSize: 20,
+        fontWeight: (Platform.OS === 'ios') ? 'bold' : 'normal',
+
+    },
+    iconInDrawerNav: {
+        width: size.width,
+        flexDirection: 'row',
+        backgroundColor: color.NONE_COLOR,
+        position: 'absolute',
+    },
+    titleSmallDarkGrayBold: {
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontSize: size.titleSmall,
+        color: color.GRAY_COLOR,
+        fontWeight: (Platform.OS === 'ios') ? '600' : 'normal',
+    },
+    titleNormalLight: {
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontSize: 11,
+        color: color.BACKGROUND_COLOR,
+        fontWeight: (Platform.OS === 'ios') ? '500' : 'normal',
+    },
+    parallaxHeaderTitle: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        flexDirection: 'column',
+    },
+    stickySection: {
+        alignItems: 'center',
+        height: size.STICKY_HEADER_HEIGHT,
+        justifyContent: 'center',
+        backgroundColor: color.BACKGROUND_COLOR
+    },
+    imageCircleBig: {
+        height: 100,
+        width: 100,
+        borderRadius: 50,
     },
     
 }

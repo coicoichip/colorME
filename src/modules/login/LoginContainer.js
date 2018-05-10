@@ -27,11 +27,9 @@ class LoginContainer extends Component {
         this.state = {
             url: 'colorme.vn',
         }
-        _this = this;
     }
-    componentWillMount() {
+    componentDidMount() {
         loginStore.getDataLogin(this.props.navigation);
-
     }
 
     signInWithAccount() {
@@ -52,18 +50,21 @@ class LoginContainer extends Component {
             () => this.signInWithAccount()
 
         )
-        console.log(loginStore.login)
+        
     }
 
 
-    onChangeData = field => value => { loginStore.login[field] = value };
+    onChangeData(name, value){
+        loginStore.login[name] = value;
+    };
     render() {
+        console.log(loginStore.login.email)
         const { navigate } = this.props.navigation;
         return (
             <KeyboardAwareScrollView
                 style={{ flex: 1 }}
                 enableOnAndroid={true}
-                extraHeight={50}
+                extraHeight={100}
             >
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <Container>
@@ -94,12 +95,12 @@ class LoginContainer extends Component {
                                 <Input
                                     autoCorrect={false}
                                     value={loginStore.login.email}
-                                    onChangeText={this.onChangeData('email')}
+                                    onChangeText={(email) => this.onChangeData('email', email)}
                                     underlineColorAndroid='rgba(0,0,0,0)'
                                     style={{
                                         fontFamily: 'Montserrat-Medium',
-                                        fontSize: 12,
-                                        color: 'rgba(195, 195, 195)'
+                                        fontSize : 12,
+                                       
                                     }}
                                 />
                             </Item>
@@ -115,12 +116,12 @@ class LoginContainer extends Component {
                                     autoCorrect={false}
                                     secureTextEntry={true}
                                     value={loginStore.login.password}
-                                    onChangeText={this.onChangeData('password')}
+                                    onChangeText={(password) => this.onChangeData('password', password) }
                                     underlineColorAndroid='rgba(0,0,0,0)'
                                     style={{
                                         fontFamily: 'Montserrat-Medium',
-                                        fontSize: 12,
-                                        color: 'rgba(195, 195, 195)'
+                                        fontSize : 12,
+                                        
                                     }}
                                 />
                             </Item>
@@ -180,7 +181,7 @@ const styles = StyleSheet.create({
         ...wrapperCenter,
         width: SIZES.DEVICE_WIDTH_SIZE,
         position: 'absolute',
-        bottom: SIZES.DEVICE_HEIGHT_SIZE / 5 - 20,
+        bottom:  SIZES.DEVICE_HEIGHT_SIZE / 4 - 40,
         paddingHorizontal: 80,
     },
     wrapperLogo: {
@@ -197,7 +198,7 @@ const styles = StyleSheet.create({
         shadowColor: COLORS.SHADOW_COLOR,
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 0.4,
-        bottom: SIZES.DEVICE_HEIGHT_SIZE / 5,
+        bottom: SIZES.DEVICE_HEIGHT_SIZE / 4 - 20,
         marginHorizontal: SIZES.DEVICE_WIDTH_SIZE * 0.1,
         padding: SIZES.PADDING_ELEMENT_IN_CARD,
         position: 'absolute',

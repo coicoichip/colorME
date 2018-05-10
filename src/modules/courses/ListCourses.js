@@ -23,9 +23,11 @@ class ListSubject extends Component {
     }
     render() {
         const { item } = this.props;
+        const {navigate} = this.props;
         return (
             <View>
                 <TouchableOpacity activeOpacity={0.8}
+                    onPress={() => this.props.navigation.navigate('CourseInFormation', { linkId: item.id })}
                     style={[styles.contentCardModuleEmail, styles.shadow, { marginLeft: 20, marginRight: 20 }]}>
                     <View style={styles.contentCardImageAvatarModuleEmail}>
                         <Image source={{ uri: formatImageLink(item.image_url) }} style={styles.imageAvatarModuleEmail} />
