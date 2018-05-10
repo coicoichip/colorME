@@ -48,15 +48,15 @@ export default class RegisterContainer extends Component {
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <Container>
                         <StatusBar
-                            barStyle="light-content"
+                            barStyle={COLORS.BAR_STYLE_LOGIN}
                             backgroundColor={COLORS.MAIN_COLOR}
                         />
 
                         {/* logo */}
                         <View style={styles.wrapperLogo}>
                             <View style={{ alignItems: 'flex-end', marginTop: -40 }}>
-                                <Text style={styles.textLogoColor}>color</Text>
-                                <Text style={styles.textLogoMe}>ME</Text>
+                                <Text style={styles.textLogoColor}>{STRINGS.LOGO_COLOR}</Text>
+                                <Text style={styles.textLogoMe}>{STRINGS.LOGO_ME}</Text>
                             </View>
                         </View>
 

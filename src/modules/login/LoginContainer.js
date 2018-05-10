@@ -29,18 +29,9 @@ class LoginContainer extends Component {
             url: 'colorme.vn',
         }
     }
-    componentDidMount() {
-        loginStore.getDataLogin(this.props.navigation);
-    }
-    signInWithAccount() {
-        loginStore.loginUser(this.props.navigation);
-        loginStore.setDataLogin();
-    }
-    signIn() {
-        AsyncStorage.setItem('url', this.state.url).then(
-            () => this.signInWithAccount()
 
-        )
+    signInWithAccount = () => {
+        loginStore.loginUser(this.props.navigation);
     }
 
     onChangeData = field => value => {
@@ -59,7 +50,7 @@ class LoginContainer extends Component {
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <Container>
                         <StatusBar
-                            barStyle="light-content"
+                            barStyle={COLORS.BAR_STYLE_LOGIN}
                             backgroundColor={COLORS.MAIN_COLOR}
                         />
 
@@ -96,7 +87,7 @@ class LoginContainer extends Component {
                         <View style={styles.wrapperButton}>
                             <ButtonCommon
                                 isLoading={loginStore.isLoading}
-                                onPress={() => this.signIn()}
+                                onPress={this.signInWithAccount}
                                 label={STRINGS.LOGIN}
                             />
                         </View>

@@ -19,6 +19,8 @@ import DetailBlogContainer from "../modules/blogs/DetailBlogContainer"
 import LoginContainer from '../modules/login/LoginContainer';
 import RegisterContainer from '../modules/register/RegisterContainer';
 import DrawerContainer from '../modules/drawer/DrawerContainer';
+import SplashContainer from '../modules/splash/SplashContainer';
+
 const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
@@ -179,9 +181,10 @@ const Drawer = DrawerNavigator({
 
 export const RootStack = StackNavigator(
     {
+        Splash: { screen: SplashContainer },
+        Drawer: { screen: Drawer },
         Login: { screen: LoginContainer },
         Register: { screen: RegisterContainer },
-        Drawer: { screen: Drawer },
     },
     { headerMode: 'none' }
 );
