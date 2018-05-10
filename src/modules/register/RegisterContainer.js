@@ -43,6 +43,7 @@ export default class RegisterContainer extends Component {
                 style={{ flex: 1, backgroundColor: COLORS.LIGHT_COLOR }}
                 enableOnAndroid={true}
                 extraHeight={200}
+                scrollEnabled={false}
             >
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <Container>
