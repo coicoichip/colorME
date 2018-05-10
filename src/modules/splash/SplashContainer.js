@@ -33,6 +33,7 @@ export default class SplashContainer extends Component {
 
     checkNetwork = () => {
         NetInfo.getConnectionInfo().then((connectionInfo) => {
+            //check network connect success
             if (connectionInfo.type == 'none') {
                 Alert.alert(
                     STRINGS.HAVE_ERROR,
