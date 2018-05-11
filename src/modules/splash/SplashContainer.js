@@ -3,11 +3,12 @@ import {
     View, StyleSheet, Text, AsyncStorage, StatusBar, NetInfo, Alert, Linking, NativeModules
 } from 'react-native';
 import { Container } from 'native-base';
-import { COLORS, SIZES, STRINGS } from '../../constants';
+import { COLORS, SIZES, STRINGS , FONTS} from '../../constants';
 import Spinner from 'react-native-spinkit';
 import splashStore from './splashStore';
 import { observer } from 'mobx-react';
 import { resetScreen } from '../../helper';
+
 
 @observer
 export default class SplashContainer extends Component {
@@ -76,7 +77,7 @@ export default class SplashContainer extends Component {
 }
 
 const textLogo = {
-    fontFamily: 'seguibl',
+    fontFamily: FONTS.LOGO_FONT,
     backgroundColor: 'transparent',
     color: COLORS.LIGHT_COLOR,
 }

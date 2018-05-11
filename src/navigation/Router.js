@@ -40,8 +40,7 @@ const Blog = StackNavigator(
     {
         BlogContainer : {screen : BlogContainer},
         DetailBlog : {screen : DetailBlogContainer},
-        ListBlog : {screen : ListBlog}
-    },  StackNavigatorStyle, { initialRouteName: 'Blog', }
+    },{ headerMode: 'none', mode: 'modal' },
 
 );
 const Tab = TabNavigator({
@@ -88,6 +87,7 @@ const Tab = TabNavigator({
     },
     Blogs: {
         screen: Blog,
+        
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
                 let source;
@@ -203,7 +203,7 @@ const Drawer = DrawerNavigator({
 
 export const RootStack = StackNavigator(
     {
-        // Splash: { screen: SplashContainer },
+        Splash: { screen: SplashContainer },
         Login: { screen: LoginContainer },
         Drawer: { screen: Drawer },
         Register: { screen: RegisterContainer },
