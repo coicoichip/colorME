@@ -9,4 +9,6 @@ export const COLORS = {
     TITLE_HEADER_COLOR: '#000',
     BACKGROUND_GRAY: 'rgb(254, 254, 254)',
     BORDER_COLOR: 'rgba(0, 0, 0, 0.5)',
+    BLUE_COLOR: '#1783FF',
+    GREEN_COLOR: '#20C62C',
 }

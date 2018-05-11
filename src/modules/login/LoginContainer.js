@@ -11,7 +11,7 @@ import {
     StyleSheet,
 
 } from 'react-native';
-import { STRINGS, COLORS, SIZES } from '../../constants';
+import { STRINGS, COLORS, SIZES, FONTS} from '../../constants';
 import { Container, Item, Button, Text, Input, Form, Label } from 'native-base';
 import { InputCommon, ButtonCommon } from '../../commons';
 import { NavigationActions } from 'react-navigation';
@@ -126,7 +126,7 @@ const wrapperCenter = {
 }
 
 const textLogo = {
-    fontFamily: 'seguibl',
+    fontFamily: FONTS.LOGO_FONT,
     backgroundColor: 'transparent',
     color: COLORS.LIGHT_COLOR,
 }

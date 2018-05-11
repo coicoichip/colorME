@@ -51,7 +51,7 @@ import { store } from "./baseStore";
         //console.log(store.bases);
         return (
             <Container style={styles.wrapperContainer}>
-                <Header title={STRINGS.BASE_HEADER_TITLEL} navigate={navigate} />
+                <Header title={STRINGS.DIRECT_HEADER_TITLEL} navigate={navigate} />
                 <View style={styles.wrapperContainer}>
                     <View style={{ flex: 1 }}>
                         {store.isLoading || this.state.isLoadingState ?

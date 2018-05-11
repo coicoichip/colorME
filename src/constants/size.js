@@ -19,4 +19,7 @@ export const SIZES = {
 
     //button opacity
     ACTIVE_OPACITY: 0.8,
+
+    //icon
+    ICON_SIZE: 25,
 }
