@@ -20,7 +20,15 @@ import RegisterContainer from '../modules/register/RegisterContainer';
 import DrawerContainer from '../modules/drawer/DrawerContainer';
 import BlogContainer from '../modules/blogs/BlogContainer';
 import ListBlog from "../modules/blogs/ListBlog";
-import styles from '../styles/styles';
+
+const styles = StyleSheet.create({
+    wrapperIconTabNavigator: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: SIZES.DEVICE_WIDTH_SIZE / 5,
+        height: SIZES.TAB_BAR_HEIGHT_SIZE,
+    },
+});
 const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
@@ -83,8 +91,8 @@ const Tab = TabNavigator({
             }
         }
     },
-    Blogs: {
-        screen: Blog,
+    News: {
+        screen: NewsContainer,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
                 let source;
@@ -145,7 +153,7 @@ const Tab = TabNavigator({
     },
 },
     {
-        initialRouteName: 'Blogs',
+        initialRouteName: 'News',
         tabBarPosition: 'bottom',
         animationEnabled: true,
         tabBarOptions: {
@@ -153,7 +161,7 @@ const Tab = TabNavigator({
             showIcon: true,
             activeTintColor: 1,
             style: {
-                borderTopWidth: 0.3,
+                borderTopWidth: 0.2,
                 borderTopColor: COLORS.BORDER_COLOR,
                 backgroundColor: COLORS.BACKGROUND_GRAY,
             },
@@ -165,24 +173,21 @@ const Drawer = DrawerNavigator(
   {
     OverView: {
       screen: Tab,
-      navigationOptions: ({ navigation }) => ({
-        title: "Tổng Quan"
-      })
+      navigationOptions: ({ navigation }) => ({title: STRINGS.HOME_DRAWER})
     },
     New: {
       screen: NewsContainer,
-      navigationOptions: ({ navigation }) => ({
-        title: "Tin Tuc"
-      })
+      navigationOptions: ({ navigation }) => ({title: STRINGS.NEWS_DRAWER})
     },
     Base: {
       screen: BaseContainer,
-      navigationOptions: ({ navigation }) => ({
-        title: "Chỉ đường"
-      })
+      navigationOptions: ({ navigation }) => ({title: STRINGS.GUIDE_DRAWER})
     }
   },
   {
+    contentOptions: {
+        activeTintColor: COLORS.MAIN_COLOR,
+    },
     drawerWidth: SIZES.DEVICE_WIDTH_SIZE * 3 / 4,
     drawerPosition: "right",
     useNativeAnimations: "false",

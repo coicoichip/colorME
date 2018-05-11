@@ -1,8 +1,11 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Button } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
+import { Button, Text } from 'native-base';
 import Header from '../../commons/Header';
 import styles from '../../styles/styles';
-import {STRINGS} from "../../constants"
+import {STRINGS} from "../../constants";
+import loginStore from "../login/loginStore";
+
 class ProfileContainer extends React.Component {
     render() {
         const { navigate } = this.props.navigation;

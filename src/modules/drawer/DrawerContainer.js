@@ -12,20 +12,16 @@ import {
     FooterTab
 } from 'native-base';
 import { DrawerItems } from 'react-navigation';
-import styles from "../../styles/styles";
-import { COLORS } from '../../constants';
-import { deviceWidth } from "../../styles/sizes";
-import loginStore from "../login/loginStore";
+import { COLORS,SIZES, STRINGS } from '../../constants';
+
 class DrawerContainer extends Component {
-
-
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         return (
             <Container style={{backgroundColor: COLORS.LIGHT_COLOR}}>
                 <View
-                    style={[styles.wrapperLogoDrawer, styles.wrapperCenter]}
+                    style={styles.wrapperLogo}
                 >
                     {/* <Image
                   source={require("../../../assets/image/colorMe.jpg")}
@@ -37,25 +33,14 @@ class DrawerContainer extends Component {
                 <Content style={{ flex: 1 }}>
                     <DrawerItems {...this.props} />
                 </Content>
-                <Footer style={{ backgroundColor: 'transparent', borderTopWidth: 0, height: 40 }}>
-                    <FooterTab>
-                        <TouchableOpacity
-                            activeOpacity={0.8}
-                            style={[customStyles.wrapperButtonLogout, { backgroundColor: COLORS.MAIN_COLOR }]}
-                            onPress={() => loginStore.logout(this.props.navigation)}
-                        >
-                            <Text style={[customStyles.buttonLogout, styles.textDescriptionLightBold]}>{'Đăng xuất'.toUpperCase()}</Text>
-                        </TouchableOpacity>
-                    </FooterTab>
-                </Footer>
-
+                    
             </Container>
         );
     }
 }
-const customStyles = StyleSheet.create({
+const styles = StyleSheet.create({
     wrapperButtonLogout: {
-        width: deviceWidth * 3 / 4,
+        width: SIZES.DEVICE_WIDTH_SIZE * 0.75,
         position: 'absolute',
         height: 40,
         bottom: 0,
@@ -63,6 +48,12 @@ const customStyles = StyleSheet.create({
         alignItems: 'center'
     },
 
+    wrapperLogo: {
+        width: SIZES.DEVICE_WIDTH_SIZE * 0.75,
+        height: 200,
+        backgroundColor: COLORS.SHADOW_COLOR,
+      
+    }
 })
 
 export default (DrawerContainer)
