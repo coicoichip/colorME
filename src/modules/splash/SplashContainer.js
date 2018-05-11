@@ -7,32 +7,13 @@ import { COLORS, SIZES, STRINGS } from '../../constants';
 import Spinner from 'react-native-spinkit';
 import splashStore from './splashStore';
 import { observer } from 'mobx-react';
+import { resetScreen } from '../../helper';
 
 @observer
 export default class SplashContainer extends Component {
 
-    componentDidMount() {
-        const { navigation } = this.props;
-
-        if (this.checkNetwork()) {
-            setTimeout(() => {
-                AsyncStorage.getItem('@UserToken').then(res => {
-                    splashStore.refreshToken(navigation, res);
-                })
-            }, 0);
-        }
-
-
-    }
-
-    openSettings = () => {
-        NativeModules.OpenSettings.openNetworkSettings(data => {
-            console.log('call back data', data);
-        });
-    }
-
-    checkNetwork = () => {
-        NetInfo.getConnectionInfo().then((connectionInfo) => {
+    checkNetwork = async () => {
+        const result = await NetInfo.getConnectionInfo().then((connectionInfo) => {
             //check network connect success
             if (connectionInfo.type == 'none') {
                 Alert.alert(
@@ -52,8 +33,27 @@ export default class SplashContainer extends Component {
             }
             return true;
         });
-
+        return result;
     }
+
+    componentDidMount() {
+        const { navigation } = this.props;
+        this.checkNetwork().then(res => {
+            AsyncStorage.getItem('@UserToken')
+                .then(res => {
+                    splashStore.refreshToken(navigation, res);
+                })
+                .catch(res => resetScreen(navigation, 'Login'))
+        })
+    }
+
+    openSettings = () => {
+        NativeModules.OpenSettings.openNetworkSettings(data => {
+            console.log('call back data', data);
+        });
+    }
+
+
 
     render() {
         return (

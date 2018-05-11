@@ -17,6 +17,7 @@ export const SIZES = {
     LOGO_COLOR_SIZE: 35,
     LOGO_ME_SIZE: 100,
 
+    ICON_SIZE: 30,
     //button opacity
     ACTIVE_OPACITY: 0.8,
 }

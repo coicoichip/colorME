@@ -13,6 +13,7 @@ import registerStore from './registerStore';
 import { observable } from 'mobx';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { dispatch } from 'react-navigation';
+import { BackButton } from '../../commons';
 
 
 @observer
@@ -31,12 +32,14 @@ export default class RegisterContainer extends Component {
 
     onRegister = () => {
         const { register } = this;
+        console.log(register);
         const { navigation } = this.props;
         registerStore.register(register, navigation);
     }
 
     render() {
         const { register } = this;
+        const { goBack } = this.props.navigation;
         return (
             <KeyboardAwareScrollView
                 showsVerticalScrollIndicator={false}
@@ -97,7 +100,14 @@ export default class RegisterContainer extends Component {
                             />
                         </View>
                     </Container>
+
                 </TouchableWithoutFeedback>
+
+                <BackButton
+                    goBack={goBack}
+                    color={COLORS.LIGHT_COLOR}
+                />
+
             </KeyboardAwareScrollView>
         );
     }

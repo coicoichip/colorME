@@ -25,7 +25,7 @@ export const STRINGS = {
     YOU_HAVE_NOT_ACCOUNT: 'Bạn chưa có tài khoản? ',
     LOGIN: 'Đăng nhập',
     LOGOUT: 'Đăng xuất',
-    WELCOME: { TITLE: 'Chào mừng bạn đến với colorME', DESCRIPTION: 'Mời bản trải nghiệm bản thử nghiệm của colorME App' },
+    WELCOME: { TITLE: 'Chào mừng bạn đến với colorME', DESCRIPTION: 'Mời bạn trải nghiệm bản thử nghiệm của colorME App' },
     EMAIL_ALREADY_EXIST: 'Địa chỉ email đã tồn tại',
     USERNAME_ALREADY_EXIST: 'Tên người dùng đã tồn tại',
     NOTIFICATION_TITLE_HEADER: 'Thông báo',

@@ -1,6 +1,6 @@
 import { observable, action, computed } from "mobx";
 import { coursesApi, getCourseInformationApi, learnRegisterApi } from "./coursesApi";
-import { Alert, AsyncStorage } from "react-native";
+import { Alert } from "react-native";
 export const coursesStore = new class CoursesStore {
     @observable subjects = [];
     @observable isLoadingSubject = false;

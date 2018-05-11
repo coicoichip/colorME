@@ -59,9 +59,9 @@ const Tab = TabNavigator({
             tabBarIcon: ({ tintColor }) => {
                 let source;
                 if (tintColor == 1) {
-                    source = require('../../assets/icons/bell_enable.png')
+                    source = require('../../assets/icons/goal_enable.png')
                 } else {
-                    source = require('../../assets/icons/bell_disable.png');
+                    source = require('../../assets/icons/goal_disable.png');
                 }
                 return (
                     <Image
@@ -177,7 +177,8 @@ const Drawer = DrawerNavigator({
         disableOpenGesture: false,
         drawerLockMode: 'locked-closed',
         contentComponent: props => (<DrawerContainer {...props} />)
-    });
+    }
+);
 
 export const RootStack = StackNavigator(
     {

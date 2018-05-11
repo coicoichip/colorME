@@ -29,7 +29,7 @@ export default new class RegisterStore {
             return;
         }
         this.isLoading = true;
-        registerApi.register(register)
+        registerApi(register)
             .then(res => {
                 this.isLoading = false;
                 this.user = res.data.user;
