@@ -20,7 +20,9 @@ export const coursesStore = new class CoursesStore {
     @action
     getListSubject(page, txt, token) {
         this.isLoadingSubject = true;
+        console.log(this.isLoadingSubject)
         getCoursesApi(page, txt, token).then(res => {
+            console.log(res)
             this.isLoadingSubject = false;
             this.subjects = res.data.courses ? res.data.courses : [res.data.courses, this.subjects];
             this.data = this.subjects.filter(e =>
@@ -32,7 +34,6 @@ export const coursesStore = new class CoursesStore {
             console.log(this.data + '<<<<<<<<<'); 
         })
             .catch(err => {
-                console.log(err);
                 this.isLoadingSubject = false;
                 this.errorSubject = true;
             })

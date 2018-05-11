@@ -34,6 +34,7 @@ class CoursesContainer extends Component {
         }
     }
     componentWillMount() {
+        console.log("AAAA")
         coursesStore.getListSubject(1, '', loginStore.token)
         if (coursesStore.subjects.length > 0) this.setState({
             subjects: coursesStore.subjects.filter(e =>

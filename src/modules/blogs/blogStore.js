@@ -24,7 +24,6 @@ export default blogStore = new class BlogStore {
             this.isLoading = true; this.error = false
         }
         blogApi(page, tag).then(res => {
-            console.log(res)
             this.total_pages = res.data.paginator.total_pages;
             this.current_page = res.data.paginator.current_page;
             this.blogs = res.data.paginator.current_page == 1 ? res.data.blogs : [...this.blogs, ...res.data.blogs];
