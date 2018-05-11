@@ -63,9 +63,9 @@ class BlogContainer extends Component {
                     onEndReached={() => this.getMoreBlogs()}
                     refreshControl={
                         <RefreshControl
-                            refreshing={blogStore.isLoading}
+                            refreshing={blogStore.isLoading && blogStore.blogs.length == 0}
                             onRefresh={
-                                () => this.componentWillMount()
+                                () => this.UNSAFE_componentWillMount()
                             }
                         />
                     }

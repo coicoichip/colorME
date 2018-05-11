@@ -28,6 +28,7 @@ class DrawerContainer extends Component {
                     backgroundColor={COLORS.LIGHT_COLOR}
                 />
                 <View style={[styles.wrapperLogoDrawer, styles.wrapperCenter]}>
+               
                 </View>
                 <Content style={{ flex: 1 }}>
                     <DrawerItems {...this.props} />
@@ -39,7 +40,7 @@ class DrawerContainer extends Component {
                             style={[styles.wrapperButtonLogout, { backgroundColor: COLORS.MAIN_COLOR }]}
                             onPress={() => loginStore.logout(this.props.navigation)}
                         >
-                            <Text style={styles.buttonLogout}>{STRINGS.LOGOUT}</Text>
+                            <Text style={styles.buttonLogout}>{STRINGS.LOGOUT.toUpperCase()}</Text>
                         </TouchableOpacity>
                     </FooterTab>
                 </Footer>
