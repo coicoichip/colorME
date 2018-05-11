@@ -6,7 +6,6 @@ import { STRINGS, COLORS, SIZES } from '../constants';
 import { StackNavigator, TabNavigator, DrawerNavigator, DrawerItems } from 'react-navigation';
 import NewsContainer from '../modules/news/NewsContainer';
 import BaseContainer from '../modules/base/BaseContainer';
-import BaseContainer2 from '../modules/base2/BaseContainer2';
 import NotificationContainer from '../modules/notification/NotificationContainer';
 import ProfileContainer from '../modules/profile/ProfileContainer';
 import SharingExperiencesContainer from '../modules/sharing-experiences/SharingExperiencesContainer';
@@ -162,41 +161,36 @@ const Tab = TabNavigator({
         }
 
     });
-const Drawer = DrawerNavigator({
+const Drawer = DrawerNavigator(
+  {
     OverView: {
-        screen: Tab,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Tổng Quan',
-        })
-
+      screen: Tab,
+      navigationOptions: ({ navigation }) => ({
+        title: "Tổng Quan"
+      })
     },
     New: {
-        screen: NewsContainer,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Tin Tuc',
-        })
+      screen: NewsContainer,
+      navigationOptions: ({ navigation }) => ({
+        title: "Tin Tuc"
+      })
     },
     Base: {
-        screen: BaseContainer,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Cơ sở',
-        })
-    },
-    Base2: {
-        screen: BaseContainer2,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Cơ sở 2',
-        })
+      screen: BaseContainer,
+      navigationOptions: ({ navigation }) => ({
+        title: "Chỉ đường"
+      })
     }
-},
-    {
-        drawerWidth: SIZES.DEVICE_WIDTH_SIZE * 3 / 4,
-        drawerPosition: 'right',
-        useNativeAnimations: 'false',
-        disableOpenGesture: false,
-        drawerLockMode: 'locked-closed',
-        contentComponent: props => (<DrawerContainer {...props} />)
-    });
+  },
+  {
+    drawerWidth: SIZES.DEVICE_WIDTH_SIZE * 3 / 4,
+    drawerPosition: "right",
+    useNativeAnimations: "false",
+    disableOpenGesture: false,
+    drawerLockMode: "locked-closed",
+    contentComponent: props => <DrawerContainer {...props} />
+  }
+);
 
 export const RootStack = StackNavigator(
     {
