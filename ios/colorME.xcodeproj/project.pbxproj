@@ -188,20 +188,6 @@
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
 		};
-		188F108820A5DAC100562D29 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 14EEF4CB2CFF411E92C81A47 /* RNSpinkit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D42CB3511B2538DE00FD0AE2;
-			remoteInfo = RNSpinkit;
-		};
-		188F108A20A5DAC100562D29 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 14EEF4CB2CFF411E92C81A47 /* RNSpinkit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 641194871EC9FD4A00D4FC03;
-			remoteInfo = "RNSpinkit-tvOS";
-		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
@@ -431,7 +417,7 @@
 		0C49D1FCE65243B090CF9EF4 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-MediumItalic.ttf"; path = "../assets/fonts/Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* colorME.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = colorME.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* colorMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = colorMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = colorMe/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = colorMe/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -503,7 +489,7 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				C480B22938024325877A65BA /* libRNVectorIcons.a in Frameworks */,
-				FE548F0206E146B9A3CD5E59 /* libRNSpinkit.a in Frameworks */,
+				57AE513B94834361826BE85F /* libRNSpinkit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,7 +584,6 @@
 				8A6E582F711A44D7A72D0A19 /* libRNVectorIcons.a */,
 				4BDD32CC2976402BB977FDB3 /* libAppCenterReactNativeAnalytics.a */,
 				C6BD27959E044BB2BC95AED0 /* libAppCenterReactNativeCrashes.a */,
-				0233AA429D78484CB21DEDA8 /* libRNSpinkit.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -684,15 +669,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		188F108420A5DAC100562D29 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				188F108920A5DAC100562D29 /* libRNSpinkit.a */,
-				188F108B20A5DAC100562D29 /* libRNSpinkit.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -768,7 +744,7 @@
 				94FCD3340C634E2693169404 /* RNVectorIcons.xcodeproj */,
 				8D00ED2983F947C499DB580B /* AppCenterReactNativeAnalytics.xcodeproj */,
 				2061F0C32FD847B4958FEEDE /* AppCenterReactNativeCrashes.xcodeproj */,
-				14EEF4CB2CFF411E92C81A47 /* RNSpinkit.xcodeproj */,
+				828F966AFA0A409A850B04E6 /* RNSpinkit.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -801,7 +777,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* colorME.temp_caseinsensitive_rename.app */,
+				13B07F961A680F5B00A75B9A /* colorMe.app */,
 				00E356EE1AD99517003FC87E /* colorMeTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* colorMe-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* colorMe-tvOSTests.xctest */,
@@ -896,7 +872,7 @@
 			);
 			name = colorMe;
 			productName = "Hello World";
-			productReference = 13B07F961A680F5B00A75B9A /* colorME.temp_caseinsensitive_rename.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* colorMe.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E47A1E0B4A5D006451C7 /* colorMe-tvOS */ = {
@@ -962,7 +938,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "colorME" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "colorMe" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1029,10 +1005,6 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-				},
-				{
-					ProductGroup = 188F108420A5DAC100562D29 /* Products */;
-					ProjectRef = 14EEF4CB2CFF411E92C81A47 /* RNSpinkit.xcodeproj */;
 				},
 				{
 					ProductGroup = 02CB6185209B079F00CEBA25 /* Products */;
@@ -1125,20 +1097,6 @@
 			fileType = archive.ar;
 			path = libReact.a;
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		188F108920A5DAC100562D29 /* libRNSpinkit.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNSpinkit.a;
-			remoteRef = 188F108820A5DAC100562D29 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		188F108B20A5DAC100562D29 /* libRNSpinkit.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNSpinkit.a;
-			remoteRef = 188F108A20A5DAC100562D29 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		2D16E6721FA4F8DC00B85C8A /* libRCTBlob-tvOS.a */ = {
@@ -1525,7 +1483,7 @@
 					"-lc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/colorME.temp_caseinsensitive_rename.app/colorME.temp_caseinsensitive_rename";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/colorMe.app/colorMe";
 			};
 			name = Debug;
 		};
@@ -1553,7 +1511,7 @@
 					"-lc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/colorME.temp_caseinsensitive_rename.app/colorME.temp_caseinsensitive_rename";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/colorMe.app/colorMe";
 			};
 			name = Release;
 		};
@@ -1579,8 +1537,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = vn.colorme.keetool.app.colorME;
-				PRODUCT_NAME = colorME.temp_caseinsensitive_rename;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PRODUCT_NAME = colorMe;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1606,8 +1563,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = vn.colorme.keetool.app.colorME;
-				PRODUCT_NAME = colorME.temp_caseinsensitive_rename;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PRODUCT_NAME = colorMe;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1717,7 +1673,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.colorMe-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/colorME.temp_caseinsensitive_rename-tvOS.app/colorME.temp_caseinsensitive_rename-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/colorMe-tvOS.app/colorMe-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
@@ -1753,7 +1709,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.colorMe-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/colorME.temp_caseinsensitive_rename-tvOS.app/colorME.temp_caseinsensitive_rename-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/colorMe-tvOS.app/colorMe-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -1873,7 +1829,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "colorME" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "colorMe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
@@ -1885,4 +1841,3 @@
 /* End XCConfigurationList section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
-}

@@ -20,8 +20,8 @@ class ListSubject extends Component {
         const { navigate } = this.props;
         return (
             <View>
-                <TouchableOpacity activeOpacity={0.8} style={{marginBottom: 15}}
-                    onPress={() => this.props.navigation.navigate('CourseInFormation', { linkId: item.id })}>
+                <TouchableOpacity activeOpacity={0.8} style={{marginBottom: 15}}>
+                    // onPress={() => this.props.navigation.navigate('CourseInFormation', { linkId: item.id })}>
                     <View >
                         <Image source={{ uri: formatImageLink(item.image_url) }} style={styles.imageAvatarModuleEmails} />
                         <Text style={[styles.categoryInImages, styles.textDescriptionLightBold]}>

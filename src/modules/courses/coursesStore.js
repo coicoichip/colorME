@@ -18,10 +18,10 @@ export const coursesStore = new class CoursesStore {
     @observable errorLearnRegister = false;
 
     @action
-    getListSubject(page, txt, token) {
+    getListSubject(page, txt) {
         this.isLoadingSubject = true;
         console.log(this.isLoadingSubject)
-        getCoursesApi(page, txt, token).then(res => {
+        getCoursesApi(page, txt).then(res => {
             console.log(res)
             this.isLoadingSubject = false;
             this.subjects = res.data.courses ? res.data.courses : [res.data.courses, this.subjects];
