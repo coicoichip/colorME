@@ -42,7 +42,7 @@ export default class RegisterContainer extends Component {
                 showsVerticalScrollIndicator={false}
                 style={{ flex: 1, backgroundColor: COLORS.LIGHT_COLOR }}
                 enableOnAndroid={true}
-                extraHeight={200}
+                extraHeight={150}
             >
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <Container>
@@ -55,6 +55,7 @@ export default class RegisterContainer extends Component {
                         <View style={styles.wrapperLogo}>
                             <View style={{ alignItems: 'flex-end', marginTop: -40 }}>
                                 <Text style={styles.textLogoColor}>color</Text>
+                                <Text style = {{height : 10}}/>
                                 <Text style={styles.textLogoMe}>ME</Text>
                             </View>
                         </View>
@@ -92,7 +93,9 @@ export default class RegisterContainer extends Component {
                                 isLoading={registerStore.isLoading}
                                 onPress={this.onRegister}
                                 label={STRINGS.REGISTER_ACCOUNT}
-                                style={{ elevation: 6 }}
+                                style={{ elevation: 6 , shadowColor: COLORS.SHADOW_COLOR,
+                                    shadowOffset: { width: 0, height: 0 },
+                                    shadowOpacity: 0.4,}}
                             />
                         </View>
                     </Container>
@@ -108,7 +111,7 @@ const wrapperCenter = {
 }
 
 const textLogo = {
-    fontFamily: 'seguibl',
+    fontFamily: 'Montserrat-ExtraBold',
     backgroundColor: 'transparent',
     color: COLORS.LIGHT_COLOR,
 }
@@ -142,6 +145,9 @@ const styles = StyleSheet.create({
         borderRadius: SIZES.BORDER_RADIUS_CARD_SIZE,
         elevation: 5,
         bottom: 60,
+        shadowColor: COLORS.SHADOW_COLOR,
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.4,
         marginHorizontal: SIZES.DEVICE_WIDTH_SIZE * 0.1,
         padding: SIZES.PADDING_ELEMENT_IN_CARD,
         position: 'absolute',

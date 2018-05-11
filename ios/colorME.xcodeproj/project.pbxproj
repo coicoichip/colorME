@@ -25,6 +25,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		180FBF8320A1C2DE00DE35C0 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78465F1BB00B4FB3AAF1ECF7 /* Montserrat-Regular.ttf */; };
 		1F9125EB80574BBE878360C4 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDE202D932654573B88CED13 /* Montserrat-Medium.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -59,7 +60,6 @@
 		87BC31B25B3B4EBD8EF0FE06 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E58540BE183F454188DE1079 /* FontAwesome.ttf */; };
 		886D7AF5E38D4FD480E84C5A /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50B58A4408414C35BFEB370A /* Ionicons.ttf */; };
 		8A618217E9AE4297A292CF69 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E12A6713E6D4CBDB8EA326C /* Montserrat-Black.ttf */; };
-		8FA588E242104EAE9D36FAF5 /* HelveticaWorld-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0A17555051C48B2BD51FC02 /* HelveticaWorld-Regular.ttf */; };
 		905C5CC7CF5C44E38975EABE /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 230CEDC1C0DF47CEBC33AE56 /* Zocial.ttf */; };
 		995B4A79415743E9ACC03D41 /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22E0CF075ACA4C9F86C504FA /* Montserrat-ThinItalic.ttf */; };
 		9BB337EBC6D6413EB856B8A7 /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 303B6FC26B2147B0B83B762F /* Montserrat-BlackItalic.ttf */; };
@@ -73,7 +73,6 @@
 		B41AA4DB2F3D499E8F94B775 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4911AC7A09C843C3B598EE56 /* Montserrat-Thin.ttf */; };
 		C480B22938024325877A65BA /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A6E582F711A44D7A72D0A19 /* libRNVectorIcons.a */; };
 		CCCB5FFCB53448F1BA102A00 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 90134E67C4C942BFA1C06C42 /* Montserrat-Italic.ttf */; };
-		D7A92A59B00F4A69A3C4E7B6 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78465F1BB00B4FB3AAF1ECF7 /* Montserrat-Regular.ttf */; };
 		E3E210F651EB40E0A06C82E3 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B77547AD8FBC449E9B9863B3 /* Ionicons.ttf */; };
 		E6A7A4F112ED4652A2F49C39 /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B4CEDDEB2C04DA29BF9349E /* Montserrat-SemiBoldItalic.ttf */; };
 		E760AAFF031844BC994AA4F0 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2579E48C1483453680645502 /* SimpleLineIcons.ttf */; };
@@ -393,7 +392,7 @@
 		0C5176268EA9471692984A63 /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLight.ttf"; path = "../assets/fonts/Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* colorMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = colorMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* colorME.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = colorME.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = colorMe/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = colorMe/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -740,7 +739,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* colorMe.app */,
+				13B07F961A680F5B00A75B9A /* colorME.temp_caseinsensitive_rename.app */,
 				00E356EE1AD99517003FC87E /* colorMeTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* colorMe-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* colorMe-tvOSTests.xctest */,
@@ -844,7 +843,7 @@
 			);
 			name = colorMe;
 			productName = "Hello World";
-			productReference = 13B07F961A680F5B00A75B9A /* colorMe.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* colorME.temp_caseinsensitive_rename.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E47A1E0B4A5D006451C7 /* colorMe-tvOS */ = {
@@ -910,7 +909,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "colorMe" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "colorME" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1288,6 +1287,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				180FBF8320A1C2DE00DE35C0 /* Montserrat-Regular.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				A61569D215704E3C81724400 /* Entypo.ttf in Resources */,
@@ -1301,8 +1301,6 @@
 				A08C608431CD4579A40DE21B /* Octicons.ttf in Resources */,
 				E760AAFF031844BC994AA4F0 /* SimpleLineIcons.ttf in Resources */,
 				6226B0C3DEDC4B888E19C19D /* Zocial.ttf in Resources */,
-				8FA588E242104EAE9D36FAF5 /* HelveticaWorld-Regular.ttf in Resources */,
-				D7A92A59B00F4A69A3C4E7B6 /* Montserrat-Regular.ttf in Resources */,
 				003B3F6384D34210A8568FB4 /* Montserrat-Bold.ttf in Resources */,
 				8A618217E9AE4297A292CF69 /* Montserrat-Black.ttf in Resources */,
 				9BB337EBC6D6413EB856B8A7 /* Montserrat-BlackItalic.ttf in Resources */,
@@ -1468,7 +1466,7 @@
 					"-lc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/colorMe.app/colorMe";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/colorME.temp_caseinsensitive_rename.app/colorME.temp_caseinsensitive_rename";
 			};
 			name = Debug;
 		};
@@ -1492,7 +1490,7 @@
 					"-lc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/colorMe.app/colorMe";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/colorME.temp_caseinsensitive_rename.app/colorME.temp_caseinsensitive_rename";
 			};
 			name = Release;
 		};
@@ -1517,7 +1515,8 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = vn.colorme.keetool.app.colorME;
-				PRODUCT_NAME = colorMe;
+				PRODUCT_NAME = colorME.temp_caseinsensitive_rename;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1542,7 +1541,8 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = vn.colorme.keetool.app.colorME;
-				PRODUCT_NAME = colorMe;
+				PRODUCT_NAME = colorME.temp_caseinsensitive_rename;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1640,7 +1640,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.colorMe-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/colorMe-tvOS.app/colorMe-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/colorME.temp_caseinsensitive_rename-tvOS.app/colorME.temp_caseinsensitive_rename-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
@@ -1672,7 +1672,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.colorMe-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/colorMe-tvOS.app/colorMe-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/colorME.temp_caseinsensitive_rename-tvOS.app/colorME.temp_caseinsensitive_rename-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -1792,7 +1792,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "colorMe" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "colorME" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

@@ -65,7 +65,7 @@ const Tab = TabNavigator({
         }
     },
     Blog: { 
-        screen: BlogContainer,
+        screen: Blog,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
                 <View style={styles.wrapperIconTabNavigator}>

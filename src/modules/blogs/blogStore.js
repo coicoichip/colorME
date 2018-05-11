@@ -40,11 +40,9 @@ export default blogStore = new class BlogStore {
         this.isLoadingDetail = true;
         this.errorDetail = false;
         detailBlogApi(slug).then(res => {
-            
             this.detailBlog = res.data.data.blog;
             this.isLoadingDetail = false;
-            console.log(this.isLoadingDetail, this.detailBlog)
-            
+            console.log(this.isLoadingDetail, this.detailBlog) 
         })
         .catch(err => {
             this.errorDetail = true;

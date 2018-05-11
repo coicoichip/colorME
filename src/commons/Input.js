@@ -25,8 +25,8 @@ class InputCommon extends Component {
                         ?
                         <Label style={{
                             color: COLORS.MAIN_COLOR,
-                            // fontFamily: 'Segoe UI Bold',
-                            fontSize: SIZES.SUBTITLE_SIZE
+                            fontFamily: 'Montserrat-SemiBold',
+                            fontSize: SIZES.DESCRIPTION_SIZE
                         }}>
                             {label}
                         </Label>
@@ -40,7 +40,7 @@ class InputCommon extends Component {
                     onChangeText={this.onChangeText}
                     underlineColorAndroid='rgba(0,0,0,0)'
                     style={{
-                        fontFamily: 'Montserrat-Regular',
+                        fontFamily: 'Montserrat-Medium',
 
                     }}
                 />
