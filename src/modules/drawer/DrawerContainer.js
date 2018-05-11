@@ -4,7 +4,7 @@ import {
     Text,
     TouchableOpacity,
     View,
-    StyleSheet,
+    StyleSheet, StatusBar
 } from 'react-native';
 import IconDefault from '../../commons/IconDefault'
 import {
@@ -14,23 +14,20 @@ import {
 import { DrawerItems } from 'react-navigation';
 import { COLORS,SIZES, STRINGS } from '../../constants';
 import loginStore from "../login/loginStore";
+
+
+
 class DrawerContainer extends Component {
-
-
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         return (
-            <Container style={{backgroundColor: COLORS.LIGHT_COLOR}}>
-                <View
-                    style={styles.wrapperLogo}
-                >
-                    {/* <Image
-                  source={require("../../../assets/image/colorMe.jpg")}
-                  resizeMode={'contain'}
-                  style={styles.imageDrawer}
-                 /> */}
-
+            <Container style={{ backgroundColor: COLORS.LIGHT_COLOR }}>
+            <StatusBar
+                    barStyle={COLORS.BAR_STYLE_MAIN}
+                    backgroundColor={COLORS.LIGHT_COLOR}
+                />
+                <View style={[styles.wrapperLogoDrawer, styles.wrapperCenter]}>
                 </View>
                 <Content style={{ flex: 1 }}>
                     <DrawerItems {...this.props} />
@@ -46,7 +43,6 @@ class DrawerContainer extends Component {
                         </TouchableOpacity>
                     </FooterTab>
                 </Footer>
-
             </Container>
         );
     }
@@ -60,7 +56,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-
     wrapperLogo: {
         width: SIZES.DEVICE_WIDTH_SIZE * 0.75,
         height: 200,

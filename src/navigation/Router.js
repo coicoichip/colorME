@@ -18,36 +18,29 @@ import DetailBlogContainer from "../modules/blogs/DetailBlogContainer"
 import LoginContainer from '../modules/login/LoginContainer';
 import RegisterContainer from '../modules/register/RegisterContainer';
 import DrawerContainer from '../modules/drawer/DrawerContainer';
-import BlogContainer from '../modules/blogs/BlogContainer';
-import ListBlog from "../modules/blogs/ListBlog";
+import SplashContainer from '../modules/splash/SplashContainer';
 
-const styles = StyleSheet.create({
-    wrapperIconTabNavigator: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: SIZES.DEVICE_WIDTH_SIZE / 5,
-        height: SIZES.TAB_BAR_HEIGHT_SIZE,
-    },
-});
 const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
     },
 };
+
+const styles = StyleSheet.create({
+    wrapperIconTabNavigator:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: SIZES.DEVICE_WIDTH_SIZE / 5,
+        height: SIZES.TAB_BAR_HEIGHT_SIZE,
+    }
+})
+
 const Courses = StackNavigator(
     {
         CourseList: { screen: CoursesContainer },
         CourseInFormation: { screen: CourseInformation, navigationOptions: { tabBarVisible: false, } },
         LearnRegister: { screen: LearnRegisterContainer, navigationOptions: { tabBarVisible: false, } },
     }, StackNavigatorStyle, { initialRouteName: 'CourseList', }
-);
-const Blog = StackNavigator(
-    {
-        BlogContainer : {screen : BlogContainer},
-        DetailBlog : {screen : DetailBlogContainer},
-        ListBlog : {screen : ListBlog}
-    },  StackNavigatorStyle, { initialRouteName: 'Blog', }
-
 );
 const Tab = TabNavigator({
     Course: {
@@ -105,7 +98,7 @@ const Tab = TabNavigator({
                     <View style={styles.wrapperIconTabNavigator}>
                         <Image
                             source={source}
-                            style={{ width:  SIZES.ICON_SIZE, height: SIZES.ICON_SIZE }} />
+                            style={{ width: SIZES.ICON_SIZE, height: SIZES.ICON_SIZE }} />
                     </View>
                 )
             }
@@ -170,38 +163,39 @@ const Tab = TabNavigator({
 
     });
 const Drawer = DrawerNavigator(
-  {
-    OverView: {
-      screen: Tab,
-      navigationOptions: ({ navigation }) => ({title: STRINGS.HOME_DRAWER})
+    {
+        OverView: {
+            screen: Tab,
+            navigationOptions: ({ navigation }) => ({ title: STRINGS.HOME_DRAWER })
+        },
+        New: {
+            screen: NewsContainer,
+            navigationOptions: ({ navigation }) => ({ title: STRINGS.NEWS_DRAWER })
+        },
+        Base: {
+            screen: BaseContainer,
+            navigationOptions: ({ navigation }) => ({ title: STRINGS.GUIDE_DRAWER })
+        }
     },
-    New: {
-      screen: NewsContainer,
-      navigationOptions: ({ navigation }) => ({title: STRINGS.NEWS_DRAWER})
-    },
-    Base: {
-      screen: BaseContainer,
-      navigationOptions: ({ navigation }) => ({title: STRINGS.GUIDE_DRAWER})
+    {
+        contentOptions: {
+            activeTintColor: COLORS.MAIN_COLOR,
+        },
+        drawerWidth: SIZES.DEVICE_WIDTH_SIZE * 3 / 4,
+        drawerPosition: 'right',
+        useNativeAnimations: 'false',
+        disableOpenGesture: false,
+        drawerLockMode: 'locked-closed',
+        contentComponent: props => (<DrawerContainer {...props} />)
     }
-  },
-  {
-    contentOptions: {
-        activeTintColor: COLORS.MAIN_COLOR,
-    },
-    drawerWidth: SIZES.DEVICE_WIDTH_SIZE * 3 / 4,
-    drawerPosition: "right",
-    useNativeAnimations: "false",
-    disableOpenGesture: false,
-    drawerLockMode: "locked-closed",
-    contentComponent: props => <DrawerContainer {...props} />
-  }
 );
 
 export const RootStack = StackNavigator(
     {
+        Splash: { screen: SplashContainer },
+        Drawer: { screen: Drawer },
         Login: { screen: LoginContainer },
         Register: { screen: RegisterContainer },
-        Drawer: { screen: Drawer },
     },
     { headerMode: 'none' }
 );
