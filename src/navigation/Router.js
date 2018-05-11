@@ -22,6 +22,8 @@ import DrawerContainer from '../modules/drawer/DrawerContainer';
 import BlogContainer from '../modules/blogs/BlogContainer';
 import ListBlog from "../modules/blogs/ListBlog";
 import styles from '../styles/styles';
+import SplashContainer from '../modules/splash/SplashContainer';
+
 const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
@@ -170,12 +172,12 @@ const Drawer = DrawerNavigator({
         })
 
     },
-    New: {
-        screen: NewsContainer,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Tin Tuc',
-        })
-    },
+    // New: {
+    //     screen: NewsContainer,
+    //     navigationOptions: ({ navigation }) => ({
+    //         title: 'Tin Tuc',
+    //     })
+    // },
     Base: {
         screen: BaseContainer,
         navigationOptions: ({ navigation }) => ({
@@ -196,13 +198,15 @@ const Drawer = DrawerNavigator({
         disableOpenGesture: false,
         drawerLockMode: 'locked-closed',
         contentComponent: props => (<DrawerContainer {...props} />)
-    });
+    }
+);
 
 export const RootStack = StackNavigator(
     {
+        // Splash: { screen: SplashContainer },
         Login: { screen: LoginContainer },
-        Register: { screen: RegisterContainer },
         Drawer: { screen: Drawer },
+        Register: { screen: RegisterContainer },
     },
     { headerMode: 'none' }
 );

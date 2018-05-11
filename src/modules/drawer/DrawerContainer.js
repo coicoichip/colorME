@@ -4,7 +4,7 @@ import {
     Text,
     TouchableOpacity,
     View,
-    StyleSheet,
+    StyleSheet, StatusBar
 } from 'react-native';
 import IconDefault from '../../commons/IconDefault'
 import {
@@ -13,26 +13,23 @@ import {
 } from 'native-base';
 import { DrawerItems } from 'react-navigation';
 import styles from "../../styles/styles";
-import { COLORS } from '../../constants';
+import { COLORS, STRINGS } from '../../constants';
 import { deviceWidth } from "../../styles/sizes";
 import loginStore from "../login/loginStore";
+
+
+
 class DrawerContainer extends Component {
-
-
     render() {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         return (
-            <Container style={{backgroundColor: COLORS.LIGHT_COLOR}}>
-                <View
-                    style={[styles.wrapperLogoDrawer, styles.wrapperCenter]}
-                >
-                    {/* <Image
-                  source={require("../../../assets/image/colorMe.jpg")}
-                  resizeMode={'contain'}
-                  style={styles.imageDrawer}
-                 /> */}
-
+            <Container style={{ backgroundColor: COLORS.LIGHT_COLOR }}>
+            <StatusBar
+                    barStyle={COLORS.BAR_STYLE_MAIN}
+                    backgroundColor={COLORS.LIGHT_COLOR}
+                />
+                <View style={[styles.wrapperLogoDrawer, styles.wrapperCenter]}>
                 </View>
                 <Content style={{ flex: 1 }}>
                     <DrawerItems {...this.props} />
@@ -44,11 +41,10 @@ class DrawerContainer extends Component {
                             style={[customStyles.wrapperButtonLogout, { backgroundColor: COLORS.MAIN_COLOR }]}
                             onPress={() => loginStore.logout(this.props.navigation)}
                         >
-                            <Text style={[customStyles.buttonLogout, styles.textDescriptionLightBold]}>{'Đăng xuất'.toUpperCase()}</Text>
+                            <Text style={[customStyles.buttonLogout, styles.textDescriptionLightBold]}>{STRINGS.LOGOUT.toUpperCase()}</Text>
                         </TouchableOpacity>
                     </FooterTab>
                 </Footer>
-
             </Container>
         );
     }

@@ -13,6 +13,7 @@ import registerStore from './registerStore';
 import { observable } from 'mobx';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { dispatch } from 'react-navigation';
+import { BackButton } from '../../commons';
 
 
 @observer
@@ -31,33 +32,34 @@ export default class RegisterContainer extends Component {
 
     onRegister = () => {
         const { register } = this;
+        
         const { navigation } = this.props;
         registerStore.register(register, navigation);
     }
 
     render() {
         const { register } = this;
+        const { goBack } = this.props.navigation;
         return (
             <KeyboardAwareScrollView
                 showsVerticalScrollIndicator={false}
                 style={{ flex: 1, backgroundColor: COLORS.LIGHT_COLOR }}
                 enableOnAndroid={true}
-                extraHeight={200}
+                extraHeight={100}
                 scrollEnabled={false}
             >
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <Container>
                         <StatusBar
-                            barStyle="light-content"
+                            barStyle={COLORS.BAR_STYLE_LOGIN}
                             backgroundColor={COLORS.MAIN_COLOR}
                         />
 
                         {/* logo */}
                         <View style={styles.wrapperLogo}>
                             <View style={{ alignItems: 'flex-end', marginTop: -40 }}>
-                                <Text style={styles.textLogoColor}>color</Text>
-                                <Text style = {{height : 10}}/>
-                                <Text style={styles.textLogoMe}>ME</Text>
+                                <Text style={styles.textLogoColor}>{STRINGS.LOGO_COLOR}</Text>
+                                <Text style={styles.textLogoMe}>{STRINGS.LOGO_ME}</Text>
                             </View>
                         </View>
 
@@ -66,6 +68,7 @@ export default class RegisterContainer extends Component {
                         {/* form input */}
                         <View style={styles.contentForm}>
                             <InputCommon
+                                
                                 returnKeyType={'next'}
                                 size={styles.input}
                                 value={register.name}
@@ -73,6 +76,7 @@ export default class RegisterContainer extends Component {
                                 onChangeText={this.onChangeData('name')}
                             />
                             <InputCommon
+                                
                                 returnKeyType={'next'}
                                 size={styles.input}
                                 value={register.email}
@@ -86,6 +90,7 @@ export default class RegisterContainer extends Component {
                                 value={register.password}
                                 label={STRINGS.PASSWORD.toUpperCase()}
                                 onChangeText={this.onChangeData('password')}
+                                onSubmitEditing = {this.onRegister}
                             />
                             <View height={30} />
                         </View>
@@ -94,13 +99,22 @@ export default class RegisterContainer extends Component {
                                 isLoading={registerStore.isLoading}
                                 onPress={this.onRegister}
                                 label={STRINGS.REGISTER_ACCOUNT}
+                                text={{fontFamily: 'Roboto-Bold',
+                                fontSize: SIZES.SUBTITLE_SIZE}}
                                 style={{ elevation: 6 , shadowColor: COLORS.SHADOW_COLOR,
                                     shadowOffset: { width: 0, height: 0 },
                                     shadowOpacity: 0.4,}}
                             />
                         </View>
                     </Container>
+
                 </TouchableWithoutFeedback>
+
+                <BackButton
+                    goBack={goBack}
+                    color={COLORS.LIGHT_COLOR}
+                />
+
             </KeyboardAwareScrollView>
         );
     }

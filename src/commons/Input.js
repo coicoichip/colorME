@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { COLORS, SIZES } from '../constants';
 import { Form, Item, Input, Label } from 'native-base';
-
+import {TextInput} from 'react-native'
 class InputCommon extends Component {
     constructor(props) {
         super(props);
@@ -25,7 +25,7 @@ class InputCommon extends Component {
                         ?
                         <Label style={{
                             color: COLORS.MAIN_COLOR,
-                            fontFamily: 'Montserrat-SemiBold',
+                            fontFamily: 'Roboto-Bold',
                             fontSize: SIZES.DESCRIPTION_SIZE
                         }}>
                             {label}
@@ -35,13 +35,16 @@ class InputCommon extends Component {
                 }
                 <Input
                     {...this.props}
+                    // autoFocus = {true}
+                    
                     autoCorrect={false}
+                    onSubmitEditing = {() => this.props.onSubmitEditing()}
                     value={value}
                     onChangeText={this.onChangeText}
                     underlineColorAndroid='rgba(0,0,0,0)'
                     style={{
                         fontFamily: 'Roboto-Regular',
-
+                        fontSize : SIZES.SUBTITLE_SIZE
                     }}
                 />
             </Item>

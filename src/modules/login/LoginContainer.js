@@ -30,19 +30,9 @@ class LoginContainer extends Component {
         }
         _this = this;
     }
-    componentWillMount() {
-        loginStore.getDataLogin(this.props.navigation);
 
-    }
-    signInWithAccount() {
+    signInWithAccount = () => {
         loginStore.loginUser(this.props.navigation);
-        loginStore.setDataLogin();
-    }
-    signIn() {
-        AsyncStorage.setItem('url', this.state.url).then(
-            () => this.signInWithAccount()
-            
-        )
     }
 
     onChangeData = field => value => {
@@ -61,7 +51,7 @@ class LoginContainer extends Component {
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <Container>
                         <StatusBar
-                            barStyle="light-content"
+                            barStyle={COLORS.BAR_STYLE_LOGIN}
                             backgroundColor={COLORS.MAIN_COLOR}
                         />
 
@@ -93,14 +83,17 @@ class LoginContainer extends Component {
                                 value={loginStore.login.password}
                                 label={STRINGS.PASSWORD.toUpperCase()}
                                 onChangeText={this.onChangeData('password')}
+                                onSubmitEditing = {this.signInWithAccount}
                             />
                             <View height={30} />
                         </View>
                         <View style={styles.wrapperButton}>
                             <ButtonCommon
                                 isLoading={loginStore.isLoading}
-                                onPress={() => this.signIn()}
-                                label={STRINGS.LOGIN}
+                                onPress={this.signInWithAccount}
+                                label={STRINGS.LOGIN.toUpperCase()}
+                                text={{fontFamily: 'Roboto-Bold',
+                                fontSize: SIZES.SUBTITLE_SIZE}}
                             />
                         </View>
 
@@ -173,6 +166,9 @@ const styles = StyleSheet.create({
         borderRadius: SIZES.BORDER_RADIUS_CARD_SIZE,
         elevation: 5,
         bottom: 100,
+        shadowColor: COLORS.SHADOW_COLOR,
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.4,
         marginHorizontal: SIZES.DEVICE_WIDTH_SIZE * 0.1,
         padding: SIZES.PADDING_ELEMENT_IN_CARD,
         position: 'absolute',
