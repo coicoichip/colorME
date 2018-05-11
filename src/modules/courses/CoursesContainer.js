@@ -36,11 +36,6 @@ class CoursesContainer extends Component {
     componentWillMount() {
         console.log("AAAA")
         coursesStore.getListSubject(1, '', loginStore.token)
-        if (coursesStore.subjects.length > 0) this.setState({
-            subjects: coursesStore.subjects.filter(e =>
-                e.type_id === 1
-            )
-        })
     }
     chooseCategory(index) {
         this.setState({ category: index })
@@ -48,14 +43,14 @@ class CoursesContainer extends Component {
             this.setState({ isLoading: true })
             setTimeout(() => this.setState({ isLoading: false }), 500)
             coursesStore.data = coursesStore.subjects.filter(e =>
-                e.type_id === 1
+                e.categories[0].id === 1
             )
         }
         else {
             this.setState({ isLoading: true })
             setTimeout(() => this.setState({ isLoading: false }), 500)
             coursesStore.data = coursesStore.subjects.filter(e =>
-                e.type_id === 2
+                e.categories[0].id === 2
             )
         }
     }
