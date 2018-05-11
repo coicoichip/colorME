@@ -3,6 +3,7 @@ import { getCoursesApi, getCourseInformationApi, learnRegisterApi } from "./cour
 import { Alert, AsyncStorage } from "react-native";
 export const coursesStore = new class CoursesStore {
     @observable subjects = [];
+    @observable data = [];
     @observable isLoadingSubject = false;
     @observable current_page = 0;
     @observable errorSubject = false;
@@ -22,10 +23,13 @@ export const coursesStore = new class CoursesStore {
         getCoursesApi(page, txt, token).then(res => {
             this.isLoadingSubject = false;
             this.subjects = res.data.courses ? res.data.courses : [res.data.courses, this.subjects];
+            this.data = this.subjects.filter(e =>
+                e.type_id === 1
+            )
             this.total_pages = res.data.paginator.total_pages;
             this.current_page = res.data.paginator.current_page;
             this.errorSubject = false;
-            console.log(res);
+            console.log(this.data + '<<<<<<<<<'); 
         })
             .catch(err => {
                 console.log(err);
