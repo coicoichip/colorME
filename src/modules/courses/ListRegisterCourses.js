@@ -36,6 +36,7 @@ export default class ListRegisterCourses extends Component {
 
     render() {
         // const{item, avatar_url, status, isEnrolled} = this.props;
+        const { item, avatar_url, status, isEnrolled } = this.props;
         return (
             // <CardItem
             //     avatar
@@ -47,24 +48,21 @@ export default class ListRegisterCourses extends Component {
                 <View style={styles.cardCmt}>
                     <Image
                         style={[styles.avatarUserNormal, styles.marginRightFar]}
-                        // source={{ uri: this.props.avatar_url }} />
-                        source={{ uri: 'http://i.9mobi.vn/cf/images/2015/03/nkk/nhung-hinh-anh-dep-3.jpg' }} />
+                        // source = {require('../../../assets/icons/bell_disable.png')}/>
+                        source={{ uri: this.props.avatar_url }} />
                     <View style={styles.noBorder}>
                         {/* <Text style={styles.titleSmallBlue}>Lớp {item.name}</Text>
                             <Text style={styles.titleSmallDarkGrayThin}>{item.study_time}</Text>
                             <Text style={styles.titleSmallDarkGrayThin}>{item.address}</Text>
                             <Text style={styles.titleSmallDarkGrayThin}>{item.description}</Text> */}
-                        <Text style={styles.titleSmallBlue}>Lớp Photoshop</Text>
-                        <Text style={styles.titleSmallDarkGrayThin}>thứ 3 - thứ 5 - thứ 7</Text>
-                        <Text style={styles.titleSmallDarkGrayThin}>Đại học bách khoa Hà Nội</Text>
-                        <Text style={styles.titleSmallDarkGrayThin}>Lớp học rất hay và thú vị</Text>
+                        <Text style={styles.titleSmallBlue}>Lớp {item.name}</Text>
+                        <Text style={styles.titleSmallDarkGrayThin}>{item.study_time}</Text>
+                        {/* <Text style={styles.titleSmallDarkGrayThin}>{item.address}</Text> */}
+                        <Text style={styles.titleSmallDarkGrayThin}>{item.description}</Text>
                         {/* {this.props.buttonRegister(item, status, isEnrolled)} */}
-                        <View style={{flex: 1, alignItems: 'flex-start'}}>
-                            <TouchableOpacity
-                                style={styles.buttonLeftRegisterGray}>
-                                <Text style={styles.titleNormalLight}>Đã đăng ký</Text>
-                            </TouchableOpacity>
-                        </View>   
+                        <View style={{ flex: 1, alignItems: 'flex-start' }}>
+                            {this.props.buttonRegister(item, status, isEnrolled)}
+                        </View>
                     </View>
                 </View>
             </TouchableOpacity>

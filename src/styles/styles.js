@@ -21,7 +21,6 @@ const style = {
         height: isIOS ? 80 : 60,
         paddingTop: isIOS ? 20 : 0,
         flexDirection: 'row',
-        alignItems: 'center',
         justifyContent: 'space-between',
         backgroundColor: color.BACKGROUND_COLOR,
     },
@@ -269,7 +268,58 @@ const style = {
         paddingLeft: 20,
 
     },
-    
+    buttonLeftRegisterMain: {
+        borderRadius: 100,
+        marginTop: 5,
+        backgroundColor: color.MAIN_COLOR ,
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingRight: 20,
+        paddingLeft: 20,
+
+    },
+    //Modal
+    wrapperModalComment: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    modalRegister: {
+        borderRadius: 5,
+        width: size.deviceWidth * 0.9,
+        backgroundColor: color.BACKGROUND_COLOR,
+    },
+    titleGrayThin: {
+        fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'Roboto-Medium',
+        fontSize: 13,
+        color: 'rgb(178, 178, 178)',
+        fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
+
+    },
+    paddingLine: {
+        paddingTop: 3,
+        paddingBottom: 3,
+    },
+    textButton: {
+        fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'Roboto-Medium',
+        marginTop: -2,
+        fontSize: 12,
+        color: '#fff',
+        fontWeight: (Platform.OS === 'ios') ? '600' : 'normal',
+
+    },
+    buttonRegister: {
+        width: size.deviceWidth * 0.6,
+        height: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
+        // padding: 15,
+        marginTop: 0,
+        borderRadius: 17,
+        backgroundColor: 'rgba(197, 0, 0, 1)',
+    },
+
 }
 const styles = StyleSheet.create(style)
 

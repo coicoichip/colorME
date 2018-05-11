@@ -40,7 +40,6 @@ export const coursesStore = new class CoursesStore {
             this.isLoadingCoursesInformation = false;
             this.courseInformation = res.data.data.course;
             this.errorCoursesInfomation = false;
-            console.log(res);
         })
         .catch(err => {
             this.isLoadingCoursesInformation = false;
