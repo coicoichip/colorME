@@ -11,14 +11,16 @@ import {
     StyleSheet,
 
 } from 'react-native';
-import { STRINGS, COLORS, SIZES } from '../../constants';
+import { STRINGS, COLORS, SIZES, FONTS} from '../../constants';
 import { Container, Item, Button, Text, Input, Form, Label } from 'native-base';
 import { InputCommon, ButtonCommon } from '../../commons';
-import loginStore  from './loginStore';
 import { NavigationActions } from 'react-navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { observer } from "mobx-react";
+import loginStore from './loginStore';
+
 let _this;
+
 @observer
 class LoginContainer extends Component {
     constructor(props) {
@@ -32,37 +34,29 @@ class LoginContainer extends Component {
         loginStore.getDataLogin(this.props.navigation);
 
     }
-
     signInWithAccount() {
-        let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-        if (loginStore.login.email == '' || loginStore.login.password == '') {
-            Alert.alert("Có lỗi xảy ra", "Bạn cần nhập đầy đủ thông tin ");
-            return;
-        } if (reg.test(loginStore.login.email) == false) {
-            Alert.alert("Có lỗi xảy ra", "Địa chỉ email không hợp lệ");
-            return;
-        }
         loginStore.loginUser(this.props.navigation);
         loginStore.setDataLogin();
     }
-
     signIn() {
         AsyncStorage.setItem('url', this.state.url).then(
             () => this.signInWithAccount()
             
         )
-        console.log(loginStore.login)
     }
 
+    onChangeData = field => value => {
+        loginStore.login[field] = value;
+    };
 
-    onChangeData = field => value => { loginStore.login[field] = value };
     render() {
         const { navigate } = this.props.navigation;
         return (
             <KeyboardAwareScrollView
-                style={{ flex: 1 }}
+                style={{ flex: 1, backgroundColor: COLORS.LIGHT_COLOR }}
                 enableOnAndroid={true}
-                extraHeight={50}
+                scrollEnabled={false}
+                extraHeight={100}
             >
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <Container>
@@ -84,70 +78,44 @@ class LoginContainer extends Component {
 
                         {/* form input */}
                         <View style={styles.contentForm}>
-                            <Item stackedLabel style={styles.input}>
+                            <InputCommon
+                                returnKeyType={'next'}
+                                size={styles.input}
+                                value={loginStore.login.email}
+                                label={STRINGS.EMAIL.toUpperCase()}
+                                onChangeText={this.onChangeData('email')}
+                            />
 
-                                <Label style={{
-                                    color: COLORS.MAIN_COLOR,
-                                    fontFamily: 'Montserrat-SemiBold',
-                                    fontSize: SIZES.SUBTITLE_SIZE
-                                }}>{'Email'}</Label>
-                                <Input
-                                    autoCorrect={false}
-                                    value={loginStore.login.email}
-                                    onChangeText={this.onChangeData('email')}
-                                    underlineColorAndroid='rgba(0,0,0,0)'
-                                    style={{
-                                        fontFamily: 'Montserrat-Medium',
-                                        fontSize : 12,
-                                        color : 'rgba(195, 195, 195)'
-                                    }}
-                                />
-                            </Item> */}
-
-                            <Item stackedLabel style={styles.input}>
-                                <Label style={{
-                                    color: COLORS.MAIN_COLOR,
-                                    fontFamily: 'Montserrat-SemiBold',
-                                    fontSize: SIZES.SUBTITLE_SIZE
-                                }}>{'Password'}</Label>
-
-                             <Input
-                                    autoCorrect={false}
-                                    secureTextEntry = {true}
-                                    value={loginStore.login.password}
-                                    onChangeText={this.onChangeData('password')}
-                                    underlineColorAndroid='rgba(0,0,0,0)'
-                                    style={{
-                                        fontFamily: 'Montserrat-Medium',
-                                        fontSize : 12,
-                                        color : 'rgba(195, 195, 195)'
-                                    }}
-                                />
-                            </Item>
+                            <InputCommon
+                                returnKeyType={'go'}
+                                secureTextEntry={true}
+                                size={styles.input}
+                                value={loginStore.login.password}
+                                label={STRINGS.PASSWORD.toUpperCase()}
+                                onChangeText={this.onChangeData('password')}
+                            />
                             <View height={30} />
                         </View>
                         <View style={styles.wrapperButton}>
                             <ButtonCommon
                                 isLoading={loginStore.isLoading}
                                 onPress={() => this.signIn()}
-                                label={'Đăng nhập'}
-                                style={{
-                                    elevation: 6, shadowColor: COLORS.SHADOW_COLOR,
-                                    shadowOffset: { width: 0, height: 0 },
-                                    shadowOpacity: 0.4,
-                                }}
-
+                                label={STRINGS.LOGIN}
                             />
                         </View>
 
 
-                        <View style = {[wrapperCenter, {flexDirection : 'row',  bottom : 50, backgroundColor: 'white'}]}>
-                        <Text style={{color : 'rgb(109, 109, 109)', fontSize : 13}}>Bạn chưa có tài khoản? </Text>
-                                    <TouchableOpacity onPress={() => this.props.navigation.navigate("Register")}>
-                                        <Text style={[ { color: 'black', fontSize : 13 }]}>Đăng kí tại đây </Text>
-                                    </TouchableOpacity>
-                            
-                            </View>
+                        <View style={[wrapperCenter, { flexDirection: 'row', bottom: 30, backgroundColor: COLORS.NONE_COLOR }]}>
+                            <Text style={[styles.textButton, { color: COLORS.GRAY_COLOR }]}>
+                                {STRINGS.YOU_HAVE_NOT_ACCOUNT}
+                            </Text>
+                            <TouchableOpacity
+                                activeOpacity={SIZES.ACTIVE_OPACITY}
+                                onPress={() => navigate("Register")}>
+                                <Text style={styles.textButton}>{STRINGS.REGISTER_HERE}</Text>
+                            </TouchableOpacity>
+
+                        </View>
                     </Container>
                 </TouchableWithoutFeedback>
             </KeyboardAwareScrollView>
@@ -161,9 +129,16 @@ const wrapperCenter = {
 }
 
 const textLogo = {
-    fontFamily: 'Montserrat-ExtraBold',
+    fontFamily: FONTS.LOGO_FONT,
     backgroundColor: 'transparent',
     color: COLORS.LIGHT_COLOR,
+}
+
+const text = {
+    fontFamily: 'Roboto-Regular',
+    backgroundColor: 'transparent',
+    color: COLORS.DARK_COLOR,
+    fontSize: SIZES.TEXT_BUTTON_SIZE,
 }
 
 const styles = StyleSheet.create({
@@ -176,11 +151,14 @@ const styles = StyleSheet.create({
         fontSize: SIZES.LOGO_ME_SIZE,
         marginTop: -40,
     },
+    textButton: {
+        ...text
+    },
     wrapperButton: {
         ...wrapperCenter,
         width: SIZES.DEVICE_WIDTH_SIZE,
         position: 'absolute',
-        bottom:  SIZES.DEVICE_HEIGHT_SIZE / 4 - 20,
+        bottom: 80,
         paddingHorizontal: 80,
     },
     wrapperLogo: {
@@ -191,19 +169,17 @@ const styles = StyleSheet.create({
     contentForm: {
         ...wrapperCenter,
         backgroundColor: COLORS.LIGHT_COLOR,
-        width: SIZES.DEVICE_WIDTH_SIZE * 0.8,
+        width: SIZES.FORM_LOGIN_WIDTH_SIZE,
         borderRadius: SIZES.BORDER_RADIUS_CARD_SIZE,
         elevation: 5,
-        shadowColor: COLORS.SHADOW_COLOR,
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.4,
-        bottom: SIZES.DEVICE_HEIGHT_SIZE / 4,
+        bottom: 100,
         marginHorizontal: SIZES.DEVICE_WIDTH_SIZE * 0.1,
         padding: SIZES.PADDING_ELEMENT_IN_CARD,
         position: 'absolute',
     },
     input: {
         width: SIZES.DEVICE_WIDTH_SIZE * 0.7,
+        marginBottom: 10,
     }
 
 });

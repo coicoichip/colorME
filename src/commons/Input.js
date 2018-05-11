@@ -40,7 +40,7 @@ class InputCommon extends Component {
                     onChangeText={this.onChangeText}
                     underlineColorAndroid='rgba(0,0,0,0)'
                     style={{
-                        fontFamily: 'Montserrat-Medium',
+                        fontFamily: 'Roboto-Regular',
 
                     }}
                 />

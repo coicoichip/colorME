@@ -4,7 +4,7 @@ import { NavigationActions } from 'react-navigation'
 export function resetScreen(navigation, screen){
     navigation.dispatch(NavigationActions.reset({
         index: 0,
-        key : null,
+        key: null,
         actions: [
             NavigationActions.navigate({ routeName: screen })
         ]

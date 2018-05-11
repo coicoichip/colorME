@@ -5,7 +5,7 @@ import {
     View, ActivityIndicator, Alert, StatusBar, TouchableWithoutFeedback, Keyboard, SafeAreaView
 } from 'react-native';
 import { Container, Button, Text } from 'native-base';
-import { STRINGS, COLORS, SIZES } from '../../constants';
+import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
 import { InputCommon, ButtonCommon } from '../../commons';
 import { resetScreen } from '../../helper';
 import { observer } from 'mobx-react';
@@ -42,7 +42,8 @@ export default class RegisterContainer extends Component {
                 showsVerticalScrollIndicator={false}
                 style={{ flex: 1, backgroundColor: COLORS.LIGHT_COLOR }}
                 enableOnAndroid={true}
-                extraHeight={150}
+                extraHeight={200}
+                scrollEnabled={false}
             >
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <Container>
@@ -80,7 +81,7 @@ export default class RegisterContainer extends Component {
                             />
                             <InputCommon
                                 returnKeyType={'send'}
-                                me secureTextEntry={true}
+                                secureTextEntry={true}
                                 size={styles.input}
                                 value={register.password}
                                 label={STRINGS.PASSWORD.toUpperCase()}
@@ -111,8 +112,8 @@ const wrapperCenter = {
 }
 
 const textLogo = {
-    fontFamily: 'Montserrat-ExtraBold',
-    backgroundColor: 'transparent',
+    fontFamily: FONTS.LOGO_FONT,
+    backgroundColor: COLORS.NONE_COLOR,
     color: COLORS.LIGHT_COLOR,
 }
 
