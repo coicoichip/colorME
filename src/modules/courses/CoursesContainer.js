@@ -18,6 +18,7 @@ import { observer } from "mobx-react";
 import ListSubject from './ListCourses';
 import Error from '../../commons/Error';
 import TextNullData from '../../commons/TextNullData';
+
 @observer
 class CoursesContainer extends Component {
     constructor() {

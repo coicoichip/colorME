@@ -6,7 +6,6 @@ import { STRINGS, COLORS, SIZES } from '../constants';
 import { StackNavigator, TabNavigator, DrawerNavigator, DrawerItems } from 'react-navigation';
 import NewsContainer from '../modules/news/NewsContainer';
 import BaseContainer from '../modules/base/BaseContainer';
-import BaseContainer2 from '../modules/base2/BaseContainer2';
 import NotificationContainer from '../modules/notification/NotificationContainer';
 import ProfileContainer from '../modules/profile/ProfileContainer';
 import SharingExperiencesContainer from '../modules/sharing-experiences/SharingExperiencesContainer';
@@ -19,28 +18,29 @@ import DetailBlogContainer from "../modules/blogs/DetailBlogContainer"
 import LoginContainer from '../modules/login/LoginContainer';
 import RegisterContainer from '../modules/register/RegisterContainer';
 import DrawerContainer from '../modules/drawer/DrawerContainer';
-import BlogContainer from '../modules/blogs/BlogContainer';
-import ListBlog from "../modules/blogs/ListBlog";
-import styles from '../styles/styles';
+import SplashContainer from '../modules/splash/SplashContainer';
+
 const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
     },
 };
+
+const styles = StyleSheet.create({
+    wrapperIconTabNavigator:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: SIZES.DEVICE_WIDTH_SIZE / 5,
+        height: SIZES.TAB_BAR_HEIGHT_SIZE,
+    }
+})
+
 const Courses = StackNavigator(
     {
         CourseList: { screen: CoursesContainer },
         CourseInFormation: { screen: CourseInformation, navigationOptions: { tabBarVisible: false, } },
         LearnRegister: { screen: LearnRegisterContainer, navigationOptions: { tabBarVisible: false, } },
     }, StackNavigatorStyle, { initialRouteName: 'CourseList', }
-);
-const Blog = StackNavigator(
-    {
-        BlogContainer : {screen : BlogContainer},
-        DetailBlog : {screen : DetailBlogContainer},
-        ListBlog : {screen : ListBlog}
-    },  StackNavigatorStyle, { initialRouteName: 'Blog', }
-
 );
 const Tab = TabNavigator({
     Course: {
@@ -84,8 +84,8 @@ const Tab = TabNavigator({
             }
         }
     },
-    Blogs: {
-        screen: Blog,
+    News: {
+        screen: NewsContainer,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
                 let source;
@@ -98,7 +98,7 @@ const Tab = TabNavigator({
                     <View style={styles.wrapperIconTabNavigator}>
                         <Image
                             source={source}
-                            style={{ width:  SIZES.ICON_SIZE, height: SIZES.ICON_SIZE }} />
+                            style={{ width: SIZES.ICON_SIZE, height: SIZES.ICON_SIZE }} />
                     </View>
                 )
             }
@@ -146,7 +146,7 @@ const Tab = TabNavigator({
     },
 },
     {
-        initialRouteName: 'Blogs',
+        initialRouteName: 'News',
         tabBarPosition: 'bottom',
         animationEnabled: true,
         tabBarOptions: {
@@ -154,7 +154,7 @@ const Tab = TabNavigator({
             showIcon: true,
             activeTintColor: 1,
             style: {
-                borderTopWidth: 0.3,
+                borderTopWidth: 0.2,
                 borderTopColor: COLORS.BORDER_COLOR,
                 backgroundColor: COLORS.BACKGROUND_GRAY,
             },
@@ -162,47 +162,40 @@ const Tab = TabNavigator({
         }
 
     });
-const Drawer = DrawerNavigator({
-    OverView: {
-        screen: Tab,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Tổng Quan',
-        })
-
-    },
-    New: {
-        screen: NewsContainer,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Tin Tuc',
-        })
-    },
-    Base: {
-        screen: BaseContainer,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Cơ sở',
-        })
-    },
-    Base2: {
-        screen: BaseContainer2,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Cơ sở 2',
-        })
-    }
-},
+const Drawer = DrawerNavigator(
     {
+        OverView: {
+            screen: Tab,
+            navigationOptions: ({ navigation }) => ({ title: STRINGS.HOME_DRAWER })
+        },
+        New: {
+            screen: NewsContainer,
+            navigationOptions: ({ navigation }) => ({ title: STRINGS.NEWS_DRAWER })
+        },
+        Base: {
+            screen: BaseContainer,
+            navigationOptions: ({ navigation }) => ({ title: STRINGS.GUIDE_DRAWER })
+        }
+    },
+    {
+        contentOptions: {
+            activeTintColor: COLORS.MAIN_COLOR,
+        },
         drawerWidth: SIZES.DEVICE_WIDTH_SIZE * 3 / 4,
         drawerPosition: 'right',
         useNativeAnimations: 'false',
         disableOpenGesture: false,
         drawerLockMode: 'locked-closed',
         contentComponent: props => (<DrawerContainer {...props} />)
-    });
+    }
+);
 
 export const RootStack = StackNavigator(
     {
+        Splash: { screen: SplashContainer },
+        Drawer: { screen: Drawer },
         Login: { screen: LoginContainer },
         Register: { screen: RegisterContainer },
-        Drawer: { screen: Drawer },
     },
     { headerMode: 'none' }
 );

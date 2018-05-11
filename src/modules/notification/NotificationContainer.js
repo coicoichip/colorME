@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Button } from 'react-native';
+
 import styles from '../../styles/styles';
+
 import { Container, Content } from 'native-base';
 import Header from '../../commons/Header';
 import HamburgerButton from '../../commons/HamburgerButton'

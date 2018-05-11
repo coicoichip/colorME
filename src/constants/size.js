@@ -13,11 +13,16 @@ export const SIZES = {
     BORDER_RADIUS_CARD_SIZE: 20,
     PADDING_ELEMENT_IN_CARD: 20,
     ICON_SIZE : 25,
-    
+    TAB_BAR_HEIGHT_SIZE: 40,
+    LOADING_SIZE: 50,
     //logo
     LOGO_COLOR_SIZE: 35,
     LOGO_ME_SIZE: 100,
 
+    ICON_SIZE: 30,
     //button opacity
     ACTIVE_OPACITY: 0.8,
+
+    //icon
+    ICON_SIZE: 25,
 }
