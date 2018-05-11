@@ -8,7 +8,7 @@ import {
     RefreshControl
 } from 'react-native';
 import styles from '../../styles/styles';
-import { Container, Item } from 'native-base';
+import { Container, Item, Content } from 'native-base';
 import Header from '../../commons/Header';
 import { STRINGS } from "../../constants";
 import loginStore from "../login/loginStore"
@@ -24,10 +24,46 @@ class CoursesContainer extends Component {
     constructor() {
         super();
         this.state = {
+            category: 0,
+            categogyArr: [
+                { title: "Thiết kế", index: 0, status: "" },
+                { title: "Lập trình", index: 1, status: "1" },
+            ]
         }
     }
     componentWillMount() {
         coursesStore.getListSubject(1, '', loginStore.token)
+    }
+    chooseCategory(index, status) {
+        this.setState({ id: status })
+        this.setState({ category: index })
+        // this.refs.__data.scrollTo({ x: deviceWidth * index, y: 0, animated: false })
+        // this.props.emailAction.getListEmail(1, this.props.token, status, "search");
+    }
+    __renderCategory = () => {
+        return (
+            <View height={40} >
+                <Content
+                    horizontal={true}
+                    style={[styles.paddingLeftRight]}>
+                    {
+                        this.state.categogyArr.map((item, i) => {
+                            return (
+                                <TouchableOpacity
+                                    key={i}
+                                    activeOpacity={0.9}
+                                    onPress={() => this.chooseCategory(item.index, item.status)}
+                                >
+                                    <View style={{marginRight: 10}}>
+                                        <Text style={this.state.category == item.index ? styles.buttonSelected : styles.buttonNotSelect}>{item.title}</Text>
+                                        </View>
+                                </TouchableOpacity>
+                            )
+                        })
+                    }
+                </Content>
+            </View>
+        )
     }
     getMoreSubjects() {
         if (coursesStore.current_page < coursesStore.total_pages && coursesStore.isLoadingSubject == false) {
@@ -83,7 +119,8 @@ class CoursesContainer extends Component {
         return (
             <Container style={styles.wrapperContainer}>
                 <Header title={STRINGS.COURSE_TITLE_HEADER} navigate={navigate} />
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                {this.__renderCategory()}
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 10 }}>
                     {this.renderSubject()}
                 </View>
             </Container>

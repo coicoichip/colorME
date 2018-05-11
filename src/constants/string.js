@@ -30,7 +30,7 @@ export const STRINGS = {
     USERNAME_ALREADY_EXIST: 'Tên người dùng đã tồn tại',
     NOTIFICATION_TITLE_HEADER: 'Thông báo',
     PROFILE_TITLE_HEADER: 'Hồ sơ',
-    COURSE_TITLE_HEADER: 'Khoá học',
+    COURSE_TITLE_HEADER: 'ĐĂNG KÍ HỌC',
     NEWS_TITLE_HEADER: 'BÀI VIẾT',
     SHARING_EXPERIENCES_TITLE_HEADER: 'Chia sẻ kinh nghiệm',
     BASE_HEADER_TITLEL: 'Cơ sở',

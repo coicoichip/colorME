@@ -39,6 +39,7 @@ export const coursesStore = new class CoursesStore {
         getCourseInformationApi(linkId).then(res => {
             this.isLoadingCoursesInformation = false;
             this.courseInformation = res.data.data.course;
+            this.classes = res.data.data.course.classes.map((item) => {return {...item, isEnroll : 0}})
             this.errorCoursesInfomation = false;
         })
         .catch(err => {
@@ -49,7 +50,11 @@ export const coursesStore = new class CoursesStore {
     @action
     learnRegister(class_id, token) {
         this.isLoadingLearnRegister = true;
+        classes = this.classes;
+        
         learnRegisterApi(class_id, token).then(res => {
+            classes[findIndex(item=> item.id == class_id)].isEnroll = 1
+            this.classes = classes
             this.isLoadingLearnRegister = false;
             this.message = res.data.message;
             this.errorLearnRegister = false;
