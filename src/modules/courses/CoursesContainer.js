@@ -23,21 +23,39 @@ class CoursesContainer extends Component {
     constructor() {
         super();
         this.state = {
+            isLoading: false,
+            subjects: [],
             category: 0,
             categogyArr: [
-                { title: "Thiết kế", index: 0, status: "" },
-                { title: "Lập trình", index: 1, status: "1" },
+                { title: "Thiết kế", index: 0 },
+                { title: "Lập trình", index: 1 },
             ]
         }
     }
     componentWillMount() {
         coursesStore.getListSubject(1, '', loginStore.token)
+        if (coursesStore.subjects.length > 0) this.setState({
+            subjects: coursesStore.subjects.filter(e =>
+                e.type_id === 1
+            )
+        })
     }
-    chooseCategory(index, status) {
-        this.setState({ id: status })
+    chooseCategory(index) {
         this.setState({ category: index })
-        // this.refs.__data.scrollTo({ x: deviceWidth * index, y: 0, animated: false })
-        // this.props.emailAction.getListEmail(1, this.props.token, status, "search");
+        if (index === 0) {
+            this.setState({ isLoading: true })
+            setTimeout(() => this.setState({ isLoading: false }), 500)
+            coursesStore.data = coursesStore.subjects.filter(e =>
+                e.type_id === 1
+            )
+        }
+        else {
+            this.setState({ isLoading: true })
+            setTimeout(() => this.setState({ isLoading: false }), 500)
+            coursesStore.data = coursesStore.subjects.filter(e =>
+                e.type_id === 2
+            )
+        }
     }
     __renderCategory = () => {
         return (
@@ -51,11 +69,11 @@ class CoursesContainer extends Component {
                                 <TouchableOpacity
                                     key={i}
                                     activeOpacity={0.9}
-                                    onPress={() => this.chooseCategory(item.index, item.status)}
+                                    onPress={() => this.chooseCategory(item.index)}
                                 >
-                                    <View style={{marginRight: 10}}>
+                                    <View style={{ marginRight: 10 }}>
                                         <Text style={this.state.category == item.index ? styles.buttonSelected : styles.buttonNotSelect}>{item.title}</Text>
-                                        </View>
+                                    </View>
                                 </TouchableOpacity>
                             )
                         })
@@ -76,7 +94,7 @@ class CoursesContainer extends Component {
             return null
     }
     renderSubject() {
-        if (coursesStore.subjects.length == 0) {
+        if (coursesStore.data.length == 0 || this.state.isLoading) {
             return <Loading />
         }
         if (coursesStore.errorSubject) {
@@ -84,20 +102,12 @@ class CoursesContainer extends Component {
                 <Error onPress={() => this.componentWillMount()} />
             )
         }
-        if (coursesStore.subjects.length !== 0) {
+        if (coursesStore.data.length !== 0) {
             return (
                 <FlatList
                     showsVerticalScrollIndicator={false}
-                    data={coursesStore.subjects}
+                    data={coursesStore.data}
                     onEndReached={() => this.getMoreSubjects()}
-                    refreshControl={
-                        <RefreshControl
-                            refreshing={coursesStore.isLoadingSubject}
-                            onRefresh={
-                                () => this.componentWillMount()
-                            }
-                        />
-                    }
                     ListFooterComponent={
                         this.loadMore()
                     }

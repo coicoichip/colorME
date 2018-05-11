@@ -149,7 +149,7 @@ const style = {
     },
     categoryInImages:{
         position: 'absolute',
-        bottom: 15,
+        bottom: 10,
         right: 10,
         backgroundColor: 'rgb(0, 241, 53)',
         padding: 5,
