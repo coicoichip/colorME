@@ -32,8 +32,11 @@ export const STRINGS = {
     PROFILE_TITLE_HEADER: 'Hồ sơ',
     COURSE_TITLE_HEADER: 'ĐĂNG KÍ HỌC',
     NEWS_TITLE_HEADER: 'BÀI VIẾT',
+    NEWS_DRAWER: 'Tin tức',
+    HOME_DRAWER: 'Trang chủ',
+    GUIDE_DRAWER: 'Chỉ đường',
     SHARING_EXPERIENCES_TITLE_HEADER: 'Chia sẻ kinh nghiệm',
-    BASE_HEADER_TITLEL: 'Cơ sở',
+    DIRECT_HEADER_TITLEL: 'CHỈ ĐƯỜNG',
     NULL_DATA: 'Không có dữ liệu',
     UPDATE_INFORMATION: 'Cập nhập thông tin',
 }

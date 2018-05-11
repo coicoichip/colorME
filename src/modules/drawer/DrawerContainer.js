@@ -12,9 +12,7 @@ import {
     FooterTab
 } from 'native-base';
 import { DrawerItems } from 'react-navigation';
-import styles from "../../styles/styles";
-import { COLORS, STRINGS } from '../../constants';
-import { deviceWidth } from "../../styles/sizes";
+import { COLORS,SIZES, STRINGS } from '../../constants';
 import loginStore from "../login/loginStore";
 
 
@@ -38,10 +36,10 @@ class DrawerContainer extends Component {
                     <FooterTab>
                         <TouchableOpacity
                             activeOpacity={0.8}
-                            style={[customStyles.wrapperButtonLogout, { backgroundColor: COLORS.MAIN_COLOR }]}
+                            style={[styles.wrapperButtonLogout, { backgroundColor: COLORS.MAIN_COLOR }]}
                             onPress={() => loginStore.logout(this.props.navigation)}
                         >
-                            <Text style={[customStyles.buttonLogout, styles.textDescriptionLightBold]}>{STRINGS.LOGOUT.toUpperCase()}</Text>
+                            <Text style={styles.buttonLogout}>{STRINGS.LOGOUT}</Text>
                         </TouchableOpacity>
                     </FooterTab>
                 </Footer>
@@ -49,16 +47,19 @@ class DrawerContainer extends Component {
         );
     }
 }
-const customStyles = StyleSheet.create({
+const styles = StyleSheet.create({
     wrapperButtonLogout: {
-        width: deviceWidth * 3 / 4,
+        width: SIZES.DEVICE_WIDTH_SIZE * 0.75,
         position: 'absolute',
         height: 40,
         bottom: 0,
         justifyContent: 'center',
         alignItems: 'center'
     },
-
+    wrapperLogo: {
+        width: SIZES.DEVICE_WIDTH_SIZE * 0.75,
+        height: 200,
+    }
 })
 
 export default (DrawerContainer)

@@ -10,5 +10,7 @@ export const COLORS = {
     BACKGROUND_MODAL: 'rgba(0, 0, 0, 0.5)',
     TITLE_HEADER_COLOR: '#000',
     BACKGROUND_GRAY: 'rgb(254, 254, 254)',
-    BORDER_COLOR: 'rgba(0, 0, 0, 0.5)',
+    BORDER_COLOR: 'rgba(0, 0, 0, 0.3)',
+    BLUE_COLOR: '#1783FF',
+    GREEN_COLOR: '#20C62C',
 }
