@@ -83,13 +83,6 @@ class CoursesContainer extends Component {
             <Container style={styles.wrapperContainer}>
                 <Header title={STRINGS.COURSE_TITLE_HEADER} navigate={navigate} />
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    {/* <Item style={[styles.noBorder,{paddingLeft: 15 }]}>
-                        <TouchableOpacity>
-                            <Text style={[styles.titleLargeDarkBold, styles.paddingLineFar]}>
-                                Đăng ký học
-                            </Text>
-                        </TouchableOpacity>
-                    </Item> */}
                     {this.renderSubject()}
                 </View>
             </Container>

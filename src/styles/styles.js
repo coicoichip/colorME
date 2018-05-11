@@ -21,7 +21,6 @@ const style = {
         height: isIOS ? 80 : 60,
         paddingTop: isIOS ? 20 : 0,
         flexDirection: 'row',
-        alignItems: 'center',
         justifyContent: 'space-between',
         backgroundColor: color.BACKGROUND_COLOR,
     },
@@ -105,6 +104,22 @@ const style = {
         fontFamily: FONT_MAIN_BOLD,
         fontSize: 14,
     },
+
+
+    wrapperRowCenter: {
+        ...wrapperCenter,
+        flexDirection: 'row',
+    },
+    backgroundColorOfImgInBase: {
+        backgroundColor: '#D3D3D3'
+    },
+
+    //test base
+    imageFeature: {
+        borderRadius: 15,
+        height: size.deviceHeight / 3,
+        backgroundColor: "#FFF",
+    },
     categoryInImage:{
         position: 'absolute',
         bottom: 10,
@@ -129,8 +144,14 @@ const style = {
         height: size.deviceHeight / 3,
         backgroundColor: color.ANDROID_SHADOW,
     },
+    textDescriptionCard: {
+        color: "#2d2d2d",
+        fontFamily: FONT_MAIN,
+        fontSize: 12,
+        backgroundColor: color.NONE_COLOR,
+    },
     titleLargeDarkBold: {
-        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Bold',
+        fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'Roboto-Bold',
         fontSize: 30,
         fontWeight: (Platform.OS === 'ios') ? 'bold' : undefined,
         color: color.TEXT_COLOR,
@@ -163,7 +184,7 @@ const style = {
         paddingBottom: 0,
     },
     titlePost: {
-        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Bold',
+        fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'Roboto-Bold',
         color: color.GRAY_COLOR,
         fontSize: 20,
         fontWeight: (Platform.OS === 'ios') ? 'bold' : 'normal',
@@ -176,13 +197,13 @@ const style = {
         position: 'absolute',
     },
     titleSmallDarkGrayBold: {
-        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'Roboto-Medium',
         fontSize: size.titleSmall,
         color: color.GRAY_COLOR,
         fontWeight: (Platform.OS === 'ios') ? '600' : 'normal',
     },
     titleNormalLight: {
-        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'Roboto-Medium',
         fontSize: 11,
         color: color.BACKGROUND_COLOR,
         fontWeight: (Platform.OS === 'ios') ? '500' : 'normal',
@@ -203,7 +224,102 @@ const style = {
         width: 100,
         borderRadius: 50,
     },
-    
+    //learn register
+    padding: {
+        padding: 10,
+    },
+    haveBorderBottom: {
+        borderBottomWidth: 0.5,
+        borderColor: 'rgb(214, 214, 214)',
+    },
+    cardCmt: {
+        flexDirection: 'row',
+        flex: 1,
+    },
+    avatarUserNormal: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        backgroundColor: '#fff',
+    },
+    marginRightFar: {
+        marginRight: 15,
+    },
+    titleSmallBlue: {
+        fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'Roboto-Medium',
+        fontSize: 12,
+        color: 'rgb(0, 128, 214)',
+        fontWeight: (Platform.OS === 'ios') ? '600' : 'normal',
+    },
+    titleSmallDarkGrayThin: {
+        fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'Roboto-Medium',
+        fontSize: 12,
+        color: 'rgb(109, 109, 109)',
+        fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
+
+    },
+    buttonLeftRegisterGray: {
+        borderRadius: 100,
+        marginTop: 5,
+        backgroundColor: 'rgb(214, 214, 214)',
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingRight: 20,
+        paddingLeft: 20,
+
+    },
+    buttonLeftRegisterMain: {
+        borderRadius: 100,
+        marginTop: 5,
+        backgroundColor: color.MAIN_COLOR ,
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingRight: 20,
+        paddingLeft: 20,
+
+    },
+    //Modal
+    wrapperModalComment: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    modalRegister: {
+        borderRadius: 5,
+        width: size.deviceWidth * 0.9,
+        backgroundColor: color.BACKGROUND_COLOR,
+    },
+    titleGrayThin: {
+        fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'Roboto-Medium',
+        fontSize: 13,
+        color: 'rgb(178, 178, 178)',
+        fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
+
+    },
+    paddingLine: {
+        paddingTop: 3,
+        paddingBottom: 3,
+    },
+    textButton: {
+        fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'Roboto-Medium',
+        marginTop: -2,
+        fontSize: 12,
+        color: '#fff',
+        fontWeight: (Platform.OS === 'ios') ? '600' : 'normal',
+
+    },
+    buttonRegister: {
+        width: size.deviceWidth * 0.6,
+        height: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
+        // padding: 15,
+        marginTop: 0,
+        borderRadius: 17,
+        backgroundColor: 'rgba(197, 0, 0, 1)',
+    },
+
 }
 const styles = StyleSheet.create(style)
 

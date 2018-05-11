@@ -1,14 +1,15 @@
-import React, {Component} from 'react';
-import {Image, Platform, Text, View, StatusBar} from 'react-native';
-import {Container, Content, Item, Left, Right, Spinner} from 'native-base';
+import React, { Component } from 'react';
+import { Image, Platform, Text, View, StatusBar, TouchableOpacity } from 'react-native';
+import { Container, Content, Item, Left, Right, Spinner } from 'native-base';
 import BackButton from '../../commons/BackButton';
 import Loading from '../../commons/Loading';
 import WebViewAutoHeight from '../../commons/WebViewAutoHeight';
 import styles from '../../styles/styles';
-import {formatImageLink} from "../../helper/index"
+import { formatImageLink } from "../../helper/index"
 import blogStore from "./blogStore";
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
-import {observer} from "mobx-react"
+import IconDefault from '../../commons/IconDefault';
+import { observer } from "mobx-react"
 
 @observer
 class DetailBlogContainer extends Component {
@@ -17,16 +18,32 @@ class DetailBlogContainer extends Component {
     }
 
     componentWillMount() {
-        const {params} = this.props.navigation.state;
+        const { params } = this.props.navigation.state;
         blogStore.getDetailBlog(params.slug);
     }
 
     render() {
-        const {navigate} = this.props.navigation;
-        const {goBack} = this.props.navigation;
-        const {detailBlog, isLoadingDetail} = blogStore;
+        const { navigate } = this.props.navigation;
+        const { goBack } = this.props.navigation;
+        const { detailBlog, isLoadingDetail } = blogStore;
         return (
             <Container style={styles.wrapperContainer}>
+                <View style={[styles.wrapperHeader, styles.paddingLeftRight, { flexDirection: 'row', marginTop: 10 }]}>
+                    <View style={{ flex: 5 }}>
+                        <Text style={[styles.textHeaderScreen, { fontSize: 20 }]} >{detailBlog.title}</Text>
+                    </View>
+                    <TouchableOpacity style={{ flex: 1 }}
+                        onPress={() => this.props.navigation.goBack()}
+                    >
+                    <View style ={{alignItems: 'flex-end'}}>
+                        <IconDefault
+                            name={'Ionicons|md-close'}
+                            style={{ padding: 0 }}
+                            color={this.props.color ? this.props.color : null}
+                        />
+                        </View>
+                    </TouchableOpacity>
+                </View>
                 <ParallaxScrollView
                     backgroundColor={'#FFF'}
                     showsVerticalScrollIndicator={false}
@@ -43,7 +60,7 @@ class DetailBlogContainer extends Component {
                     renderForeground={() => (
                         <View key="parallax-header" style={[styles.parallaxHeaderTitle]}>
                             <View style={styles.paddingLeftRight}>
-                                <Text  style={[styles.textTitleBlog, {fontSize : 20,textAlign: 'center', paddingLeft: 20, paddingRight: 20}]} numberOfLines={3}>
+                                <Text style={[styles.textTitleBlog, { fontSize: 20, textAlign: 'center', paddingLeft: 20, paddingRight: 20 }]} numberOfLines={3}>
                                     {
                                         isLoadingDetail
                                             ?
@@ -52,26 +69,26 @@ class DetailBlogContainer extends Component {
                                             detailBlog.title
                                     }
                                 </Text>
-                                <Text/>
+                                <Text />
                                 <View style={styles.wrapperCenter}>
                                     <Image
-                                        source={{uri: detailBlog.author ? formatImageLink(detailBlog.author.avatar_url) : ''}}
-                                        style={styles.imageCircleBig}/>
+                                        source={{ uri: detailBlog.author ? formatImageLink(detailBlog.author.avatar_url) : '' }}
+                                        style={styles.imageCircleBig} />
                                 </View>
-                                <Text/>
-                                <Text style={[styles.textTitleBlog, {textAlign: 'center', fontSize : 13}]} numberOfLines={1}>
-                                    Đăng bởi <Text style={[styles.textTitleBlog, {color: '#287aff', fontSize : 13}]}>
-                                    {
-                                        isLoadingDetail
-                                            ?
-                                            'Đang tải...'
-                                            :
-                                            detailBlog.author ? detailBlog.author.name.trim() : 'colorME'
-                                    }
+                                <Text />
+                                <Text style={[styles.textTitleBlog, { textAlign: 'center', fontSize: 13 }]} numberOfLines={1}>
+                                    Đăng bởi <Text style={[styles.textTitleBlog, { color: '#287aff', fontSize: 13 }]}>
+                                        {
+                                            isLoadingDetail
+                                                ?
+                                                'Đang tải...'
+                                                :
+                                                detailBlog.author ? detailBlog.author.name.trim() : 'colorME'
+                                        }
+                                    </Text>
                                 </Text>
-                                </Text>
-                                <Text style={[styles.textTitleBlog, {textAlign: 'center', fontSize : 13}]}
-                                      numberOfLines={1}>
+                                <Text style={[styles.textTitleBlog, { textAlign: 'center', fontSize: 13 }]}
+                                    numberOfLines={1}>
                                     {
                                         isLoadingDetail
                                             ?
@@ -80,9 +97,9 @@ class DetailBlogContainer extends Component {
                                             detailBlog.created_at
                                     }
                                 </Text>
-                                <Text/>
+                                <Text />
                                 <View style={[styles.wrapperCenter]}>
-                                    <Text style={[ styles.category,styles.textDescriptionLightBold, {bottom: 0, textAlign: 'center', fontSize  :10}]}>
+                                    <Text style={[styles.category, styles.textDescriptionLightBold, { bottom: 0, textAlign: 'center', fontSize: 10 }]}>
                                         {
                                             isLoadingDetail
                                                 ?
@@ -97,8 +114,8 @@ class DetailBlogContainer extends Component {
                     )}
                     renderStickyHeader={() => (
                         <View key="sticky-header" style={styles.stickySection}>
-                            <View style={[styles.wrapperCenter,Platform.OS === 'ios' ? {marginTop: 30} : {marginTop: 20}]}>
-                                <Text style={[styles.textTitleBlog, {fontSize : 12,paddingLeft: 50, paddingRight: 50}]} numberOfLines={1}>
+                            <View style={[styles.wrapperCenter, Platform.OS === 'ios' ? { marginTop: 30 } : { marginTop: 20 }]}>
+                                <Text style={[styles.textTitleBlog, { fontSize: 12, paddingLeft: 50, paddingRight: 50 }]} numberOfLines={1}>
                                     {
                                         isLoadingDetail
                                             ?
@@ -110,20 +127,20 @@ class DetailBlogContainer extends Component {
                             </View>
                         </View>
                     )}
-                    renderFixedHeader={() => (
-                        <View key="fixed-header" style={styles.iconInDrawerNav}>
-                        <Left style={Platform.OS === 'ios' ? {marginTop: 20} : {marginTop: 10}}>
-                            <BackButton goBack={goBack}/>
-                        </Left>
-                    </View>
-                    )}
+                // renderFixedHeader={() => (
+                //     <View key="fixed-header" style={styles.iconInDrawerNav}>
+                //         <Left style={Platform.OS === 'ios' ? { marginTop: 20 } : { marginTop: 10 }}>
+                //             <BackButton goBack={goBack} />
+                //         </Left>
+                //     </View>
+                // )}
                 >
                     {
                         isLoadingDetail
                             ?
-                            <Loading/>
+                            <Loading />
                             :
-                            <WebViewAutoHeight source={detailBlog.content ? detailBlog.content : ''}/>
+                            <WebViewAutoHeight source={detailBlog.content ? detailBlog.content : ''} />
                     }
                 </ParallaxScrollView>
             </Container>

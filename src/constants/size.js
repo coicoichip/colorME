@@ -12,6 +12,7 @@ export const SIZES = {
     NOTE_SIZE: 10,
     BORDER_RADIUS_CARD_SIZE: 20,
     PADDING_ELEMENT_IN_CARD: 20,
+    ICON_SIZE : 25,
     
     //logo
     LOGO_COLOR_SIZE: 35,

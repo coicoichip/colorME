@@ -19,6 +19,9 @@ import DetailBlogContainer from "../modules/blogs/DetailBlogContainer"
 import LoginContainer from '../modules/login/LoginContainer';
 import RegisterContainer from '../modules/register/RegisterContainer';
 import DrawerContainer from '../modules/drawer/DrawerContainer';
+import BlogContainer from '../modules/blogs/BlogContainer';
+import ListBlog from "../modules/blogs/ListBlog";
+import styles from '../styles/styles';
 const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
@@ -31,9 +34,17 @@ const Courses = StackNavigator(
         LearnRegister: { screen: LearnRegisterContainer, navigationOptions: { tabBarVisible: false, } },
     }, StackNavigatorStyle, { initialRouteName: 'CourseList', }
 );
+const Blog = StackNavigator(
+    {
+        BlogContainer : {screen : BlogContainer},
+        DetailBlog : {screen : DetailBlogContainer},
+        ListBlog : {screen : ListBlog}
+    },  StackNavigatorStyle, { initialRouteName: 'Blog', }
+
+);
 const Tab = TabNavigator({
     Course: {
-        screen: CoursesContainer,
+        screen: Courses,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
                 let source;
@@ -43,9 +54,11 @@ const Tab = TabNavigator({
                     source = require('../../assets/icons/add_disable.png');
                 }
                 return (
-                    <Image
-                        source={source}
-                        style={{ width: '100%', height: '100%' }} />
+                    <View style={styles.wrapperIconTabNavigator}>
+                        <Image
+                            source={source}
+                            style={{ width: SIZES.ICON_SIZE, height: SIZES.ICON_SIZE }} />
+                    </View>
                 )
             }
 
@@ -57,20 +70,22 @@ const Tab = TabNavigator({
             tabBarIcon: ({ tintColor }) => {
                 let source;
                 if (tintColor == 1) {
-                    source = require('../../assets/icons/bell_enable.png')
+                    source = require('../../assets/icons/goal_enable.png')
                 } else {
-                    source = require('../../assets/icons/bell_disable.png');
+                    source = require('../../assets/icons/goal_disable.png');
                 }
                 return (
-                    <Image
-                        source={source}
-                        style={{ width: '100%', height: '100%' }} />
+                    <View style={styles.wrapperIconTabNavigator}>
+                        <Image
+                            source={source}
+                            style={{ width: SIZES.ICON_SIZE, height: SIZES.ICON_SIZE }} />
+                    </View>
                 )
             }
         }
     },
-    News: {
-        screen: NewsContainer,
+    Blogs: {
+        screen: Blog,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
                 let source;
@@ -80,9 +95,11 @@ const Tab = TabNavigator({
                     source = require('../../assets/icons/news_disable.png');
                 }
                 return (
-                    <Image
-                        source={source}
-                        style={{ width: '100%', height: '100%' }} />
+                    <View style={styles.wrapperIconTabNavigator}>
+                        <Image
+                            source={source}
+                            style={{ width:  SIZES.ICON_SIZE, height: SIZES.ICON_SIZE }} />
+                    </View>
                 )
             }
         }
@@ -98,9 +115,11 @@ const Tab = TabNavigator({
                     source = require('../../assets/icons/bell_disable.png');
                 }
                 return (
-                    <Image
-                        source={source}
-                        style={{ width: '100%', height: '100%' }} />
+                    <View style={styles.wrapperIconTabNavigator}>
+                        <Image
+                            source={source}
+                            style={{ width: SIZES.ICON_SIZE, height: SIZES.ICON_SIZE }} />
+                    </View>
                 )
             }
         }
@@ -116,16 +135,18 @@ const Tab = TabNavigator({
                     source = require('../../assets/icons/user_disable.png');
                 }
                 return (
-                    <Image
-                        source={source}
-                        style={{ width: '100%', height: '100%' }} />
+                    <View style={styles.wrapperIconTabNavigator}>
+                        <Image
+                            source={source}
+                            style={{ width: SIZES.ICON_SIZE, height: SIZES.ICON_SIZE }} />
+                    </View>
                 )
             }
         }
     },
 },
     {
-        initialRouteName: 'News',
+        initialRouteName: 'Blogs',
         tabBarPosition: 'bottom',
         animationEnabled: true,
         tabBarOptions: {
