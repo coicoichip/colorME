@@ -24,7 +24,6 @@ class CoursesContainer extends Component {
         super();
         this.state = {
             isLoading: false,
-            subjects: [],
             category: 0,
             categogyArr: [
                 { title: "Thiết kế", index: 0 },
