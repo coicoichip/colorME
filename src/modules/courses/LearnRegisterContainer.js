@@ -24,7 +24,7 @@ class LearnRegisterContainer extends Component {
             study_time: '',
             description: '',
             address: '',
-            avatar_url: this.props.navigation.state.params.avatar_url,
+            avatar_url: coursesStore.courseInformation.icon_url,
             isEnrolled: [],
             classes: [],
             status: [],
@@ -48,7 +48,7 @@ class LearnRegisterContainer extends Component {
         let isEnrolled = [];
         let status = [];
         let i = 0;
-        let data = this.props.navigation.state.params.classes;
+        let data = coursesStore.courseInformation.classes;
         console.log(data + '>>>');
         while (i < data.length) {
             let key = { key: i }
