@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import { Container, Button, Text } from 'native-base';
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
+import * as color from '../../styles/colors';
 import { InputCommon, ButtonCommon } from '../../commons';
 import { resetScreen } from '../../helper';
 import { observer } from 'mobx-react';
