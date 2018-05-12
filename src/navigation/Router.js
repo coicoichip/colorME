@@ -18,6 +18,9 @@ import DetailBlogContainer from "../modules/blogs/DetailBlogContainer"
 import LoginContainer from '../modules/login/LoginContainer';
 import RegisterContainer from '../modules/register/RegisterContainer';
 import DrawerContainer from '../modules/drawer/DrawerContainer';
+import BlogContainer from '../modules/blogs/BlogContainer';
+import ListBlog from "../modules/blogs/ListBlog";
+
 import SplashContainer from '../modules/splash/SplashContainer';
 
 const StackNavigatorStyle = {
@@ -41,6 +44,13 @@ const Courses = StackNavigator(
         CourseInFormation: { screen: CourseInformation, navigationOptions: { tabBarVisible: false, } },
         LearnRegister: { screen: LearnRegisterContainer, navigationOptions: { tabBarVisible: false, } },
     }, StackNavigatorStyle, { initialRouteName: 'CourseList', }
+);
+const Blog = StackNavigator(
+    {
+        BlogContainer : {screen : BlogContainer},
+        DetailBlog : {screen : DetailBlogContainer},
+    },{ headerMode: 'none', mode: 'modal' },
+
 );
 const Tab = TabNavigator({
     Course: {
@@ -84,8 +94,9 @@ const Tab = TabNavigator({
             }
         }
     },
-    News: {
-        screen: NewsContainer,
+    Blogs: {
+        screen: Blog,
+        
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
                 let source;
@@ -146,7 +157,7 @@ const Tab = TabNavigator({
     },
 },
     {
-        initialRouteName: 'News',
+        initialRouteName: 'Blogs',
         tabBarPosition: 'bottom',
         animationEnabled: true,
         tabBarOptions: {
@@ -162,21 +173,26 @@ const Tab = TabNavigator({
         }
 
     });
-const Drawer = DrawerNavigator(
-    {
-        OverView: {
-            screen: Tab,
-            navigationOptions: ({ navigation }) => ({ title: STRINGS.HOME_DRAWER })
-        },
-        New: {
-            screen: NewsContainer,
-            navigationOptions: ({ navigation }) => ({ title: STRINGS.NEWS_DRAWER })
-        },
-        Base: {
-            screen: BaseContainer,
-            navigationOptions: ({ navigation }) => ({ title: STRINGS.GUIDE_DRAWER })
-        }
+const Drawer = DrawerNavigator({
+    OverView: {
+        screen: Tab,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Tổng Quan',
+        })
+
     },
+    // New: {
+    //     screen: NewsContainer,
+    //     navigationOptions: ({ navigation }) => ({
+    //         title: 'Tin Tuc',
+    //     })
+    // },
+    Base: {
+        screen: BaseContainer,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Cơ sở',
+        })
+    }},
     {
         contentOptions: {
             activeTintColor: COLORS.MAIN_COLOR,
@@ -188,13 +204,15 @@ const Drawer = DrawerNavigator(
         drawerLockMode: 'locked-closed',
         contentComponent: props => (<DrawerContainer {...props} />)
     }
+
+
 );
 
 export const RootStack = StackNavigator(
     {
         Splash: { screen: SplashContainer },
-        Drawer: { screen: Drawer },
         Login: { screen: LoginContainer },
+        Drawer: { screen: Drawer },
         Register: { screen: RegisterContainer },
     },
     { headerMode: 'none' }

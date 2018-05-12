@@ -28,121 +28,54 @@ class DetailBlogContainer extends Component {
         const { detailBlog, isLoadingDetail } = blogStore;
         return (
             <Container style={styles.wrapperContainer}>
-                <View style={[styles.wrapperHeader, styles.paddingLeftRight, { flexDirection: 'row', marginTop: 10 }]}>
+                <View style={[styles.wrapperHeader, styles.paddingLeftRight, { flexDirection: 'row', marginTop: 20 }]}>
                     <View style={{ flex: 5 }}>
                         <Text style={[styles.textHeaderScreen, { fontSize: 20 }]} >{detailBlog.title}</Text>
                     </View>
                     <TouchableOpacity style={{ flex: 1 }}
                         onPress={() => this.props.navigation.goBack()}
                     >
-                    <View style ={{alignItems: 'flex-end'}}>
-                        <IconDefault
-                            name={'Ionicons|md-close'}
-                            style={{ padding: 0 }}
-                            color={this.props.color ? this.props.color : null}
-                        />
+                        <View style={{ alignItems: 'flex-end' }}>
+                            <IconDefault
+                                name={'Ionicons|md-close'}
+                                style={{ padding: 0 }}
+                                color={this.props.color ? this.props.color : null}
+                            />
                         </View>
                     </TouchableOpacity>
                 </View>
-                <ParallaxScrollView
-                    backgroundColor={'#FFF'}
-                    showsVerticalScrollIndicator={false}
-                    headerBackgroundColor={'#FFF'}
-                    stickyHeaderHeight={Platform.OS === 'ios' ? 70 : 60}
-                    parallaxHeaderHeight={350}
-                    backgroundSpeed={10}
-                    renderBackground={() => (
-                        <View style={styles.wrapperImageInGetFull}>
-                            <View key="background">
-                            </View>
-                        </View>
-                    )}
-                    renderForeground={() => (
-                        <View key="parallax-header" style={[styles.parallaxHeaderTitle]}>
-                            <View style={styles.paddingLeftRight}>
-                                <Text style={[styles.textTitleBlog, { fontSize: 20, textAlign: 'center', paddingLeft: 20, paddingRight: 20 }]} numberOfLines={3}>
-                                    {
-                                        isLoadingDetail
-                                            ?
-                                            'Đang tải...'
-                                            :
-                                            detailBlog.title
-                                    }
-                                </Text>
-                                <Text />
-                                <View style={styles.wrapperCenter}>
-                                    <Image
-                                        source={{ uri: detailBlog.author ? formatImageLink(detailBlog.author.avatar_url) : '' }}
-                                        style={styles.imageCircleBig} />
-                                </View>
-                                <Text />
-                                <Text style={[styles.textTitleBlog, { textAlign: 'center', fontSize: 13 }]} numberOfLines={1}>
-                                    Đăng bởi <Text style={[styles.textTitleBlog, { color: '#287aff', fontSize: 13 }]}>
-                                        {
-                                            isLoadingDetail
-                                                ?
-                                                'Đang tải...'
-                                                :
-                                                detailBlog.author ? detailBlog.author.name.trim() : 'colorME'
-                                        }
-                                    </Text>
-                                </Text>
-                                <Text style={[styles.textTitleBlog, { textAlign: 'center', fontSize: 13 }]}
-                                    numberOfLines={1}>
-                                    {
-                                        isLoadingDetail
-                                            ?
-                                            'Đang tải...'
-                                            :
-                                            detailBlog.created_at
-                                    }
-                                </Text>
-                                <Text />
-                                <View style={[styles.wrapperCenter]}>
-                                    <Text style={[styles.category, styles.textDescriptionLightBold, { bottom: 0, textAlign: 'center', fontSize: 10 }]}>
-                                        {
-                                            isLoadingDetail
-                                                ?
-                                                'Đang tải...'
-                                                :
-                                                detailBlog.category !== "" ? detailBlog.category.trim() : "Chưa phân loại"
-                                        }
-                                    </Text>
-                                </View>
-                            </View>
-                        </View>
-                    )}
-                    renderStickyHeader={() => (
-                        <View key="sticky-header" style={styles.stickySection}>
-                            <View style={[styles.wrapperCenter, Platform.OS === 'ios' ? { marginTop: 30 } : { marginTop: 20 }]}>
-                                <Text style={[styles.textTitleBlog, { fontSize: 12, paddingLeft: 50, paddingRight: 50 }]} numberOfLines={1}>
-                                    {
-                                        isLoadingDetail
-                                            ?
-                                            'Đang tải...'
-                                            :
-                                            detailBlog.title
-                                    }
-                                </Text>
-                            </View>
-                        </View>
-                    )}
-                // renderFixedHeader={() => (
-                //     <View key="fixed-header" style={styles.iconInDrawerNav}>
-                //         <Left style={Platform.OS === 'ios' ? { marginTop: 20 } : { marginTop: 10 }}>
-                //             <BackButton goBack={goBack} />
-                //         </Left>
-                //     </View>
-                // )}
-                >
+                <Content style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+                   
                     {
                         isLoadingDetail
                             ?
                             <Loading />
                             :
+ 
+                            <View>
+                                 <View activeOpacity={0.8} style={{ marginBottom: 15 }}
+                    >
+                        <View>
+                            <Image source={{ uri: formatImageLink(detailBlog.url) }} style={styles.imageAvatarModuleEmails} />
+                        </View>
+                        <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
+
+
+                            <View style={{ marginTop: 5, flexDirection: 'row', alignItems: 'center' }}>
+                                <Image
+                                    style={{ height: 20, width: 20, borderRadius: 10 }}
+                                    source={{ uri: detailBlog.author.avatar_url ? formatImageLink(detailBlog.author.avatar_url) : "" }}
+                                />
+                                <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5 }}>{detailBlog.author.name.trim()}</Text>
+                                <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5, color: 'gray' }}>{detailBlog.time.trim()}</Text>
+                            </View>
+                        </View>
+                    </View>
+
                             <WebViewAutoHeight source={detailBlog.content ? detailBlog.content : ''} />
+                            </View>
                     }
-                </ParallaxScrollView>
+                </Content>
             </Container>
         );
     }

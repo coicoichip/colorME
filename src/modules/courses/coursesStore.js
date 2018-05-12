@@ -1,9 +1,9 @@
 import { observable, action, computed } from "mobx";
 import { getCoursesApi, getCourseInformationApi, learnRegisterApi } from "./coursesApi";
 import { Alert, AsyncStorage } from "react-native";
-
 export const coursesStore = new class CoursesStore {
     @observable subjects = [];
+    @observable data = [];
     @observable isLoadingSubject = false;
     @observable current_page = 0;
     @observable errorSubject = false;
@@ -18,18 +18,22 @@ export const coursesStore = new class CoursesStore {
     @observable errorLearnRegister = false;
 
     @action
-    getListSubject(page, txt, token) {
+    getListSubject(page, txt) {
         this.isLoadingSubject = true;
-        getCoursesApi(page, txt, token).then(res => {
+        console.log(this.isLoadingSubject)
+        getCoursesApi(page, txt).then(res => {
+            console.log(res)
             this.isLoadingSubject = false;
             this.subjects = res.data.courses ? res.data.courses : [res.data.courses, this.subjects];
+            this.data = this.subjects.filter(e =>
+                e.categories[0].id === 1
+            )
             this.total_pages = res.data.paginator.total_pages;
             this.current_page = res.data.paginator.current_page;
             this.errorSubject = false;
-            console.log(res);
+            console.log(this.data); 
         })
             .catch(err => {
-                console.log(err);
                 this.isLoadingSubject = false;
                 this.errorSubject = true;
             })
@@ -40,6 +44,7 @@ export const coursesStore = new class CoursesStore {
         getCourseInformationApi(linkId).then(res => {
             this.isLoadingCoursesInformation = false;
             this.courseInformation = res.data.data.course;
+            this.classes = res.data.data.course.classes.map((item) => {return {...item, isEnroll : 0}})
             this.errorCoursesInfomation = false;
         })
         .catch(err => {
@@ -50,7 +55,11 @@ export const coursesStore = new class CoursesStore {
     @action
     learnRegister(class_id, token) {
         this.isLoadingLearnRegister = true;
+        classes = this.classes;
+        
         learnRegisterApi(class_id, token).then(res => {
+            classes[findIndex(item=> item.id == class_id)].isEnroll = 1
+            this.classes = classes
             this.isLoadingLearnRegister = false;
             this.message = res.data.message;
             this.errorLearnRegister = false;

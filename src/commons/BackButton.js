@@ -9,7 +9,7 @@ class BackButton extends Component {
     render() {
         const { color } = this.props;
         return (
-            <TouchableOpacity style={{ position: 'absolute', top: 20, left: 0, paddingHorizontal: 30 }}
+            <TouchableOpacity style={{ position: 'absolute', top: 20, left: -10, paddingHorizontal: 30 }}
                 activeOpacity={SIZES.ACTIVE_OPACITY}
                 onPress={() => this.props.goBack(null)}
             >

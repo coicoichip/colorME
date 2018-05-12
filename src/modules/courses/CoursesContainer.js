@@ -8,7 +8,7 @@ import {
     RefreshControl
 } from 'react-native';
 import styles from '../../styles/styles';
-import { Container, Item } from 'native-base';
+import { Container, Item, Content } from 'native-base';
 import Header from '../../commons/Header';
 import { STRINGS } from "../../constants";
 import loginStore from "../login/loginStore"
@@ -24,14 +24,64 @@ class CoursesContainer extends Component {
     constructor() {
         super();
         this.state = {
+            isLoading: false,
+            subjects: [],
+            category: 0,
+            categogyArr: [
+                { title: "Thiết kế", index: 0 },
+                { title: "Lập trình", index: 1 },
+            ]
         }
     }
     componentWillMount() {
-        coursesStore.getListSubject(1, '', loginStore.token)
+        console.log("AAAA")
+        coursesStore.getListSubject(1, '')
+    }
+    chooseCategory(index) {
+        this.setState({ category: index })
+        if (index === 0) {
+            this.setState({ isLoading: true })
+            setTimeout(() => this.setState({ isLoading: false }), 500)
+            coursesStore.data = coursesStore.subjects.filter(e =>
+                e.categories[0].id === 1
+            )
+        }
+        else {
+            this.setState({ isLoading: true })
+            setTimeout(() => this.setState({ isLoading: false }), 500)
+            coursesStore.data = coursesStore.subjects.filter(e =>
+                e.categories[0].id === 2
+            )
+        }
+    }
+    __renderCategory = () => {
+        return (
+            <View height={40} >
+                <Content
+                    horizontal={true}
+                    style={[styles.paddingLeftRight]}>
+                    {
+                        this.state.categogyArr.map((item, i) => {
+                            return (
+                                <TouchableOpacity
+                                    key={i}
+                                    activeOpacity={0.9}
+                                    onPress={() => this.chooseCategory(item.index)}
+                                >
+                                    <View style={{ marginRight: 10 }}>
+                                        <Text style={this.state.category == item.index ? styles.buttonSelected : styles.buttonNotSelect}>{item.title}</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            )
+                        })
+                    }
+                </Content>
+            </View>
+        )
     }
     getMoreSubjects() {
         if (coursesStore.current_page < coursesStore.total_pages && coursesStore.isLoadingSubject == false) {
-            coursesStore.getListSubject(coursesStore.current_page + 1, "", loginStore.token)
+            coursesStore.getListSubject(coursesStore.current_page + 1, "")
         }
     }
     loadMore() {
@@ -41,7 +91,7 @@ class CoursesContainer extends Component {
             return null
     }
     renderSubject() {
-        if (coursesStore.subjects.length == 0) {
+        if (coursesStore.data.length == 0 || this.state.isLoading) {
             return <Loading />
         }
         if (coursesStore.errorSubject) {
@@ -49,20 +99,12 @@ class CoursesContainer extends Component {
                 <Error onPress={() => this.componentWillMount()} />
             )
         }
-        if (coursesStore.subjects.length !== 0) {
+        if (coursesStore.data.length !== 0) {
             return (
                 <FlatList
                     showsVerticalScrollIndicator={false}
-                    data={coursesStore.subjects}
+                    data={coursesStore.data}
                     onEndReached={() => this.getMoreSubjects()}
-                    refreshControl={
-                        <RefreshControl
-                            refreshing={coursesStore.isLoadingSubject}
-                            onRefresh={
-                                () => this.componentWillMount()
-                            }
-                        />
-                    }
                     ListFooterComponent={
                         this.loadMore()
                     }
@@ -83,7 +125,8 @@ class CoursesContainer extends Component {
         return (
             <Container style={styles.wrapperContainer}>
                 <Header title={STRINGS.COURSE_TITLE_HEADER} navigate={navigate} />
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                {this.__renderCategory()}
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 10 }}>
                     {this.renderSubject()}
                 </View>
             </Container>

@@ -10,40 +10,34 @@ import { Container, Item, Input } from 'native-base';
 import Header from '../../commons/Header';
 import Icon from "../../commons/Icon"
 import IconDefault from "../../commons/IconDefault"
-import { formatImageLink } from "../../helper/index"
+import { formatImageLink, dotNumber } from "../../helper/index"
 class ListSubject extends Component {
     constructor() {
         super()
     }
-    shouldComponentUpdate(nextProps) {
-        if (nextProps.item !== this.props.item) {
-            return true
-        }
-        return false;
-    }
     render() {
         const { item } = this.props;
-        const {navigate} = this.props;
+        const { navigate } = this.props;
         return (
             <View>
-                <TouchableOpacity activeOpacity={0.8}
-                    onPress={() => this.props.navigation.navigate('CourseInFormation', { linkId: item.id })}
-                    style={[styles.contentCardModuleEmail, styles.shadow, { marginLeft: 20, marginRight: 20 }]}>
-                    <View style={styles.contentCardImageAvatarModuleEmail}>
-                        <Image source={{ uri: formatImageLink(item.image_url) }} style={styles.imageAvatarModuleEmail} />
+                <TouchableOpacity activeOpacity={0.8} style={{marginBottom: 15}}>
+                    // onPress={() => this.props.navigation.navigate('CourseInFormation', { linkId: item.id })}>
+                    <View >
+                        <Image source={{ uri: formatImageLink(item.image_url) }} style={styles.imageAvatarModuleEmails} />
+                        <Text style={[styles.categoryInImages, styles.textDescriptionLightBold]}>
+                            {item.price ? dotNumber(item.price) + ' đ' : 'Price'}
+                        </Text>
                     </View>
-                    <View style={styles.contentCardImageInformation}>
-                        <Text numberOfLines={1} style={styles.emailNameModuleEmail}>{item.name.toUpperCase().trim()}</Text>
-                        <Text numberOfLines={2} style={styles.textDescriptionDark}>{item.description.trim()}</Text>
-                        <View style={{ marginTop: 2 }}>
-                            <Text numberOfLines={2} style={styles.textDescriptionDark}>320 lớp đã học</Text>
-                        </View>
-                        <View style={{ flexDirection: "row", marginTop: 5 }}>
-                            <Text style={[styles.textDescriptionDark, { color: "#2bff47", fontSize: 11 }]}>{item.num_classes} lớp đã học</Text>
-                            <Text style={[styles.textDescriptionDark, { color: "#4796ff", marginLeft: 5, fontSize: 11 }]}>1790 học viên</Text>
+                    <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
+                        <Text numberOfLines={1} style={styles.emailNameModuleEmail}>{item.name.trim()}</Text>
+                        <Text style={styles.textDescriptionDark}>{item.duration} buổi</Text>
+                        <View style={{ marginTop: 5 }}>
+                            <Text numberOfLines={2} style={styles.textDescriptionDark}>{item.description.trim()}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
+                <View style={styles.footerCard}>
+                    </View>
             </View>
         )
     }

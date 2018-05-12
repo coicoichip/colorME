@@ -8,6 +8,19 @@ const wrapperCenter = {
     alignItems: 'center',
     justifyContent: 'center',
 };
+const buttonTab = {
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: "hidden",
+    borderWidth: 1,
+    borderRadius: 13,
+    padding: 15,
+    paddingTop: 5,
+    paddingBottom: 5,
+    fontSize: 12,
+    fontFamily: FONT_MAIN,
+    color: color.BACKGROUND_COLOR,
+};
 const style = {
     wrapperCenter :{
         alignItems: 'center',
@@ -69,6 +82,10 @@ const style = {
         paddingBottom: 13
 
     },
+    imageAvatarModuleEmails: {
+        width: size.deviceWidth,
+        height:size.deviceHeight/3.3,
+    },
     imageAvatarModuleEmail: {
         width: size.deviceWidth/3.7,
         height: size.deviceWidth/3.7,
@@ -80,10 +97,9 @@ const style = {
         paddingTop : 5,
     },
     emailNameModuleEmail: {
-        marginLeft: -3,
-        fontSize: 17,
-        paddingTop: 12,
-        paddingBottom: 7,
+        fontSize: 20,
+        paddingTop: 10,
+        paddingBottom: 5,
     },
     textDescriptionDark: {
         color: '#000',
@@ -131,6 +147,17 @@ const style = {
         borderRadius: 13,
         overflow: "hidden"
     },
+    categoryInImages:{
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
+        backgroundColor: 'rgb(0, 241, 53)',
+        padding: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderRadius: 13,
+        overflow: "hidden"
+    },
     category:{
         backgroundColor: color.MAIN_COLOR,
         padding: 5,
@@ -168,6 +195,16 @@ const style = {
     },
 
     //InfomationCourse
+    buttonSelected: {
+        ...buttonTab,
+        backgroundColor: 'black',
+        fontFamily: FONT_MAIN_BOLD
+    },
+    buttonNotSelect: {
+        ...buttonTab,
+        backgroundColor: color.NONE_COLOR,
+        color: color.TEXT_COLOR
+    },
     wrapperImageInGetFull: {
         position: 'relative',
         width: size.deviceWidth,
@@ -277,6 +314,10 @@ const style = {
         paddingRight: 20,
         paddingLeft: 20,
 
+    },
+    footerCard: {
+        height: 25,
+        backgroundColor: 'rgb(240, 240, 240)'
     },
     //Modal
     wrapperModalComment: {

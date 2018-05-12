@@ -13,19 +13,21 @@ export default blogStore = new class BlogStore {
     @observable isLoadingDetail = false;
     @observable errorDetail = false;
     @observable detailBlog = {};
+    @observable top_tags = [];
 
     @action
-    getBlog(page, action) {
+    getBlog(page,tag,action) {
         if (action == 'search') {
             this.isSearch = true;
             this.error = false;
-            return;
+        }else{
+            this.isLoading = true; this.error = false
         }
-        this.isLoading = true; this.error = false
-        blogApi(page).then(res => {
+        blogApi(page, tag).then(res => {
             this.total_pages = res.data.paginator.total_pages;
             this.current_page = res.data.paginator.current_page;
             this.blogs = res.data.paginator.current_page == 1 ? res.data.blogs : [...this.blogs, ...res.data.blogs];
+            this.top_tags = res.data.top_tags
             this.isLoading = false;
             this.isSearch = false;
         })
@@ -40,11 +42,9 @@ export default blogStore = new class BlogStore {
         this.isLoadingDetail = true;
         this.errorDetail = false;
         detailBlogApi(slug).then(res => {
-            
             this.detailBlog = res.data.data.blog;
             this.isLoadingDetail = false;
-            console.log(this.isLoadingDetail, this.detailBlog)
-            
+            console.log(this.isLoadingDetail, this.detailBlog) 
         })
         .catch(err => {
             this.errorDetail = true;

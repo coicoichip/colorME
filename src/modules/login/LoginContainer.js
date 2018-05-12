@@ -28,6 +28,7 @@ class LoginContainer extends Component {
         this.state = {
             url: 'colorme.vn',
         }
+        _this = this;
     }
 
     signInWithAccount = () => {
@@ -58,6 +59,7 @@ class LoginContainer extends Component {
                         <View style={styles.wrapperLogo}>
                             <View style={{ alignItems: 'flex-end' }}>
                                 <Text style={styles.textLogoColor}>color</Text>
+                                <Text style={{ height: 15 }} />
                                 <Text style={styles.textLogoMe}>ME</Text>
                             </View>
                         </View>
@@ -81,6 +83,7 @@ class LoginContainer extends Component {
                                 value={loginStore.login.password}
                                 label={STRINGS.PASSWORD.toUpperCase()}
                                 onChangeText={this.onChangeData('password')}
+                                onSubmitEditing = {this.signInWithAccount}
                             />
                             <View height={30} />
                         </View>
@@ -88,7 +91,9 @@ class LoginContainer extends Component {
                             <ButtonCommon
                                 isLoading={loginStore.isLoading}
                                 onPress={this.signInWithAccount}
-                                label={STRINGS.LOGIN}
+                                label={STRINGS.LOGIN.toUpperCase()}
+                                text={{fontFamily: 'Roboto-Bold',
+                                fontSize: SIZES.SUBTITLE_SIZE}}
                             />
                         </View>
 
@@ -161,6 +166,9 @@ const styles = StyleSheet.create({
         borderRadius: SIZES.BORDER_RADIUS_CARD_SIZE,
         elevation: 5,
         bottom: 100,
+        shadowColor: COLORS.SHADOW_COLOR,
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.4,
         marginHorizontal: SIZES.DEVICE_WIDTH_SIZE * 0.1,
         padding: SIZES.PADDING_ELEMENT_IN_CARD,
         position: 'absolute',
