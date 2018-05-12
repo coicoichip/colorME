@@ -148,7 +148,7 @@ const Tab = TabNavigator({
     {
         initialRouteName: 'News',
         tabBarPosition: 'bottom',
-        animationEnabled: true,
+        animationEnabled: false,
         tabBarOptions: {
             indicatorStyle: { backgroundColor: COLORS.NONE_COLOR },
             showIcon: true,

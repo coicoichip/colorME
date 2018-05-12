@@ -10,7 +10,7 @@ import { coursesStore } from './coursesStore';
 import { observer } from "mobx-react";
 import BackButton from '../../commons/BackButton';
 import styles from '../../styles/styles';
-import * as size from '../../styles/sizes';
+import * as size from '../../styles/sizes'; 
 import ListRegisterCourses from './ListRegisterCourses';
 import Loading from '../../commons/Loading';
 @observer
@@ -47,7 +47,7 @@ class LearnRegisterContainer extends Component {
         let classes = [];
         let isEnrolled = [];
         let status = [];
-        let i = 0;
+        let i = 0;  
         let data = this.props.navigation.state.params.classes;
         console.log(data + '>>>');
         while (i < data.length) {
