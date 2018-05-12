@@ -32,7 +32,7 @@ export default class RegisterContainer extends Component {
 
     onRegister = () => {
         const { register } = this;
-        console.log(register);
+        
         const { navigation } = this.props;
         registerStore.register(register, navigation);
     }
@@ -45,7 +45,7 @@ export default class RegisterContainer extends Component {
                 showsVerticalScrollIndicator={false}
                 style={{ flex: 1, backgroundColor: COLORS.LIGHT_COLOR }}
                 enableOnAndroid={true}
-                extraHeight={200}
+                extraHeight={100}
                 scrollEnabled={false}
             >
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
@@ -68,6 +68,7 @@ export default class RegisterContainer extends Component {
                         {/* form input */}
                         <View style={styles.contentForm}>
                             <InputCommon
+                                
                                 returnKeyType={'next'}
                                 size={styles.input}
                                 value={register.name}
@@ -75,6 +76,7 @@ export default class RegisterContainer extends Component {
                                 onChangeText={this.onChangeData('name')}
                             />
                             <InputCommon
+                                
                                 returnKeyType={'next'}
                                 size={styles.input}
                                 value={register.email}
@@ -88,6 +90,7 @@ export default class RegisterContainer extends Component {
                                 value={register.password}
                                 label={STRINGS.PASSWORD.toUpperCase()}
                                 onChangeText={this.onChangeData('password')}
+                                onSubmitEditing = {this.onRegister}
                             />
                             <View height={30} />
                         </View>
@@ -96,7 +99,11 @@ export default class RegisterContainer extends Component {
                                 isLoading={registerStore.isLoading}
                                 onPress={this.onRegister}
                                 label={STRINGS.REGISTER_ACCOUNT}
-                                style={{ elevation: 6 }}
+                                text={{fontFamily: 'Roboto-Bold',
+                                fontSize: SIZES.SUBTITLE_SIZE}}
+                                style={{ elevation: 6 , shadowColor: COLORS.SHADOW_COLOR,
+                                    shadowOffset: { width: 0, height: 0 },
+                                    shadowOpacity: 0.4,}}
                             />
                         </View>
                     </Container>
@@ -153,6 +160,9 @@ const styles = StyleSheet.create({
         borderRadius: SIZES.BORDER_RADIUS_CARD_SIZE,
         elevation: 5,
         bottom: 60,
+        shadowColor: COLORS.SHADOW_COLOR,
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.4,
         marginHorizontal: SIZES.DEVICE_WIDTH_SIZE * 0.1,
         padding: SIZES.PADDING_ELEMENT_IN_CARD,
         position: 'absolute',

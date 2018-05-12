@@ -20,30 +20,29 @@ class ListBlog extends Component {
         const { item } = this.props;
         return (
             <View>
-                <TouchableOpacity
-                    onPress={() => {
-                        this.props.navigation.navigate('DetailBlog', {slug: item.slug})
-                    }}
-                    activeOpacity={0.8}
-                    style={[styles.marginTopBottom, styles.paddingLeftRight, {marginBottom: 20}]}>
-                    <View style={[styles.shadow, styles.imageFeature]}>
-                        <Image
-                            resizeMode={'cover'}
-                            source={{uri: formatImageLink(item.thumb_url)}}
-                            style={styles.imageFeature}
-                        />
+                <TouchableOpacity activeOpacity={0.8} style={{marginBottom: 15}}
+                    onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug})}>
+                    <View >
+                        <Image source={{ uri: formatImageLink(item.thumb_url) }} style={styles.imageAvatarModuleEmails} />
                         <Text style={[styles.categoryInImage, styles.textDescriptionLightBold]}>
                             {item.category ? item.category : 'Category'}
                         </Text>
                     </View>
-                    <View style={{marginTop: 20}}>
-                        <Text numberOfLines={1}
-                              style={[styles.textTitleBlog, {fontSize : 15}]}>{item.title.toUpperCase()}</Text>
-                        <Text style={styles.textDescriptionCard}>{item.description ? item.description.trim() : "Không có mô tả cho bài viết này"}</Text>
+                    <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
+                        <Text numberOfLines={2} style={styles.emailNameModuleEmail}>{item.title.trim()}</Text>
+                        {/* <Text style={styles.textDescriptionDark}>{item.duration} buổi</Text> */}
+                        <View style={{ marginTop: 5, flexDirection : 'row' , alignItems : 'center'}}>
+                            <Image
+                             style = {{height : 20, width : 20, borderRadius : 10}}
+                             source = {{uri : item.author.avatar_url ? formatImageLink(item.author.avatar_url) : ""}}
+                             />
+                             <Text style = {{fontFamily : 'Roboto-Regular', fontSize : 12 ,marginLeft : 5}}>{item.author.name.trim()}</Text>
+                             <Text style = {{fontFamily : 'Roboto-Regular', fontSize : 12 ,marginLeft : 5, color : 'gray'}}>{item.time.trim()}</Text>
+                        </View>
                     </View>
-
                 </TouchableOpacity>
-
+                <View style={styles.footerCard}>
+                    </View>
             </View>
         )
     }

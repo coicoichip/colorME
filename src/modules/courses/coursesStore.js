@@ -1,7 +1,6 @@
 import { observable, action, computed } from "mobx";
 import { getCoursesApi, getCourseInformationApi, learnRegisterApi } from "./coursesApi";
 import { Alert, AsyncStorage } from "react-native";
-
 export const coursesStore = new class CoursesStore {
     @observable subjects = [];
     @observable data = [];
@@ -19,9 +18,11 @@ export const coursesStore = new class CoursesStore {
     @observable errorLearnRegister = false;
 
     @action
-    getListSubject(page, txt, token) {
+    getListSubject(page, txt) {
         this.isLoadingSubject = true;
-        getCoursesApi(page, txt, token).then(res => {
+        console.log(this.isLoadingSubject)
+        getCoursesApi(page, txt).then(res => {
+            console.log(res)
             this.isLoadingSubject = false;
             this.subjects = res.data.courses ? res.data.courses : [res.data.courses, this.subjects];
             this.data = this.subjects.filter(e =>
@@ -33,7 +34,6 @@ export const coursesStore = new class CoursesStore {
             console.log(this.data); 
         })
             .catch(err => {
-                console.log(err);
                 this.isLoadingSubject = false;
                 this.errorSubject = true;
             })

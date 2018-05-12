@@ -34,7 +34,8 @@ class CoursesContainer extends Component {
         }
     }
     componentWillMount() {
-        coursesStore.getListSubject(1, '', loginStore.token)
+        console.log("AAAA")
+        coursesStore.getListSubject(1, '')
     }
     chooseCategory(index) {
         this.setState({ category: index })
@@ -80,7 +81,7 @@ class CoursesContainer extends Component {
     }
     getMoreSubjects() {
         if (coursesStore.current_page < coursesStore.total_pages && coursesStore.isLoadingSubject == false) {
-            coursesStore.getListSubject(coursesStore.current_page + 1, "", loginStore.token)
+            coursesStore.getListSubject(coursesStore.current_page + 1, "")
         }
     }
     loadMore() {

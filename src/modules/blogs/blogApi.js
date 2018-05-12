@@ -1,8 +1,8 @@
 import axios from 'axios';
 import {APIS} from "../../constants/env";
 
-export function blogApi(page) {
-   let url = APIS.COLOR_ME_API + "/blog?page=" + page
+export function blogApi(page, tag) {
+   let url = APIS.COLOR_ME_API + "/blog?page=" + page + "&tag="+tag
     return axios.get(url)   
 };
 

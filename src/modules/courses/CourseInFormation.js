@@ -21,7 +21,7 @@ class CourseInformation extends Component {
     componentWillMount() {
         const { params } = this.props.navigation.state;
         coursesStore.getCourseInformation(params.linkId);
-    } c
+    }
 
     render() {
         const { goBack, navigate } = this.props.navigation;
