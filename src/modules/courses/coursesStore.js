@@ -16,7 +16,7 @@ export const coursesStore = new class CoursesStore {
     @observable errorCoursesInfomation = false;
     @observable modalRegister = false;
     @observable modalRegister1 = false;
-
+    @observable base_name = "";
     @observable courses = {
         name: "",
         studyTime: "",

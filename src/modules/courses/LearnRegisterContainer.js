@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import {
-    Text, View, Image, Platform, PanResponder, FlatList, TouchableOpacity, Modal
+    ActivityIndicator, Text, View, Image, Platform, PanResponder, FlatList, TouchableOpacity, Modal
 } from 'react-native';
 import {
     Body, CardItem, Header, Container, Button,
     Left, Right, Spinner, Item
 } from 'native-base';
+import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
 import { coursesStore } from './coursesStore';
 import { observer } from "mobx-react";
 import BackButton from '../../commons/BackButton';
+import { ButtonCommon } from '../../commons';
 import styles from '../../styles/styles';
 import * as size from '../../styles/sizes';
 import Icon from '../../commons/Icon';
@@ -18,6 +20,7 @@ import Loading from '../../commons/Loading';
 import { observable } from 'mobx';
 import { TEXT_COLOR } from '../../styles/colors';
 import SelectBase, { returnBase } from "./SelectBase";
+import { drawerStore } from "../drawer/drawerStore";
 
 @observer
 class LearnRegisterContainer extends Component {
@@ -30,7 +33,7 @@ class LearnRegisterContainer extends Component {
     }
     componentWillMount() {
         const { params } = this.props.navigation.state;
-        coursesStore.getCourseInformation(params.linkId, 3);
+        coursesStore.getCourseInformation(params.linkId, "");
         this.panResponder = PanResponder.create({
             onStartShouldSetPanResponder: (event, gestureState) => true,
             onPanResponderGrant: this._onPanResponderGrant.bind(this),
@@ -147,6 +150,7 @@ class LearnRegisterContainer extends Component {
                             <ListRegisterCourses item={item}
                                 avatar_url={coursesStore.courseInformation.icon_url}
                                 buttonRegister={this.buttonRegister}
+                                base_id={this.base_id}
                                 navigation={this.props.navigation} />
                         }
                     />}
@@ -172,15 +176,15 @@ class LearnRegisterContainer extends Component {
                                         <View style={[styles.paddingLeftRight]}>
                                             <View style={[styles.wrapperCenter, { flexDirection: 'row', marginRight: -20 }]}>
                                                 <Image
-                                                    style={[styles.avatarUserNormals, styles.marginRightFar]}
-                                                    source={{ uri: courses.icon }} />
+                                                    style={[styles.avatarUserNormals, styles.marginRightFar, { marginRight: 20 }]}
+                                                    source={{ uri: drawerStore.user.avatar_url }} />
                                                 <Image
                                                     style={[styles.avatarUserNormals, styles.marginRightFar]}
                                                     source={{ uri: courses.icon }} />
                                             </View>
                                             <View style={{ marginRight: 20, marginTop: 25, marginBottom: 15, flexDirection: 'row' }}>
                                                 <Text>Chào</Text>
-                                                <Text style={{ fontWeight: 'bold', marginLeft: 10 }}>Lê Đức Dũng</Text>
+                                                <Text style={{ fontWeight: 'bold', marginLeft: 6 }}>{drawerStore.user.name}</Text>
                                             </View>
                                             <Text style={[styles.textDescriptionDark]}>Bạn đang chuẩn bị đăng kí học Lớp {courses.name}</Text>
                                             <Text style={{ height: 5 }}></Text>
@@ -192,23 +196,31 @@ class LearnRegisterContainer extends Component {
                                             <Text style={{ height: 3 }}></Text>
                                             <Text style={styles.textDescriptionDark}>Khai giảng ngày : {courses.dateStart}</Text>
                                             <Text style={{ height: 20 }}></Text>
-                                            <TouchableOpacity style={{ justifyContent: 'center', marginBottom: 10, marginRight: -20 }}
+                                            <Button
+                                                onPress={() => coursesStore.isLoadingLearnRegister ? {} : onPress()}
+                                                full
+                                                warning
+                                                style={[{ justifyContent: 'center', marginBottom: 10, marginRight: -20, height: 32 }, styles.buttonRegisters, styles.wrapperCenter]}
                                                 onPress={() =>
                                                     coursesStore.learnRegister(coursesStore.courses.id)
                                                 }>
                                                 {
-                                                    coursesStore.isLoadingLearnRegister == true ?
-                                                        <Loading />
+                                                    coursesStore.isLoadingLearnRegister
+                                                        ?
+                                                        <ActivityIndicator
+                                                            animated={true}
+                                                            color={COLORS.LIGHT_COLOR}
+                                                            style={{
+                                                                flex: 1,
+                                                                justifyContent: 'center',
+                                                                alignItems: 'center',
+                                                            }}
+                                                            size='small'
+                                                        />
                                                         :
-                                                        <View style={{
-                                                            justifyContent: 'center'
-                                                        }}>
-                                                            <View style={[styles.buttonRegister, styles.wrapperCenter, { borderRadius: 13 }]}>
-                                                                <Text style={[styles.textDescriptionWhite]}>XÁC NHẬN</Text>
-                                                            </View>
-                                                        </View>
+                                                        <Text style={styles.textDescriptionWhite}>XÁC NHẬN</Text>
                                                 }
-                                            </TouchableOpacity>
+                                            </Button>
                                         </View>
                                         <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
 
@@ -248,7 +260,7 @@ class LearnRegisterContainer extends Component {
                                             </View>
                                             <View style={{ marginRight: 20, marginTop: 15, marginBottom: 15, flexDirection: 'row' }}>
                                                 <Text>Chào</Text>
-                                                <Text style={{ fontWeight: 'bold', marginLeft: 10 }}>Lê Đức Dũng</Text>
+                                                <Text style={{ fontWeight: 'bold', marginLeft: 10 }}>{drawerStore.user.name}</Text>
                                             </View>
                                             <Text style={[styles.textDescriptionDark]}>Bạn vừa đăng kí thành công Lớp {courses.name}</Text>
                                             <Text style={{ height: 20 }}></Text>

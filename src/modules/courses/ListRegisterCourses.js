@@ -23,6 +23,7 @@ import styles from '../../styles/styles'
 import _ from "lodash"
 import * as size from '../../styles/sizes';
 import * as color from '../../styles/colors';
+import store from "../base/baseStore";
 
 @observer
 export default class ListRegisterCourses extends Component {
@@ -44,7 +45,7 @@ export default class ListRegisterCourses extends Component {
                         <Text style={{ height: 7 }}></Text>
                         <Text style={styles.textDescriptionDark}>{item.study_time}</Text>
                         <Text style={{ height: 3 }}></Text>
-                        <Text numberOfLines={2} style={styles.textDescriptionDark}>Cơ sở 1 - số 175 chùa Láng - Đống Đa - Hà Nội</Text>
+                        <Text numberOfLines={2} style={styles.textDescriptionDark}>{item.base.address}</Text>
                         <Text style={{ height: 3 }}></Text>
                         <Text style={styles.textDescriptionDark}>Khai giảng ngày : {item.date_start}</Text>
                         <Text style={{ height: 15 }}></Text>

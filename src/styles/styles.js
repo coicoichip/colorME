@@ -367,6 +367,12 @@ const style = {
         overflow: "hidden", color: 'white'
 
     },
+    buttonRegisters: {
+        backgroundColor: 'rgb(0, 241, 53)',
+        borderRadius: 20,
+        overflow: "hidden", color: 'white'
+
+    },
     noButtonRegister: {
         backgroundColor: 'rgb(214, 214, 214)',
         padding: 7,
