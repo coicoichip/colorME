@@ -5,8 +5,8 @@ import {TextInput} from 'react-native'
 class InputCommon extends Component {
     constructor(props) {
         super(props);
-        state = {
-            value: this.props.value || '',
+        this.state = {
+            value: this.props.value,
         }
     }
 
@@ -16,7 +16,7 @@ class InputCommon extends Component {
     }
 
     render() {
-        const { value } = this.setState;
+        const { value } = this.state;
         const { label, size } = this.props;
         return (
             <Item stackedLabel style={size}>
@@ -39,7 +39,7 @@ class InputCommon extends Component {
                     
                     autoCorrect={false}
                     onSubmitEditing = {this.props.onSubmitEditing ? this.props.onSubmitEditing : () => {}}
-                    value={value}
+                    value={value || this.props.value}
                     onChangeText={this.onChangeText}
                     underlineColorAndroid='rgba(0,0,0,0)'
                     style={{

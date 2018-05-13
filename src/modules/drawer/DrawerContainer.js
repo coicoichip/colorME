@@ -11,12 +11,13 @@ import {
     Container, Content, Footer,
     FooterTab
 } from 'native-base';
+import { observer } from "mobx-react";
+import {drawerStore} from './drawerStore';
 import { DrawerItems } from 'react-navigation';
 import { COLORS,SIZES, STRINGS } from '../../constants';
-import loginStore from "../login/loginStore";
 
 
-
+@observer
 class DrawerContainer extends Component {
     render() {
         const { navigate } = this.props.navigation;

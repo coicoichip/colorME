@@ -33,9 +33,9 @@ export default class RegisterContainer extends Component {
 
     onRegister = () => {
         const { register } = this;
-        
         const { navigation } = this.props;
         registerStore.register(register, navigation);
+        registerStore.saveData(register);
     }
 
     render() {

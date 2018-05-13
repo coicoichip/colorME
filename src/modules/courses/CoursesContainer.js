@@ -15,6 +15,7 @@ import * as size from '../../styles/sizes';
 import loginStore from "../login/loginStore"
 import Loading from '../../commons/Loading';
 import { coursesStore } from './coursesStore';
+import {drawerStore} from "../drawer/drawerStore"
 import { observer } from "mobx-react";
 import ListSubject from './ListCourses';
 import Error from '../../commons/Error';
@@ -34,7 +35,8 @@ class CoursesContainer extends Component {
         }
     }
     componentWillMount() {
-        coursesStore.getListSubject(1, '')
+        coursesStore.getListSubject(1, '');
+        drawerStore.getProfile();
     }
     chooseCategory(index) {
         this.setState({ category: index })

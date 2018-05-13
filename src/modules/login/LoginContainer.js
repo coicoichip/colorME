@@ -30,9 +30,13 @@ class LoginContainer extends Component {
         }
         _this = this;
     }
+    UNSAFE_componentWillMount(){
+        loginStore.getData()
+    }
 
     signInWithAccount = () => {
         loginStore.loginUser(this.props.navigation);
+        loginStore.saveData();
     }
 
     onChangeData = field => value => {
@@ -85,7 +89,7 @@ class LoginContainer extends Component {
                                 onChangeText={this.onChangeData('password')}
                                 onSubmitEditing = {this.signInWithAccount}
                             />
-                            <View height={30} />
+                            <View height={30}/>
                         </View>
                         <View style={styles.wrapperButton}>
                             <ButtonCommon
@@ -151,7 +155,7 @@ const styles = StyleSheet.create({
         ...wrapperCenter,
         width: SIZES.DEVICE_WIDTH_SIZE,
         position: 'absolute',
-        bottom: 80,
+        bottom: SIZES.DEVICE_HEIGHT_SIZE / 4 - 30,
         paddingHorizontal: 80,
     },
     wrapperLogo: {
@@ -165,7 +169,7 @@ const styles = StyleSheet.create({
         width: SIZES.FORM_LOGIN_WIDTH_SIZE,
         borderRadius: SIZES.BORDER_RADIUS_CARD_SIZE,
         elevation: 5,
-        bottom: 100,
+        bottom: SIZES.DEVICE_HEIGHT_SIZE / 4 - 10,
         shadowColor: COLORS.SHADOW_COLOR,
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 0.4,
