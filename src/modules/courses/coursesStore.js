@@ -11,7 +11,19 @@ export const coursesStore = new class CoursesStore {
 
     @observable isLoadingCoursesInformation = false;
     @observable courseInformation = {};
+    @observable classes = [];
+    @observable courseName = "";
     @observable errorCoursesInfomation = false;
+    @observable modalRegister = false;
+    @observable modalRegister1 = false;
+
+    @observable courses = {
+        name: "",
+        studyTime: "",
+        dateStart: "",
+        icon: "",
+        isEnroll: [],
+    }
 
     @observable message = "";
     @observable isLoadingLearnRegister = false;
@@ -31,7 +43,7 @@ export const coursesStore = new class CoursesStore {
             this.total_pages = res.data.paginator.total_pages;
             this.current_page = res.data.paginator.current_page;
             this.errorSubject = false;
-            console.log(this.data); 
+            console.log(this.data);
         })
             .catch(err => {
                 this.isLoadingSubject = false;
@@ -39,35 +51,37 @@ export const coursesStore = new class CoursesStore {
             })
     }
     @action
-    getCourseInformation(linkId) {
+    getCourseInformation(linkId, base) {
         this.isLoadingCoursesInformation = true;
-        getCourseInformationApi(linkId).then(res => {
+        getCourseInformationApi(linkId, base).then(res => {
             this.isLoadingCoursesInformation = false;
-            this.courseInformation = res.data.data.course;
-            this.classes = res.data.data.course.classes.map((item) => {return {...item, isEnroll : 0}})
+            this.classes = res.data.data.classes.map((item, id) => { return { ...item, isEnroll: 0, index: id } });
+            this.courseName = res.data.data.classes[0].course.name;
             this.errorCoursesInfomation = false;
         })
-        .catch(err => {
-            this.isLoadingCoursesInformation = false;
-            this.errorCoursesInfomation = true;
-        })
+            .catch(err => {
+                this.isLoadingCoursesInformation = false;
+                this.errorCoursesInfomation = true;
+            })
     }
     @action
-    learnRegister(class_id, token) {
+    learnRegister(class_id) {
         this.isLoadingLearnRegister = true;
-        classes = this.classes;
-        
+        // classes = this.classes;
+
         learnRegisterApi(class_id, token).then(res => {
-            classes[findIndex(item=> item.id == class_id)].isEnroll = 1
-            this.classes = classes
+            // classes[findIndex(item=> item.id == class_id)].isEnroll = 1
+            // this.classes = classes
+            this.modalRegister1 = true;
+            this.modalRegister = false;
             this.isLoadingLearnRegister = false;
             this.message = res.data.message;
             this.errorLearnRegister = false;
         })
-        .catch(err => {
-            this.isLoadingLearnRegister = false;
-            this.errorLearnRegister = true;
-        })
+            .catch(err => {
+                this.isLoadingLearnRegister = false;
+                this.errorLearnRegister = true;
+            })
         // return (dispatch) => {
         //     dispatch(beginLearnRegister(class_id));
         //     courseApi.learnRegisterApi(class_id, token)

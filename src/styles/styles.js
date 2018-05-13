@@ -1,6 +1,7 @@
 import { StyleSheet, Platform } from 'react-native';
 import * as color from './colors';
 import * as size from './sizes';
+import { FONTS } from '../constants';
 const FONT_MAIN = "Helvetica"
 const FONT_MAIN_BOLD = FONT_MAIN + "-" + "Bold"
 const isIOS = Platform.OS === 'ios';
@@ -22,7 +23,7 @@ const buttonTab = {
     color: color.BACKGROUND_COLOR,
 };
 const style = {
-    wrapperCenter :{
+    wrapperCenter: {
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -46,7 +47,7 @@ const style = {
         fontFamily: FONT_MAIN,
         fontSize: 25,
     },
-    textTitleBlog : {
+    textTitleBlog: {
         color: color.TEXT_COLOR,
         fontFamily: FONT_MAIN_BOLD,
         fontSize: 25,
@@ -84,26 +85,30 @@ const style = {
     },
     imageAvatarModuleEmails: {
         width: size.deviceWidth,
-        height:size.deviceHeight/3.3,
+        height: size.deviceHeight / 3.3,
     },
     imageAvatarModuleEmail: {
-        width: size.deviceWidth/3.7,
-        height: size.deviceWidth/3.7,
+        width: size.deviceWidth / 3.7,
+        height: size.deviceWidth / 3.7,
     },
     contentCardImageInformation: {
         flex: 2,
         position: 'relative',
         paddingRight: 10,
-        paddingTop : 5,
+        paddingTop: 5,
     },
     emailNameModuleEmail: {
         fontSize: 20,
-        paddingTop: 10,
-        paddingBottom: 5,
     },
     textDescriptionDark: {
         color: '#000',
-        fontFamily: 'Helvetica',
+        fontFamily: FONTS.MAIN_FONT,
+        fontSize: 12,
+
+    },
+    textDescriptionWhite: {
+        color: '#fff',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: 12,
 
     },
@@ -136,7 +141,7 @@ const style = {
         height: size.deviceHeight / 3,
         backgroundColor: "#FFF",
     },
-    categoryInImage:{
+    categoryInImage: {
         position: 'absolute',
         bottom: 10,
         right: 10,
@@ -147,7 +152,7 @@ const style = {
         borderRadius: 13,
         overflow: "hidden"
     },
-    categoryInImages:{
+    categoryInImages: {
         position: 'absolute',
         bottom: 10,
         right: 10,
@@ -158,7 +163,7 @@ const style = {
         borderRadius: 13,
         overflow: "hidden"
     },
-    category:{
+    category: {
         backgroundColor: color.MAIN_COLOR,
         padding: 5,
         paddingLeft: 10,
@@ -262,9 +267,6 @@ const style = {
         borderRadius: 50,
     },
     //learn register
-    padding: {
-        padding: 10,
-    },
     haveBorderBottom: {
         borderBottomWidth: 0.5,
         borderColor: 'rgb(214, 214, 214)',
@@ -274,13 +276,19 @@ const style = {
         flex: 1,
     },
     avatarUserNormal: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: '#fff',
+    },
+    avatarUserNormals: {
         width: 50,
         height: 50,
         borderRadius: 25,
         backgroundColor: '#fff',
     },
     marginRightFar: {
-        marginRight: 15,
+        marginRight: 10,
     },
     titleSmallBlue: {
         fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'Roboto-Medium',
@@ -308,7 +316,7 @@ const style = {
     buttonLeftRegisterMain: {
         borderRadius: 100,
         marginTop: 5,
-        backgroundColor: color.MAIN_COLOR ,
+        backgroundColor: color.MAIN_COLOR,
         paddingTop: 5,
         paddingBottom: 5,
         paddingRight: 20,
@@ -327,7 +335,7 @@ const style = {
         justifyContent: 'center',
     },
     modalRegister: {
-        borderRadius: 5,
+        borderRadius: 20,
         width: size.deviceWidth * 0.9,
         backgroundColor: color.BACKGROUND_COLOR,
     },
@@ -351,15 +359,25 @@ const style = {
 
     },
     buttonRegister: {
-        width: size.deviceWidth * 0.6,
-        height: 35,
-        alignItems: 'center',
-        justifyContent: 'center',
-        // padding: 15,
-        marginTop: 0,
-        borderRadius: 17,
-        backgroundColor: 'rgba(197, 0, 0, 1)',
+        backgroundColor: 'rgb(0, 241, 53)',
+        padding: 7,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderRadius: 3,
+        overflow: "hidden", color: 'white'
+
     },
+    noButtonRegister: {
+        backgroundColor: 'rgb(214, 214, 214)',
+        padding: 7,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderRadius: 3,
+        overflow: "hidden", color: 'white'
+
+    },
+    
+
 
 }
 const styles = StyleSheet.create(style)

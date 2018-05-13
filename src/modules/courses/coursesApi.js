@@ -9,12 +9,15 @@ export async function getCoursesApi(page, text) {
     })
    return axios.get(url);
 };
-export function getCourseInformationApi(linkId) {
-    let url = APIS.API_URL_UNMANAGE+ "api.colorme.vn/v2/course/get-detailed/"+ linkId;
+export function getCourseInformationApi(linkId, base) {
+    let url = APIS.API_URL_UNMANAGE+ "colorme.vn/api/v3/v2/course/" + linkId + "/class?base_id=";
     return axios.get(url);
 }
 
-export function learnRegisterApi(class_id, token) {
-    let url = APIS.API_URL_UNMANAGE+ "api.colorme.vn//class/" + class_id + "/enroll?token=" + token;
+export async function learnRegisterApi(class_id) {
+    let url = "";
+    await AsyncStorage.getItem('@UserToken').then((value) => {
+    let url = APIS.API_URL_UNMANAGE+ "api.colorme.vn//class/" + class_id + "/enroll?token=" + value;
+    })
     return axios.post(url);
 }

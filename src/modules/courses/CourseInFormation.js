@@ -15,7 +15,7 @@ import { observer } from "mobx-react";
 import * as color from '../../styles/colors'
 import * as size from '../../styles/sizes';
 import WebViewAutoHeight from '../../commons/WebViewAutoHeight';
-import ParallaxScrollView from 'react-native-parallax-scroll-view';
+// import ParallaxScrollView from 'react-native-parallax-scroll-view';
 @observer
 class CourseInformation extends Component {
     componentWillMount() {
@@ -33,7 +33,7 @@ class CourseInformation extends Component {
                 </Container>
                 :
                 <Container style={{ alignItems: 'center', justifyContent: 'center' }}>
-                    <ParallaxScrollView
+                    {/* <ParallaxScrollView
                         backgroundColor={color.BACKGROUND_COLOR}
                         showsVerticalScrollIndicator={false}
                         headerBackgroundColor={color.BACKGROUND_COLOR}
@@ -92,7 +92,7 @@ class CourseInformation extends Component {
                         <View>
                             <WebViewAutoHeight source={coursesStore.courseInformation.detail && coursesStore.courseInformation.detail != '' ? coursesStore.courseInformation.detail : ''} />
                         </View>
-                    </ParallaxScrollView>
+                    </ParallaxScrollView> */}
 
 
                     <Button full style={{ backgroundColor: color.MAIN_COLOR }}
