@@ -38,15 +38,11 @@ class LearnRegisterContainer extends Component {
             coursesStore.modalRegister1 = false;
         }
     }
-    learnRegister(id) {
-        coursesStore.learnRegister(id);
-    }
-    buttonRegister(item, status, isEnrolled) {
-        let classes = coursesStore.classes;
+    buttonRegister(item, status) {
         switch (status) {
             case 1:
                 return (
-                    isEnrolled || coursesStore.classes[item.index].isEnroll || coursesStore.courses.isEnroll[item.id]
+                    item.isEnroll || coursesStore.courses.isEnroll[item.id]
                         ?
                         <TouchableOpacity style={{ justifyContent: 'center' }}>
                             <View style={{
@@ -63,9 +59,7 @@ class LearnRegisterContainer extends Component {
                                 coursesStore.courses.studyTime = item.study_time;
                                 coursesStore.courses.dateStart = item.date_start;
                                 coursesStore.courses.icon = item.icon_url;
-                                classes[classes.findIndex(i => i.id == item.id)].isEnroll = 1
-                                coursesStore.classes = classes;
-                                coursesStore.courses.isEnroll[item.id] = 1;
+                                coursesStore.courses.id = item.id;
                             }}>
                             <View style={{
                                 justifyContent: 'center', alignItems: 'flex-start'
@@ -77,7 +71,7 @@ class LearnRegisterContainer extends Component {
                 )
             case 0:
                 return (
-                    isEnrolled || coursesStore.classes[coursesStore.classes.id].isEnroll || coursesStore.courses.isEnroll[item.index]
+                    item.isEnroll
                         ?
                         <TouchableOpacity style={{ justifyContent: 'center' }}>
                             <View style={{
@@ -192,16 +186,21 @@ class LearnRegisterContainer extends Component {
                                                 <Text style={styles.textDescriptionDark}>Khai giảng ngày : {courses.dateStart}</Text>
                                                 <Text style={{ height: 20 }}></Text>
                                                 <TouchableOpacity style={{ justifyContent: 'center', marginBottom: 10, marginRight: -20 }}
-                                                    onPress={() => {
-                                                        this.learnRegister()
-                                                    }}>
-                                                    <View style={{
-                                                        justifyContent: 'center'
-                                                    }}>
-                                                        <View style={[styles.buttonRegister, styles.wrapperCenter, { borderRadius: 13 }]}>
-                                                            <Text style={[styles.textDescriptionWhite]}>XÁC NHẬN</Text>
-                                                        </View>
-                                                    </View>
+                                                    onPress={() =>
+                                                        coursesStore.learnRegister(coursesStore.courses.id)
+                                                    }>
+                                                    {
+                                                        coursesStore.isLoadingLearnRegister == true ?
+                                                            <Loading />
+                                                            :
+                                                            <View style={{
+                                                                justifyContent: 'center'
+                                                            }}>
+                                                                <View style={[styles.buttonRegister, styles.wrapperCenter, { borderRadius: 13 }]}>
+                                                                    <Text style={[styles.textDescriptionWhite]}>XÁC NHẬN</Text>
+                                                                </View>
+                                                            </View>
+                                                    }
                                                 </TouchableOpacity>
                                             </View>
                                             <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
@@ -234,9 +233,6 @@ class LearnRegisterContainer extends Component {
                                         <TouchableOpacity activeOpacity={0.8} style={{ marginBottom: 20, marginRight: 20, justifyContent: 'center' }}>
                                             <View style={[styles.paddingLeftRight]}>
                                                 <View style={[styles.wrapperCenter, { flexDirection: 'row', marginRight: -20 }]}>
-                                                    {/* <Image
-                                                        style={[styles.avatarUserNormals, styles.marginRightFar]}
-                                                        source={{ uri: courses.icon }} /> */}
                                                     <IconDefault
                                                         name={'MaterialIcons|check-circle'}
                                                         size={50}

@@ -48,7 +48,7 @@ export default class ListRegisterCourses extends Component {
                         <Text style={{ height: 3 }}></Text>
                         <Text style={styles.textDescriptionDark}>Khai giảng ngày : {item.date_start}</Text>
                         <Text style={{ height: 15 }}></Text>
-                        {this.props.buttonRegister(item, item.status, item.isEnrolled)}
+                        {this.props.buttonRegister(item, item.status)}
                     </View>
                 </TouchableOpacity>
                 <View style={styles.footerCard}>

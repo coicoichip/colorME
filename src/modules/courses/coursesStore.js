@@ -23,6 +23,7 @@ export const coursesStore = new class CoursesStore {
         dateStart: "",
         icon: "",
         isEnroll: [],
+        id: 0,
     }
 
     @observable message = "";
@@ -43,7 +44,6 @@ export const coursesStore = new class CoursesStore {
             this.total_pages = res.data.paginator.total_pages;
             this.current_page = res.data.paginator.current_page;
             this.errorSubject = false;
-            console.log(this.data);
         })
             .catch(err => {
                 this.isLoadingSubject = false;
@@ -55,7 +55,7 @@ export const coursesStore = new class CoursesStore {
         this.isLoadingCoursesInformation = true;
         getCourseInformationApi(linkId, base).then(res => {
             this.isLoadingCoursesInformation = false;
-            this.classes = res.data.data.classes.map((item, id) => { return { ...item, isEnroll: 0, index: id } });
+            this.classes = res.data.data.classes.map((item, id) => { return { ...item, isEnroll: 0} });
             this.courseName = res.data.data.classes[0].course.name;
             this.errorCoursesInfomation = false;
         })
@@ -65,45 +65,23 @@ export const coursesStore = new class CoursesStore {
             })
     }
     @action
-    learnRegister(class_id) {
+    learnRegister(id) {
         this.isLoadingLearnRegister = true;
-        // classes = this.classes;
-
-        learnRegisterApi(class_id, token).then(res => {
-            // classes[findIndex(item=> item.id == class_id)].isEnroll = 1
-            // this.classes = classes
+        let classes = this.classes;
+        learnRegisterApi(id).then(res => {
+            console.log(this.classes, "aaa")
+            this.courses.isEnroll[id] = 1;
             this.modalRegister1 = true;
             this.modalRegister = false;
+            this.classes[this.classes.findIndex(item => item.id == id)].isEnroll = 1;
             this.isLoadingLearnRegister = false;
             this.message = res.data.message;
             this.errorLearnRegister = false;
+            console.log(this.classes, "aaa")
         })
             .catch(err => {
                 this.isLoadingLearnRegister = false;
                 this.errorLearnRegister = true;
             })
-        // return (dispatch) => {
-        //     dispatch(beginLearnRegister(class_id));
-        //     courseApi.learnRegisterApi(class_id, token)
-        //         .then(function (response) {
-        //             dispatch(learnRegisterSuccess(response, class_id));
-        //             // Alert.alert(
-        //             //     'Đăng ký thành công',
-        //             //     response.data.message,
-        //             //     [
-        //             //         {text: 'Xong'},
-        //             //     ],
-        //             // )
-        //         })
-        //         .catch(function (error) {
-        //             dispatch(learnRegisterError(error, class_id));
-        //             Alert.alert(
-        //                 'Đăng ký thất bại',
-        //                 [
-        //                     { text: 'Xác nhận' },
-        //                 ],
-        //             )
-        //         });
-        // }
     }
 }

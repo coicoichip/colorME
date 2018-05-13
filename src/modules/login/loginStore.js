@@ -37,7 +37,7 @@ export default loginStore = new class LoginStore {
             this.user = res.data.user;
             this.status = res.status;
             this.loginStatus = true;
-            AsyncStorage.setItem('@UserToken', res.data.token)
+            AsyncStorage.setItem('@UserToken', res.data.token);
         })
             .catch(err => {
                 this.isLoading = false;
