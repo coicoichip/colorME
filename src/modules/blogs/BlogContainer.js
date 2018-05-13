@@ -58,6 +58,7 @@ class BlogContainer extends Component {
         if (blogStore.blogs.length !== 0) {
             return (
                 <FlatList
+                    keyExtractor={item => item.id + ''}
                     showsVerticalScrollIndicator={false}
                     data={blogStore.blogs}
                     onEndReached={() => this.getMoreBlogs()}

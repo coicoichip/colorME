@@ -33,9 +33,8 @@ export const coursesStore = new class CoursesStore {
     @action
     getListSubject(page, txt) {
         this.isLoadingSubject = true;
-        console.log(this.isLoadingSubject)
         getCoursesApi(page, txt).then(res => {
-            console.log(res)
+            
             this.isLoadingSubject = false;
             this.subjects = res.data.courses ? res.data.courses : [res.data.courses, this.subjects];
             this.data = this.subjects.filter(e =>
@@ -44,6 +43,7 @@ export const coursesStore = new class CoursesStore {
             this.total_pages = res.data.paginator.total_pages;
             this.current_page = res.data.paginator.current_page;
             this.errorSubject = false;
+            
         })
             .catch(err => {
                 this.isLoadingSubject = false;

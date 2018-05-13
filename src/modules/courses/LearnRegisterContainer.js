@@ -17,16 +17,20 @@ import ListRegisterCourses from './ListRegisterCourses';
 import Loading from '../../commons/Loading';
 import { observable } from 'mobx';
 import { TEXT_COLOR } from '../../styles/colors';
+import SelectBase, { returnBase } from "./SelectBase";
+
 @observer
 class LearnRegisterContainer extends Component {
+    @observable base_id = ""
     constructor(props) {
         super(props);
         this.state = {
+            base_id: "",
         }
     }
     componentWillMount() {
         const { params } = this.props.navigation.state;
-        coursesStore.getCourseInformation(params.linkId, 2);
+        coursesStore.getCourseInformation(params.linkId, 3);
         this.panResponder = PanResponder.create({
             onStartShouldSetPanResponder: (event, gestureState) => true,
             onPanResponderGrant: this._onPanResponderGrant.bind(this),
@@ -38,7 +42,17 @@ class LearnRegisterContainer extends Component {
             coursesStore.modalRegister1 = false;
         }
     }
+
+    learnRegister(id) {
+        coursesStore.learnRegister(id);
+    }
+    async pickBase() {
+        const { params } = this.props.navigation.state;
+        await returnBase(base_value => { this.base_id = base_value; console.log(base_value) });
+        coursesStore.getCourseInformation(params.linkId, this.base_id)
+    }
     buttonRegister(item, status) {
+        let classes = coursesStore.classes;
         switch (status) {
             case 1:
                 return (
@@ -99,39 +113,32 @@ class LearnRegisterContainer extends Component {
         const { goBack, navigate } = this.props.navigation;
         const { courses } = coursesStore;
         return (
-            coursesStore.isLoadingCoursesInformation ?
-                <Container style={[styles.wrapperContainer, styles.wrapperCenter]}>
-                    <Loading />
-                </Container>
-                :
-                <Container style={styles.wrapperContainer}>
-                    <View>
-                        <View style={[styles.wrapperHeader, styles.paddingLeftRight, { flexDirection: 'row' }]}>
-                            <View style={{ flex: 8, justifyContent: 'center' }}>
-                                <Text style={[styles.textHeaderScreen, { fontSize: 20 }]} >Đăng kí học {coursesStore.courseName}</Text>
-                            </View>
-                            <TouchableOpacity style={{ flex: 1, justifyContent: 'center' }}
-                                onPress={() => this.props.navigation.goBack()}
-                            >
-                                <View style={{ alignItems: 'flex-end' }}>
-                                    <IconDefault
-                                        name={'Ionicons|md-close'}
-                                        style={{ padding: 0 }}
-                                        color={this.props.color ? this.props.color : null}
-                                    />
-                                </View>
-                            </TouchableOpacity>
+            <Container style={styles.wrapperContainer}>
+                <View>
+                    <View style={[styles.wrapperHeader, styles.paddingLeftRight, { flexDirection: 'row' }]}>
+                        <View style={{ flex: 8, justifyContent: 'center' }}>
+                            <Text style={[styles.textHeaderScreen, { fontSize: 20 }]} >Đăng kí học {coursesStore.courseName}</Text>
                         </View>
-                        <TouchableOpacity>
-                            <View style={{ paddingHorizontal: 20, paddingVertical: 20, backgroundColor: 'rgb(240, 240, 240)' }}>
-                                <View style={{ backgroundColor: 'black', borderRadius: 13, alignItems: 'center', justifyContent: 'space-between', paddingVertical: 5, flexDirection: 'row', paddingHorizontal: 15 }}>
-                                    <Text style={{ color: 'white', fontSize: 12 }}>Cơ sở 1 - số 175 chùa Láng - Đống Đa - Hà Nội</Text>
-                                    <Text></Text>
-                                    <Icon name={"Entypo|triangle-down"} size={15} color={'white'} />
-                                </View>
+                        <TouchableOpacity style={{ flex: 1, justifyContent: 'center' }}
+                            onPress={() => this.props.navigation.goBack()}
+                        >
+                            <View style={{ alignItems: 'flex-end' }}>
+                                <IconDefault
+                                    name={'Ionicons|md-close'}
+                                    style={{ padding: 0 }}
+                                    color={this.props.color ? this.props.color : null}
+                                />
                             </View>
                         </TouchableOpacity>
                     </View>
+
+                </View>
+                <SelectBase haveBase functionBase={() => this.pickBase()} />
+                {coursesStore.isLoadingCoursesInformation ?
+                    <Container style={[styles.wrapperContainer, styles.wrapperCenter]}>
+                        <Loading />
+                    </Container>
+                    :
                     <FlatList
                         showsVerticalScrollIndicator={false}
                         data={coursesStore.classes}
@@ -142,135 +149,135 @@ class LearnRegisterContainer extends Component {
                                 buttonRegister={this.buttonRegister}
                                 navigation={this.props.navigation} />
                         }
-                    />
-                    <Modal
-                        presentationStyle="overFullScreen"
-                        animationType="fade"
-                        transparent={true}
-                        visible={coursesStore.modalRegister}
+                    />}
+                <Modal
+                    presentationStyle="overFullScreen"
+                    animationType="fade"
+                    transparent={true}
+                    visible={coursesStore.modalRegister}
+                >
+                    <View
+                        style={[styles.wrapperModalComment]}
+                        {...this.panResponder.panHandlers}
                     >
-                        <View
-                            style={[styles.wrapperModalComment]}
-                            {...this.panResponder.panHandlers}
-                        >
-                            <View style={[styles.modalRegister]}>
-                                <View>
-                                    <View style={{ alignItems: 'center' }}>
-                                        <Text style={{ fontSize: 20, marginTop: 20 }}>
-                                            Đăng kí khoá học
+                        <View style={[styles.modalRegister]}>
+                            <View>
+                                <View style={{ alignItems: 'center' }}>
+                                    <Text style={{ fontSize: 20, marginTop: 20 }}>
+                                        Đăng kí khoá học
                                     </Text>
-                                    </View>
-                                    <View style={{ marginTop: 25 }}>
-                                        <TouchableOpacity activeOpacity={0.8} style={{ marginBottom: 20, marginRight: 20, justifyContent: 'center' }}>
-                                            <View style={[styles.paddingLeftRight]}>
-                                                <View style={[styles.wrapperCenter, { flexDirection: 'row', marginRight: -20 }]}>
-                                                    <Image
-                                                        style={[styles.avatarUserNormals, styles.marginRightFar]}
-                                                        source={{ uri: courses.icon }} />
-                                                    <Image
-                                                        style={[styles.avatarUserNormals, styles.marginRightFar]}
-                                                        source={{ uri: courses.icon }} />
-                                                </View>
-                                                <View style={{ marginRight: 20, marginTop: 25, marginBottom: 15, flexDirection: 'row' }}>
-                                                    <Text>Chào</Text>
-                                                    <Text style={{ fontWeight: 'bold', marginLeft: 10 }}>Lê Đức Dũng</Text>
-                                                </View>
-                                                <Text style={[styles.textDescriptionDark]}>Bạn đang chuẩn bị đăng kí học Lớp {courses.name}</Text>
-                                                <Text style={{ height: 5 }}></Text>
-                                                <Text style={styles.textDescriptionDark}>Thông tin về lớp học như sau :</Text>
-                                                <Text style={{ height: 20 }}></Text>
-                                                <Text style={styles.textDescriptionDark}>thời gian : {courses.studyTime}</Text>
-                                                <Text style={{ height: 3 }}></Text>
-                                                <Text numberOfLines={2} style={styles.textDescriptionDark}>Cơ sở 1 - số 175 chùa Láng - Đống Đa - Hà Nội</Text>
-                                                <Text style={{ height: 3 }}></Text>
-                                                <Text style={styles.textDescriptionDark}>Khai giảng ngày : {courses.dateStart}</Text>
-                                                <Text style={{ height: 20 }}></Text>
-                                                <TouchableOpacity style={{ justifyContent: 'center', marginBottom: 10, marginRight: -20 }}
-                                                    onPress={() =>
-                                                        coursesStore.learnRegister(coursesStore.courses.id)
-                                                    }>
-                                                    {
-                                                        coursesStore.isLoadingLearnRegister == true ?
-                                                            <Loading />
-                                                            :
-                                                            <View style={{
-                                                                justifyContent: 'center'
-                                                            }}>
-                                                                <View style={[styles.buttonRegister, styles.wrapperCenter, { borderRadius: 13 }]}>
-                                                                    <Text style={[styles.textDescriptionWhite]}>XÁC NHẬN</Text>
-                                                                </View>
+                                </View>
+                                <View style={{ marginTop: 25 }}>
+                                    <TouchableOpacity activeOpacity={0.8} style={{ marginBottom: 20, marginRight: 20, justifyContent: 'center' }}>
+                                        <View style={[styles.paddingLeftRight]}>
+                                            <View style={[styles.wrapperCenter, { flexDirection: 'row', marginRight: -20 }]}>
+                                                <Image
+                                                    style={[styles.avatarUserNormals, styles.marginRightFar]}
+                                                    source={{ uri: courses.icon }} />
+                                                <Image
+                                                    style={[styles.avatarUserNormals, styles.marginRightFar]}
+                                                    source={{ uri: courses.icon }} />
+                                            </View>
+                                            <View style={{ marginRight: 20, marginTop: 25, marginBottom: 15, flexDirection: 'row' }}>
+                                                <Text>Chào</Text>
+                                                <Text style={{ fontWeight: 'bold', marginLeft: 10 }}>Lê Đức Dũng</Text>
+                                            </View>
+                                            <Text style={[styles.textDescriptionDark]}>Bạn đang chuẩn bị đăng kí học Lớp {courses.name}</Text>
+                                            <Text style={{ height: 5 }}></Text>
+                                            <Text style={styles.textDescriptionDark}>Thông tin về lớp học như sau :</Text>
+                                            <Text style={{ height: 20 }}></Text>
+                                            <Text style={styles.textDescriptionDark}>thời gian : {courses.studyTime}</Text>
+                                            <Text style={{ height: 3 }}></Text>
+                                            <Text numberOfLines={2} style={styles.textDescriptionDark}>Cơ sở 1 - số 175 chùa Láng - Đống Đa - Hà Nội</Text>
+                                            <Text style={{ height: 3 }}></Text>
+                                            <Text style={styles.textDescriptionDark}>Khai giảng ngày : {courses.dateStart}</Text>
+                                            <Text style={{ height: 20 }}></Text>
+                                            <TouchableOpacity style={{ justifyContent: 'center', marginBottom: 10, marginRight: -20 }}
+                                                onPress={() =>
+                                                    coursesStore.learnRegister(coursesStore.courses.id)
+                                                }>
+                                                {
+                                                    coursesStore.isLoadingLearnRegister == true ?
+                                                        <Loading />
+                                                        :
+                                                        <View style={{
+                                                            justifyContent: 'center'
+                                                        }}>
+                                                            <View style={[styles.buttonRegister, styles.wrapperCenter, { borderRadius: 13 }]}>
+                                                                <Text style={[styles.textDescriptionWhite]}>XÁC NHẬN</Text>
                                                             </View>
-                                                    }
-                                                </TouchableOpacity>
-                                            </View>
-                                            <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
-
-                                            </View>
-                                        </TouchableOpacity>
-                                    </View>
-                                </View>
-                            </View>
-                        </View>
-                    </Modal>
-                    <Modal
-                        presentationStyle="overFullScreen"
-                        animationType="fade"
-                        transparent={true}
-                        visible={coursesStore.modalRegister1}
-                    >
-                        <View
-                            style={[styles.wrapperModalComment]}
-                            {...this.panResponder.panHandlers}
-                        >
-                            <View style={[styles.modalRegister]}>
-                                <View>
-                                    <View style={{ alignItems: 'center' }}>
-                                        <Text style={{ fontSize: 20, marginTop: 20 }}>
-                                            Đăng kí thành công
-                                    </Text>
-                                    </View>
-                                    <View style={{ marginTop: 15 }}>
-                                        <TouchableOpacity activeOpacity={0.8} style={{ marginBottom: 20, marginRight: 20, justifyContent: 'center' }}>
-                                            <View style={[styles.paddingLeftRight]}>
-                                                <View style={[styles.wrapperCenter, { flexDirection: 'row', marginRight: -20 }]}>
-                                                    <IconDefault
-                                                        name={'MaterialIcons|check-circle'}
-                                                        size={50}
-                                                        color={"rgb(0, 241, 53)"}
-                                                    />
-                                                </View>
-                                                <View style={{ marginRight: 20, marginTop: 15, marginBottom: 15, flexDirection: 'row' }}>
-                                                    <Text>Chào</Text>
-                                                    <Text style={{ fontWeight: 'bold', marginLeft: 10 }}>Lê Đức Dũng</Text>
-                                                </View>
-                                                <Text style={[styles.textDescriptionDark]}>Bạn vừa đăng kí thành công Lớp {courses.name}</Text>
-                                                <Text style={{ height: 20 }}></Text>
-                                                <Text style={[styles.textDescriptionDark]}>ColorME sẽ nhanh chóng gọi lại cho bạn để hướng dẫn thủ tục
-                                                hoàn thành học phí và giải đáp các thắc mắc của bạn</Text>
-                                                <Text style={{ height: 20 }}></Text>
-                                                <Text style={styles.textDescriptionDark}>Cảm ơn bạn đã tin tưởng và lựa chon colorME</Text>
-                                                <Text style={{ height: 20 }}></Text>
-                                                <TouchableOpacity style={{ justifyContent: 'center', marginBottom: 10, marginRight: -20 }}
-                                                    onPress={() => { coursesStore.modalRegister1 = false }}>
-                                                    <View style={{
-                                                        justifyContent: 'center'
-                                                    }}>
-                                                        <View style={[styles.buttonRegister, styles.wrapperCenter, { borderRadius: 13 }]}>
-                                                            <Text style={[styles.textDescriptionWhite]}>QUAY LẠI</Text>
                                                         </View>
-                                                    </View>
-                                                </TouchableOpacity>
-                                            </View>
-                                            <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
+                                                }
+                                            </TouchableOpacity>
+                                        </View>
+                                        <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
 
-                                            </View>
-                                        </TouchableOpacity>
-                                    </View>
+                                        </View>
+                                    </TouchableOpacity>
                                 </View>
                             </View>
                         </View>
-                    </Modal>
-                </Container>
+                    </View>
+                </Modal>
+                <Modal
+                    presentationStyle="overFullScreen"
+                    animationType="fade"
+                    transparent={true}
+                    visible={coursesStore.modalRegister1}
+                >
+                    <View
+                        style={[styles.wrapperModalComment]}
+                        {...this.panResponder.panHandlers}
+                    >
+                        <View style={[styles.modalRegister]}>
+                            <View>
+                                <View style={{ alignItems: 'center' }}>
+                                    <Text style={{ fontSize: 20, marginTop: 20 }}>
+                                        Đăng kí thành công
+                                    </Text>
+                                </View>
+                                <View style={{ marginTop: 15 }}>
+                                    <TouchableOpacity activeOpacity={0.8} style={{ marginBottom: 20, marginRight: 20, justifyContent: 'center' }}>
+                                        <View style={[styles.paddingLeftRight]}>
+                                            <View style={[styles.wrapperCenter, { flexDirection: 'row', marginRight: -20 }]}>
+                                                <IconDefault
+                                                    name={'MaterialIcons|check-circle'}
+                                                    size={50}
+                                                    color={"rgb(0, 241, 53)"}
+                                                />
+                                            </View>
+                                            <View style={{ marginRight: 20, marginTop: 15, marginBottom: 15, flexDirection: 'row' }}>
+                                                <Text>Chào</Text>
+                                                <Text style={{ fontWeight: 'bold', marginLeft: 10 }}>Lê Đức Dũng</Text>
+                                            </View>
+                                            <Text style={[styles.textDescriptionDark]}>Bạn vừa đăng kí thành công Lớp {courses.name}</Text>
+                                            <Text style={{ height: 20 }}></Text>
+                                            <Text style={[styles.textDescriptionDark]}>ColorME sẽ nhanh chóng gọi lại cho bạn để hướng dẫn thủ tục
+                                                hoàn thành học phí và giải đáp các thắc mắc của bạn</Text>
+                                            <Text style={{ height: 20 }}></Text>
+                                            <Text style={styles.textDescriptionDark}>Cảm ơn bạn đã tin tưởng và lựa chon colorME</Text>
+                                            <Text style={{ height: 20 }}></Text>
+                                            <TouchableOpacity style={{ justifyContent: 'center', marginBottom: 10, marginRight: -20 }}
+                                                onPress={() => { coursesStore.modalRegister1 = false }}>
+                                                <View style={{
+                                                    justifyContent: 'center'
+                                                }}>
+                                                    <View style={[styles.buttonRegister, styles.wrapperCenter, { borderRadius: 13 }]}>
+                                                        <Text style={[styles.textDescriptionWhite]}>QUAY LẠI</Text>
+                                                    </View>
+                                                </View>
+                                            </TouchableOpacity>
+                                        </View>
+                                        <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
+
+                                        </View>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
+            </Container>
         );
     }
 }

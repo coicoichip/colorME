@@ -13,7 +13,7 @@ import TextNullData from '../../commons/TextNullData';
 import Header from '../../commons/Header';
 import Loading from '../../commons/Loading';
 import ListBase from "./ListBase";
-import {store} from "./baseStore";
+import store from "./baseStore";
 import { observer } from "mobx-react";
 import { STRINGS, COLORS, SIZES, FONTS } from "../../constants";
 
@@ -58,6 +58,7 @@ import { STRINGS, COLORS, SIZES, FONTS } from "../../constants";
         if(store.bases.length !== 0){
             return (
                 <FlatList
+                    keyExtractor={item => item.id + ''}
                     showsVerticalScrollIndicator={false}
                     data={store.bases}
                     refreshControl={

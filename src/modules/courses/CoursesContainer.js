@@ -34,7 +34,6 @@ class CoursesContainer extends Component {
         }
     }
     componentWillMount() {
-        console.log("AAAA")
         coursesStore.getListSubject(1, '')
     }
     chooseCategory(index) {
@@ -102,6 +101,7 @@ class CoursesContainer extends Component {
         if (coursesStore.data.length !== 0) {
             return (
                 <FlatList
+                    keyExtractor={item => item.id + ''}
                     showsVerticalScrollIndicator={false}
                     data={coursesStore.data}
                     onEndReached={() => this.getMoreSubjects()}

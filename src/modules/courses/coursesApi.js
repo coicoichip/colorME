@@ -10,7 +10,7 @@ export async function getCoursesApi(page, text) {
     return axios.get(url);
 };
 export function getCourseInformationApi(linkId, base) {
-    let url = APIS.API_URL_UNMANAGE + "colorme.vn/api/v3/v2/course/" + linkId + "/class?base_id=";
+    let url = APIS.API_URL_UNMANAGE+ "colorme.vn/api/v3/v2/course/" + linkId + "/class?base_id="+base;
     return axios.get(url);
 }
 
