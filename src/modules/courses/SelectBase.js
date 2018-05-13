@@ -16,7 +16,7 @@ import Icon from '../../commons/Icon';
 let base_value = null;
 export let returnBase = (value) => {
     value(base_value)
-    console.log(base_value)
+    // console.log(base_value)
 }
 @observer
 class SelectBase extends Component {

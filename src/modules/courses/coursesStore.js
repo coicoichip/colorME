@@ -66,11 +66,9 @@ export const coursesStore = new class CoursesStore {
     @action
     learnRegister(class_id) {
         this.isLoadingLearnRegister = true;
-        // classes = this.classes;
+        
 
         learnRegisterApi(class_id, token).then(res => {
-            // classes[findIndex(item=> item.id == class_id)].isEnroll = 1
-            // this.classes = classes
             this.modalRegister1 = true;
             this.modalRegister = false;
             this.isLoadingLearnRegister = false;
