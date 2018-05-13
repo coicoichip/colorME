@@ -43,7 +43,7 @@ const Courses = StackNavigator(
         CourseList: { screen: CoursesContainer },
         CourseInFormation: { screen: CourseInformation, navigationOptions: { tabBarVisible: false, } },
         LearnRegister: { screen: LearnRegisterContainer, navigationOptions: { tabBarVisible: false, } },
-    }, StackNavigatorStyle, { initialRouteName: 'CourseList', }
+    }, { initialRouteName: 'CourseList', headerMode: 'none', mode: 'modal' }
 );
 const Blog = StackNavigator(
     {

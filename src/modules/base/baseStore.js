@@ -1,7 +1,7 @@
 import { observable, action, computed } from "mobx";
 import * as baseApi from "./baseApi";
 
-export const store = new class baseStore {
+export default store = new class baseStore {
     @observable isLoading = true;
     @observable isLoadingRefresh = false;
     @observable isLoadingMore = false;
@@ -15,10 +15,10 @@ export const store = new class baseStore {
         //console.log(11);
         this.isLoading = true;
         baseApi.getBasesApi().then(res => {
-            console.log(res);
+            
             this.bases = res.data.data.bases;
             this.isLoading = false;
-            console.log(res);
+           
         }
         )
             .catch(() => {
