@@ -17,56 +17,44 @@ import {
     Spinner,
     Thumbnail
 } from 'native-base';
-
+import { coursesStore } from './coursesStore';
+import { observer } from "mobx-react";
 import styles from '../../styles/styles'
 import _ from "lodash"
 import * as size from '../../styles/sizes';
 import * as color from '../../styles/colors';
+import store from "../base/baseStore";
 
-
+@observer
 export default class ListRegisterCourses extends Component {
     constructor() {
         super()
     }
-
-    // shouldComponentUpdate(nextProps , nextState){
-    //     return !_.isEqual((nextProps.item, this.props.item) || (nextProps.status, this.props.status) || (nextProps.isEnrolled, this.props.isEnrolled) )
-    // }
-
-
     render() {
-        // const{item, avatar_url, status, isEnrolled} = this.props;
-        const { item, avatar_url, status, isEnrolled } = this.props;
+        const { item, buttonRegister } = this.props;
         return (
-            // <CardItem
-            //     avatar
-            //     style={[styles.padding, styles.haveBorderBottom]}>
-            <TouchableOpacity
-                activeOpacity={0.8}
-                style={[{ flex: 1 }, styles.padding]}
-            >
-                <View style={styles.cardCmt}>
-                    <Image
-                        style={[styles.avatarUserNormal, styles.marginRightFar]}
-                        // source = {require('../../../assets/icons/bell_disable.png')}/>
-                        source={{ uri: this.props.avatar_url }} />
-                    <View style={styles.noBorder}>
-                        {/* <Text style={styles.titleSmallBlue}>Lớp {item.name}</Text>
-                            <Text style={styles.titleSmallDarkGrayThin}>{item.study_time}</Text>
-                            <Text style={styles.titleSmallDarkGrayThin}>{item.address}</Text>
-                            <Text style={styles.titleSmallDarkGrayThin}>{item.description}</Text> */}
-                        <Text style={styles.titleSmallBlue}>Lớp {item.name}</Text>
-                        <Text style={styles.titleSmallDarkGrayThin}>{item.study_time}</Text>
-                        {/* <Text style={styles.titleSmallDarkGrayThin}>{item.address}</Text> */}
-                        <Text style={styles.titleSmallDarkGrayThin}>{item.description}</Text>
-                        {/* {this.props.buttonRegister(item, status, isEnrolled)} */}
-                        <View style={{ flex: 1, alignItems: 'flex-start' }}>
-                            {this.props.buttonRegister(item, status, isEnrolled)}
-                        </View>
+            <View style={{ marginTop: 20 }}>
+                <TouchableOpacity activeOpacity={0.8} style={{ marginBottom: 15, marginRight: 20, justifyContent: 'center' }}>
+                    <View style={[{ flexDirection: 'row', alignItems: 'center'}, styles.paddingLeftRight]}>
+                        <Image
+                            style={[styles.avatarUserNormal, styles.marginRightFar ]}
+                            source={{ uri: item.icon_url }} />
+                            <Text style={[styles.emailNameModuleEmail, {marginRight: 20}]}>Lớp {item.name}</Text>
                     </View>
+                    <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
+                        <Text style={{ height: 7 }}></Text>
+                        <Text style={styles.textDescriptionDark}>{item.study_time}</Text>
+                        <Text style={{ height: 3 }}></Text>
+                        <Text numberOfLines={2} style={styles.textDescriptionDark}>{item.base.address}</Text>
+                        <Text style={{ height: 3 }}></Text>
+                        <Text style={styles.textDescriptionDark}>Khai giảng ngày : {item.date_start}</Text>
+                        <Text style={{ height: 15 }}></Text>
+                        {this.props.buttonRegister(item, item.status)}
+                    </View>
+                </TouchableOpacity>
+                <View style={styles.footerCard}>
                 </View>
-            </TouchableOpacity>
-            // </CardItem>
+            </View>
         )
     }
 }

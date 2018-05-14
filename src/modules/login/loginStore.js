@@ -37,7 +37,7 @@ export default loginStore = new class LoginStore {
             this.user = res.data.user;
             this.status = res.status;
             this.loginStatus = true;
-            AsyncStorage.setItem('@UserToken', res.data.token)
+            AsyncStorage.setItem('@UserToken', res.data.token);
         })
             .catch(err => {
                 this.isLoading = false;
@@ -50,5 +50,28 @@ export default loginStore = new class LoginStore {
         AsyncStorage.removeItem('@UserToken').then(res => {
             resetScreen(navigation, 'Login');
         });
+    }
+    @action 
+    async saveData(){
+       try{
+           await AsyncStorage.setItem('email', this.login.email)
+           await AsyncStorage.setItem('password', this.login.password)
+       }
+       catch (err){
+
+       }
+    }
+    @action
+    async getData(){
+        try{
+             const email = await AsyncStorage.getItem('email');
+             const password = await AsyncStorage.getItem('password')
+             this.login = {
+                 email : email,
+                 password : password
+             }
+             console.log(this.login)
+        }
+        catch (err){}
     }
 }

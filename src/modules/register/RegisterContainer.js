@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import { Container, Button, Text } from 'native-base';
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
+import * as color from '../../styles/colors';
 import { InputCommon, ButtonCommon } from '../../commons';
 import { resetScreen } from '../../helper';
 import { observer } from 'mobx-react';
@@ -32,9 +33,9 @@ export default class RegisterContainer extends Component {
 
     onRegister = () => {
         const { register } = this;
-        
         const { navigation } = this.props;
         registerStore.register(register, navigation);
+        registerStore.saveData(register);
     }
 
     render() {

@@ -5,15 +5,17 @@ import {
     View,
     TouchableOpacity,
     FlatList,
-    RefreshControl
+    RefreshControl,StyleSheet
 } from 'react-native';
-import styles from '../../styles/styles';
 import { Container, Item, Content } from 'native-base';
 import Header from '../../commons/Header';
-import { STRINGS } from "../../constants";
+import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
+import * as color from '../../styles/colors';
+import * as size from '../../styles/sizes';
 import loginStore from "../login/loginStore"
 import Loading from '../../commons/Loading';
 import { coursesStore } from './coursesStore';
+import {drawerStore} from "../drawer/drawerStore"
 import { observer } from "mobx-react";
 import ListSubject from './ListCourses';
 import Error from '../../commons/Error';
@@ -25,7 +27,6 @@ class CoursesContainer extends Component {
         super();
         this.state = {
             isLoading: false,
-            subjects: [],
             category: 0,
             categogyArr: [
                 { title: "Thiết kế", index: 0 },
@@ -34,8 +35,8 @@ class CoursesContainer extends Component {
         }
     }
     componentWillMount() {
-        console.log("AAAA")
-        coursesStore.getListSubject(1, '')
+        coursesStore.getListSubject(1, '');
+        drawerStore.getProfile();
     }
     chooseCategory(index) {
         this.setState({ category: index })
@@ -102,6 +103,7 @@ class CoursesContainer extends Component {
         if (coursesStore.data.length !== 0) {
             return (
                 <FlatList
+                    keyExtractor={item => item.id + ''}
                     showsVerticalScrollIndicator={false}
                     data={coursesStore.data}
                     onEndReached={() => this.getMoreSubjects()}
@@ -134,3 +136,46 @@ class CoursesContainer extends Component {
     }
 }
 export default CoursesContainer
+const wrapperCenter = {
+    alignItems: 'center',
+    justifyContent: 'center',
+};
+const textLogo = {
+    fontFamily: FONTS.LOGO_FONT,
+    backgroundColor: COLORS.NONE_COLOR,
+    color: COLORS.LIGHT_COLOR,
+}
+const buttonTab = {
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: "hidden",
+    borderWidth: 1,
+    borderRadius: 13,
+    padding: 15,
+    paddingTop: 5,
+    paddingBottom: 5,
+    fontSize: SIZES.DESCRIPTION_SIZE,
+    fontFamily: FONTS.FONT_MAIN,
+    color: color.BACKGROUND_COLOR,
+};
+
+const styles = StyleSheet.create({
+    wrapperContainer: {
+        flex: 1,
+        backgroundColor: color.BACKGROUND_COLOR,
+    },
+    paddingLeftRight: {
+        paddingLeft: 20,
+        paddingRight: 20,
+    },
+    buttonSelected: {
+        ...buttonTab,
+        backgroundColor: 'black',
+        fontFamily: FONTS.FONT_MAIN_BOLD
+    },
+    buttonNotSelect: {
+        ...buttonTab,
+        backgroundColor: color.NONE_COLOR,
+        color: color.TEXT_COLOR
+    },
+});

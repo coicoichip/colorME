@@ -3,7 +3,8 @@ import { Alert } from 'react-native';
 import { STRINGS } from '../../constants';
 import { resetScreen } from '../../helper';
 import { registerApi } from './registerApi';
-
+import {AsyncStorage} from "react-native";
+import loginStore from "../login/loginStore";
 export default new class RegisterStore {
     @observable isLoading = false;
     @observable user = {};
@@ -31,13 +32,14 @@ export default new class RegisterStore {
         this.isLoading = true;
         registerApi(register)
             .then(res => {
+                if(navigation){
+                    resetScreen(navigation, 'Drawer');
+                }
                 this.isLoading = false;
                 this.user = res.data.user;
                 Alert.alert(STRINGS.WELCOME.TITLE, STRINGS.WELCOME.DESCRIPTION);
-
-                console.log("Register success : ", res);
-
-                resetScreen(navigation, 'Drawer');
+                AsyncStorage.setItem('@UserToken', res.data.token);
+                
             })
             .catch((err) => {
                 this.isLoading = false;
@@ -51,4 +53,16 @@ export default new class RegisterStore {
                 }
             })
     }
+    @action 
+    async saveData(register){
+       try{
+           await AsyncStorage.setItem('email', register.email)
+           await AsyncStorage.setItem('password', register.password)
+           loginStore.login = {email : register.email, password : register.password}
+       }
+       catch (err){
+
+       }
+    }
+
 }
