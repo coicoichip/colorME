@@ -20,6 +20,7 @@ import RegisterContainer from '../modules/register/RegisterContainer';
 import DrawerContainer from '../modules/drawer/DrawerContainer';
 import BlogContainer from '../modules/blogs/BlogContainer';
 import ListBlog from "../modules/blogs/ListBlog";
+import ScheduleContainer from "../modules/schedule/ScheduleContainer";
 import styles from '../styles/styles';
 const StackNavigatorStyle = {
     navigationOptions: {
@@ -29,8 +30,8 @@ const StackNavigatorStyle = {
 const Courses = StackNavigator(
     {
         CourseList: { screen: CoursesContainer },
-        CourseInFormation: { screen: CourseInformation, navigationOptions: { tabBarVisible: false, } },
-        LearnRegister: { screen: LearnRegisterContainer, navigationOptions: { tabBarVisible: false, } },
+        CourseInFormation: { screen: CourseInformation },
+        LearnRegister: { screen: LearnRegisterContainer },
     }, { initialRouteName: 'CourseList', headerMode: 'none', mode: 'modal' }
 );
 const Blog = StackNavigator(
@@ -41,6 +42,12 @@ const Blog = StackNavigator(
     },  StackNavigatorStyle, { initialRouteName: 'Blog', }
 
 );
+const Profile = StackNavigator(
+    {
+        MyProfile: { screen: ProfileContainer },
+    }, { initialRouteName: 'MyProfile', headerMode: 'none', mode: 'modal' }
+);
+
 const Tab = TabNavigator({
     Course: {
         screen: Courses,
@@ -124,7 +131,7 @@ const Tab = TabNavigator({
         }
     },
     Profile: {
-        screen: ProfileContainer,
+        screen: Profile,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
                 let source;
@@ -178,7 +185,13 @@ const Drawer = DrawerNavigator(
     Base: {
       screen: BaseContainer,
       navigationOptions: ({ navigation }) => ({
-        title: "Chỉ đường"
+        title: "Chỉ Đường"
+      })
+    },
+    Schedule: {
+      screen: ScheduleContainer,
+      navigationOptions: ({ navigation }) => ({
+        title: "Lịch Học"
       })
     }
   },

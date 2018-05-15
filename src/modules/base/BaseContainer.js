@@ -13,19 +13,19 @@ import TextNullData from '../../commons/TextNullData';
 import Header from '../../commons/Header';
 import Loading from '../../commons/Loading';
 import ListBase from "./ListBase";
-import store from "./baseStore";
+import baseStore from "./baseStore";
 import { observer } from "mobx-react";
 import { STRINGS, COLORS, SIZES, FONTS } from "../../constants";
 
 
-@observer class BaseContainer2 extends Component {
+@observer class BaseContainer extends Component {
     constructor() {
         super();
         this.state = {
         }
     }
-    componentWillMount() {
-        store.getListBase();
+    componentDidMount() {
+        baseStore.getListBase();
     }
     loadMore() {
         if (this.props.isLoading && this.props.current_page >= 1)
@@ -34,13 +34,13 @@ import { STRINGS, COLORS, SIZES, FONTS } from "../../constants";
             return null
     }
     refreshList() {
-        store.getListBase();
+        baseStore.getListBase();
     }
     renderBase(){
-        if(store.isLoading && store.bases.length == 0 ){
-            return <Loading/>
+        if (baseStore.isLoading && baseStore.bases.length == 0) {
+          return <Loading />;
         }
-        if(store.error){
+        if(baseStore.error){
             return (
                 <View style = {styles.wrapperCenter}>
                     <Text style ={styles.textDescriptionDark}>{STRINGS.HAVE_ERROR}</Text>
@@ -55,15 +55,15 @@ import { STRINGS, COLORS, SIZES, FONTS } from "../../constants";
                 </View>
             )
         }
-        if(store.bases.length !== 0){
+        if(baseStore.bases.length !== 0){
             return (
                 <FlatList
                     keyExtractor={item => item.id + ''}
                     showsVerticalScrollIndicator={false}
-                    data={store.bases}
+                    data={baseStore.bases}
                     refreshControl={
                         <RefreshControl
-                            refreshing={store.isLoadingRefresh}
+                            refreshing={baseStore.isLoadingRefresh}
                             onRefresh={
                                 () => this.refreshList()
                             }
@@ -78,10 +78,8 @@ import { STRINGS, COLORS, SIZES, FONTS } from "../../constants";
                 />
             )
         }
-        if(store.base.length == 0 && store.isLoading == false && store.error == false){
-            return (
-                <TextNullData text={STRINGS.NULL_DATA} />
-            )
+        if (baseStore.base.length == 0 && baseStore.isLoading == false && baseStore.error == false) {
+          return <TextNullData text={STRINGS.NULL_DATA} />;
         }
     }
 
@@ -136,4 +134,4 @@ const styles = StyleSheet.create({
   
 });
 
-export default BaseContainer2;
+export default BaseContainer;
