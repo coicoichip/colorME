@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
         ...wrapperCenter,
         width: SIZES.DEVICE_WIDTH_SIZE,
         position: 'absolute',
-        bottom: 80,
+        bottom: SIZES.DEVICE_HEIGHT_SIZE / 4 - 20,
         paddingHorizontal: 80,
     },
     wrapperLogo: {
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
         width: SIZES.FORM_LOGIN_WIDTH_SIZE,
         borderRadius: SIZES.BORDER_RADIUS_CARD_SIZE,
         elevation: 5,
-        bottom: 100,
+        bottom: SIZES.DEVICE_HEIGHT_SIZE / 4,
         shadowColor: COLORS.SHADOW_COLOR,
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 0.4,

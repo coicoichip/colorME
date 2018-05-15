@@ -181,12 +181,6 @@ const Drawer = DrawerNavigator({
         })
 
     },
-    // New: {
-    //     screen: NewsContainer,
-    //     navigationOptions: ({ navigation }) => ({
-    //         title: 'Tin Tuc',
-    //     })
-    // },
     Base: {
         screen: BaseContainer,
         navigationOptions: ({ navigation }) => ({

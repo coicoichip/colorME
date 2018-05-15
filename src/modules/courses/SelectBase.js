@@ -26,6 +26,7 @@ class SelectBase extends Component {
     }
     UNSAFE_componentWillMount(){
        store.getListBase();
+       coursesStore.base_name = ""
     }
     pickBase() {
         let OPTIONS = [{name : "Tất cả cơ sở" ,address : "", id : ""}, ...store.bases];
