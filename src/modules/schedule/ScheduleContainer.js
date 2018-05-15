@@ -226,9 +226,9 @@ const styles = StyleSheet.create({
     marginTop: 30
   },
   imageFeature: {
-    width: 50,
-    height: 50,
-    borderRadius:25,
+    width: 30,
+    height: 30,
+    borderRadius:15,
     marginRight: 10,
   }
 });
