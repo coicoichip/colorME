@@ -22,7 +22,7 @@ import TextNullData from '../../commons/TextNullData';
 import ListTag from "./ListTag";
 @observer
 class BlogContainer extends Component {
-    @observable tag = "design"
+    @observable tag = ""
     constructor() {
         super();
         this.changeTag = this.changeTag.bind(this)
@@ -58,6 +58,7 @@ class BlogContainer extends Component {
         if (blogStore.blogs.length !== 0) {
             return (
                 <FlatList
+                    ref = {'listBlog'}
                     keyExtractor={item => item.id + ''}
                     showsVerticalScrollIndicator={false}
                     data={blogStore.blogs}
@@ -85,12 +86,15 @@ class BlogContainer extends Component {
             )
         }
     }
+    scrollListBlog(){
+            this.refs.listBlog.scrollToOffset({x: 0, y: 0, animated: true})
+    }
     render() {
         const { navigate } = this.props.navigation;
         return (
             <Container style={styles.wrapperContainer}>
-                <Header title={STRINGS.NEWS_TITLE_HEADER} navigate={navigate} />
-                    <ListTag  top_tags = {blogStore.top_tags} changeTag = {this.changeTag} tag = {this.tag}/>
+                <Header title={STRINGS.NEWS_TITLE_HEADER} navigate={navigate} onPress = {() => this.scrollListBlog()} />
+                    <ListTag top_tags = {blogStore.top_tags} changeTag = {this.changeTag} tag = {this.tag}/>
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     {this.renderSubject()}
                 </View>
