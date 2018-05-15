@@ -1,7 +1,7 @@
 import { observable, action, computed } from "mobx";
 import * as baseApi from "./baseApi";
 
-export default store = new class baseStore {
+export default baseStore = new class baseStore {
     @observable isLoading = true;
     @observable isLoadingRefresh = false;
     @observable isLoadingMore = false;
