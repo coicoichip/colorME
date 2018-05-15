@@ -40,7 +40,7 @@ const Blog = StackNavigator(
         BlogContainer : {screen : BlogContainer},
         DetailBlog : {screen : DetailBlogContainer},
         ListBlog : {screen : ListBlog}
-    },  StackNavigatorStyle, { initialRouteName: 'Blog', }
+    }, {headerMode: 'none', mode: 'modal'}
 
 );
 const Profile = StackNavigator(

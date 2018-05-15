@@ -29,8 +29,8 @@ class DetailBlogContainer extends Component {
         return (
             <Container style={styles.wrapperContainer}>
                 <View style={[styles.wrapperHeader, styles.paddingLeftRight, { flexDirection: 'row', marginTop: 20 }]}>
-                    <View style={{ flex: 5 }}>
-                        <Text style={[styles.textHeaderScreen, { fontSize: 20 }]} >{detailBlog.title}</Text>
+                    <View style={{ flex: 8 }}>
+                        <Text style={[styles.textHeaderScreen, { fontSize: 20 }]} onPress = {() => this.refs.detailBlog.scrollToOffset({x: 0, y: 0, animated: true})} >{detailBlog.title}</Text>
                     </View>
                     <TouchableOpacity style={{ flex: 1 }}
                         onPress={() => this.props.navigation.goBack()}
@@ -44,7 +44,7 @@ class DetailBlogContainer extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <Content style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+                <Content ref = {'detailBlog'} style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
                    
                     {
                         isLoadingDetail
