@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Image, Platform, Text, View, StatusBar, TouchableOpacity } from 'react-native';
-import { Container, Content, Item, Left, Right, Spinner } from 'native-base';
+import { Image, Platform, Text, View, StatusBar, TouchableOpacity, ScrollView } from 'react-native';
+import { Container, Item, Left, Right, Spinner } from 'native-base';
 import BackButton from '../../commons/BackButton';
 import Loading from '../../commons/Loading';
 import WebViewAutoHeight from '../../commons/WebViewAutoHeight';
@@ -28,11 +28,11 @@ class DetailBlogContainer extends Component {
         const { detailBlog, isLoadingDetail } = blogStore;
         return (
             <Container style={styles.wrapperContainer}>
-                <View style={[styles.wrapperHeader, styles.paddingLeftRight, { flexDirection: 'row', marginTop: 20 }]}>
-                    <View style={{ flex: 8 }}>
-                        <Text style={[styles.textHeaderScreen, { fontSize: 20 }]} onPress = {() => this.refs.detailBlog.scrollToOffset({x: 0, y: 0, animated: true})} >{detailBlog.title}</Text>
+                <View style={[styles.wrapperHeader, styles.paddingLeftRight, { flexDirection: 'row'}]}>
+                    <View style={{ flex: 8, justifyContent : 'center' }}>
+                        <Text style={[styles.textHeaderScreen, { fontSize: 17}]} onPress = {() => this.refs.detailBlog.scrollTo({x: 0, y: 0, animated: true})} >{detailBlog.title}</Text>
                     </View>
-                    <TouchableOpacity style={{ flex: 1 }}
+                    <TouchableOpacity style={{ flex: 1 ,justifyContent : 'center'}}
                         onPress={() => this.props.navigation.goBack()}
                     >
                         <View style={{ alignItems: 'flex-end' }}>
@@ -44,8 +44,7 @@ class DetailBlogContainer extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <Content ref = {'detailBlog'} style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
-                   
+                <ScrollView ref = {'detailBlog'} style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
                     {
                         isLoadingDetail
                             ?
@@ -75,7 +74,7 @@ class DetailBlogContainer extends Component {
                             <WebViewAutoHeight source={detailBlog.content ? detailBlog.content : ''} />
                             </View>
                     }
-                </Content>
+                </ScrollView>
             </Container>
         );
     }

@@ -31,17 +31,15 @@ export const coursesStore = new class CoursesStore {
     @observable errorLearnRegister = false;
 
     @action
-    getListSubject(page, txt) {
+    getListSubject() {
         this.isLoadingSubject = true;
-        getCoursesApi(page, txt).then(res => {
+        getCoursesApi().then(res => {
             
             this.isLoadingSubject = false;
-            this.subjects = res.data.courses ? res.data.courses : [res.data.courses, this.subjects];
+            this.subjects = res.data.courses;
             this.data = this.subjects.filter(e =>
                 e.categories[0].id === 1
             )
-            this.total_pages = res.data.paginator.total_pages;
-            this.current_page = res.data.paginator.current_page;
             this.errorSubject = false;
             
         })

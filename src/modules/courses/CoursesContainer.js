@@ -35,8 +35,8 @@ class CoursesContainer extends Component {
         }
     }
     componentWillMount() {
-        coursesStore.getListSubject(1, '');
         drawerStore.getProfile();
+        coursesStore.getListSubject()
     }
     chooseCategory(index) {
         this.setState({ category: index })
@@ -80,17 +80,17 @@ class CoursesContainer extends Component {
             </View>
         )
     }
-    getMoreSubjects() {
-        if (coursesStore.current_page < coursesStore.total_pages && coursesStore.isLoadingSubject == false) {
-            coursesStore.getListSubject(coursesStore.current_page + 1, "")
-        }
-    }
-    loadMore() {
-        if (coursesStore.isLoadingSubject && coursesStore.current_page > 1 && coursesStore.subjects.length > 0)
-            return (<Loading />)
-        else
-            return null
-    }
+    // getMoreSubjects() {
+    //     if (coursesStore.current_page < coursesStore.total_pages && coursesStore.isLoadingSubject == false) {
+    //         coursesStore.getListSubject()
+    //     }
+    // }
+    // loadMore() {
+    //     if (coursesStore.isLoadingSubject && coursesStore.current_page > 1 && coursesStore.subjects.length > 0)
+    //         return (<Loading />)
+    //     else
+    //         return null
+    // }
     renderSubject() {
         if (coursesStore.data.length == 0 || this.state.isLoading) {
             return <Loading />
@@ -106,10 +106,10 @@ class CoursesContainer extends Component {
                     keyExtractor={item => item.id + ''}
                     showsVerticalScrollIndicator={false}
                     data={coursesStore.data}
-                    onEndReached={() => this.getMoreSubjects()}
-                    ListFooterComponent={
-                        this.loadMore()
-                    }
+                    // onEndReached={() => this.getMoreSubjects()}
+                    // ListFooterComponent={
+                    //     this.loadMore()
+                    // }
                     renderItem={({ item }) =>
                         <ListSubject item={item} navigation={this.props.navigation} />
                     }
