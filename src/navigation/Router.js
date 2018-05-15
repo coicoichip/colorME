@@ -21,6 +21,7 @@ import DrawerContainer from '../modules/drawer/DrawerContainer';
 import BlogContainer from '../modules/blogs/BlogContainer';
 import ListBlog from "../modules/blogs/ListBlog";
 import ScheduleContainer from "../modules/schedule/ScheduleContainer";
+import SplashContainer from "../modules/splash/SplashContainer"
 import styles from '../styles/styles';
 const StackNavigatorStyle = {
     navigationOptions: {
@@ -206,7 +207,8 @@ const Drawer = DrawerNavigator(
 );
 
 export const RootStack = StackNavigator(
-    {
+    { 
+        Splash: { screen: SplashContainer },
         Login: { screen: LoginContainer },
         Register: { screen: RegisterContainer },
         Drawer: { screen: Drawer },
