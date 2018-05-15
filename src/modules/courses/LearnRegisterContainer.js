@@ -21,7 +21,6 @@ import { observable } from 'mobx';
 import { TEXT_COLOR } from '../../styles/colors';
 import SelectBase, { returnBase } from "./SelectBase";
 import { drawerStore } from "../drawer/drawerStore";
-
 @observer
 class LearnRegisterContainer extends Component {
     @observable base_id = ""
@@ -38,6 +37,7 @@ class LearnRegisterContainer extends Component {
             onStartShouldSetPanResponder: (event, gestureState) => true,
             onPanResponderGrant: this._onPanResponderGrant.bind(this),
         })
+        drawerStore.getProfile();
     }
     _onPanResponderGrant(event, gestureState) {
         if (event.nativeEvent.locationX === event.nativeEvent.pageX) {

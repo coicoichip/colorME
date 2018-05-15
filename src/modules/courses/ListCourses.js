@@ -26,7 +26,7 @@ class ListSubject extends Component {
                     onPress={() => this.props.navigation.navigate('LearnRegister', { linkId: item.id })}>
                     <View >
                         <Image source={{ uri: formatImageLink(item.image_url) }} style={styles.imageAvatarModuleEmails} />
-                        <Text style={[styles.categoryInImages, styles.textDescriptionLightBold]}>
+                        <Text style={[styles.categoryInImages, styles.textDescriptionLightBold, {fontWeight: 'bold'}]}>
                             {item.price ? dotNumber(item.price) + ' đ' : 'Price'}
                         </Text>
                     </View>
