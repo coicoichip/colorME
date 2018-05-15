@@ -175,7 +175,6 @@ const Tab = TabNavigator({
         {
             BlogContainer : {screen : BlogContainer},
             DetailBlog : {screen : DetailBlogContainer},
-            ListBlog : {screen : ListBlog}
         }, {headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'resource', title : "TÀI NGUYÊN"}}
     
     );

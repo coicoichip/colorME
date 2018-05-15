@@ -21,7 +21,7 @@ class ListBlog extends Component {
         return (
             <View>
                 <TouchableOpacity activeOpacity={0.8} style={{marginBottom: 15}}
-                    onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug})}>
+                    onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind : this.props.kind})}>
                     <View >
                         <Image source={{ uri: formatImageLink(item.thumb_url) }} style={styles.imageAvatarModuleEmails} />
                         <Text style={[styles.categoryInImage, styles.textDescriptionLightBold]}>

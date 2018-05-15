@@ -49,6 +49,7 @@ class BlogContainer extends Component {
         setTimeout(() => blogStore.getBlog(params.kind,1, this.tag, "search"), 200)
     }
     renderSubject() {
+        const {params} = this.props.navigation.state;
         if (blogStore.blogs.length == 0|| blogStore.isSearch) {
             return <Loading />
         }
@@ -77,7 +78,7 @@ class BlogContainer extends Component {
                         this.loadMore()
                     }
                     renderItem={({ item }) =>
-                        <ListBlog item={item} navigation={this.props.navigation} />
+                        <ListBlog item={item} navigation={this.props.navigation} kind = {params.kind}/>
                     }
                 />
             )
