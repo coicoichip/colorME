@@ -13,7 +13,7 @@ export default (scheduleStore = new class scheduleStore {
     scheduleApi
       .getScheduleApi(token)
       .then(res => {
-        console.log(res);
+        //console.log(res);
         this.data = res.data;
         this.isLoading = false;
       })

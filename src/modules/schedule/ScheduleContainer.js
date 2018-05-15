@@ -30,7 +30,7 @@ class ScheduleContainer extends React.Component {
     }
 
   componentDidMount() {
-    console.log(1);
+    //console.log(1);
     scheduleStore.getListSchedule(loginStore.token);
   }
 
@@ -90,7 +90,7 @@ class ScheduleContainer extends React.Component {
       if (this.state.check === false) {
         let Lessons =  scheduleStore.scheduleData;
         for (let lesson of Lessons) {
-          console.log(lesson)
+          //console.log(lesson)
           for (let schedule of lesson) {
             if (!this.state.items[schedule.date]) {
               this.state.items[schedule.date] = [];
