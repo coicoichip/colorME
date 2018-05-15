@@ -28,11 +28,13 @@ class BlogContainer extends Component {
         this.changeTag = this.changeTag.bind(this)
     }
     UNSAFE_componentWillMount() {
-        blogStore.getBlog(1, this.tag);
+        const {params} = this.props.navigation.state;
+        blogStore.getBlog(params.kind, 1, this.tag);
     }
     getMoreBlogs() {
+        const {params} = this.props.navigation.state;
         if (blogStore.current_page < blogStore.total_pages && blogStore.isLoading == false) {
-            blogStore.getBlog(blogStore.current_page + 1, this.tag)
+            blogStore.getBlog(params.kind,blogStore.current_page + 1, this.tag)
         }
     }
     loadMore() {
@@ -43,8 +45,8 @@ class BlogContainer extends Component {
     }
     changeTag(item){
         this.tag = item.tag;
-        setTimeout(() => blogStore.getBlog(1, this.tag, "search"), 200)
-        console.log("aaaa");
+        const {params} = this.props.navigation.state;
+        setTimeout(() => blogStore.getBlog(params.kind,1, this.tag, "search"), 200)
     }
     renderSubject() {
         if (blogStore.blogs.length == 0|| blogStore.isSearch) {
@@ -91,9 +93,10 @@ class BlogContainer extends Component {
     }
     render() {
         const { navigate } = this.props.navigation;
+        const { params} =this.props.navigation.state;
         return (
             <Container style={styles.wrapperContainer}>
-                <Header title={STRINGS.NEWS_TITLE_HEADER} navigate={navigate} onPress = {() => this.scrollListBlog()} />
+                <Header title={params.title ? params.title : STRINGS.NEWS_TITLE_HEADER} navigate={navigate} onPress = {() => this.scrollListBlog()} />
                     <ListTag top_tags = {blogStore.top_tags} changeTag = {this.changeTag} tag = {this.tag}/>
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     {this.renderSubject()}

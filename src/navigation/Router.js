@@ -40,7 +40,7 @@ const Blog = StackNavigator(
         BlogContainer : {screen : BlogContainer},
         DetailBlog : {screen : DetailBlogContainer},
         ListBlog : {screen : ListBlog}
-    }, {headerMode: 'none', mode: 'modal'}
+    }, {headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'blog'}}
 
 );
 const Profile = StackNavigator(
@@ -93,6 +93,7 @@ const Tab = TabNavigator({
     },
     Blogs: {
         screen: Blog,
+        
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
                 let source;
@@ -109,7 +110,8 @@ const Tab = TabNavigator({
                     </View>
                 )
             }
-        }
+        },
+        
     },
     Notification: {
         screen: NotificationContainer,
@@ -169,6 +171,14 @@ const Tab = TabNavigator({
         }
 
     });
+    const Resource = StackNavigator(
+        {
+            BlogContainer : {screen : BlogContainer},
+            DetailBlog : {screen : DetailBlogContainer},
+            ListBlog : {screen : ListBlog}
+        }, {headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'resource', title : "TÀI NGUYÊN"}}
+    
+    );
 const Drawer = DrawerNavigator(
   {
     OverView: {
@@ -177,10 +187,10 @@ const Drawer = DrawerNavigator(
         title: "Tổng Quan"
       })
     },
-    New: {
-      screen: NewsContainer,
+    Resource: {
+      screen: Resource,
       navigationOptions: ({ navigation }) => ({
-        title: "Tin Tuc"
+        title: "Tài nguyên"
       })
     },
     Base: {
