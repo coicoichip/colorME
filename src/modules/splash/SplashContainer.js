@@ -64,8 +64,8 @@ export default class SplashContainer extends Component {
                     backgroundColor={COLORS.MAIN_COLOR}
                 />
                 <View style={{ alignItems: 'flex-end', marginBottom: 20 }}>
-                    <Text style={styles.textLogoColor}>color</Text>
-                    <Text style={styles.textLogoMe}>ME</Text>
+                    <Text style={styles.textLogoColor}>{STRINGS.LOGO_COLOR}</Text>
+                    <Text style={styles.textLogoMe}>{STRINGS.LOGO_ME}</Text>
                 </View>
                 <Spinner
                     size={SIZES.LOADING_SIZE}

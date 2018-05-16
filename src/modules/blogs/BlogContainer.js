@@ -20,6 +20,7 @@ import ListBlog from "./ListBlog";
 import Error from '../../commons/Error';
 import TextNullData from '../../commons/TextNullData';
 import ListTag from "./ListTag";
+
 @observer
 class BlogContainer extends Component {
     @observable tag = "design"
@@ -44,7 +45,6 @@ class BlogContainer extends Component {
     changeTag(item){
         this.tag = item.tag;
         setTimeout(() => blogStore.getBlog(1, this.tag, "search"), 200)
-        console.log("aaaa");
     }
     renderSubject() {
         if (blogStore.blogs.length == 0|| blogStore.isSearch) {
@@ -70,11 +70,14 @@ class BlogContainer extends Component {
                             }
                         />
                     }
-                    ListFooterComponent={
-                        this.loadMore()
+                    ListHeaderComponent={
+                        <ListTag top_tags = {blogStore.top_tags} changeTag = {this.changeTag} tag = {this.tag}/>
                     }
                     renderItem={({ item }) =>
                         <ListBlog item={item} navigation={this.props.navigation} />
+                    }
+                    ListFooterComponent={
+                        this.loadMore()
                     }
                 />
             )
@@ -90,7 +93,6 @@ class BlogContainer extends Component {
         return (
             <Container style={styles.wrapperContainer}>
                 <Header title={STRINGS.NEWS_TITLE_HEADER} navigate={navigate} />
-                    <ListTag  top_tags = {blogStore.top_tags} changeTag = {this.changeTag} tag = {this.tag}/>
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     {this.renderSubject()}
                 </View>

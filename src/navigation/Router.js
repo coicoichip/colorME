@@ -159,7 +159,7 @@ const Tab = TabNavigator({
     {
         initialRouteName: 'Blogs',
         tabBarPosition: 'bottom',
-        animationEnabled: true,
+        animationEnabled: false,
         tabBarOptions: {
             indicatorStyle: { backgroundColor: COLORS.NONE_COLOR },
             showIcon: true,
@@ -177,7 +177,7 @@ const Drawer = DrawerNavigator({
     OverView: {
         screen: Tab,
         navigationOptions: ({ navigation }) => ({
-            title: 'Tổng Quan',
+            title: STRINGS.HOME_DRAWER,
         })
 
     },
@@ -190,7 +190,7 @@ const Drawer = DrawerNavigator({
     Base: {
         screen: BaseContainer,
         navigationOptions: ({ navigation }) => ({
-            title: 'Cơ sở',
+            title: STRINGS.BASE_DRAWER,
         })
     }},
     {
@@ -215,5 +215,5 @@ export const RootStack = StackNavigator(
         Drawer: { screen: Drawer },
         Register: { screen: RegisterContainer },
     },
-    { headerMode: 'none' }
+    { headerMode: 'none', mode: 'card' }
 );
