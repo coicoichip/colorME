@@ -30,7 +30,7 @@ window.addEventListener("resize", updateHeight);
 const style = `
 <style>
 @font-face {
-    font-family: 'Helvetica';
+    font-family: 'Roboto-Regular';
     // src: url('../../assets/fonts/Montserrat-Regular.ttf');
     font-weight: normal;
     font-style: normal;

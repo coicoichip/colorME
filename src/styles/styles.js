@@ -382,6 +382,12 @@ const style = {
         overflow: "hidden", color: 'white'
 
     },
+    textDownload: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        paddingLeft: 20,
+        paddingRight: 50
+    }
     
 
 
