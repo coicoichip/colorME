@@ -40,4 +40,5 @@ export const STRINGS = {
     DIRECT_HEADER_TITLEL: 'CHỈ ĐƯỜNG',
     NULL_DATA: 'Không có dữ liệu',
     UPDATE_INFORMATION: 'Cập nhập thông tin',
+    SCHEDULE: 'Lịch học',
 }

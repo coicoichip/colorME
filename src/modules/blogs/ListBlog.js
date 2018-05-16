@@ -12,6 +12,7 @@ import Icon from "../../commons/Icon"
 import { formatImageLink } from "../../helper/index";
 
 import _ from "lodash";
+import { SIZES } from '../../constants';
 class ListBlog extends Component {
     constructor() {
         super()
@@ -21,9 +22,9 @@ class ListBlog extends Component {
         return (
             <View>
                 <TouchableOpacity activeOpacity={0.8} style={{marginBottom: 15}}
-                    onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug})}>
-                    <View >
-                        <Image source={{ uri: formatImageLink(item.thumb_url) }} style={styles.imageAvatarModuleEmails} />
+                    onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind : this.props.kind})}>
+                    <View style={{flex:1}}>
+                        <Image source={{ uri: formatImageLink(item.thumb_url) }} style={{width: SIZES.DEVICE_WIDTH_SIZE, height: '100%'}} resizeMode={''} />
                         <Text style={[styles.categoryInImage, styles.textDescriptionLightBold]}>
                             {item.category ? item.category : 'Category'}
                         </Text>

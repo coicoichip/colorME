@@ -20,38 +20,35 @@ import RegisterContainer from '../modules/register/RegisterContainer';
 import DrawerContainer from '../modules/drawer/DrawerContainer';
 import BlogContainer from '../modules/blogs/BlogContainer';
 import ListBlog from "../modules/blogs/ListBlog";
-
-import SplashContainer from '../modules/splash/SplashContainer';
-
+import ScheduleContainer from "../modules/schedule/ScheduleContainer";
+import SplashContainer from "../modules/splash/SplashContainer"
+import styles from '../styles/styles';
 const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
     },
 };
-
-const styles = StyleSheet.create({
-    wrapperIconTabNavigator:{
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: SIZES.DEVICE_WIDTH_SIZE / 5,
-        height: SIZES.TAB_BAR_HEIGHT_SIZE,
-    }
-})
-
 const Courses = StackNavigator(
     {
         CourseList: { screen: CoursesContainer },
-        CourseInFormation: { screen: CourseInformation, navigationOptions: { tabBarVisible: false, } },
-        LearnRegister: { screen: LearnRegisterContainer, navigationOptions: { tabBarVisible: false, } },
+        CourseInFormation: { screen: CourseInformation },
+        LearnRegister: { screen: LearnRegisterContainer },
     }, { initialRouteName: 'CourseList', headerMode: 'none', mode: 'modal' }
 );
 const Blog = StackNavigator(
     {
         BlogContainer : {screen : BlogContainer},
         DetailBlog : {screen : DetailBlogContainer},
-    },{ headerMode: 'none', mode: 'modal' },
+        ListBlog : {screen : ListBlog}
+    }, {headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'blog'}}
 
 );
+const Profile = StackNavigator(
+    {
+        MyProfile: { screen: ProfileContainer },
+    }, { initialRouteName: 'MyProfile', headerMode: 'none', mode: 'modal' }
+);
+
 const Tab = TabNavigator({
     Course: {
         screen: Courses,
@@ -109,11 +106,12 @@ const Tab = TabNavigator({
                     <View style={styles.wrapperIconTabNavigator}>
                         <Image
                             source={source}
-                            style={{ width: SIZES.ICON_SIZE, height: SIZES.ICON_SIZE }} />
+                            style={{ width:  SIZES.ICON_SIZE, height: SIZES.ICON_SIZE }} />
                     </View>
                 )
             }
-        }
+        },
+        
     },
     Notification: {
         screen: NotificationContainer,
@@ -136,7 +134,7 @@ const Tab = TabNavigator({
         }
     },
     Profile: {
-        screen: ProfileContainer,
+        screen: Profile,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
                 let source;
@@ -165,7 +163,7 @@ const Tab = TabNavigator({
             showIcon: true,
             activeTintColor: 1,
             style: {
-                borderTopWidth: 0.2,
+                borderTopWidth: 0.3,
                 borderTopColor: COLORS.BORDER_COLOR,
                 backgroundColor: COLORS.BACKGROUND_GRAY,
             },
@@ -173,47 +171,56 @@ const Tab = TabNavigator({
         }
 
     });
-const Drawer = DrawerNavigator({
+    const Resource = StackNavigator(
+        {
+            BlogContainer : {screen : BlogContainer},
+            DetailBlog : {screen : DetailBlogContainer},
+        }, {headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'resource', title : "TÀI NGUYÊN"}}
+    
+    );
+const Drawer = DrawerNavigator(
+  {
     OverView: {
-        screen: Tab,
-        navigationOptions: ({ navigation }) => ({
-            title: STRINGS.HOME_DRAWER,
-        })
-
+      screen: Tab,
+      navigationOptions: ({ navigation }) => ({
+        title: "Tổng Quan"
+      })
     },
-    // New: {
-    //     screen: NewsContainer,
-    //     navigationOptions: ({ navigation }) => ({
-    //         title: 'Tin Tuc',
-    //     })
-    // },
+    Resource: {
+      screen: Resource,
+      navigationOptions: ({ navigation }) => ({
+        title: "Tài nguyên"
+      })
+    },
     Base: {
-        screen: BaseContainer,
-        navigationOptions: ({ navigation }) => ({
-            title: STRINGS.BASE_DRAWER,
-        })
-    }},
-    {
-        contentOptions: {
-            activeTintColor: COLORS.MAIN_COLOR,
-        },
-        drawerWidth: SIZES.DEVICE_WIDTH_SIZE * 3 / 4,
-        drawerPosition: 'right',
-        useNativeAnimations: 'false',
-        disableOpenGesture: false,
-        drawerLockMode: 'locked-closed',
-        contentComponent: props => (<DrawerContainer {...props} />)
+      screen: BaseContainer,
+      navigationOptions: ({ navigation }) => ({
+        title: "Chỉ Đường"
+      })
+    },
+    Schedule: {
+      screen: ScheduleContainer,
+      navigationOptions: ({ navigation }) => ({
+        title: "Lịch Học"
+      })
     }
-
-
+  },
+  {
+    drawerWidth: SIZES.DEVICE_WIDTH_SIZE * 3 / 4,
+    drawerPosition: "right",
+    useNativeAnimations: "false",
+    disableOpenGesture: false,
+    drawerLockMode: "locked-closed",
+    contentComponent: props => <DrawerContainer {...props} />
+  }
 );
 
 export const RootStack = StackNavigator(
-    {
+    { 
         Splash: { screen: SplashContainer },
         Login: { screen: LoginContainer },
-        Drawer: { screen: Drawer },
         Register: { screen: RegisterContainer },
+        Drawer: { screen: Drawer },
     },
     { headerMode: 'none', mode: 'card' }
 );

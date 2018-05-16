@@ -85,8 +85,11 @@ const style = {
     },
     imageAvatarModuleEmails: {
         width: size.deviceWidth,
-        height: size.deviceHeight / 3.3,
+        // height: 100,
     },
+
+    // ngo 84 ngoc khanh 0985561065
+    // 15264050436XIG
     imageAvatarModuleEmail: {
         width: size.deviceWidth / 3.7,
         height: size.deviceWidth / 3.7,

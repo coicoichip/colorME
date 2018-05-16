@@ -10,7 +10,7 @@ export default class Header extends Component {
         const { title, navigate } = this.props;
         return (
             <View style={styles.wrapperHeader}>
-                <Text style={styles.textHeaderScreen} numberOfLines={1}>{title}</Text>
+                <Text style={styles.textHeaderScreen} numberOfLines={1} onPress= {() => this.props.onPress()}>{title}</Text>
                 <HamburgerButton navigate={navigate} />
             </View>
         );

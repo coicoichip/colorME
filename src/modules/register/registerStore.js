@@ -37,8 +37,9 @@ export default new class RegisterStore {
                 }
                 this.isLoading = false;
                 this.user = res.data.user;
-                Alert.alert(STRINGS.WELCOME.TITLE, STRINGS.WELCOME.DESCRIPTION);
                 AsyncStorage.setItem('@UserToken', res.data.token);
+                Alert.alert(STRINGS.WELCOME.TITLE, STRINGS.WELCOME.DESCRIPTION);
+                
                 
             })
             .catch((err) => {
