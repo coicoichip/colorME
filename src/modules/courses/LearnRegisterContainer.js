@@ -54,6 +54,9 @@ class LearnRegisterContainer extends Component {
         await returnBase(base_value => { this.base_id = base_value; console.log(base_value) });
         coursesStore.getCourseInformation(params.linkId, this.base_id)
     }
+    scrollListRegisterCourses() {
+        this.refs.listRegisterCourses.scrollToOffset({ x: 0, y: 0, animated: true })
+    }
     buttonRegister(item, status) {
         let classes = coursesStore.classes;
         switch (status) {
@@ -119,9 +122,9 @@ class LearnRegisterContainer extends Component {
             <Container style={styles.wrapperContainer}>
                 <View>
                     <View style={[styles.wrapperHeader, styles.paddingLeftRight, { flexDirection: 'row' }]}>
-                        <View style={{ flex: 8, justifyContent: 'center' }}>
+                        <TouchableOpacity style={{ flex: 8, justifyContent: 'center' }} onPress= {() => this.scrollListRegisterCourses()}>
                             <Text style={[styles.textHeaderScreen, { fontSize: 20 }]} >Đăng kí học {coursesStore.courseName}</Text>
-                        </View>
+                        </TouchableOpacity>
                         <TouchableOpacity style={{ flex: 1, justifyContent: 'center' }}
                             onPress={() => this.props.navigation.goBack()}
                         >
@@ -143,6 +146,7 @@ class LearnRegisterContainer extends Component {
                     </Container>
                     :
                     <FlatList
+                        ref={'listRegisterCourses'}
                         showsVerticalScrollIndicator={false}
                         data={coursesStore.classes}
                         keyExtractor={item => item.id + ''}
