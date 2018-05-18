@@ -33,14 +33,14 @@ const Courses = StackNavigator(
         CourseList: { screen: CoursesContainer },
         CourseInFormation: { screen: CourseInformation },
         LearnRegister: { screen: LearnRegisterContainer },
-    }, { initialRouteName: 'CourseList', headerMode: 'none', mode: 'modal' }
+    }, { headerMode: 'none', mode: 'modal' }
 );
 const Blog = StackNavigator(
     {
         BlogContainer : {screen : BlogContainer},
         DetailBlog : {screen : DetailBlogContainer},
         ListBlog : {screen : ListBlog}
-    }, {headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'blog'}}
+    }, {initialRouteName:'BlogContainer', headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'blog'}}
 
 );
 const Profile = StackNavigator(
