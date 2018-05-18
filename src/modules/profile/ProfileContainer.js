@@ -1,6 +1,6 @@
 import React from "react";
-import { View, TouchableOpacity, Image } from "react-native";
-import { Button, Text, Container, Item, Content } from "native-base";
+import { View, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { Button, Text, Container, Item, Content, Input, Form } from "native-base";
 import Header from "../../commons/Header";
 import styles from "../../styles/styles";
 import Loading from '../../commons/Loading';
@@ -8,7 +8,7 @@ import { observer } from "mobx-react";
 import getProfileStore from "./profileStore";
 import { InputCommon } from '../../commons';
 import { formatImageLink } from "../../helper/index"
-import { STRINGS, SIZES, COLORS } from "../../constants";
+import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
 
 @observer
 class ProfileContainer extends React.Component {
@@ -88,22 +88,25 @@ class ProfileContainer extends React.Component {
           </View>
           <Text style={{ marginTop: 15 }}>Thay đổi ảnh đại diện </Text>
         </TouchableOpacity>
-        <View style={styles.contentForm}>
-          <InputCommon
-            returnKeyType={'next'}
-            size={styles.input}
-            value={getProfileStore.user.name}
-            onChangeText={this.onChangeData('name')}
-          />
+        <View style={styless.contentForm}>
+            <InputCommon
+              returnKeyType={'next'}
+              size={styless.input}
+              value={getProfileStore.user.name}
+              onChangeText={this.onChangeData('name')}
+            />
 
           <InputCommon
             returnKeyType={'go'}
-            size={styles.input}
+            size={styless.input}
             value={getProfileStore.user.phone}
             onChangeText={this.onChangeData('phone')}
-            onSubmitEditing={this.signInWithAccount}
           />
-          <View height={30} />
+          <Item>
+              <Input placeholder="Username" />
+            </Item>
+          
+          <View />
         </View>
       </View>
     )
@@ -124,3 +127,55 @@ class ProfileContainer extends React.Component {
   }
 }
 export default ProfileContainer;
+const wrapperCenter = {
+  justifyContent: 'center',
+  alignItems: 'center',
+}
+
+const textLogo = {
+  fontFamily: FONTS.LOGO_FONT,
+  backgroundColor: 'transparent',
+  color: COLORS.LIGHT_COLOR,
+}
+
+const text = {
+  fontFamily: 'Roboto-Regular',
+  backgroundColor: 'transparent',
+  color: COLORS.DARK_COLOR,
+  fontSize: SIZES.TEXT_BUTTON_SIZE,
+}
+
+const styless = StyleSheet.create({
+  textLogoColor: {
+    ...textLogo,
+    fontSize: SIZES.LOGO_COLOR_SIZE,
+  },
+  textLogoMe: {
+    ...textLogo,
+    fontSize: SIZES.LOGO_ME_SIZE,
+    marginTop: -40,
+  },
+  textButton: {
+    ...text
+  },
+  wrapperButton: {
+    ...wrapperCenter,
+    width: SIZES.DEVICE_WIDTH_SIZE,
+    position: 'absolute',
+    bottom: SIZES.DEVICE_HEIGHT_SIZE / 4 - 30,
+    paddingHorizontal: 80,
+  },
+  wrapperLogo: {
+    ...wrapperCenter,
+    flex: 1,
+    backgroundColor: COLORS.MAIN_COLOR,
+  },
+  contentForm: {
+    ...wrapperCenter,
+    backgroundColor: COLORS.LIGHT_COLOR,
+  },
+  input: {
+    width: SIZES.DEVICE_WIDTH_SIZE * 0.8,
+  }
+
+});
