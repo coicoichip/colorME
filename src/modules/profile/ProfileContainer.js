@@ -15,7 +15,7 @@ class ProfileContainer extends React.Component {
           style={{
             flex: 1,
             alignItems: "center",
-            width: SIZES.DEVICE_WIDTH_SIZE / 2
+            width: SIZES.DEVICE_WIDTH_SIZE / 3
           }}
         >
         </View>
