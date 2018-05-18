@@ -1,4 +1,4 @@
-package com.colorme.opensettings;
+package com.keetool.app.colorme.vn.opensettings;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;

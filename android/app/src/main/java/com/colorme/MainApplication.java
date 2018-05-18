@@ -1,4 +1,4 @@
-package com.colorme;
+package com.keetool.app.colorme.vn;
 
 import android.app.Application;
 
@@ -13,7 +13,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.colorme.opensettings.*;
+import com.keetool.app.colorme.vn.opensettings.*;
 
 import java.util.Arrays;
 import java.util.List;

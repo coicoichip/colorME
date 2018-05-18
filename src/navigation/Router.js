@@ -157,7 +157,7 @@ const Tab = TabNavigator({
     {
         initialRouteName: 'Blogs',
         tabBarPosition: 'bottom',
-        animationEnabled: true,
+        animationEnabled: false,
         tabBarOptions: {
             indicatorStyle: { backgroundColor: COLORS.NONE_COLOR },
             showIcon: true,
@@ -222,5 +222,5 @@ export const RootStack = StackNavigator(
         Register: { screen: RegisterContainer },
         Drawer: { screen: Drawer },
     },
-    { headerMode: 'none' }
+    { headerMode: 'none', mode: 'card' }
 );

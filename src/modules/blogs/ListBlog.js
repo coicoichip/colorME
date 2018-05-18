@@ -6,6 +6,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 import styles from '../../styles/styles';
+import {SIZES} from '../../constants';
 import { Container, Item, Input } from 'native-base';
 import Header from '../../commons/Header';
 import Icon from "../../commons/Icon"
@@ -19,16 +20,15 @@ class ListBlog extends Component {
     render() {
         const { item } = this.props;
         return (
-            <View>
-                <TouchableOpacity activeOpacity={0.8} style={{marginBottom: 15}}
+                <TouchableOpacity activeOpacity={0.8} style={{marginBottom: 30, flex:1, width: SIZES.DEVICE_WIDTH_SIZE}}
                     onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind : this.props.kind})}>
-                    <View >
-                        <Image source={{ uri: formatImageLink(item.thumb_url) }} style={styles.imageAvatarModuleEmails} />
+                    <View style={{flex: 1}}>
+                        <Image source={{ uri: formatImageLink(item.thumb_url) }} style={{width: SIZES.DEVICE_WIDTH_SIZE, height: '100%'}} resizeMode={"contain"}/>
                         <Text style={[styles.categoryInImage, styles.textDescriptionLightBold]}>
                             {item.category ? item.category : 'Category'}
                         </Text>
                     </View>
-                    <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
+                    <View style={styles.contentCardImageInformation}>
                         <Text numberOfLines={2} style={styles.emailNameModuleEmail}>{item.title.trim()}</Text>
                         {/* <Text style={styles.textDescriptionDark}>{item.duration} buổi</Text> */}
                         <View style={{ marginTop: 5, flexDirection : 'row' , alignItems : 'center'}}>
@@ -41,11 +41,7 @@ class ListBlog extends Component {
                         </View>
                     </View>
                 </TouchableOpacity>
-                <View style={styles.footerCard}>
-                    </View>
-            </View>
         )
     }
 }
 export default ListBlog
-

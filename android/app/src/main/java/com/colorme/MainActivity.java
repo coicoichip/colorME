@@ -1,4 +1,4 @@
-package com.colorme;
+package com.keetool.app.colorme.vn;
 
 import com.facebook.react.ReactActivity;
 public class MainActivity extends ReactActivity {

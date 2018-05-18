@@ -1,4 +1,4 @@
-package com.colorme.opensettings;
+package com.keetool.app.colorme.vn.opensettings;
 
 import android.app.Activity;
 import android.content.Intent;

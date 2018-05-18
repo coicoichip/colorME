@@ -20,6 +20,7 @@ import ListBlog from "./ListBlog";
 import Error from '../../commons/Error';
 import TextNullData from '../../commons/TextNullData';
 import ListTag from "./ListTag";
+
 @observer
 class BlogContainer extends Component {
     @observable tag = ""
@@ -74,11 +75,14 @@ class BlogContainer extends Component {
                             }
                         />
                     }
-                    ListFooterComponent={
-                        this.loadMore()
+                    ListHeaderComponent={
+                        <ListTag top_tags = {blogStore.top_tags} changeTag = {this.changeTag} tag = {this.tag}/>
                     }
                     renderItem={({ item }) =>
                         <ListBlog item={item} navigation={this.props.navigation} kind = {params.kind}/>
+                    }
+                    ListFooterComponent={
+                        this.loadMore()
                     }
                 />
             )
@@ -90,16 +94,15 @@ class BlogContainer extends Component {
         }
     }
     scrollListBlog(){
-            this.refs.listBlog.scrollToOffset({x: 0, y: 0, animated: true})
+        this.refs.listBlog.scrollToOffset({x: 0, y: 0, animated: true})
     }
     render() {
         const { navigate } = this.props.navigation;
         const { params} =this.props.navigation.state;
         return (
             <Container style={styles.wrapperContainer}>
-                <Header title={params.title ? params.title : STRINGS.NEWS_TITLE_HEADER} navigate={navigate} onPress = {() => this.scrollListBlog()} />
-                    <ListTag top_tags = {blogStore.top_tags} changeTag = {this.changeTag} tag = {this.tag}/>
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <Header title={STRINGS.NEWS_TITLE_HEADER} navigate={navigate} />
+                <View style={{ flex: 1}}>
                     {this.renderSubject()}
                 </View>
             </Container>
