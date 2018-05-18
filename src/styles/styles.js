@@ -95,10 +95,10 @@ const style = {
         height: size.deviceWidth / 3.7,
     },
     contentCardImageInformation: {
-        flex: 2,
-        position: 'relative',
         paddingRight: 10,
         paddingTop: 5,
+        paddingLeft: 20,
+        paddingRight: 20,
     },
     emailNameModuleEmail: {
         fontSize: 20,

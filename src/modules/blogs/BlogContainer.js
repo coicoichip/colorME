@@ -102,7 +102,7 @@ class BlogContainer extends Component {
         return (
             <Container style={styles.wrapperContainer}>
                 <Header title={STRINGS.NEWS_TITLE_HEADER} navigate={navigate} />
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ flex: 1}}>
                     {this.renderSubject()}
                 </View>
             </Container>
