@@ -4,8 +4,13 @@ import { Button, Text, Container, Item, Content } from "native-base";
 import Header from "../../commons/Header";
 import styles from "../../styles/styles";
 import Loading from '../../commons/Loading';
+import { observer } from "mobx-react";
+import getProfileStore from "./profileStore";
+import { InputCommon } from '../../commons';
+import { formatImageLink } from "../../helper/index"
 import { STRINGS, SIZES, COLORS } from "../../constants";
 
+@observer
 class ProfileContainer extends React.Component {
   constructor() {
     super();
@@ -19,6 +24,13 @@ class ProfileContainer extends React.Component {
       ]
     }
   }
+  componentWillMount() {
+    getProfileStore.getProfile();
+
+  }
+  onChangeData = field => value => {
+    getProfileStore.user[field] = value;
+  };
   chooseCategory(index) {
     this.setState({ category: index })
     if (index === 0) {
@@ -65,40 +77,47 @@ class ProfileContainer extends React.Component {
       </View>
     )
   }
+  renderProfile() {
+    const { user } = getProfileStore;
+    return (
+
+      <View style={[styles.paddingLeftRight, { flex: 1, marginTop: 10 }]}>
+        <TouchableOpacity style={{ alignItems: 'center' }} activeOpacity={0.8}>
+          <View >
+            <Image source={{ uri: formatImageLink(getProfileStore.user.avatar_url) }} style={{ width: 100, height: 100, borderRadius: 50 }} />
+          </View>
+          <Text style={{ marginTop: 15 }}>Thay đổi ảnh đại diện </Text>
+        </TouchableOpacity>
+        <View style={styles.contentForm}>
+          <InputCommon
+            returnKeyType={'next'}
+            size={styles.input}
+            value={getProfileStore.user.name}
+            onChangeText={this.onChangeData('name')}
+          />
+
+          <InputCommon
+            returnKeyType={'go'}
+            size={styles.input}
+            value={getProfileStore.user.phone}
+            onChangeText={this.onChangeData('phone')}
+            onSubmitEditing={this.signInWithAccount}
+          />
+          <View height={30} />
+        </View>
+      </View>
+    )
+
+  }
   render() {
+    console.log(formatImageLink(getProfileStore.user.avatar_url));
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.wrapperContainer}>
         <Header title={STRINGS.PROFILE_TITLE_HEADER} navigate={navigate} />
         {this.__renderCategory()}
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 10 }}>
-          {
-            this.state.isLoading ?
-              <Loading />
-              :
-              <View>
-
-                <TouchableOpacity activeOpacity={0.8} style={{ marginBottom: 15 }}>
-
-                  <Image source={{ uri: 'http://i.9mobi.vn/cf/images/2015/03/nkk/nhung-hinh-anh-dep-20.jpg' }} style={{width : 400, height: 300}}/>
-                  
-                  <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
-                    <Text numberOfLines={1} style={styles.emailNameModuleEmail}>PS 33.1</Text>
-                    <Text style={styles.textDescriptionDark}>4/8 buổi</Text>
-                    <TouchableOpacity style={{ justifyContent: 'center' }}>
-                      <View style={{
-                        justifyContent: 'center', alignItems: 'flex-end'
-                      }}>
-                        <Text style={[styles.textDescriptionDark, styles.buttonRegister]}>Bảo lưu</Text>
-                      </View>
-                    </TouchableOpacity>
-
-                  </View>
-                </TouchableOpacity>
-                <View style={styles.footerCard}>
-                </View>
-              </View>
-          }
+          {this.renderProfile()}
         </View>
       </View>
     );
