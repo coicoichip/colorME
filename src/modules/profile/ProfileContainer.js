@@ -9,7 +9,7 @@ import getProfileStore from "./profileStore";
 import { InputCommon } from '../../commons';
 import { formatImageLink } from "../../helper/index"
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
-
+import Avatar from "./upLoadAvatar"
 @observer
 class ProfileContainer extends React.Component {
   constructor() {
@@ -82,12 +82,7 @@ class ProfileContainer extends React.Component {
     return (
 
       <View style={[styles.paddingLeftRight, { flex: 1, marginTop: 10 }]}>
-        <TouchableOpacity style={{ alignItems: 'center' }} activeOpacity={0.8}>
-          <View >
-            <Image source={{ uri: formatImageLink(getProfileStore.user.avatar_url) }} style={{ width: 100, height: 100, borderRadius: 50 }} />
-          </View>
-          <Text style={{ marginTop: 15 }}>Thay đổi ảnh đại diện </Text>
-        </TouchableOpacity>
+        <Avatar />
         <View style={styless.contentForm}>
             <InputCommon
               returnKeyType={'next'}

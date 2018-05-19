@@ -14,6 +14,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.keetool.app.colorme.vn.opensettings.*;
+import com.reactnative.ivpusic.imagepicker.PickerPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,7 +43,8 @@ public class MainApplication extends Application implements ReactApplication {
             new AppCenterReactNativePackage(MainApplication.this),
             new RNSpinkitPackage(),
             new VectorIconsPackage(),
-            new OpenSettingsPackage()
+            new OpenSettingsPackage(),
+            new PickerPackage()
       );
     }
 

@@ -73,10 +73,10 @@ export function editName(name) {
     else return "chưa có";
 }
 
-export async function uploadImage(token, file, completeHandler, progressHandler, error) {
+export async function uploadImage(file, completeHandler, progressHandler, error) {
     let url = ''
-    await AsyncStorage.getItem('url').then((value) => {
-        url = "http://" + value + "/manageapi/v3/file/upload?token=" + token;
+    await AsyncStorage.getItem('@Usertoken').then((value) => {
+        url = "http://colorme.vn" + "/manageapi/v3/file/upload?token=" + value;
     })
     let formData = new FormData();
     formData.append("file", file);

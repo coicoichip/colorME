@@ -1,16 +1,16 @@
 import { observable, action, computed } from "mobx";
-import { userProfileApi } from "./profileApi";
+import { userProfileApi , updateProfileApi} from "./profileApi";
 import { Alert, AsyncStorage } from "react-native";
 export default  getProfileStore = new class GetProfileStore  {
     @observable user = {};
     @observable isloading = false;
     @observable error = false;
+    @observable isLoadingUpdate = false;
 
     @action 
     getProfile(){
         this.isLoading = true;
         userProfileApi().then(res => {
-            console.log(res)
             this.isLoading = false;
             this.user= res.data.user; 
             this.error= false;
@@ -21,4 +21,15 @@ export default  getProfileStore = new class GetProfileStore  {
                 this.error = true;
             })
     }
+    @action
+    updateProfile(user){
+       this.isLoadingUpdate = true;
+       updateProfileApi(user).then((res)=> {
+           Alert.alert("Thông báo", "Cập nhật tài khoản thành công")
+       })
+       .catch(err => {
+           Alert.alert("Thông báo", "Cập nhật thất bại, mời bạn kiểm tra đường truyền")
+       })
+    }
+
 }

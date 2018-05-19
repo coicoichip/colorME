@@ -9,6 +9,17 @@ export async function userProfileApi(){
   })
   return axios.get(url)
 }
-export function updateProfileApi(){
-    
+export async function updateProfileApi(user){
+    let url = "";
+    await AsyncStorage.getItem('@Usertoken').then((value)=> {
+      url = APIS.COLOR_ME_API1 + "/user/profile?token=" + value
+    })
+    return axios.post(url, {
+      name : user.name,
+      phone : user.phone,
+      university : user.university,
+      work : user.work,
+      avatar_url : user.avatar_url,
+      dob : user.dob
+    })
 }
