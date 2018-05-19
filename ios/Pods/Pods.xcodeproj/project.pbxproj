@@ -8,45 +8,44 @@
 
 /* Begin PBXBuildFile section */
 		0028EC8BA732457C9BF2BFDEAF9FD055 /* QBAlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E1ED96B093747485D26A8DC680373DE /* QBAlbumsViewController.m */; };
-		01473F7B67524FC2C75AF2D4BD1EBED3 /* Yoga.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DD35D6F83746B86FBF90B9D681D7466 /* Yoga.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0080799DAE825D85A3E2E0CED1C29B0F /* yoga-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B03FC1FB058D59E19D68DDEFB790A6A1 /* yoga-dummy.m */; };
 		034F73107C2A6F1F1B91F193F61C3B1A /* UIApplication+RSKImageCropper.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C55A75BA723F35F4CADFCF0B1845A0C /* UIApplication+RSKImageCropper.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		039C869C694DAE01CCD6B739DA06E354 /* QBCheckmarkView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F31500ED74DD0D37CB869AC87E5168C /* QBCheckmarkView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		08AF6283AB7C407E4F5F0D8E5E8DC65D /* CGGeometry+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = D10E690702F2372F0BF2BC50F09301AE /* CGGeometry+RSKImageCropper.m */; };
 		0BFCD3AB876BC8510FED66E6AF14B869 /* ImageCropPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C87789F51180A5F13C4EA5BE0F363242 /* ImageCropPicker.m */; };
 		0C0FE48FCAC99534373C5B7B7CBC27A2 /* QBVideoIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4933D5A3FC42E3F0CD2164E02D057EA9 /* QBVideoIndicatorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0F169D675B62CE07C329E6616CA42C56 /* YGNodePrint.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B5FC2F7234CF82C3CAFFE4001E843AE /* YGNodePrint.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		1E7F8EE65AE777F05EB72C5702089ED1 /* YGStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 5CB2F619C00CD45BA9266C37630E9996 /* YGStyle.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		1E925C2AC70951CA058CFE215D6A7B6B /* YGStyle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 867417284E92452F249A2959EF63F197 /* YGStyle.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
-		1F18BFABED91EC74797405B4291B5CEF /* Yoga-internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A4C280C29CFDB777807F975160CE65F /* Yoga-internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		20CB5EEE38C8E7FC667ADDE35145B7CE /* YGNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 82DD472B9D6EF0492D48634D54DB0EC5 /* YGNode.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		10815CC27FDD487BF99EEBF16C107DB1 /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F792FDC7C0453D363F4EF3A2EBF0500 /* Utils.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		29413723013063582F7AD2BD3D7F5840 /* Pods-colorMe-tvOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 252B4F2E5E854B24C7F7F56416D8D03B /* Pods-colorMe-tvOS-dummy.m */; };
+		2AB6262B7AFFCA0E5C03938C206EA199 /* YGMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = D1AED96B7525EE151D7FC21D86D388AC /* YGMacros.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		2B68D65B99143F9FEFD2FDE92958CBFC /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3EDF6885BFEC118886A8D575FA9C1CD8 /* en.lproj */; };
 		2B94F6DB34DFDC4306A25B4716CF489D /* QBVideoIconView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8543E4B1A022E9013176E775A8EA5FF5 /* QBVideoIconView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		32923E985392E0D847B8C7F60B38E20C /* RSKTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 510172DF67A5DC63719AB9AB6B394FE6 /* RSKTouchView.m */; };
-		3438F57246582C3064B109AE23C3A97A /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EC2755B245D50460BE75E1BEBBF0E80 /* Utils.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
+		365CD35A3DD1CC392BCA52C87A1C7893 /* YGEnums.h in Headers */ = {isa = PBXBuildFile; fileRef = 134663A96482BCAFC4185081180FB2D1 /* YGEnums.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		386BCD6AAB00D0047B4F3D6818D8A0C4 /* RSKImageCropper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DA527C31F87101FD764920925CEC5FB8 /* RSKImageCropper-dummy.m */; };
 		3C0698392BB66E96A0430C96E1701DBA /* Pods-colorMeTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C66AC262EE71B2EFE7627E2C93B3432 /* Pods-colorMeTests-dummy.m */; };
 		3DBD4A8E2B0CE46247E7412BBDD35D7C /* Compression.h in Headers */ = {isa = PBXBuildFile; fileRef = C1A3CD5CE60A7F95A39BD286474B9675 /* Compression.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3E328285A5879500F1F637F4929803E3 /* Yoga.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D7E55958FBD04AC870B222B02C638D3 /* Yoga.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		3F1FA4E093A23FDC37C1A18A50F68FFA /* QBAlbumCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 254EFFDF0E0CA880CDECB481744D58D1 /* QBAlbumCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		41600E1964B53382E9252CA4B5A30F25 /* QBAssetCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C9550B719E6F4C30ACC75B5D6D55775 /* QBAssetCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		41C20F792F8E434F6D02AC72516E153A /* QBImagePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CCA90AF07B18489D1397065D8F5189A /* QBImagePicker.storyboard */; };
 		423C0D6BD905200D1B70AF3D289534A0 /* zh-Hans.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 2E7B4B2C105B7707265FA31C3C29B9E2 /* zh-Hans.lproj */; };
+		433202033FAB532276AA82CCE5DBA31A /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EC2755B245D50460BE75E1BEBBF0E80 /* Utils.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		4CE68E6A317FD08257832CB786582F9F /* QBImagePickerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1135F9F07E0A0E6CFA2096018BF1A28B /* QBImagePickerController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		51E0F070AB0A0F92CE8D0F4B4E754F53 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E64EC3F0968EFF0D770CB667AADBEE5 /* Foundation.framework */; };
 		55169F49B0650FF73F0E453BD1C8EE81 /* RSKTouchView.h in Headers */ = {isa = PBXBuildFile; fileRef = A5D5BB79956B982BEDA1D0F4C3CCA83C /* RSKTouchView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		57821183989C73CB20718EA15F83C8F0 /* QBCheckmarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 581BA4EEE502703B99D5666F7CA923CC /* QBCheckmarkView.m */; };
 		592206EF50FFEC448B6EDC972F450B59 /* QBAssetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D452FDC870B24985EC0FE755BAFAB2F /* QBAssetsViewController.m */; };
 		5A9BC76414E435838EB7E93555C40E83 /* QBAssetsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FC65BA45263070074D283B587A98026 /* QBAssetsViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		5EDBD6EDDD7609158BC1F079EA5AA8EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E64EC3F0968EFF0D770CB667AADBEE5 /* Foundation.framework */; };
 		60A169477687BD42A3EEBDDBC7B70293 /* RSKImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 052E4DC881ED837BD21F99C7AB26835B /* RSKImageScrollView.m */; };
 		61271D764A00D6B148FB423EA10A8BB5 /* CGGeometry+RSKImageCropper.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D6D0310CDE2DC3B26FE82596546D9A5 /* CGGeometry+RSKImageCropper.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		62B28E85125B4F9CB8A25F757B469C96 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE11D31CB4389523BDA141A1B25EFC6C /* UIKit.framework */; };
+		62DBAF47FBFEF2D2C0A7DDD73B667026 /* Yoga.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DD35D6F83746B86FBF90B9D681D7466 /* Yoga.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		638261E8133F31B8769205878D2326CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E64EC3F0968EFF0D770CB667AADBEE5 /* Foundation.framework */; };
 		647BE564D8E05EE1D3BF68AF3AF117C4 /* QBAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE27F20D5E68496CBF1B191514AFAB /* QBAssetCell.m */; };
 		6BC71B621697821BF34111FB7678A8CE /* RNImageCropPicker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F405C9E2C8221A5D8C92D487C661179 /* RNImageCropPicker-dummy.m */; };
 		6C3496D863B25994B4E7829B1D763D56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E64EC3F0968EFF0D770CB667AADBEE5 /* Foundation.framework */; };
-		6E9034B3143510E981F5BC7445FFDA80 /* YGLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 29F9BE24CD800B313126E26E1BF0D8D6 /* YGLayout.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		77ACB056EBA1237592D75BAE45FFEFA6 /* yoga-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B03FC1FB058D59E19D68DDEFB790A6A1 /* yoga-dummy.m */; };
+		760CF06F60F3A4E912C6669BB9472D9D /* YGLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 159DA138B66F865808413F6EAC5B6D14 /* YGLayout.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
+		7691639215A7B7407505C7C6D9672F99 /* YGEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC29ABEDB7B1AAE7E2CA8BD40B1565A6 /* YGEnums.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		78807066D5F2B8AE2B2B16E952F2EDD3 /* QBAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 918EDCD59D0D248DA68B4A4531C86566 /* QBAlbumCell.m */; };
 		7C0A035825035FB30B336E437DFCE0B1 /* QBVideoIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BECB09BFF83A130A93EAD447944029 /* QBVideoIndicatorView.m */; };
 		80367F2F549E0233407AED5B00098B15 /* UIImage+RSKImageCropper.h in Headers */ = {isa = PBXBuildFile; fileRef = 4646344C2A08AB7910C594B759A78025 /* UIImage+RSKImageCropper.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -57,36 +56,37 @@
 		8DAF5AB4A29329240349DF885C0B6B61 /* Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = 9387DB241A95C5042B8DB31B544D38CD /* Compression.m */; };
 		91E6010F961EE0514C78FEE4DFD36A01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F06C8F1EA80821F7E6CF061F0C4A139 /* Foundation.framework */; };
 		92AFFE2D4546C32A4A9710A5F9F93F05 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 7463405892C8FD5084E714C3A539C432 /* UIImage+Resize.m */; };
-		93A0E6CA034532C13115CF8F7022C104 /* YGNodePrint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59A2B84803990E7333B6E1BC30AD0FC6 /* YGNodePrint.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		94EE0797E81A73D79F4089071A680AE1 /* UIImage+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A097E61BAFAE097E3BBB678B9F96970 /* UIImage+RSKImageCropper.m */; };
 		951AB99CEA1D5A4FF8C15B7D2819FBB0 /* UIImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 693EE3289645DBCEEACEFB31BB8D476F /* UIImage+Resize.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		966D690450848998849060B35F10B8B0 /* YGLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 159DA138B66F865808413F6EAC5B6D14 /* YGLayout.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		9748AA745ED2231CFA1A3BA0FCA149C7 /* RSKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5036126E9D64B87D57A763AA708363 /* RSKImageCropViewController.m */; };
+		A8598928ECB8A33414064146ED400C44 /* YGNodePrint.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B5FC2F7234CF82C3CAFFE4001E843AE /* YGNodePrint.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		AB43234C5A139A4B86FEC8ECDFBF1AF7 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC6F188683B0BDA1FBB6B0173A4B6D8 /* Photos.framework */; };
 		AC1132D869AD784163DDB8517AA1A055 /* QBImagePickerController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D9348A5A4CD517CABB4F314A070BB /* QBImagePickerController-dummy.m */; };
+		AF2E5DC91DAB73122E81482F120ADC61 /* YGStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 5CB2F619C00CD45BA9266C37630E9996 /* YGStyle.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B15722194FBF1999A9C31592616DBF08 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E64EC3F0968EFF0D770CB667AADBEE5 /* Foundation.framework */; };
 		B333F0A4429E89BF53D9BA8A718C24A1 /* RSKImageCropper.h in Headers */ = {isa = PBXBuildFile; fileRef = 49685AF5ECE8218292E22F531D3EA3C4 /* RSKImageCropper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B373FFE642C3274AA18921EEAFE32D3A /* YGMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = D1AED96B7525EE151D7FC21D86D388AC /* YGMacros.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B618682DFF8A2BA710B7836E88E8DF75 /* QBVideoIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C733847BC4A27FA9E33E8C03BEEF3 /* QBVideoIconView.m */; };
+		B8AA0C066E8B09ABE21BC256B5802BE0 /* YGStyle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 867417284E92452F249A2959EF63F197 /* YGStyle.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		BC7AA9EB6886436816D02361D0419F7D /* ImageCropPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B27EDED807AA88CD88B43ABCAB84E92 /* ImageCropPicker.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BE7617BE6352FE3FED709AA647E065A2 /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F792FDC7C0453D363F4EF3A2EBF0500 /* Utils.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C333CF09D63ABFAD9FE0CF44CFAED1CA /* RSKInternalUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0392A952CCB40ED96C0D315E4BFC55A9 /* RSKInternalUtility.m */; };
 		C7138F234A94328CB8D935C1DCD1E475 /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 5D41CF978F5F9D5E8D46AA27BFF7C420 /* es.lproj */; };
 		C7A6A637A4AB62E61C871D2D4E3DF990 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDB2ACF4248F84861E216BDDB5C11A76 /* QuartzCore.framework */; };
 		CA9E4C00045642F1DA06169F9DC19537 /* QBSlomoIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F974C13C3CC4B885F49626C0322B415 /* QBSlomoIconView.m */; };
-		CDDFCACAD4ABEDCE42A9A9BBDE5E2E92 /* Yoga.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D7E55958FBD04AC870B222B02C638D3 /* Yoga.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
+		CE8883C4498BA6C7A0DA3B8B7D876FEA /* YGNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA3EC9663F86203344421F1E2A3E67F1 /* YGNode.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		D1608099FDDF59B81EB3B365BE5B5C36 /* QBAlbumsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 45CF239F753F2C5C0634943F7461F19D /* QBAlbumsViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		D657E57F3B9D436B3C085F784942A06B /* RSKImageCropViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 625622E333D02E1C8289928265A185D9 /* RSKImageCropViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		D6E687818A5B9D3A3ABA87117ED531C5 /* RSKImageScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = D6C57CD00DB9BEB94D59D6CC35EB5BF2 /* RSKImageScrollView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		DDDEEB10935E85151381BE48685B4199 /* YGEnums.h in Headers */ = {isa = PBXBuildFile; fileRef = 134663A96482BCAFC4185081180FB2D1 /* YGEnums.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E087D6C2777CE9B5120F4FCCAB4A2319 /* YGLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 29F9BE24CD800B313126E26E1BF0D8D6 /* YGLayout.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E1EBFD93810782989FC5F37807DE8E1E /* RSKImageCropViewController+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E5F595ECD67657F9679E0F8E53B5BDF /* RSKImageCropViewController+Protected.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E36E86B7A4734F353D81118507C7D12D /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 4C781C74B903D068B489AB18EC0528A9 /* ja.lproj */; };
-		E5194412A58094D8344A0A4D52998DE0 /* YGNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA3EC9663F86203344421F1E2A3E67F1 /* YGNode.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		E5E3CBD64A2CE56A1A84F95587D17E14 /* RSKInternalUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 37A3EF8219CA59AD4F6E860A2A3FF506 /* RSKInternalUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E6AFDA5EB60CE7A714CC1AD0C88849DC /* Yoga-internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A4C280C29CFDB777807F975160CE65F /* Yoga-internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E9489264F910CEDB3D67C0CF19A0146A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E64EC3F0968EFF0D770CB667AADBEE5 /* Foundation.framework */; };
 		EC24B52CD21560C2DCCEA62001474466 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E64EC3F0968EFF0D770CB667AADBEE5 /* Foundation.framework */; };
-		F09BD02EEE94504D53E726B4526EF0DF /* YGEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC29ABEDB7B1AAE7E2CA8BD40B1565A6 /* YGEnums.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
+		EF04CD82D75AD72840FC78870031D7B8 /* YGNodePrint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59A2B84803990E7333B6E1BC30AD0FC6 /* YGNodePrint.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		F31D30D87C9B75F7DBD5F4D20165B57A /* Pods-colorMe-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC018FE632A752C119F6B9B5E8E49B51 /* Pods-colorMe-dummy.m */; };
 		F7B3925C454D2C63865B25507E1D4463 /* QBImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B83DA722022D2AFF2B9775B0089580D /* QBImagePickerController.m */; };
+		FBF1B875CAD46498E0BFBC0D755245CC /* YGNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 82DD472B9D6EF0492D48634D54DB0EC5 /* YGNode.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FE91029B094901B6E40DB46BBA6D217B /* QBSlomoIconView.h in Headers */ = {isa = PBXBuildFile; fileRef = 86B9F3831BCD27F524D460749601D5F4 /* QBSlomoIconView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 /* End PBXBuildFile section */
 
@@ -130,28 +130,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 778918F9BCC23CB451E62E5B7CC8745E;
+			remoteGlobalIDString = E537F15397ADD6F93FEE7AC1B9AD5DAE;
 			remoteInfo = yoga;
 		};
 		B4C416FD93B298F00F59BE726E235215 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CA6689DE344ADDCF99DC3B2C;
-			remoteInfo = React;
-		};
-		D021C1CCCBF538F30CEA1DA2F0D2BFA2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 778918F9BCC23CB451E62E5B7CC8745E;
-			remoteInfo = yoga;
-		};
-		DC1A907659E1102DE00BB960BBEB0199 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CA6689DE344ADDCF99DC3B2C;
+			remoteGlobalIDString = 3D86EF7DE8346375C138215A;
 			remoteInfo = React;
 		};
 		F4B78A56FAAB6293833822CCCDE91FB7 /* PBXContainerItemProxy */ = {
@@ -736,11 +722,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3CEB7C0E09F5AC6D67FEF451B24000AF /* Frameworks */ = {
+		1959FDF9AC5542F11EBB4FB8389B4D02 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EDBD6EDDD7609158BC1F079EA5AA8EF /* Foundation.framework in Frameworks */,
+				E9489264F910CEDB3D67C0CF19A0146A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1969,22 +1955,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		82460D5F5D5D63975B079943C2A18EA2 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BE7617BE6352FE3FED709AA647E065A2 /* Utils.h in Headers */,
-				DDDEEB10935E85151381BE48685B4199 /* YGEnums.h in Headers */,
-				6E9034B3143510E981F5BC7445FFDA80 /* YGLayout.h in Headers */,
-				B373FFE642C3274AA18921EEAFE32D3A /* YGMacros.h in Headers */,
-				20CB5EEE38C8E7FC667ADDE35145B7CE /* YGNode.h in Headers */,
-				0F169D675B62CE07C329E6616CA42C56 /* YGNodePrint.h in Headers */,
-				1E7F8EE65AE777F05EB72C5702089ED1 /* YGStyle.h in Headers */,
-				1F18BFABED91EC74797405B4291B5CEF /* Yoga-internal.h in Headers */,
-				01473F7B67524FC2C75AF2D4BD1EBED3 /* Yoga.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8380F67541CCC3A15B1827C9F4BF3653 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1992,6 +1962,22 @@
 				3DBD4A8E2B0CE46247E7412BBDD35D7C /* Compression.h in Headers */,
 				BC7AA9EB6886436816D02361D0419F7D /* ImageCropPicker.h in Headers */,
 				951AB99CEA1D5A4FF8C15B7D2819FBB0 /* UIImage+Resize.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B037543B53DFC2F4E2A23FB352BCFD3B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10815CC27FDD487BF99EEBF16C107DB1 /* Utils.h in Headers */,
+				365CD35A3DD1CC392BCA52C87A1C7893 /* YGEnums.h in Headers */,
+				E087D6C2777CE9B5120F4FCCAB4A2319 /* YGLayout.h in Headers */,
+				2AB6262B7AFFCA0E5C03938C206EA199 /* YGMacros.h in Headers */,
+				FBF1B875CAD46498E0BFBC0D755245CC /* YGNode.h in Headers */,
+				A8598928ECB8A33414064146ED400C44 /* YGNodePrint.h in Headers */,
+				AF2E5DC91DAB73122E81482F120ADC61 /* YGStyle.h in Headers */,
+				E6AFDA5EB60CE7A714CC1AD0C88849DC /* Yoga-internal.h in Headers */,
+				62DBAF47FBFEF2D2C0A7DDD73B667026 /* Yoga.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2080,23 +2066,6 @@
 			productReference = B9186FD48117E945F4EFA6B1EF03E4D7 /* libRSKImageCropper.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		778918F9BCC23CB451E62E5B7CC8745E /* yoga */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A23639107149F4D8988C3994FCC6F91E /* Build configuration list for PBXNativeTarget "yoga" */;
-			buildPhases = (
-				3655A7EB74BEA50D340DBBED8EE3219A /* Sources */,
-				3CEB7C0E09F5AC6D67FEF451B24000AF /* Frameworks */,
-				82460D5F5D5D63975B079943C2A18EA2 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = yoga;
-			productName = yoga;
-			productReference = 7FA0045312ACACBCD4B58A3B6AE3BE81 /* libyoga.a */;
-			productType = "com.apple.product-type.library.static";
-		};
 		AE099DFDB65B2391B247991C03462D56 /* RNImageCropPicker */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52648EC90E23702E2BAD5036E0D11DA0 /* Build configuration list for PBXNativeTarget "RNImageCropPicker" */;
@@ -2110,8 +2079,6 @@
 			dependencies = (
 				1BA81FC8AF05CDE499CBC1D6C518CEC0 /* PBXTargetDependency */,
 				C5F0DEC256CD556D42E8E40214CBBF40 /* PBXTargetDependency */,
-				60BC4F6FE7287D5F3AB69DC6584CD4AB /* PBXTargetDependency */,
-				FA540B993B2F6F5134C0CD68EFF3C9F1 /* PBXTargetDependency */,
 			);
 			name = RNImageCropPicker;
 			productName = RNImageCropPicker;
@@ -2155,6 +2122,23 @@
 			name = "Pods-colorMe";
 			productName = "Pods-colorMe";
 			productReference = 15C6FAD8CD5E82EA882FAFE458B77FA0 /* libPods-colorMe.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		E537F15397ADD6F93FEE7AC1B9AD5DAE /* yoga */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C3DEECD6549258075CF451C7D3F9D0F4 /* Build configuration list for PBXNativeTarget "yoga" */;
+			buildPhases = (
+				E4C67170DCFE38C62FC9F57519F24BD5 /* Sources */,
+				1959FDF9AC5542F11EBB4FB8389B4D02 /* Frameworks */,
+				B037543B53DFC2F4E2A23FB352BCFD3B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = yoga;
+			productName = yoga;
+			productReference = 7FA0045312ACACBCD4B58A3B6AE3BE81 /* libyoga.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		F07438CA309DAEB56826B24A8DCA50AE /* Pods-colorMeTests */ = {
@@ -2202,7 +2186,7 @@
 				1585BE81671ECCFA941FDBD5A659AF8B /* QBImagePickerController-QBImagePicker */,
 				AE099DFDB65B2391B247991C03462D56 /* RNImageCropPicker */,
 				4A9FA45C431F269EBA85FA43B0DDE051 /* RSKImageCropper */,
-				778918F9BCC23CB451E62E5B7CC8745E /* yoga */,
+				E537F15397ADD6F93FEE7AC1B9AD5DAE /* yoga */,
 			);
 		};
 /* End PBXProject section */
@@ -2256,21 +2240,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3655A7EB74BEA50D340DBBED8EE3219A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3438F57246582C3064B109AE23C3A97A /* Utils.cpp in Sources */,
-				F09BD02EEE94504D53E726B4526EF0DF /* YGEnums.cpp in Sources */,
-				966D690450848998849060B35F10B8B0 /* YGLayout.cpp in Sources */,
-				E5194412A58094D8344A0A4D52998DE0 /* YGNode.cpp in Sources */,
-				93A0E6CA034532C13115CF8F7022C104 /* YGNodePrint.cpp in Sources */,
-				1E925C2AC70951CA058CFE215D6A7B6B /* YGStyle.cpp in Sources */,
-				77ACB056EBA1237592D75BAE45FFEFA6 /* yoga-dummy.m in Sources */,
-				CDDFCACAD4ABEDCE42A9A9BBDE5E2E92 /* Yoga.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4FDFE4502136DB2FD98534C5D5DDCB78 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2321,6 +2290,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E4C67170DCFE38C62FC9F57519F24BD5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				433202033FAB532276AA82CCE5DBA31A /* Utils.cpp in Sources */,
+				7691639215A7B7407505C7C6D9672F99 /* YGEnums.cpp in Sources */,
+				760CF06F60F3A4E912C6669BB9472D9D /* YGLayout.cpp in Sources */,
+				CE8883C4498BA6C7A0DA3B8B7D876FEA /* YGNode.cpp in Sources */,
+				EF04CD82D75AD72840FC78870031D7B8 /* YGNodePrint.cpp in Sources */,
+				B8AA0C066E8B09ABE21BC256B5802BE0 /* YGStyle.cpp in Sources */,
+				0080799DAE825D85A3E2E0CED1C29B0F /* yoga-dummy.m in Sources */,
+				3E328285A5879500F1F637F4929803E3 /* Yoga.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -2353,11 +2337,6 @@
 			target = AE099DFDB65B2391B247991C03462D56 /* RNImageCropPicker */;
 			targetProxy = 75D75A3EEBE6A4FFD0F474EEDFBE2374 /* PBXContainerItemProxy */;
 		};
-		60BC4F6FE7287D5F3AB69DC6584CD4AB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = React;
-			targetProxy = DC1A907659E1102DE00BB960BBEB0199 /* PBXContainerItemProxy */;
-		};
 		BD72E0E9D76FA53B2A9DC282217AB05C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RSKImageCropper;
@@ -2373,14 +2352,8 @@
 		DC2B4A650053211EB4698058B9C8AE69 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = yoga;
-			target = 778918F9BCC23CB451E62E5B7CC8745E /* yoga */;
+			target = E537F15397ADD6F93FEE7AC1B9AD5DAE /* yoga */;
 			targetProxy = ABB447A4475FC660231C195D734CD12F /* PBXContainerItemProxy */;
-		};
-		FA540B993B2F6F5134C0CD68EFF3C9F1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = yoga;
-			target = 778918F9BCC23CB451E62E5B7CC8745E /* yoga */;
-			targetProxy = D021C1CCCBF538F30CEA1DA2F0D2BFA2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2544,7 +2517,7 @@
 			};
 			name = Release;
 		};
-		40EA14B2283CFF3E0266598D9F816D3A /* Debug */ = {
+		4F619D37F59810A43807A69E3EEF52DE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8880BD8B3F6582DA06C659AB2DB9F63F /* yoga.xcconfig */;
 			buildSettings = {
@@ -2603,28 +2576,6 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
 			name = Debug;
-		};
-		690CD92A4B9B0EF564F0FB22D7E391A2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8880BD8B3F6582DA06C659AB2DB9F63F /* yoga.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/yoga/yoga-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
 		};
 		71A1936A5BB01E6003BAF100A9EF0CD9 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -2768,6 +2719,28 @@
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
+		};
+		AB29ABC8B53057AAFC32EDD701552CD5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8880BD8B3F6582DA06C659AB2DB9F63F /* yoga.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/yoga/yoga-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
 		};
 		CFFD62DBCF70C98E2C7E8CA5FD279985 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -2914,15 +2887,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A23639107149F4D8988C3994FCC6F91E /* Build configuration list for PBXNativeTarget "yoga" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				40EA14B2283CFF3E0266598D9F816D3A /* Debug */,
-				690CD92A4B9B0EF564F0FB22D7E391A2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		AE21CF4F9773CD695E00037EE688014F /* Build configuration list for PBXNativeTarget "QBImagePickerController-QBImagePicker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2937,6 +2901,15 @@
 			buildConfigurations = (
 				0F56F47A582BE058B70698804A3FCFE4 /* Debug */,
 				22946A6BFD9938A77B379CDBC52C1592 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C3DEECD6549258075CF451C7D3F9D0F4 /* Build configuration list for PBXNativeTarget "yoga" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F619D37F59810A43807A69E3EEF52DE /* Debug */,
+				AB29ABC8B53057AAFC32EDD701552CD5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

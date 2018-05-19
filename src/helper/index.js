@@ -75,7 +75,7 @@ export function editName(name) {
 
 export async function uploadImage(file, completeHandler, progressHandler, error) {
     let url = ''
-    await AsyncStorage.getItem('@Usertoken').then((value) => {
+    await AsyncStorage.getItem('@UserToken').then((value) => {
         url = "http://colorme.vn" + "/manageapi/v3/file/upload?token=" + value;
     })
     let formData = new FormData();
@@ -86,6 +86,7 @@ export async function uploadImage(file, completeHandler, progressHandler, error)
     ajax.upload.onprogress = progressHandler;
     ajax.addEventListener("error", error, false);
     ajax.open("POST", url);
+    console.log(url)
     ajax.send(formData);
 }
 export function isEmpty(obj) {

@@ -10,7 +10,6 @@ export function getCourseInformationApi(linkId, base) {
     let url = APIS.API_URL_UNMANAGE+ "colorme.vn/api/v3/v2/course/" + linkId + "/class?base_id="+base;
     return axios.get(url);
 }
-
 export async function learnRegisterApi(class_id) {
     let url = "";
     await AsyncStorage.getItem('@UserToken').then((value) => {

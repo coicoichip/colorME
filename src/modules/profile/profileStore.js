@@ -25,9 +25,11 @@ export default  getProfileStore = new class GetProfileStore  {
     updateProfile(user){
        this.isLoadingUpdate = true;
        updateProfileApi(user).then((res)=> {
+           this.isLoadingUpdate = false;
            Alert.alert("Thông báo", "Cập nhật tài khoản thành công")
        })
        .catch(err => {
+           this.isLoadingUpdate = false;
            Alert.alert("Thông báo", "Cập nhật thất bại, mời bạn kiểm tra đường truyền")
        })
     }
