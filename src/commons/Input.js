@@ -39,7 +39,7 @@ class InputCommon extends Component {
                     
                     autoCorrect={false}
                     onSubmitEditing = {this.props.onSubmitEditing ? this.props.onSubmitEditing : () => {}}
-                    value={value || this.props.value}
+                    value={this.props.value}
                     onChangeText={this.onChangeText}
                     underlineColorAndroid='rgba(0,0,0,0)'
                     style={{

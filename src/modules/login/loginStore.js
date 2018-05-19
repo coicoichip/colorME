@@ -72,7 +72,7 @@ export default loginStore = new class LoginStore {
                  email : email,
                  password : password
              }
-             console.log(username)
+             
         }
         catch (err){}
     }
