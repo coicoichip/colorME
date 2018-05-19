@@ -4,10 +4,10 @@ import {AsyncStorage} from "react-native";
 
 export async function userProfileApi(){
   let url = "";
-  await AsyncStorage.getItem('@username').then((value)=> {
-    console.log(value)
+  await AsyncStorage.getItem('username').then((value)=> {
       url = APIS.COLOR_ME + "/user/" + value + "/profile"
   })
+  console.log(url)
   return axios.get(url)
 }
 export async function updateProfileApi(user){

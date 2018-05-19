@@ -2,7 +2,7 @@ import React from "react";
 import { View, TouchableOpacity, Image, StyleSheet, Text } from "react-native";
 import { observer } from "mobx-react";
 import { observable } from "mobx"
-import getProfileStore from "./profileStore";
+import getProfileStore from "./profileStore"
 import { uploadImage, formatImageLink } from "../../helper/index";
 import ImagePicker from 'react-native-image-crop-picker';
 import PercentageCircle from 'react-native-percentage-circle';
@@ -19,7 +19,7 @@ class Avatar extends React.Component {
     }
     completeHandler(event) {
         const data = JSON.parse(event.target.responseText);
-        getProfileStore.user.avatar_url = data.url
+        getProfileStore.updateUser.avatar_url = data.url
         this.percent = 0;
         this.uploaded_image_quantity = 1
     }
@@ -62,7 +62,7 @@ class Avatar extends React.Component {
                 :
                 <TouchableOpacity style={{ alignItems: 'center' }} activeOpacity={0.8} onPress={() => this.handleFileUpload()}>
                     <View>
-                        <Image source={{ uri: formatImageLink(getProfileStore.user.avatar_url) }} style={{ width: 90, height: 90, borderRadius: 45 }} />
+                        <Image source={{ uri: formatImageLink(getProfileStore.updateUser.avatar_url) }} style={{ width: 90, height: 90, borderRadius: 45 }} />
                     </View>
                     <Text style={{ marginTop: 15, fontSize: 13 }}>Thay đổi ảnh đại diện </Text>
                 </TouchableOpacity>

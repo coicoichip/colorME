@@ -5,12 +5,14 @@ import Header from "../../commons/Header";
 import styles from "../../styles/styles";
 import Loading from '../../commons/Loading';
 import { observer } from "mobx-react";
-import getProfileStore from "./profileStore";
 import { InputCommon } from '../../commons';
 import { formatImageLink } from "../../helper/index"
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
 import Avatar from "./upLoadAvatar"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import getProfileStore from "./profileStore";
+import { observable } from "mobx";
+// import loginStore from "../login/loginStore";
 @observer
 class ProfileContainer extends React.Component {
   constructor() {
@@ -27,10 +29,9 @@ class ProfileContainer extends React.Component {
   }
   componentWillMount() {
     getProfileStore.getProfile();
-
   }
   onChangeData = field => value => {
-    getProfileStore.user[field] = value;
+    getProfileStore.updateUser[field] = value;
   };
   chooseCategory(index) {
     this.setState({ category: index })
@@ -79,7 +80,7 @@ class ProfileContainer extends React.Component {
     )
   }
   renderProfile() {
-    const { user } = getProfileStore;
+    console.log(this.user, getProfileStore.user)
     return (
       <Content showsVerticalScrollIndicator = {false}>
         <View style={{ flex: 1, marginTop: 10 }}>
@@ -94,14 +95,14 @@ class ProfileContainer extends React.Component {
               <InputCommon
                 returnKeyType={'next'}
                 size={styless.input}
-                value={getProfileStore.user.name}
+                value={getProfileStore.updateUser.name}
                 onChangeText={this.onChangeData('name')}
               />
               <View style={{ marginTop: 10 }}>
                 <InputCommon
                   returnKeyType={'go'}
                   size={styless.input}
-                  value={getProfileStore.user.phone}
+                  value={getProfileStore.updateUser.phone}
                   onChangeText={this.onChangeData('phone')}
                 />
               </View>
@@ -111,8 +112,8 @@ class ProfileContainer extends React.Component {
                   size={styless.input}
                   placeholderTextColor={'rgb(222, 222,222)'}
                   placeholder={"Trường học"}
-                  value={""}
-                  onChangeText={this.onChangeData('phone')}
+                  value={getProfileStore.updateUser.university}
+                  onChangeText={this.onChangeData('university')}
                 />
               </View>
               <View style={{ marginTop: 10 }}>
@@ -121,18 +122,8 @@ class ProfileContainer extends React.Component {
                   size={styless.input}
                   placeholderTextColor={'rgb(222, 222,222)'}
                   placeholder={"Công ty"}
-                  value={""}
-                  onChangeText={this.onChangeData('phone')}
-                />
-              </View>
-              <View style={{ marginTop: 10 }}>
-                <InputCommon
-                  returnKeyType={'go'}
-                  size={styless.input}
-                  placeholderTextColor={'rgb(222, 222,222)'}
-                  placeholder={"Công ty"}
-                  value={""}
-                  onChangeText={this.onChangeData('phone')}
+                  value={getProfileStore.updateUser.work}
+                  onChangeText={this.onChangeData('work')}
                 />
               </View>
               <View style={{ marginTop: 10 }}>
@@ -141,8 +132,8 @@ class ProfileContainer extends React.Component {
                   size={styless.input}
                   placeholderTextColor={'rgb(222, 222,222)'}
                   placeholder={"Ngày sinh"}
-                  value={""}
-                  onChangeText={this.onChangeData('phone')}
+                  value={getProfileStore.updateUser.dob}
+                  onChangeText={this.onChangeData('dob')}
                 />
               </View>
 
@@ -151,7 +142,7 @@ class ProfileContainer extends React.Component {
             <TouchableOpacity style={[{
               justifyContent: 'center', marginTop: 20
             }, styless.buttonRegister]} 
-            onPress = {() => getProfileStore.updateProfile(getProfileStore.user)}
+            onPress = {() => getProfileStore.updateProfile(getProfileStore.updateUser)}
             >
 
              {getProfileStore.isLoadingUpdate ? 
