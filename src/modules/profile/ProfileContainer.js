@@ -9,7 +9,7 @@ import getProfileStore from "./profileStore";
 import { InputCommon } from '../../commons';
 import { formatImageLink } from "../../helper/index"
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
-
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 @observer
 class ProfileContainer extends React.Component {
   constructor() {
@@ -80,35 +80,86 @@ class ProfileContainer extends React.Component {
   renderProfile() {
     const { user } = getProfileStore;
     return (
+      <Content>
+        <View style={{ flex: 1, marginTop: 10 }}>
+          <TouchableOpacity style={{ alignItems: 'center' }} activeOpacity={0.8}>
+            <View >
+              <Image source={{ uri: formatImageLink(getProfileStore.user.avatar_url) }} style={{ width: 90, height: 90, borderRadius: 45 }} />
+            </View>
+            <Text style={{ marginTop: 15, fontSize: 13 }}>Thay đổi ảnh đại diện </Text>
+          </TouchableOpacity>
+          <KeyboardAwareScrollView
+            style={{ flex: 1, backgroundColor: COLORS.LIGHT_COLOR, marginTop: 30, paddingHorizontal: 20 }}
+            enableOnAndroid={true}
+            scrollEnabled={false}
+            extraHeight={100}
+          >
+            <View style={styless.contentForm}>
+              <InputCommon
+                returnKeyType={'next'}
+                size={styless.input}
+                value={getProfileStore.user.name}
+                onChangeText={this.onChangeData('name')}
+              />
+              <View style={{ marginTop: 10 }}>
+                <InputCommon
+                  returnKeyType={'go'}
+                  size={styless.input}
+                  value={getProfileStore.user.phone}
+                  onChangeText={this.onChangeData('phone')}
+                />
+              </View>
+              <View style={{ marginTop: 10 }}>
+                <InputCommon
+                  returnKeyType={'go'}
+                  size={styless.input}
+                  placeholderTextColor={'rgb(222, 222,222)'}
+                  placeholder={"Trường học"}
+                  value={""}
+                  onChangeText={this.onChangeData('phone')}
+                />
+              </View>
+              <View style={{ marginTop: 10 }}>
+                <InputCommon
+                  returnKeyType={'go'}
+                  size={styless.input}
+                  placeholderTextColor={'rgb(222, 222,222)'}
+                  placeholder={"Công ty"}
+                  value={""}
+                  onChangeText={this.onChangeData('phone')}
+                />
+              </View>
+              <View style={{ marginTop: 10 }}>
+                <InputCommon
+                  returnKeyType={'go'}
+                  size={styless.input}
+                  placeholderTextColor={'rgb(222, 222,222)'}
+                  placeholder={"Công ty"}
+                  value={""}
+                  onChangeText={this.onChangeData('phone')}
+                />
+              </View>
+              <View style={{ marginTop: 10 }}>
+                <InputCommon
+                  returnKeyType={'go'}
+                  size={styless.input}
+                  placeholderTextColor={'rgb(222, 222,222)'}
+                  placeholder={"Ngày sinh"}
+                  value={""}
+                  onChangeText={this.onChangeData('phone')}
+                />
+              </View>
 
-      <View style={[styles.paddingLeftRight, { flex: 1, marginTop: 10 }]}>
-        <TouchableOpacity style={{ alignItems: 'center' }} activeOpacity={0.8}>
-          <View >
-            <Image source={{ uri: formatImageLink(getProfileStore.user.avatar_url) }} style={{ width: 100, height: 100, borderRadius: 50 }} />
-          </View>
-          <Text style={{ marginTop: 15 }}>Thay đổi ảnh đại diện </Text>
-        </TouchableOpacity>
-        <View style={styless.contentForm}>
-            <InputCommon
-              returnKeyType={'next'}
-              size={styless.input}
-              value={getProfileStore.user.name}
-              onChangeText={this.onChangeData('name')}
-            />
-
-          <InputCommon
-            returnKeyType={'go'}
-            size={styless.input}
-            value={getProfileStore.user.phone}
-            onChangeText={this.onChangeData('phone')}
-          />
-          <Item>
-              <Input placeholder="Username" />
-            </Item>
-          
-          <View />
+              <View />
+            </View>
+            <View style={[{
+              justifyContent: 'center', marginTop: 20
+            }, styless.buttonRegister]}>
+              <Text style={[styles.textDescriptionDark, {fontWeight: 'bold', color:'white'}]}>Cập nhật</Text>
+            </View>
+          </KeyboardAwareScrollView>
         </View>
-      </View>
+      </Content>
     )
 
   }
@@ -175,7 +226,17 @@ const styless = StyleSheet.create({
     backgroundColor: COLORS.LIGHT_COLOR,
   },
   input: {
-    width: SIZES.DEVICE_WIDTH_SIZE * 0.8,
-  }
+    width: SIZES.DEVICE_WIDTH_SIZE - 40,
+    height: 35
+  },
+  buttonRegister: {
+    ...wrapperCenter,
+    backgroundColor: 'rgb(0, 240, 53)',
+    padding: 12,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 3,
+
+},
 
 });

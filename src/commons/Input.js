@@ -17,7 +17,7 @@ class InputCommon extends Component {
 
     render() {
         const { value } = this.state;
-        const { label, size } = this.props;
+        const { label, size, fontsize } = this.props;
         return (
             <Item stackedLabel style={size}>
                 {
@@ -44,7 +44,7 @@ class InputCommon extends Component {
                     underlineColorAndroid='rgba(0,0,0,0)'
                     style={{
                         fontFamily: 'Roboto-Regular',
-                        fontSize : SIZES.SUBTITLE_SIZE
+                        fontSize : fontsize ? fontsize : SIZES.SUBTITLE_SIZE,
                     }}
                 />
             </Item>
