@@ -48,6 +48,19 @@ const Profile = StackNavigator(
         MyProfile: { screen: ProfileContainer },
     }, { initialRouteName: 'MyProfile', headerMode: 'none', mode: 'modal' }
 );
+const Resource = StackNavigator(
+    {
+        BlogContainer : {screen : BlogContainer},
+        DetailBlog : {screen : DetailBlogContainer},
+    }, {headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'resource', title : "TÀI NGUYÊN"}}
+
+);
+const Promotion = StackNavigator(
+    {
+        BlogContainer : {screen : BlogContainer},
+        DetailBlog : {screen : DetailBlogContainer},
+    }, {headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'promotion', title : "KHUYẾN MÃI"}}
+)
 
 const Tab = TabNavigator({
     Course: {
@@ -71,8 +84,8 @@ const Tab = TabNavigator({
 
         }
     },
-    SharingExperiences: {
-        screen: SharingExperiencesContainer,
+    Resource: {
+        screen: Resource,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
                 let source;
@@ -93,7 +106,6 @@ const Tab = TabNavigator({
     },
     Blogs: {
         screen: Blog,
-        
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
                 let source;
@@ -171,13 +183,7 @@ const Tab = TabNavigator({
         }
 
     });
-    const Resource = StackNavigator(
-        {
-            BlogContainer : {screen : BlogContainer},
-            DetailBlog : {screen : DetailBlogContainer},
-        }, {headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'resource', title : "TÀI NGUYÊN"}}
-    
-    );
+   
 const Drawer = DrawerNavigator(
   {
     OverView: {
@@ -186,10 +192,10 @@ const Drawer = DrawerNavigator(
         title: "Tổng Quan"
       })
     },
-    Resource: {
-      screen: Resource,
+    Promotion: {
+      screen: Promotion,
       navigationOptions: ({ navigation }) => ({
-        title: "Tài nguyên"
+        title: "Khuyến mãi"
       })
     },
     Base: {
