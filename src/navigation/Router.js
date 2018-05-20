@@ -21,7 +21,8 @@ import DrawerContainer from '../modules/drawer/DrawerContainer';
 import BlogContainer from '../modules/blogs/BlogContainer';
 import ListBlog from "../modules/blogs/ListBlog";
 import ScheduleContainer from "../modules/schedule/ScheduleContainer";
-import SplashContainer from "../modules/splash/SplashContainer"
+import SplashContainer from "../modules/splash/SplashContainer";
+import ResourceContainer from "../modules/blogs/ResourceContainer";
 import styles from '../styles/styles';
 const StackNavigatorStyle = {
     navigationOptions: {
@@ -40,7 +41,7 @@ const Blog = StackNavigator(
         BlogContainer : {screen : BlogContainer},
         DetailBlog : {screen : DetailBlogContainer},
         ListBlog : {screen : ListBlog}
-    }, {initialRouteName:'BlogContainer', headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'blog'}}
+    }, { headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'blog'}}
 
 );
 const Profile = StackNavigator(
@@ -50,7 +51,7 @@ const Profile = StackNavigator(
 );
 const Resource = StackNavigator(
     {
-        BlogContainer : {screen : BlogContainer},
+        ResourceContainer : {screen : ResourceContainer},
         DetailBlog : {screen : DetailBlogContainer},
     }, {headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'resource', title : "TÀI NGUYÊN"}}
 
