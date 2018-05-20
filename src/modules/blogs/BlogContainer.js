@@ -77,9 +77,6 @@ class BlogContainer extends Component {
                             }
                         />
                     }
-                    ListHeaderComponent={
-                        <ListTag top_tags = {blogStore.top_tags} changeTag = {this.changeTag} tag = {this.tag}/>
-                    }
                     renderItem={({ item }) =>
                         <ListBlog item={item} navigation={this.props.navigation} kind = {params.kind}/>
                     }
@@ -104,6 +101,14 @@ class BlogContainer extends Component {
         return (
             <Container style={styles.wrapperContainer}>
                 <Header title={params.title ? params.title : STRINGS.NEWS_TITLE_HEADER} navigate={navigate} />
+                {
+                    blogStore.top_tags.length !== 0 ?
+                    
+                   <ListTag top_tags = {blogStore.top_tags} changeTag = {this.changeTag} tag = {this.tag}/>
+                
+                    :
+                    null
+                }
                 <View style={{ flex: 1}}>
                     {this.renderSubject()}
                 </View>
