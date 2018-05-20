@@ -23,7 +23,7 @@ class ListBlog extends Component {
                 <TouchableOpacity activeOpacity={0.8} style={{marginBottom: 30, flex:1, width: SIZES.DEVICE_WIDTH_SIZE}}
                     onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind : this.props.kind})}>
                     <View style={{flex: 1}}>
-                        <Image source={{ uri: formatImageLink(item.thumb_url) }} style={{width: SIZES.DEVICE_WIDTH_SIZE, height: '100%'}} resizeMode={"contain"}/>
+                        <Image source={{ uri: formatImageLink(item.thumb_url) }} style={{width: SIZES.DEVICE_WIDTH_SIZE, height: 300}} resizeMode={"contain"}/>
                         <Text style={[styles.categoryInImage, styles.textDescriptionLightBold]}>
                             {item.category ? item.category : 'Category'}
                         </Text>
