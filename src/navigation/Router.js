@@ -85,7 +85,7 @@ const Tab = TabNavigator({
 
         }
     },
-    Resource: {
+    Resources: {
         screen: Resource,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
