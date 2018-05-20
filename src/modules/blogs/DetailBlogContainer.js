@@ -51,7 +51,7 @@ class DetailBlogContainer extends Component {
                     <View style={{
                         alignItems: 'center', justifyContent: 'flex-start', flexDirection: "row"
                     }}>
-                        <Text style={[styles.textDescriptionDark, styles.buttonRegister, styles.textDownload]}>Tải ngay</Text>
+                        <Text style={[styles.textDescriptionDark, styles.buttonRegister, styles.textDownload, {borderRadius: 20}]}>Tải ngay</Text>
                         <IconDefault
                             name={'Feather|arrow-right'}
                             style={{ fontWeight: 'bold', marginLeft: -50 }}

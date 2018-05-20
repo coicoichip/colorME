@@ -38,6 +38,9 @@ class ProfileContainer extends React.Component {
   };
   chooseCategory(index) {
     this.setState({ category: index })
+    if(index == 0) {
+      
+    }
     this.refs.__data.scrollTo({ x: SIZES.DEVICE_WIDTH_SIZE * index, y: 0, animated: false })
   }
   __renderCategory = () => {
@@ -66,6 +69,9 @@ class ProfileContainer extends React.Component {
     )
   }
   __renderData() {
+    // if (getProfileStore.progress == 0)
+    //   return (<Loading />)
+    // if (getProfileStore.progress > 0)
     return (
       <ScrollView
         style={{ flex: 1 }}
@@ -91,10 +97,16 @@ class ProfileContainer extends React.Component {
     return (
       <View style={styles.wrapperContainer}>
         <Header title={STRINGS.PROFILE_TITLE_HEADER} navigate={navigate} />
-        {this.__renderCategory()}
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          {this.__renderData()}
-        </View>
+        {/* {getProfileStore.isLoading == true ?
+          <Loading />
+          : */}
+          <View style={{flex: 1}}>
+            {this.__renderCategory()}
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+              {this.__renderData()}
+            </View>
+          </View>
+        
       </View>
     );
   }

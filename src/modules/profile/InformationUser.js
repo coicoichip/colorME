@@ -13,8 +13,14 @@ import getProfileStore from "./profileStore";
 import { observable } from "mobx";
 @observer
 class InformationUser extends React.Component {
+    componentWillMount(){
+        getProfileStore.getProfile();
+    }
     render() {
         return (
+            getProfileStore.progress == 0 ?
+            " "
+            :
             <Content style={{marginTop: 10}}>
                 <Avatar />
                 <KeyboardAwareScrollView
