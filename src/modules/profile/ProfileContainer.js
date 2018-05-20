@@ -155,7 +155,7 @@ class ProfileContainer extends React.Component {
             <View style={[{
               justifyContent: 'center', marginTop: 20
             }, styless.buttonRegister]}>
-              <Text style={[styles.textDescriptionDark, {fontWeight: 'bold', color:'white'}]}>Cập nhật</Text>
+              <Text style={[styles.textDescriptionDark, { fontWeight: 'bold', color: 'white' }]}>Cập nhật</Text>
             </View>
           </KeyboardAwareScrollView>
         </View>
@@ -237,6 +237,6 @@ const styless = StyleSheet.create({
     paddingRight: 15,
     borderRadius: 3,
 
-},
+  },
 
 });
