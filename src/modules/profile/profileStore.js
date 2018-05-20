@@ -7,6 +7,7 @@ export default  getProfileStore = new class GetProfileStore  {
     @observable isloading = false;
     @observable error = false;
     @observable isLoadingUpdate = false;
+    @observable progress = [];
 
     @action 
     getProfile(){
@@ -14,6 +15,7 @@ export default  getProfileStore = new class GetProfileStore  {
         userProfileApi().then(res => {
             this.isLoading = false;
             this.user= res.data.data; 
+            this.progress = res.data.data.progress;
             this.updateUser = res.data.data;
             this.error= false;
             
