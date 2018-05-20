@@ -26,13 +26,13 @@ export default resourceStore = new class ResourceStore {
         blogApi(kind,page, tag).then(res => {
             this.total_pages = res.data.paginator.total_pages;
             this.current_page = res.data.paginator.current_page;
-            this.resources = res.data.paginator.current_page == 1 ? res.data.blogs : [...this.blogs, ...res.data.blogs];
+            this.resources = res.data.paginator.current_page == 1 ? res.data.blogs : [...this.resources, ...res.data.blogs];
             this.top_tags = res.data.top_tags
             this.isLoading = false;
             this.isSearch = false;
         })
         .catch(err => {
-            console.log(err)
+            
             this.error = true;
             this.isLoading = false;
             this.isSearch = false;

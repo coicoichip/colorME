@@ -34,9 +34,9 @@ class ResourceContainer extends Component {
         resourceStrore.getBlog(params.kind, 1, this.tag);
     }
     getMoreBlogs() {
-        const {params} = this.props.navigation.state;
-        if (resourceStrore.current_page < resourceStrore.total_pages && resourceStrore.isLoading == false) {
-            resourceStrore.getBlog(params.kind,resourceStrore.current_page + 1, this.tag)
+        const {params} = this.props.navigation.state; 
+        if (resourceStore.current_page < resourceStore.total_pages && resourceStore.isLoading == false) {
+            resourceStore.getBlog(params.kind,resourceStrore.current_page + 1, this.tag)
         }
     }
     loadMore() {
@@ -48,36 +48,37 @@ class ResourceContainer extends Component {
     changeTag(item){
         this.tag = item.tag;
         const {params} = this.props.navigation.state;
-        setTimeout(() => resourceStrore.getBlog(params.kind,1, this.tag, "search"), 200)
+        setTimeout(() => resourceStore.getBlog(params.kind,1, this.tag, "search"), 200)
     }
     renderSubject() {
         const {params} = this.props.navigation.state;
-        if (resourceStrore.resources.length == 0|| resourceStrore.isSearch) {
+        const {resources, isSearch, error,isLoading, top_tags} = resourceStrore
+        if (resources.length == 0|| isSearch) {
             return <Loading />
         }
-        if (resourceStrore.error) {
+        if (error) {
             return (
                 <Error onPress={() => this.UNSAFE_componentWillMount()} />
             )
         }
-        if (resourceStrore.resources.length !== 0) {
+        if (resources.length !== 0) {
             return (
                 <FlatList
                     ref = {'listBlog'}
                     keyExtractor={item => item.id + ''}
                     showsVerticalScrollIndicator={false}
-                    data={resourceStrore.resources}
+                    data={resources}
                     onEndReached={() => this.getMoreBlogs()}
                     refreshControl={
                         <RefreshControl
-                            refreshing={resourceStrore.isLoading && resourceStrore.resources.length == 0}
+                            refreshing={isLoading && resources.length == 0}
                             onRefresh={
                                 () => this.UNSAFE_componentWillMount()
                             }
                         />
                     }
                     ListHeaderComponent={
-                        <ListTag top_tags = {resourceStrore.top_tags} changeTag = {this.changeTag} tag = {this.tag}/>
+                        <ListTag top_tags = {top_tags} changeTag = {this.changeTag} tag = {this.tag}/>
                     }
                     renderItem={({ item }) =>
                         <ListBlog item={item} navigation={this.props.navigation} kind = {params.kind}/>
@@ -88,7 +89,7 @@ class ResourceContainer extends Component {
                 />
             )
         }
-        if (resourceStrore.resources.length == 0 && resourceStrore.isLoading == false && resourceStrore.error == false) {
+        if (resources.length == 0 && isLoading == false && error == false) {
             return (
                 <TextNullData text={NULL_DATA} />
             )
