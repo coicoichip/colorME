@@ -13,8 +13,8 @@ export default  getProfileStore = new class GetProfileStore  {
         this.isLoading = true;
         userProfileApi().then(res => {
             this.isLoading = false;
-            this.user= res.data.user; 
-            this.updateUser = res.data.user;
+            this.user= res.data.data; 
+            this.updateUser = res.data.data;
             this.error= false;
             
         })
