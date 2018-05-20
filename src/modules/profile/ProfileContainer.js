@@ -1,15 +1,19 @@
 import React from "react";
-import { View, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { View, TouchableOpacity, Image, StyleSheet, ActivityIndicator, ScrollView } from "react-native";
 import { Button, Text, Container, Item, Content, Input, Form } from "native-base";
 import Header from "../../commons/Header";
 import styles from "../../styles/styles";
 import Loading from '../../commons/Loading';
 import { observer } from "mobx-react";
-import getProfileStore from "./profileStore";
 import { InputCommon } from '../../commons';
 import { formatImageLink } from "../../helper/index"
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
+import Avatar from "./upLoadAvatar"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import getProfileStore from "./profileStore";
+import InformationUser from "./InformationUser";
+import { observable } from "mobx";
+// import loginStore from "../login/loginStore";
 @observer
 class ProfileContainer extends React.Component {
   constructor() {
@@ -26,31 +30,13 @@ class ProfileContainer extends React.Component {
   }
   componentWillMount() {
     getProfileStore.getProfile();
-
   }
   onChangeData = field => value => {
-    getProfileStore.user[field] = value;
+    getProfileStore.updateUser[field] = value;
   };
   chooseCategory(index) {
     this.setState({ category: index })
-    if (index === 0) {
-      this.setState({ isLoading: true })
-      setTimeout(() => this.setState({ isLoading: false }), 500)
-      // coursesStore.data = coursesStore.subjects.filter(e =>
-      //   e.categories[0].id === 1
-      // )
-    }
-    if (index === 1) {
-      this.setState({ isLoading: true })
-      setTimeout(() => this.setState({ isLoading: false }), 500)
-    }
-    else {
-      this.setState({ isLoading: true })
-      setTimeout(() => this.setState({ isLoading: false }), 500)
-      // coursesStore.data = coursesStore.subjects.filter(e =>
-      //   e.categories[0].id === 2
-      // )
-    }
+    this.refs.__data.scrollTo({ x: SIZES.DEVICE_WIDTH_SIZE * index, y: 0, animated: false })
   }
   __renderCategory = () => {
     return (
@@ -77,101 +63,33 @@ class ProfileContainer extends React.Component {
       </View>
     )
   }
-  renderProfile() {
-    const { user } = getProfileStore;
+  __renderData() {
     return (
-      <Content>
-        <View style={{ flex: 1, marginTop: 10 }}>
-          <TouchableOpacity style={{ alignItems: 'center' }} activeOpacity={0.8}>
-            <View >
-              <Image source={{ uri: formatImageLink(getProfileStore.user.avatar_url) }} style={{ width: 90, height: 90, borderRadius: 45 }} />
-            </View>
-            <Text style={{ marginTop: 15, fontSize: 13 }}>Thay đổi ảnh đại diện </Text>
-          </TouchableOpacity>
-          <KeyboardAwareScrollView
-            style={{ flex: 1, backgroundColor: COLORS.LIGHT_COLOR, marginTop: 30, paddingHorizontal: 20 }}
-            enableOnAndroid={true}
-            scrollEnabled={false}
-            extraHeight={100}
-          >
-            <View style={styless.contentForm}>
-              <InputCommon
-                returnKeyType={'next'}
-                size={styless.input}
-                value={getProfileStore.user.name}
-                onChangeText={this.onChangeData('name')}
-              />
-              <View style={{ marginTop: 10 }}>
-                <InputCommon
-                  returnKeyType={'go'}
-                  size={styless.input}
-                  value={getProfileStore.user.phone}
-                  onChangeText={this.onChangeData('phone')}
-                />
-              </View>
-              <View style={{ marginTop: 10 }}>
-                <InputCommon
-                  returnKeyType={'go'}
-                  size={styless.input}
-                  placeholderTextColor={'rgb(222, 222,222)'}
-                  placeholder={"Trường học"}
-                  value={""}
-                  onChangeText={this.onChangeData('phone')}
-                />
-              </View>
-              <View style={{ marginTop: 10 }}>
-                <InputCommon
-                  returnKeyType={'go'}
-                  size={styless.input}
-                  placeholderTextColor={'rgb(222, 222,222)'}
-                  placeholder={"Công ty"}
-                  value={""}
-                  onChangeText={this.onChangeData('phone')}
-                />
-              </View>
-              <View style={{ marginTop: 10 }}>
-                <InputCommon
-                  returnKeyType={'go'}
-                  size={styless.input}
-                  placeholderTextColor={'rgb(222, 222,222)'}
-                  placeholder={"Công ty"}
-                  value={""}
-                  onChangeText={this.onChangeData('phone')}
-                />
-              </View>
-              <View style={{ marginTop: 10 }}>
-                <InputCommon
-                  returnKeyType={'go'}
-                  size={styless.input}
-                  placeholderTextColor={'rgb(222, 222,222)'}
-                  placeholder={"Ngày sinh"}
-                  value={""}
-                  onChangeText={this.onChangeData('phone')}
-                />
-              </View>
-
-              <View />
-            </View>
-            <View style={[{
-              justifyContent: 'center', marginTop: 20
-            }, styless.buttonRegister]}>
-              <Text style={[styles.textDescriptionDark, { fontWeight: 'bold', color: 'white' }]}>Cập nhật</Text>
-            </View>
-          </KeyboardAwareScrollView>
+      <ScrollView
+        style={{ flex: 1 }}
+        horizontal={true}
+        ref='__data'
+        scrollEnabled={false}>
+        <View style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
         </View>
-      </Content>
+        <View style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
+          <InformationUser onChangeData = { this.onChangeData} />
+        </View>
+        <View style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
+        </View>
+      </ScrollView>
     )
 
   }
   render() {
-    console.log(formatImageLink(getProfileStore.user.avatar_url));
+
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.wrapperContainer}>
         <Header title={STRINGS.PROFILE_TITLE_HEADER} navigate={navigate} />
         {this.__renderCategory()}
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 10 }}>
-          {this.renderProfile()}
+          {this.__renderData()}
         </View>
       </View>
     );

@@ -38,7 +38,7 @@ export default loginStore = new class LoginStore {
             this.status = res.status;
             this.loginStatus = true;
             AsyncStorage.setItem('@UserToken', res.data.token);
-            AsyncStorage.setItem('@username', res.data.user.username)
+            AsyncStorage.setItem('username', res.data.user.username)
         })
             .catch(err => {
                 this.isLoading = false;
@@ -67,6 +67,7 @@ export default loginStore = new class LoginStore {
         try{
              const email = await AsyncStorage.getItem('email');
              const password = await AsyncStorage.getItem('password')
+             const username = await AsyncStorage.getItem('@usermame')
              this.login = {
                  email : email,
                  password : password
