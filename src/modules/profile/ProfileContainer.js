@@ -92,7 +92,7 @@ class ProfileContainer extends React.Component {
       <View style={styles.wrapperContainer}>
         <Header title={STRINGS.PROFILE_TITLE_HEADER} navigate={navigate} />
         {this.__renderCategory()}
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 10 }}>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           {this.__renderData()}
         </View>
       </View>

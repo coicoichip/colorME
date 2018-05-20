@@ -15,7 +15,7 @@ import { observable } from "mobx";
 class InformationUser extends React.Component {
     render() {
         return (
-            <Content>
+            <Content style={{marginTop: 10}}>
                 <Avatar />
                 <KeyboardAwareScrollView
                     style={{ flex: 1, backgroundColor: COLORS.LIGHT_COLOR, marginTop: 30, paddingHorizontal: 20 }}

@@ -1,19 +1,30 @@
 import React, { Component } from "react";
-import { View, TouchableOpacity, Image, StyleSheet, ActivityIndicator, ScrollView, Text } from "react-native";
+import { View, TouchableOpacity, Image, StyleSheet, ActivityIndicator, ScrollView, Text, FlatList } from "react-native";
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
+import { observer } from "mobx-react";
+import { formatImageLink } from "../../helper/index";
+import getProfileStore from "./profileStore";
+import ListAttendence from "./ListItem/ListAttendence";
+
+@observer
 class AttendanceContainer extends Component {
     constructor() {
         super();
         this.state = {
-            arr :[1],
         }
     }
     render() {
         return (
-            <View style={styles.wrapperCenter}>
-                <Text>
-                    Day la trang diem danh
-                </Text>
+            <View style={{flex: 1}}>
+                <FlatList
+                    keyExtractor={item => item.id + ''}
+                    showsVerticalScrollIndicator={false}
+                    data={getProfileStore.progress}
+                    renderItem={({ item, index }) =>
+                    
+                        <ListAttendence index = {index} item={item} navigation={this.props.navigation} how_know = {getProfileStore.user.registers[index].student.how_know} />
+                    }
+                />
             </View>
         )
     }
