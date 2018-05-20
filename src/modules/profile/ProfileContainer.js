@@ -12,6 +12,8 @@ import Avatar from "./upLoadAvatar"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import getProfileStore from "./profileStore";
 import InformationUser from "./InformationUser";
+import ProgressContainer from "./ProgressContainer";
+import AttendanceContainer from "./AttendanceContainer";
 import { observable } from "mobx";
 // import loginStore from "../login/loginStore";
 @observer
@@ -71,11 +73,13 @@ class ProfileContainer extends React.Component {
         ref='__data'
         scrollEnabled={false}>
         <View style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
+          <ProgressContainer />
         </View>
         <View style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
-          <InformationUser onChangeData = { this.onChangeData} />
+          <InformationUser onChangeData={this.onChangeData} />
         </View>
         <View style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
+          <AttendanceContainer />
         </View>
       </ScrollView>
     )
