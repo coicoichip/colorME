@@ -22,7 +22,7 @@ class ProfileContainer extends React.Component {
     super();
     this.state = {
       isLoading: false,
-      category: 0,
+      category: 1,
       categogyArr: [
         { title: "Tiến độ", index: 0 },
         { title: "Thông tin", index: 1 },
