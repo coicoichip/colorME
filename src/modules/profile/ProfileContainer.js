@@ -22,7 +22,7 @@ class ProfileContainer extends React.Component {
     super();
     this.state = {
       isLoading: false,
-      category: 1,
+      category: 0,
       categogyArr: [
         { title: "Tiến độ", index: 0 },
         { title: "Thông tin", index: 1 },
@@ -69,17 +69,15 @@ class ProfileContainer extends React.Component {
     )
   }
   __renderData() {
-    // if (getProfileStore.progress == 0)
-    //   return (<Loading />)
-    // if (getProfileStore.progress > 0)
     return (
+      
       <ScrollView
         style={{ flex: 1 }}
         horizontal={true}
         ref='__data'
         scrollEnabled={false}>
         <View style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
-          <ProgressContainer />
+          <ProgressContainer progress = {getProfileStore.progress} error = {getProfileStore.error} isLoading = {getProfileStore.isLoading} />
         </View>
         <View style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
           <InformationUser onChangeData={this.onChangeData} />
@@ -89,23 +87,20 @@ class ProfileContainer extends React.Component {
         </View>
       </ScrollView>
     )
-
   }
+  
   render() {
 
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.wrapperContainer}>
         <Header title={STRINGS.PROFILE_TITLE_HEADER} navigate={navigate} />
-        {/* {getProfileStore.isLoading == true ?
-          <Loading />
-          : */}
-          <View style={{flex: 1}}>
+        
             {this.__renderCategory()}
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            
               {this.__renderData()}
-            </View>
-          </View>
+            {/* </View> */}
+          {/* </View> */}
         
       </View>
     );

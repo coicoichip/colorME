@@ -4,15 +4,13 @@ import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
 import getProfileStore from "./profileStore";
 import ListProgress from "./ListItem/ListProgress";
 import Error from "../../commons/Error";
-import TextNullData from "../../commons/TextNullData"
+import TextNullData from "../../commons/TextNullData";
+import Loading from "../../commons/Loading"
 class ProgressContainer extends Component {
- componentWillMount(){
-     getProfileStore.getProfile();
- }
     renderProgress(){
-        const progress = getProfileStore.progress;
-        const {isLoading, error} = getProfileStore;
-        if (getProfileStore.isloading) {
+        
+        const {isLoading, error, progress} = this.props;
+        if (isLoading) {
             return <Loading />
         }
         if (error) {

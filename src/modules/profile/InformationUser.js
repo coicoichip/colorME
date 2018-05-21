@@ -11,17 +11,15 @@ import Avatar from "./upLoadAvatar"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import getProfileStore from "./profileStore";
 import { observable } from "mobx";
-@observer
+
 class InformationUser extends React.Component {
-    componentWillMount(){
-        getProfileStore.getProfile();
-    }
     render() {
         return (
-            getProfileStore.progress == 0 ?
-            " "
+            getProfileStore.isloading  ?
+            <Loading/>
             :
-            <Content style={{marginTop: 10}}>
+            <Content style={{marginTop: 10}} showsVerticalScrollIndicator = {false} >
+               
                 <Avatar />
                 <KeyboardAwareScrollView
                     style={{ flex: 1, backgroundColor: COLORS.LIGHT_COLOR, marginTop: 30, paddingHorizontal: 20 }}

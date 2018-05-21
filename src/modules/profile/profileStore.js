@@ -4,7 +4,7 @@ import { Alert, AsyncStorage } from "react-native";
 export default getProfileStore = new class GetProfileStore {
     @observable user = {};
     @observable updateUser = {};
-    @observable isloading = false;
+    @observable isLoading = false;
     @observable error = false;
     @observable isLoadingUpdate = false;
     @observable progress = [];
@@ -13,13 +13,11 @@ export default getProfileStore = new class GetProfileStore {
     getProfile() {
         this.isLoading = true;
         userProfileApi().then(res => {
+            this.isLoading = false;
             this.user = res.data.data;
             this.progress = res.data.data.progress;
             this.updateUser = res.data.data;
             this.error = false;
-            this.isLoading = false;
-            console.log(res);
-            console.log(this.isloading)
         })
             .catch(err => {
                 this.isLoading = false;
