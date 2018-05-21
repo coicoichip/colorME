@@ -35,7 +35,7 @@ export default (scheduleStore = new class scheduleStore {
           name_lesson: (lesson.name === undefined) ? STRINGS.UPDATING_INFORMATION : lesson.name,
           course: schedule.course,
           room: schedule.room,
-          teacher: (schedule.teacher.name == undefined) ? STRINGS.UPDATING_INFORMATION : schedule.teacher.name,
+          name_teacher: (schedule.teacher === undefined) ? STRINGS.UPDATING_INFORMATION : schedule.teacher.name,
         }
       });
     });

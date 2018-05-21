@@ -100,9 +100,9 @@ class ScheduleContainer extends React.Component {
               color_course: schedule.course.color,
               icon_url: schedule.course.icon_url,
               name_lesson: schedule.name_lesson,
-              teacher: schedule.teacher,
+              name_teacher: schedule.name_teacher,
               base: schedule.room.base,
-              name_room: schedule.room.name,
+              name_room: schedule.name_room,
               address_room: schedule.room.address,
             });
           }
@@ -144,7 +144,7 @@ class ScheduleContainer extends React.Component {
               Địa chỉ: {item.name_room} - {item.base} - {item.address_room}
             </Text>
             <Text style={[{ fontSize: 13, color: COLORS.GRAY_COLOR, fontFamily: FONTS.MAIN_FONT, marginTop: 1 }]} numberOfLines={1}>
-              Giảng viên: {item.teacher}
+              Giảng viên: {item.name_teacher}
             </Text>
             <Text style={[{ fontSize: 13, color: COLORS.GRAY_COLOR, fontFamily: FONTS.MAIN_FONT, marginTop: 1 }]} numberOfLines={1}>
               Nội dung: {item.name_lesson}
