@@ -12,9 +12,9 @@ class ProgressContainer extends Component {
     renderProgress(){
         const progress = getProfileStore.progress;
         const {isLoading, error} = getProfileStore;
-        // if (getProfileStore.isloading) {
-        //     return <Loading />
-        // }
+        if (getProfileStore.isloading) {
+            return <Loading />
+        }
         if (error) {
             return (
                 <Error onPress={() => getProfileStore.getProfile()} />
