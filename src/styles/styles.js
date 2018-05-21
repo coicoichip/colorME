@@ -388,8 +388,8 @@ const style = {
     textDownload: {
         fontWeight: 'bold',
         fontSize: 20,
-        paddingLeft: 20,
-        paddingRight: 50
+        paddingLeft: 25,
+        paddingRight: 55
     }
     
 

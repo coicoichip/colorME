@@ -51,10 +51,10 @@ class DetailBlogContainer extends Component {
                     <View style={{
                         alignItems: 'center', justifyContent: 'flex-start', flexDirection: "row"
                     }}>
-                        <Text style={[styles.textDescriptionDark, styles.buttonRegister, styles.textDownload]}>Tải ngay</Text>
+                        <Text style={[styles.textDescriptionDark, styles.buttonRegister, styles.textDownload, {borderRadius: 20}]}>Tải ngay</Text>
                         <IconDefault
                             name={'Feather|arrow-right'}
-                            style={{ fontWeight: 'bold', marginLeft: -50 }}
+                            style={{ fontWeight: 'bold', marginLeft: -55 }}
                             color={'white'}
                             size={26}
                         />
@@ -127,7 +127,7 @@ class DetailBlogContainer extends Component {
                                 </View>
 
                                 <WebViewAutoHeight source={detailBlog.content ? this.editString(detailBlog.content) : ''} />
-                                <View style = {{marginLeft : size.deviceWidth/2-70, marginBottom: 15}}>{this.renderDownLoad(detailBlog.content)}</View>
+                                <View style = {{marginLeft : size.deviceWidth/2-75, marginBottom: 15}}>{this.renderDownLoad(detailBlog.content)}</View>
                             </View>
                     }
                 </ScrollView>
