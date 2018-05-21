@@ -99,7 +99,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.colorme"
+        applicationId "com.keetool.app.colorme.vn"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
@@ -107,6 +107,7 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+        vectorDrawables.useSupportLibrary = true
     }
     signingConfigs {
         release {
@@ -149,6 +150,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-image-crop-picker')
     compile project(':react-native-code-push')
     compile project(':appcenter-crashes')
     compile project(':appcenter-analytics')

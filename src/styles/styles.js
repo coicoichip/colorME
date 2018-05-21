@@ -85,17 +85,20 @@ const style = {
     },
     imageAvatarModuleEmails: {
         width: size.deviceWidth,
-        height: size.deviceHeight / 3.3,
+        // height: 100,
     },
+
+    // ngo 84 ngoc khanh 0985561065
+    // 15264050436XIG
     imageAvatarModuleEmail: {
         width: size.deviceWidth / 3.7,
         height: size.deviceWidth / 3.7,
     },
     contentCardImageInformation: {
-        flex: 2,
-        position: 'relative',
         paddingRight: 10,
         paddingTop: 5,
+        paddingLeft: 20,
+        paddingRight: 20,
     },
     emailNameModuleEmail: {
         fontSize: 20,
@@ -382,6 +385,12 @@ const style = {
         overflow: "hidden", color: 'white'
 
     },
+    textDownload: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        paddingLeft: 25,
+        paddingRight: 55
+    }
     
 
 

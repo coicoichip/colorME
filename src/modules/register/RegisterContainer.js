@@ -77,7 +77,6 @@ export default class RegisterContainer extends Component {
                                 onChangeText={this.onChangeData('name')}
                             />
                             <InputCommon
-                                
                                 returnKeyType={'next'}
                                 size={styles.input}
                                 value={register.email}

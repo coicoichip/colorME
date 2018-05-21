@@ -5,14 +5,15 @@ import {
 import { Container } from 'native-base';
 import { COLORS, SIZES, STRINGS , FONTS} from '../../constants';
 import Spinner from 'react-native-spinkit';
-import splashStore from './splashStore';
+// import loginStore from '../login/loginStore';
+import splashStore from "./splashStore"
 import { observer } from 'mobx-react';
 import { resetScreen } from '../../helper';
 
 
 @observer
 export default class SplashContainer extends Component {
-
+    
     checkNetwork = async () => {
         const result = await NetInfo.getConnectionInfo().then((connectionInfo) => {
             //check network connect success
@@ -42,7 +43,7 @@ export default class SplashContainer extends Component {
         this.checkNetwork().then(res => {
             AsyncStorage.getItem('@UserToken')
                 .then(res => {
-                    splashStore.refreshToken(navigation, res);
+                   splashStore.refreshToken(navigation, res)
                 })
                 .catch(res => resetScreen(navigation, 'Login'))
         })
@@ -64,8 +65,8 @@ export default class SplashContainer extends Component {
                     backgroundColor={COLORS.MAIN_COLOR}
                 />
                 <View style={{ alignItems: 'flex-end', marginBottom: 20 }}>
-                    <Text style={styles.textLogoColor}>color</Text>
-                    <Text style={styles.textLogoMe}>ME</Text>
+                    <Text style={styles.textLogoColor}>{STRINGS.LOGO_COLOR}</Text>
+                    <Text style={styles.textLogoMe}>{STRINGS.LOGO_ME}</Text>
                 </View>
                 <Spinner
                     size={SIZES.LOADING_SIZE}

@@ -34,6 +34,7 @@ export const STRINGS = {
     NEWS_TITLE_HEADER: 'BÀI VIẾT',
     NEWS_DRAWER: 'Tin tức',
     HOME_DRAWER: 'Trang chủ',
+    BASE_DRAWER: 'Cơ sở',
     GUIDE_DRAWER: 'Chỉ đường',
     SHARING_EXPERIENCES_TITLE_HEADER: 'Chia sẻ kinh nghiệm',
     DIRECT_HEADER_TITLEL: 'CHỈ ĐƯỜNG',

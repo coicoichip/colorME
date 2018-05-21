@@ -5,7 +5,7 @@ import {
     View,
     TouchableOpacity,
     FlatList,
-    RefreshControl,StyleSheet
+    RefreshControl, StyleSheet
 } from 'react-native';
 import { Container, Item, Content } from 'native-base';
 import Header from '../../commons/Header';
@@ -15,7 +15,7 @@ import * as size from '../../styles/sizes';
 import loginStore from "../login/loginStore"
 import Loading from '../../commons/Loading';
 import { coursesStore } from './coursesStore';
-import {drawerStore} from "../drawer/drawerStore"
+import { drawerStore } from "../drawer/drawerStore"
 import { observer } from "mobx-react";
 import ListSubject from './ListCourses';
 import Error from '../../commons/Error';
@@ -103,6 +103,7 @@ class CoursesContainer extends Component {
         if (coursesStore.data.length !== 0) {
             return (
                 <FlatList
+                    ref={'listSubject'}
                     keyExtractor={item => item.id + ''}
                     showsVerticalScrollIndicator={false}
                     data={coursesStore.data}
@@ -116,17 +117,22 @@ class CoursesContainer extends Component {
                 />
             )
         }
+
         if (coursesStore.subjects.length == 0 && coursesStore.isLoadingSubject == false && coursesStore.errorSubject == false) {
             return (
                 <TextNullData text={NULL_DATA} />
             )
         }
+
+    }
+    scrollListCourses() {
+        this.refs.listSubject.scrollToOffset({ x: 0, y: 0, animated: true })
     }
     render() {
         const { navigate } = this.props.navigation;
         return (
             <Container style={styles.wrapperContainer}>
-                <Header title={STRINGS.COURSE_TITLE_HEADER} navigate={navigate} />
+                <Header title={STRINGS.COURSE_TITLE_HEADER} navigate={navigate} onPress={() => this.scrollListCourses()} />
                 {this.__renderCategory()}
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 10 }}>
                     {this.renderSubject()}

@@ -30,10 +30,8 @@ window.addEventListener("resize", updateHeight);
 const style = `
 <style>
 @font-face {
-    font-family: 'Helvetica';
-    // src: url('../../assets/fonts/Montserrat-Regular.ttf');
-    font-weight: normal;
-    font-style: normal;
+    font-family: 'Roboto-Regular';
+    src: url('../../assets/fonts/Roboto-Regular');
 }
 #height-wrapper {
     position: absolute;
@@ -46,15 +44,15 @@ a ,p, li, h1, h2, h3, h4, h5, h6, table {
     padding-right: 20px;
 }
 p{
-    font-family: Helvetica !important;
+    font-family: Roboto-Regular !important;
     font-size: 13px;
 }
 span{
-    font-family: Helvetica !important;
+    font-family: Roboto-Regular !important;
 }
 h1, h2, h3, h4, h5, h6{
     font-weight: 400;
-    font-family: Helvetica !important;
+    font-family: Roboto-Regular !important;
 }
 h1, h2 {
     font-size: 20px;
@@ -66,15 +64,15 @@ h5, h6 {
     font-size: 16px;
 }
 ul li:{
-    font-family: Helvetica !important;
+    font-family: Roboto-Regular !important;
     font-size: 15px;
 }
 ol li:{
-    font-family: Helvetica !important;
+    font-family: Roboto-Regular !important;
 }
 
 table, th, td{
-    font-family: Helvetica !important;
+    font-family: Roboto-Regular !important;
     margin: 5px;
     padding: 5px;
     border: 1px solid black;

@@ -87,12 +87,12 @@ class ScheduleContainer extends React.Component {
   loadItems(day) {
     //console.log(1);
     setTimeout(() => {
-      console.log(1);
+      //console.log(1);
       if (this.state.check === false) {
         let Lessons =  scheduleStore.scheduleData;
-        console.log(Lessons);
+        //console.log(Lessons);
         for (let lesson of Lessons) {
-          console.log(lesson)
+          //console.log(lesson)
           for (let schedule of lesson) {
             if (!this.state.items[schedule.date]) {
               this.state.items[schedule.date] = [];
@@ -133,7 +133,7 @@ class ScheduleContainer extends React.Component {
         items: newItems
       });
     }, 2000);
-    console.log(this.state);
+    //console.log(this.state);
   }
 
   renderItem(item) {
