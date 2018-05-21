@@ -95,14 +95,12 @@ class ScheduleContainer extends React.Component {
             if (!this.state.items[schedule.date]) {
               this.state.items[schedule.date] = [];
             }
-            this.state.items[schedule.date].push({
-              name: schedule.course.name,
-              start_time: schedule.start_time,
+            this.state.items[schedule.date].push({              start_time: schedule.start_time,
               end_time: schedule.end_time,
               color_course: schedule.course.color,
               icon_url: schedule.course.icon_url,
               name_lesson: schedule.name_lesson,
-              teacher: schedule.teacher.name,
+              teacher: schedule.teacher,
               base: schedule.room.base,
               name_room: schedule.room.name,
               address_room: schedule.room.address,

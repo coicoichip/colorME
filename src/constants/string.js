@@ -41,4 +41,5 @@ export const STRINGS = {
     NULL_DATA: 'Không có dữ liệu',
     UPDATE_INFORMATION: 'Cập nhập thông tin',
     SCHEDULE: 'Lịch học',
+    UPDATING_INFORMATION: 'Đang cập nhập thông tin',
 }

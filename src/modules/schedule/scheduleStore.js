@@ -1,5 +1,7 @@
 import { observable, action, computed } from "mobx";
 import * as scheduleApi from "./scheduleApi";
+import { STRINGS } from "../../constants";
+
 
 
 export default (scheduleStore = new class scheduleStore {
@@ -30,10 +32,10 @@ export default (scheduleStore = new class scheduleStore {
           start_time: lesson.start_time,
           end_time: lesson.end_time,
           date: lesson.time,
-          name_lesson: lesson.name,
+          name_lesson: (lesson.name === undefined) ? STRINGS.UPDATING_INFORMATION : lesson.name,
           course: schedule.course,
           room: schedule.room,
-          teacher: schedule.teacher,
+          teacher: (schedule.teacher.name == undefined) ? STRINGS.UPDATING_INFORMATION : schedule.teacher.name,
         }
       });
     });
