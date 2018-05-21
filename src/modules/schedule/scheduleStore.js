@@ -1,5 +1,5 @@
 import { observable, action, computed } from "mobx";
-import * as scheduleApi from "./scheduleApi";
+import {getScheduleApi} from "./scheduleApi";
 import { STRINGS } from "../../constants";
 
 
@@ -10,10 +10,9 @@ export default (scheduleStore = new class scheduleStore {
   @observable error = false;
 
   @action
-  getListSchedule(token) {
+  getListSchedule() {
     this.isLoading = true;
-    scheduleApi
-      .getScheduleApi(token)
+    getScheduleApi()
       .then(res => {
         //console.log(res);
         this.data = res.data;

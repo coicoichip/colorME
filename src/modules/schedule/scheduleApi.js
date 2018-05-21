@@ -7,6 +7,5 @@ export async function getScheduleApi() {
   await AsyncStorage.getItem('@UserToken').then((value) => {
      url = APIS.API_URL_UNMANAGE + "colorme.vn/api/v3/user/schedule?token=" + value;
   })
-  console.log(url);
   return axios.get(url);
 }

@@ -31,7 +31,7 @@ class ScheduleContainer extends React.Component {
 
   componentDidMount() {
     //console.log(1);
-    scheduleStore.getListSchedule(loginStore.token);
+    scheduleStore.getListSchedule();
   }
 
   render() {

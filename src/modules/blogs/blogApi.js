@@ -3,7 +3,6 @@ import {APIS} from "../../constants/env";
 
 export function blogApi(kind, page, tag) {
    let url = APIS.COLOR_ME_API + "/blog?kind=" + kind + "&page=" + page + "&tag="+tag
-   console.log(url)
     return axios.get(url)   
 };
 
