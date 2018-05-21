@@ -39,8 +39,7 @@ class ScheduleContainer extends React.Component {
     //console.log(scheduleStore.scheduleData);
     const { navigate } = this.props.navigation;
     const { goBack } = this.props.navigation;
-    return (
-      <Container style={styles.wrapperContainer}>
+    return <Container style={styles.wrapperContainer}>
         {/* <View style={[styles.wrapperHeader, styles.paddingLeftRight]}>
           <View style={{ flex: 5 }}>
             <Text style={[styles.textHeaderScreen]}>
@@ -61,14 +60,7 @@ class ScheduleContainer extends React.Component {
           </TouchableOpacity>
         </View> */}
         <Header title={STRINGS.SCHEDULE.toUpperCase()} navigate={navigate} />
-        <Agenda
-          items={this.state.items}
-          loadItemsForMonth={this.loadItems.bind(this)}
-          renderItem={this.renderItem.bind(this)}
-          renderEmptyDate={this.renderEmptyDate.bind(this)}
-          rowHasChanged={this.rowHasChanged.bind(this)}
-          // markingType={'period'}
-          // markedDates={{
+        <Agenda items={this.state.items} loadItemsForMonth={this.loadItems.bind(this)} renderItem={this.renderItem.bind(this)} renderEmptyDate={this.renderEmptyDate.bind(this)} rowHasChanged={this.rowHasChanged.bind(this)} // markedDates={{ // markingType={'period'}
           //    '2018-05-08': {textColor: '#666'},
           //    '2018-05-09': {textColor: '#666'},
           //    '2018-05-14': {startingDay: true, endingDay: true, color: 'blue'},
@@ -78,11 +70,17 @@ class ScheduleContainer extends React.Component {
           //    '2018-05-25': {color: 'gray'},
           //    '2018-05-26': {endingDay: true, color: 'gray'}}}
           //  monthFormat={'yyyy'}
-          //  // theme={{calendarBackground: 'red', agendaKnobColor: 'green'}}
-          // renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
-        />
-      </Container>
-    );
+          theme={{ 
+           agendaKnobColor: COLORS.MAIN_COLOR, 
+           agendaTodayColor: COLORS.MAIN_COLOR,
+           //selectedDotColor: 'red',
+           selectedColor: COLORS.MAIN_COLOR,
+           dotColor: COLORS.MAIN_COLOR,
+           selectedDayBackgroundColor: COLORS.MAIN_COLOR,
+           todayTextColor: COLORS.MAIN_COLOR,
+           }} />
+        {/* renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)} */}
+      </Container>;
   }
   loadItems(day) {
     //console.log(1);
@@ -107,7 +105,7 @@ class ScheduleContainer extends React.Component {
               teacher: schedule.teacher.name,
               base: schedule.room.base,
               name_room: schedule.room.name,
-              address_room: schedule.room.address
+              address_room: schedule.room.address,
             });
           }
         }
