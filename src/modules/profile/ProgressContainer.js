@@ -5,10 +5,11 @@ import getProfileStore from "./profileStore";
 import ListProgress from "./ListItem/ListProgress";
 import Error from "../../commons/Error";
 import TextNullData from "../../commons/TextNullData";
-import Loading from "../../commons/Loading"
+import Loading from "../../commons/Loading";
+import { observer } from "mobx-react";
+@observer
 class ProgressContainer extends Component {
     renderProgress(){
-        
         const {isLoading, error, progress} = this.props;
         if (isLoading) {
             return <Loading />
@@ -26,20 +27,9 @@ class ProgressContainer extends Component {
                     showsVerticalScrollIndicator={false}
                     data={progress}
                     
-                    // refreshControl={
-                    //     <RefreshControl
-                    //         refreshing={isLoading && resources.length == 0}
-                    //         onRefresh={
-                    //             () => this.UNSAFE_componentWillMount()
-                    //         }
-                    //     />
-                    // }
                     renderItem={({ item }) =>
                         <ListProgress item={item} navigation={this.props.navigation}/>
                     }
-                    // ListFooterComponent={
-                    //     this.loadMore()
-                    // }
                 />
             )
         }

@@ -11,16 +11,18 @@ import Avatar from "./upLoadAvatar"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import getProfileStore from "./profileStore";
 import { observable } from "mobx";
-
+@observer
 class InformationUser extends React.Component {
+    constructor(){
+        super();
+    }
     render() {
         return (
-            getProfileStore.isloading  ?
+            this.props.isloading  ?
             <Loading/>
             :
-            <Content style={{marginTop: 10}} showsVerticalScrollIndicator = {false} >
-               
-                <Avatar />
+            <Content style={{marginTop: 10}} showsVerticalScrollIndicator = {false}>
+                <Avatar avatar_url = {this.props.avatar_url} changeAvatar = {(data) => this.props.changeAvatar(data)} />
                 <KeyboardAwareScrollView
                     style={{ flex: 1, backgroundColor: COLORS.LIGHT_COLOR, marginTop: 30, paddingHorizontal: 20 }}
                     enableOnAndroid={true}
@@ -29,6 +31,7 @@ class InformationUser extends React.Component {
                 >
                     <View style={styless.contentForm}>
                         <InputCommon
+                            haveStackedLabel
                             returnKeyType={'next'}
                             size={styless.input}
                             value={getProfileStore.updateUser.name}
@@ -36,6 +39,7 @@ class InformationUser extends React.Component {
                         />
                         <View style={{ marginTop: 10 }}>
                             <InputCommon
+                                haveStackedLabel
                                 returnKeyType={'go'}
                                 size={styless.input}
                                 value={getProfileStore.updateUser.phone}
@@ -44,6 +48,7 @@ class InformationUser extends React.Component {
                         </View>
                         <View style={{ marginTop: 10 }}>
                             <InputCommon
+                                haveStackedLabel
                                 returnKeyType={'go'}
                                 size={styless.input}
                                 placeholderTextColor={'rgb(222, 222,222)'}
@@ -54,6 +59,7 @@ class InformationUser extends React.Component {
                         </View>
                         <View style={{ marginTop: 10 }}>
                             <InputCommon
+                                haveStackedLabel
                                 returnKeyType={'go'}
                                 size={styless.input}
                                 placeholderTextColor={'rgb(222, 222,222)'}
@@ -64,6 +70,7 @@ class InformationUser extends React.Component {
                         </View>
                         <View style={{ marginTop: 10 }}>
                             <InputCommon
+                                haveStackedLabel
                                 returnKeyType={'go'}
                                 size={styless.input}
                                 placeholderTextColor={'rgb(222, 222,222)'}

@@ -19,7 +19,7 @@ class InputCommon extends Component {
         const { value } = this.state;
         const { label, size, fontsize } = this.props;
         return (
-            <Item stackedLabel style={size}>
+            <Item stackedLabel={this.props.haveStackedLabel ? false : true} style={size}>
                 {
                     label
                         ?
