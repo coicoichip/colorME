@@ -200,7 +200,8 @@ class LearnRegisterContainer extends Component {
                                             <Text style={{ height: 3 }}></Text>
                                             <Text style={styles.textDescriptionDark}>Khai giảng ngày : {courses.dateStart}</Text>
                                             <Text style={{ height: 20 }}></Text>
-                                            <Button
+                                            <TouchableOpacity
+                                                activeOpacity={1}
                                                 onPress={() => coursesStore.isLoadingLearnRegister ? {} : onPress()}
                                                 full
                                                 warning
@@ -224,7 +225,7 @@ class LearnRegisterContainer extends Component {
                                                         :
                                                         <Text style={styles.textDescriptionWhite}>XÁC NHẬN</Text>
                                                 }
-                                            </Button>
+                                            </TouchableOpacity>
                                         </View>
                                         <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
 
@@ -273,7 +274,7 @@ class LearnRegisterContainer extends Component {
                                             <Text style={{ height: 20 }}></Text>
                                             <Text style={styles.textDescriptionDark}>Cảm ơn bạn đã tin tưởng và lựa chon colorME</Text>
                                             <Text style={{ height: 20 }}></Text>
-                                            <TouchableOpacity style={{ justifyContent: 'center', marginBottom: 10, marginRight: -20 }}
+                                            <TouchableOpacity activeOpacity={0.8} style={{ justifyContent: 'center', marginBottom: 10, marginRight: -20 }}
                                                 onPress={() => { coursesStore.modalRegister1 = false }}>
                                                 <View style={{
                                                     justifyContent: 'center'
