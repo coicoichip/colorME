@@ -45,7 +45,12 @@ a ,p, li, h1, h2, h3, h4, h5, h6, table {
 }
 p{
     font-family: Roboto-Regular !important;
-    font-size: 13px;
+    font-size: 16px;
+}
+a{
+    font-family: Roboto-Regular !important;
+    font-size: 16px;
+    color : #003366;
 }
 span{
     font-family: Roboto-Regular !important;
