@@ -1,7 +1,7 @@
 import { StyleSheet, Platform } from 'react-native';
 import * as color from './colors';
 import * as size from './sizes';
-import { FONTS } from '../constants';
+import { FONTS, COLORS } from '../constants';
 const FONT_MAIN = "Helvetica"
 const FONT_MAIN_BOLD = FONT_MAIN + "-" + "Bold"
 const isIOS = Platform.OS === 'ios';
@@ -159,7 +159,7 @@ const style = {
         position: 'absolute',
         bottom: 10,
         right: 10,
-        backgroundColor: 'rgb(0, 241, 53)',
+        backgroundColor: COLORS.GREEN,
         padding: 5,
         paddingLeft: 10,
         paddingRight: 10,
@@ -362,7 +362,7 @@ const style = {
 
     },
     buttonRegister: {
-        backgroundColor: 'rgb(0, 241, 53)',
+        backgroundColor: COLORS.GREEN,
         padding: 7,
         paddingLeft: 15,
         paddingRight: 15,

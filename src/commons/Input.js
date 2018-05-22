@@ -14,12 +14,16 @@ class InputCommon extends Component {
         this.setState({ value: value });
         this.props.onChangeText(value);
     }
-
+    havestackedLabel(){
+        if(this.props.havestackedLabel == 0) return null
+        else return stackedLabel
+    }
     render() {
         const { value } = this.state;
         const { label, size, fontsize } = this.props;
+        const havestackedLabel = this.props.havestackedLabel ? false : true
         return (
-            <Item stackedLabel style={size}>
+            <Item stackedLabel = {havestackedLabel} style={size}>
                 {
                     label
                         ?

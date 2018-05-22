@@ -74,6 +74,7 @@ class ProfileContainer extends React.Component {
       <ScrollView
         style={{ flex: 1 }}
         horizontal={true}
+        showsHorizontalScrollIndicator= {false}
         ref='__data'
         scrollEnabled={false}>
         <View style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>

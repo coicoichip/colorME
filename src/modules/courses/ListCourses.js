@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 10,
         right: 10,
-        backgroundColor: 'rgb(0, 241, 53)',
+        backgroundColor: COLORS.GREEN,
         padding: 5,
         paddingLeft: 10,
         paddingRight: 10,

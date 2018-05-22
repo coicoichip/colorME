@@ -13,4 +13,5 @@ export const COLORS = {
     BORDER_COLOR: 'rgba(0, 0, 0, 0.3)',
     BLUE_COLOR: '#1783FF',
     GREEN_COLOR: '#20C62C',
+    GREEN : '#009900',
 }
