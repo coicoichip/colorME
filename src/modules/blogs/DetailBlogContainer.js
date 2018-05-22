@@ -3,11 +3,13 @@ import { Image, Platform, Text, View, StatusBar, TouchableOpacity, ScrollView, L
 import { Container, Item, Left, Right, Spinner } from 'native-base';
 import BackButton from '../../commons/BackButton';
 import Loading from '../../commons/Loading';
+import { STRINGS, COLORS, SIZES, FONTS} from '../../constants';
 import WebViewAutoHeight from '../../commons/WebViewAutoHeight';
 import styles from '../../styles/styles';
 import * as size from '../../styles/sizes';
 import { formatImageLink } from "../../helper/index"
 import blogStore from "./blogStore";
+import {ButtonCommon} from "../../commons/Button"
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import IconDefault from '../../commons/IconDefault';
 import { observer } from "mobx-react"
@@ -45,10 +47,8 @@ class DetailBlogContainer extends Component {
         const { params } = this.props.navigation.state;
         if (params.kind == "resource") {
             return (
-                <TouchableOpacity activeOpacity={0.8} style={{ justifyContent: 'center' }}
-                    onPress={() => { Linking.openURL(this.getLink(link)) }}
-                >
-                    <View style={{
+                <TouchableOpacity activeOpacity={0.8} >
+                    {/* <View style={{
                         alignItems: 'center', justifyContent: 'flex-start', flexDirection: "row"
                     }}>
                         <Text style={[styles.textDescriptionDark, styles.buttonRegister, styles.textDownload, {borderRadius: 20}]}>Tải ngay</Text>
@@ -57,6 +57,17 @@ class DetailBlogContainer extends Component {
                             style={{ fontWeight: 'bold', marginLeft: -55 }}
                             color={'white'}
                             size={26}
+                        />
+                    </View> */}
+                    <View style={styles.wrapperButton}>
+                        <ButtonCommon
+                            haveColorGreen
+                            onPress={() => { Linking.openURL(this.getLink(link)) }}
+                            label={"Tải Ngay".toUpperCase()}
+                            text={{
+                                fontFamily: 'Roboto-Bold',
+                                fontSize: SIZES.SUBTITLE_SIZE
+                            }}
                         />
                     </View>
 
@@ -69,7 +80,7 @@ class DetailBlogContainer extends Component {
     editString(string) {
         const { params } = this.props.navigation.state;
         let index = string.indexOf("<p><br></p><p><a");
-        if(index == -1) index = string.indexOf("<a"); 
+        if (index == -1) index = string.indexOf("<a");
         let string1 = string.slice(index, string.length);
         if (params.kind === "resource")
             return (string.replace(string1, ""));
@@ -105,7 +116,7 @@ class DetailBlogContainer extends Component {
                             <Loading />
                             :
 
-                            <View>
+                            <View style={{flex: 1}}>
                                 <View activeOpacity={0.8} style={{ marginBottom: 15 }}
                                 >
                                     <View>
@@ -127,7 +138,7 @@ class DetailBlogContainer extends Component {
                                 </View>
 
                                 <WebViewAutoHeight source={detailBlog.content ? this.editString(detailBlog.content) : ''} />
-                                <View style = {{marginLeft : size.deviceWidth/2-75, marginBottom: 15}}>{this.renderDownLoad(detailBlog.content)}</View>
+                                {this.renderDownLoad(detailBlog.content)}
                             </View>
                     }
                 </ScrollView>

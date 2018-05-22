@@ -16,7 +16,8 @@ class ButtonCommon extends Component {
                 full
                 warning
                 style={[{
-                    backgroundColor: COLORS.MAIN_COLOR, borderRadius: 50,
+                    backgroundColor: this.props.haveColorGreen? COLORS.GREEN : COLORS.MAIN_COLOR,
+                    borderRadius: 50,
                     elevation: 6, shadowColor: COLORS.SHADOW_COLOR,
                     shadowOffset: { width: 0, height: 0 },
                     shadowOpacity: 0.4,

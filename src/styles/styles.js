@@ -390,7 +390,14 @@ const style = {
         fontSize: 20,
         paddingLeft: 25,
         paddingRight: 55
-    }
+    },
+    wrapperButton: {
+        ...wrapperCenter,
+        width: size.deviceWidth,
+        paddingHorizontal: 80,
+        flex: 1,
+        marginBottom: 15,
+    },
     
 
 
