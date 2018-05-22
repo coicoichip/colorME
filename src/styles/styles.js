@@ -371,7 +371,7 @@ const style = {
 
     },
     buttonRegisters: {
-        backgroundColor: 'rgb(0, 241, 53)',
+        backgroundColor: COLORS.GREEN,
         borderRadius: 20,
         overflow: "hidden", color: 'white'
 

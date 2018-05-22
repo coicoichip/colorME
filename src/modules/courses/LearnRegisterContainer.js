@@ -259,7 +259,7 @@ class LearnRegisterContainer extends Component {
                                                 <IconDefault
                                                     name={'MaterialIcons|check-circle'}
                                                     size={50}
-                                                    color={"rgb(0, 241, 53)"}
+                                                    color={COLORS.GREEN}
                                                 />
                                             </View>
                                             <View style={{ marginRight: 20, marginTop: 15, marginBottom: 15, flexDirection: 'row' }}>
