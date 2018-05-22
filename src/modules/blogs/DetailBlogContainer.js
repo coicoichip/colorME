@@ -31,6 +31,7 @@ class DetailBlogContainer extends Component {
     //    return content.slice(0, end)
     //   }
     // }
+
     getLink(content) {
         const { params } = this.props.navigation.state;
         if (params.kind == "resource") {

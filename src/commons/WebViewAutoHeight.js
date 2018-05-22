@@ -31,7 +31,7 @@ const style = `
 <style>
 @font-face {
     font-family: 'Roboto-Regular';
-    src: url('../../assets/fonts/Roboto-Regular');
+    src: url('../../assets/fonts/Roboto-Regular.ttf');
 }
 #height-wrapper {
     position: absolute;
@@ -56,6 +56,8 @@ span{
     font-family: Roboto-Regular !important;
 }
 h1, h2, h3, h4, h5, h6{
+    paddingLeft: 20px;
+    paddingRight: 20px;
     font-weight: 400;
     font-family: Roboto-Regular !important;
 }
@@ -73,7 +75,7 @@ ul li:{
     font-size: 15px;
 }
 ol li:{
-    font-family: Roboto-Regular !important;
+    font-family: Roboto-Regular !important;     
 }
 
 table, th, td{
@@ -130,7 +132,7 @@ class WebViewAutoHeight extends React.Component {
 
     render() {
         const {source, style, ...otherProps} = this.props;
-        let sourceData = source.replace(/width: 100%px/g, 'width: 100%');
+            let sourceData = source.replace(/width: 100%px/g, 'width: 100%');
         const html = '<!DOCTYPE html><html><head><meta charset=UTF-8"/></head><body>'
             +
             sourceData.replace(/<p><img/g, '<p class="wrapperImg"><img')
@@ -150,7 +152,7 @@ class WebViewAutoHeight extends React.Component {
             <View>
                 <WebView
                     {...otherProps}
-                    source={{html: codeInject(html)}}
+                    source={{html: codeInject(html),  'baseUrl': 'about:blank'}}
                     scrollEnabled={false}
                     style={{...style, ...{height: this.state.realContentHeight, width: width}}}
                     javaScriptEnabled
