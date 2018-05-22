@@ -10,7 +10,6 @@ class ListAttendence extends Component {
         }
     }
     renderItem(item) {
-        
         if (item.status == -1) return (
             <View style={{ flexDirection: 'row' }}>
                 <View style={styles.circleGray}>
@@ -31,7 +30,6 @@ class ListAttendence extends Component {
         )
     }
     render() {
-        console.log(this.props.index)
         const { item } = this.props;
         return (
             <View>
@@ -46,8 +44,8 @@ class ListAttendence extends Component {
                     </View>
                     <View style={{ marginLeft: 40, marginTop: 7 }}>
                         <FlatList
-                            // keyExtractor={item => item.id + ''}
-                            showsVerticalScrollIndicator={false}
+                            keyExtractor={(item, index) => index + ''}
+                            showsHorizontalScrollIndicator={false}
                             horizontal={true}
                             data={item.attendances}
                             renderItem={({ item }) =>

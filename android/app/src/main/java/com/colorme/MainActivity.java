@@ -1,6 +1,7 @@
-package com.keetool.app.colorme.vn;
+package com.colorme;
 
 import com.facebook.react.ReactActivity;
+
 public class MainActivity extends ReactActivity {
 
     /**
@@ -9,8 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "colorMe";
+        return "colorme";
     }
-
-    
 }

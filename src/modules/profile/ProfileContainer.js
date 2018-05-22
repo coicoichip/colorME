@@ -29,6 +29,7 @@ class ProfileContainer extends React.Component {
         { title: "Điểm danh", index: 2 },
       ]
     }
+    this.changeAvatar = this.changeAvatar.bind(this);
   }
   componentWillMount() {
     getProfileStore.getProfile();
@@ -36,6 +37,9 @@ class ProfileContainer extends React.Component {
   onChangeData = field => value => {
     getProfileStore.updateUser[field] = value;
   };
+  changeAvatar(data){
+    getProfileStore.updateUser.avatar_url = data;
+}
   chooseCategory(index) {
     this.setState({ category: index })
     if(index == 0) {
@@ -80,7 +84,7 @@ class ProfileContainer extends React.Component {
           <ProgressContainer progress = {getProfileStore.progress} error = {getProfileStore.error} isLoading = {getProfileStore.isLoading} />
         </View>
         <View style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
-          <InformationUser onChangeData={this.onChangeData} />
+          <InformationUser onChangeData={this.onChangeData} avatar_url = {getProfileStore.updateUser.avatar_url} changeAvatar = {this.changeAvatar}  isLoading = {getProfileStore.isLoading} />
         </View>
         <View style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
           <AttendanceContainer />

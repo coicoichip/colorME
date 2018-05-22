@@ -1,5 +1,7 @@
 import { observable, action, computed } from "mobx";
-import * as scheduleApi from "./scheduleApi";
+import {getScheduleApi} from "./scheduleApi";
+import { STRINGS } from "../../constants";
+
 
 
 export default (scheduleStore = new class scheduleStore {
@@ -8,10 +10,9 @@ export default (scheduleStore = new class scheduleStore {
   @observable error = false;
 
   @action
-  getListSchedule(token) {
+  getListSchedule() {
     this.isLoading = true;
-    scheduleApi
-      .getScheduleApi(token)
+    getScheduleApi()
       .then(res => {
         //console.log(res);
         this.data = res.data;
@@ -30,10 +31,10 @@ export default (scheduleStore = new class scheduleStore {
           start_time: lesson.start_time,
           end_time: lesson.end_time,
           date: lesson.time,
-          name_lesson: lesson.name,
+          name_lesson: (lesson.name === undefined) ? STRINGS.UPDATING_INFORMATION : lesson.name,
           course: schedule.course,
           room: schedule.room,
-          teacher: schedule.teacher,
+          name_teacher: (schedule.teacher === undefined) ? STRINGS.UPDATING_INFORMATION : schedule.teacher.name,
         }
       });
     });

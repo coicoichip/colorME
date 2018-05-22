@@ -31,7 +31,7 @@ class ScheduleContainer extends React.Component {
 
   componentDidMount() {
     //console.log(1);
-    scheduleStore.getListSchedule(loginStore.token);
+    scheduleStore.getListSchedule();
   }
 
   render() {
@@ -95,16 +95,14 @@ class ScheduleContainer extends React.Component {
             if (!this.state.items[schedule.date]) {
               this.state.items[schedule.date] = [];
             }
-            this.state.items[schedule.date].push({
-              name: schedule.course.name,
-              start_time: schedule.start_time,
+            this.state.items[schedule.date].push({              start_time: schedule.start_time,
               end_time: schedule.end_time,
               color_course: schedule.course.color,
               icon_url: schedule.course.icon_url,
               name_lesson: schedule.name_lesson,
-              teacher: schedule.teacher.name,
+              name_teacher: schedule.name_teacher,
               base: schedule.room.base,
-              name_room: schedule.room.name,
+              name_room: schedule.name_room,
               address_room: schedule.room.address,
             });
           }
@@ -146,7 +144,7 @@ class ScheduleContainer extends React.Component {
               Địa chỉ: {item.name_room} - {item.base} - {item.address_room}
             </Text>
             <Text style={[{ fontSize: 13, color: COLORS.GRAY_COLOR, fontFamily: FONTS.MAIN_FONT, marginTop: 1 }]} numberOfLines={1}>
-              Giảng viên: {item.teacher}
+              Giảng viên: {item.name_teacher}
             </Text>
             <Text style={[{ fontSize: 13, color: COLORS.GRAY_COLOR, fontFamily: FONTS.MAIN_FONT, marginTop: 1 }]} numberOfLines={1}>
               Nội dung: {item.name_lesson}

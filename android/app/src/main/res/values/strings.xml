@@ -1,6 +1,3 @@
 <resources>
-    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">oa3x-DqiTfvxZiOAZP1v_47-7skY91a6f11c-8611-4707-bff5-9033ff68ea8f</string>
-    <string moduleConfig="true" name="appcenterCrashes_whenToSendCrashes">ALWAYS_SEND</string>
-    <string moduleConfig="true" name="appcenterAnalytics_whenToEnableAnalytics">ALWAYS_SEND</string>
-    <string name="app_name">colorMe</string>
+    <string name="app_name">colorme</string>
 </resources>
