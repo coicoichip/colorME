@@ -18,7 +18,8 @@ import { observer } from "mobx-react";
 import { STRINGS, COLORS, SIZES, FONTS } from "../../constants";
 
 
-@observer class BaseContainer extends Component {
+@observer 
+class BaseContainer extends Component {
     constructor() {
         super();
         this.state = {

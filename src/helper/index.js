@@ -73,10 +73,10 @@ export function editName(name) {
     else return "chưa có";
 }
 
-export async function uploadImage(token, file, completeHandler, progressHandler, error) {
+export async function uploadImage(file, completeHandler, progressHandler, error) {
     let url = ''
-    await AsyncStorage.getItem('url').then((value) => {
-        url = "http://" + value + "/manageapi/v3/file/upload?token=" + token;
+    await AsyncStorage.getItem('@UserToken').then((value) => {
+        url = "http://colorme.vn" + "/manageapi/v3/file/upload?token=" + value;
     })
     let formData = new FormData();
     formData.append("file", file);
@@ -86,6 +86,7 @@ export async function uploadImage(token, file, completeHandler, progressHandler,
     ajax.upload.onprogress = progressHandler;
     ajax.addEventListener("error", error, false);
     ajax.open("POST", url);
+    console.log(url)
     ajax.send(formData);
 }
 export function isEmpty(obj) {

@@ -66,6 +66,7 @@ export default loginStore = new class LoginStore {
         try{
              const email = await AsyncStorage.getItem('email');
              const password = await AsyncStorage.getItem('password')
+             const username = await AsyncStorage.getItem('@usermame')
              this.login = {
                  email : email,
                  password : password

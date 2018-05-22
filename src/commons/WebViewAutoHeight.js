@@ -39,22 +39,22 @@ const style = `
     left: 0;
     right: 0;
 }
-* {
-    font-family: Roboto-Regular !important;
-}
-a ,p, li, h1, h2, h3, h4, h5, h6, strong, table {
+a ,p, li, h1, h2, h3, h4, h5, h6, table {
     padding-left: 20px;
     padding-right: 20px;
 }
 p{
+    font-family: Roboto-Regular !important;
     font-size: 13px;
 }
 span{
+    font-family: Roboto-Regular !important;
 }
 h1, h2, h3, h4, h5, h6{
     paddingLeft: 20px;
     paddingRight: 20px;
     font-weight: 400;
+    font-family: Roboto-Regular !important;
 }
 h1, h2 {
     font-size: 20px;
@@ -66,12 +66,15 @@ h5, h6 {
     font-size: 16px;
 }
 ul li:{
+    font-family: Roboto-Regular !important;
     font-size: 15px;
 }
 ol li:{
+    font-family: Roboto-Regular !important;     
 }
 
 table, th, td{
+    font-family: Roboto-Regular !important;
     margin: 5px;
     padding: 5px;
     border: 1px solid black;

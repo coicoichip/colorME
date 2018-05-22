@@ -1,3 +1,4 @@
+
 import { observable, action, computed } from "mobx";
 import { blogApi, detailBlogApi } from "./blogApi";
 
@@ -44,7 +45,6 @@ export default blogStore = new class BlogStore {
         detailBlogApi(slug).then(res => {
             this.detailBlog = res.data.data.blog;
             this.isLoadingDetail = false;
-            console.log(res.data.data.blog);
         })
         .catch(err => {
             this.errorDetail = true;

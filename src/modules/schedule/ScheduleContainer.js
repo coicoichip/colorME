@@ -31,7 +31,7 @@ class ScheduleContainer extends React.Component {
 
   componentDidMount() {
     //console.log(1);
-    scheduleStore.getListSchedule(loginStore.token);
+    scheduleStore.getListSchedule();
   }
 
   render() {
@@ -39,8 +39,7 @@ class ScheduleContainer extends React.Component {
     //console.log(scheduleStore.scheduleData);
     const { navigate } = this.props.navigation;
     const { goBack } = this.props.navigation;
-    return (
-      <Container style={styles.wrapperContainer}>
+    return <Container style={styles.wrapperContainer}>
         {/* <View style={[styles.wrapperHeader, styles.paddingLeftRight]}>
           <View style={{ flex: 5 }}>
             <Text style={[styles.textHeaderScreen]}>
@@ -61,14 +60,7 @@ class ScheduleContainer extends React.Component {
           </TouchableOpacity>
         </View> */}
         <Header title={STRINGS.SCHEDULE.toUpperCase()} navigate={navigate} />
-        <Agenda
-          items={this.state.items}
-          loadItemsForMonth={this.loadItems.bind(this)}
-          renderItem={this.renderItem.bind(this)}
-          renderEmptyDate={this.renderEmptyDate.bind(this)}
-          rowHasChanged={this.rowHasChanged.bind(this)}
-          // markingType={'period'}
-          // markedDates={{
+        <Agenda items={this.state.items} loadItemsForMonth={this.loadItems.bind(this)} renderItem={this.renderItem.bind(this)} renderEmptyDate={this.renderEmptyDate.bind(this)} rowHasChanged={this.rowHasChanged.bind(this)} // markedDates={{ // markingType={'period'}
           //    '2018-05-08': {textColor: '#666'},
           //    '2018-05-09': {textColor: '#666'},
           //    '2018-05-14': {startingDay: true, endingDay: true, color: 'blue'},
@@ -78,36 +70,40 @@ class ScheduleContainer extends React.Component {
           //    '2018-05-25': {color: 'gray'},
           //    '2018-05-26': {endingDay: true, color: 'gray'}}}
           //  monthFormat={'yyyy'}
-          //  // theme={{calendarBackground: 'red', agendaKnobColor: 'green'}}
-          // renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
-        />
-      </Container>
-    );
+          theme={{ 
+           agendaKnobColor: COLORS.MAIN_COLOR, 
+           agendaTodayColor: COLORS.MAIN_COLOR,
+           //selectedDotColor: 'red',
+           selectedColor: COLORS.MAIN_COLOR,
+           dotColor: COLORS.MAIN_COLOR,
+           selectedDayBackgroundColor: COLORS.MAIN_COLOR,
+           todayTextColor: COLORS.MAIN_COLOR,
+           }} />
+        {/* renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)} */}
+      </Container>;
   }
   loadItems(day) {
     //console.log(1);
     setTimeout(() => {
-      console.log(1);
+      //console.log(1);
       if (this.state.check === false) {
         let Lessons =  scheduleStore.scheduleData;
-        console.log(Lessons);
+        //console.log(Lessons);
         for (let lesson of Lessons) {
-          console.log(lesson)
+          //console.log(lesson)
           for (let schedule of lesson) {
             if (!this.state.items[schedule.date]) {
               this.state.items[schedule.date] = [];
             }
-            this.state.items[schedule.date].push({
-              name: schedule.course.name,
-              start_time: schedule.start_time,
+            this.state.items[schedule.date].push({              start_time: schedule.start_time,
               end_time: schedule.end_time,
               color_course: schedule.course.color,
               icon_url: schedule.course.icon_url,
               name_lesson: schedule.name_lesson,
-              teacher: schedule.teacher.name,
+              name_teacher: schedule.name_teacher,
               base: schedule.room.base,
-              name_room: schedule.room.name,
-              address_room: schedule.room.address
+              name_room: schedule.name_room,
+              address_room: schedule.room.address,
             });
           }
         }
@@ -133,7 +129,7 @@ class ScheduleContainer extends React.Component {
         items: newItems
       });
     }, 2000);
-    console.log(this.state);
+    //console.log(this.state);
   }
 
   renderItem(item) {
@@ -148,7 +144,7 @@ class ScheduleContainer extends React.Component {
               Địa chỉ: {item.name_room} - {item.base} - {item.address_room}
             </Text>
             <Text style={[{ fontSize: 13, color: COLORS.GRAY_COLOR, fontFamily: FONTS.MAIN_FONT, marginTop: 1 }]} numberOfLines={1}>
-              Giảng viên: {item.teacher}
+              Giảng viên: {item.name_teacher}
             </Text>
             <Text style={[{ fontSize: 13, color: COLORS.GRAY_COLOR, fontFamily: FONTS.MAIN_FONT, marginTop: 1 }]} numberOfLines={1}>
               Nội dung: {item.name_lesson}

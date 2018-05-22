@@ -5,12 +5,14 @@ import {
     View,
     TouchableOpacity,
     FlatList,
-    RefreshControl
+    RefreshControl,
+    StyleSheet
 } from 'react-native';
-import styles from '../../styles/styles';
+import * as color from '../../styles/colors';
+import * as size from '../../styles/sizes';
 import { Container } from 'native-base';
 import Header from '../../commons/Header';
-import { STRINGS } from "../../constants";
+import { STRINGS, COLORS, SIZES, FONTS } from "../../constants";
 import loginStore  from "../login/loginStore"
 import Loading from '../../commons/Loading';
 import  blogStore  from './blogStore';
@@ -75,9 +77,6 @@ class BlogContainer extends Component {
                             }
                         />
                     }
-                    ListHeaderComponent={
-                        <ListTag top_tags = {blogStore.top_tags} changeTag = {this.changeTag} tag = {this.tag}/>
-                    }
                     renderItem={({ item }) =>
                         <ListBlog item={item} navigation={this.props.navigation} kind = {params.kind}/>
                     }
@@ -101,7 +100,15 @@ class BlogContainer extends Component {
         const { params} =this.props.navigation.state;
         return (
             <Container style={styles.wrapperContainer}>
-                <Header title={STRINGS.NEWS_TITLE_HEADER} navigate={navigate} />
+                <Header title={params.title ? params.title : STRINGS.NEWS_TITLE_HEADER} navigate={navigate} />
+                {
+                    blogStore.top_tags.length !== 0 ?
+                    
+                   <ListTag top_tags = {blogStore.top_tags} changeTag = {this.changeTag} tag = {this.tag}/>
+                
+                    :
+                    null
+                }
                 <View style={{ flex: 1}}>
                     {this.renderSubject()}
                 </View>
@@ -110,3 +117,46 @@ class BlogContainer extends Component {
     }
 }
 export default BlogContainer
+const wrapperCenter = {
+    alignItems: 'center',
+    justifyContent: 'center',
+};
+const textLogo = {
+    fontFamily: FONTS.LOGO_FONT,
+    backgroundColor: COLORS.NONE_COLOR,
+    color: COLORS.LIGHT_COLOR,
+}
+const buttonTab = {
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: "hidden",
+    borderWidth: 1,
+    borderRadius: 13,
+    padding: 15,
+    paddingTop: 5,
+    paddingBottom: 5,
+    fontSize: SIZES.DESCRIPTION_SIZE,
+    fontFamily: FONTS.FONT_MAIN,
+    color: color.BACKGROUND_COLOR,
+};
+
+const styles = StyleSheet.create({
+    wrapperContainer: {
+        flex: 1,
+        backgroundColor: color.BACKGROUND_COLOR,
+    },
+    paddingLeftRight: {
+        paddingLeft: 20,
+        paddingRight: 20,
+    },
+    buttonSelected: {
+        ...buttonTab,
+        backgroundColor: 'black',
+        fontFamily: FONTS.FONT_MAIN_BOLD
+    },
+    buttonNotSelect: {
+        ...buttonTab,
+        backgroundColor: color.NONE_COLOR,
+        color: color.TEXT_COLOR
+    },
+});

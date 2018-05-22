@@ -77,7 +77,6 @@ project.ext.react = [
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
-apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -99,23 +98,13 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.keetool.app.colorme.vn"
+        applicationId "com.colorme"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 2
+        versionCode 1
         versionName "1.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
-        }
-    }
-    signingConfigs {
-        release {
-            if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
-                storeFile file(MYAPP_RELEASE_STORE_FILE)
-                storePassword MYAPP_RELEASE_STORE_PASSWORD
-                keyAlias MYAPP_RELEASE_KEY_ALIAS
-                keyPassword MYAPP_RELEASE_KEY_PASSWORD
-            }
         }
     }
     splits {
@@ -128,10 +117,8 @@ android {
     }
     buildTypes {
         release {
-            manifestPlaceholders = [excludeSystemAlertWindowPermission: "true"]
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
@@ -148,14 +135,8 @@ android {
         }
     }
 }
-    
+
 dependencies {
-    compile project(':react-native-code-push')
-    compile project(':appcenter-crashes')
-    compile project(':appcenter-analytics')
-    compile project(':appcenter')
-    compile project(':react-native-spinkit')
-    compile project(':react-native-vector-icons')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules

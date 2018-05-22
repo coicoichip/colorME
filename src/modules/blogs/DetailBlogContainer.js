@@ -5,6 +5,7 @@ import BackButton from '../../commons/BackButton';
 import Loading from '../../commons/Loading';
 import WebViewAutoHeight from '../../commons/WebViewAutoHeight';
 import styles from '../../styles/styles';
+import * as size from '../../styles/sizes';
 import { formatImageLink } from "../../helper/index"
 import blogStore from "./blogStore";
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
@@ -41,19 +42,39 @@ class DetailBlogContainer extends Component {
             return content.slice(start + str1.length, end)
         }
     }
-    renderDownLoad(link){
+    renderDownLoad(link) {
         const { params } = this.props.navigation.state;
-        if(params.kind == "resource"){
+        if (params.kind == "resource") {
             return (
-                <TouchableOpacity activeOpacity = {0.8} style = {{width : 200, height : 30, backgroundColor : 'red'}}
-                 onPress = {()=> {Linking.openURL(this.getLink(link))}}
+                <TouchableOpacity activeOpacity={0.8} style={{ justifyContent: 'center' }}
+                    onPress={() => { Linking.openURL(this.getLink(link)) }}
                 >
-                <Text>Download ngay</Text>
-                    </TouchableOpacity>
+                    <View style={{
+                        alignItems: 'center', justifyContent: 'flex-start', flexDirection: "row"
+                    }}>
+                        <Text style={[styles.textDescriptionDark, styles.buttonRegister, styles.textDownload, {borderRadius: 20}]}>Tải ngay</Text>
+                        <IconDefault
+                            name={'Feather|arrow-right'}
+                            style={{ fontWeight: 'bold', marginLeft: -55 }}
+                            color={'white'}
+                            size={26}
+                        />
+                    </View>
+
+                </TouchableOpacity>
             )
-        }else{
+        } else {
             return null
         }
+    }
+    editString(string) {
+        const { params } = this.props.navigation.state;
+        let index = string.indexOf("<p><br></p><p><a");
+        if(index == -1) index = string.indexOf("<a"); 
+        let string1 = string.slice(index, string.length);
+        if (params.kind === "resource")
+            return (string.replace(string1, ""));
+        else return string;
     }
 
     render() {
@@ -92,7 +113,7 @@ class DetailBlogContainer extends Component {
                                         <Image source={{ uri: formatImageLink(detailBlog.url) }} style={styles.imageAvatarModuleEmails} />
                                     </View>
                                     <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
-                                    {this.renderDownLoad(detailBlog.content)}
+
 
 
                                         <View style={{ marginTop: 5, flexDirection: 'row', alignItems: 'center' }}>
@@ -106,8 +127,8 @@ class DetailBlogContainer extends Component {
                                     </View>
                                 </View>
 
-                                <WebViewAutoHeight source={detailBlog.content ? detailBlog.content : ''} />
-                                
+                                <WebViewAutoHeight source={detailBlog.content ? this.editString(detailBlog.content) : ''} />
+                                <View style = {{marginLeft : size.deviceWidth/2-75, marginBottom: 15}}>{this.renderDownLoad(detailBlog.content)}</View>
                             </View>
                     }
                 </ScrollView>
