@@ -8,7 +8,7 @@ import ListAttendence from "./ListItem/ListAttendence";
 import TextNullData from "../../commons/TextNullData";
 import Loading from "../../commons/Loading"
 
-
+@observer
 class AttendanceContainer extends Component {
     constructor() {
         super();

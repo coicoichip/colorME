@@ -80,13 +80,11 @@ export async function uploadImage(file, completeHandler, progressHandler, error)
     })
     let formData = new FormData();
     formData.append("file", file);
-    console.log(file)
     let ajax = new XMLHttpRequest();
     ajax.addEventListener("load", completeHandler, false);
     ajax.upload.onprogress = progressHandler;
     ajax.addEventListener("error", error, false);
     ajax.open("POST", url);
-    console.log(url)
     ajax.send(formData);
 }
 export function isEmpty(obj) {
