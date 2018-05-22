@@ -18,6 +18,7 @@ export default getProfileStore = new class GetProfileStore {
             this.progress = res.data.data.progress;
             this.updateUser = res.data.data;
             this.error = false;
+            console.log(this.user);
         })
             .catch(err => {
                 this.isLoading = false;

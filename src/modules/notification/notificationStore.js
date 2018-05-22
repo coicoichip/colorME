@@ -4,25 +4,23 @@ import { Alert, AsyncStorage } from "react-native";
 export const notificationStore = new class NotificationStore {
     @observable isLoading = false;
     @observable data = [];
+    @observable error = false;
     @observable testData = [];
     @observable isLoadingRefresh = false;
+    @observable page = 1;
 
     @action
-    getListNotification(page, token) {
+    getListNotification(page) {
         this.isLoading = true;
-        notificationApi(page, token).then(res => {
+        notificationApi(page).then(res => {
             this.isLoading = false;
-            this.subjects = res.data.courses ? res.data.courses : [res.data.courses, this.subjects];
-            this.data =  res.data.data.notifications ? res.data.data.notifications : [res.data.data.notifications, this.data],
-            this.total_pages = res.data.paginator.total_pages;
-            this.current_page = res.data.paginator.current_page;
-            this.errorSubject = false;
-            console.log(res);
+            this.data = res.data.data.notifications;
+            this.error = false;
         })
             .catch(err => {
                 console.log(err);
                 this.isLoading = false;
-                this.errorSubject = true;
+                this.error = true;
             })
     }
 }
