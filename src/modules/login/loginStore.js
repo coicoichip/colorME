@@ -5,7 +5,7 @@ import { Alert, AsyncStorage } from "react-native"
 import { NavigationActions } from "react-navigation";
 import { STRINGS } from "../../constants";
 import { resetScreen } from '../../helper';
-
+import OneSignal from 'react-native-onesignal';
 export default loginStore = new class LoginStore {
     @observable login = { email: "", password: "" };
     @observable loginStatus = false;
@@ -32,6 +32,7 @@ export default loginStore = new class LoginStore {
             if (navigation) {
                 resetScreen(navigation, 'Drawer');
             }
+            OneSignal.sendTags({user_id: res.data.user ? res.data.user.id : 0});
             this.isLoading = false;
             this.token = res.data.token;
             this.user = res.data.user;

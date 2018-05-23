@@ -35,6 +35,7 @@ export default new class RegisterStore {
                 if(navigation){
                     resetScreen(navigation, 'Drawer');
                 }
+                OneSignal.sendTags({user_id: res.data.user ? res.data.user.id : 0});
                 this.isLoading = false;
                 this.user = res.data.user;
                 AsyncStorage.setItem('@UserToken', res.data.token);

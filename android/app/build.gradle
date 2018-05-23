@@ -108,6 +108,8 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
         vectorDrawables.useSupportLibrary = true
+        manifestPlaceholders = [onesignal_app_id: "a136d5c1-400f-456a-9c64-75c43f206f4d",
+                                onesignal_google_project_number: "548303941499"]
     }
     signingConfigs {
         release {
@@ -150,6 +152,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-onesignal')
     compile project(':react-native-image-crop-picker')
     compile project(':react-native-code-push')
     compile project(':appcenter-crashes')

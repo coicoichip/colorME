@@ -27,7 +27,7 @@ class ListProgress extends Component {
                     <View>
                         <Image source={{ uri: formatImageLink(item.image_url) }} style={styles.imageAvatarModuleEmails} />
                         <View style={{ height: 8, backgroundColor: "rgb(240, 240, 240)" }}>
-                            <View style={{ height: 8, backgroundColor: "rgb(0, 241, 53)", width: SIZES.DEVICE_WIDTH_SIZE * duration_studied.length / item.attendances.length }}></View>
+                            <View style={{ height: 8, backgroundColor: COLORS.GREEN, width: SIZES.DEVICE_WIDTH_SIZE * duration_studied.length / item.attendances.length }}></View>
                         </View>
                     </View>
                     <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
@@ -38,7 +38,7 @@ class ListProgress extends Component {
                         </View>
                         {item.time !== 0 ?
                         <View style = {{alignItems : 'flex-end'}}>
-                            <View style={{ marginTop : 10, justifyContent : 'center', alignItems: 'center', height: 25, width: 100, backgroundColor: "rgb(0, 241, 53)" }}>
+                            <View style={{ marginTop : 10, justifyContent : 'center', alignItems: 'center', height: 25, width: 100, backgroundColor: COLORS.GREEN }}>
                                 <Text style={{
                                     fontFamily: 'Roboto-Bold',
                                     fontSize: SIZES.SUBTITLE_SIZE,
