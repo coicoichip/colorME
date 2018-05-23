@@ -1,57 +1,79 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
-    Image,
-    Text,
-    View,
-    TouchableOpacity,
-    Dimensions,
-    StyleSheet,
-} from 'react-native';
-import IconDefault from '../../commons/IconDefault';
-import _ from "lodash"
+  Image,
+  Text,
+  View,
+  TouchableOpacity,
+  Dimensions,
+  StyleSheet
+} from "react-native";
+import IconDefault from "../../commons/IconDefault";
+import _ from "lodash";
 import { formatImageLink } from "../../helper/index";
- import {showLocation} from "react-native-map-link";
+import { showLocation } from "react-native-map-link";
 import { STRINGS, COLORS, SIZES, FONTS } from "../../constants";
 
-
-
 class ListBase extends Component {
-    constructor() {
-        super()
-    }
-    shouldComponentUpdate(nextProps) {
-        return !_.isEqual(nextProps.item, this.props.item)
-    }
+  constructor() {
+    super();
+  }
+  shouldComponentUpdate(nextProps) {
+    return !_.isEqual(nextProps.item, this.props.item);
+  }
 
-    render() {
-        const { item } = this.props;
-        console.log(item);
-        return <View>
-            <TouchableOpacity activeOpacity={1} style={[styles.marginLeftRight]}>
-              <View style={[styles.imageFeature]}>
-                <Image resizeMode={"cover"} source={{ uri: formatImageLink(item.avatar_url) }} style={styles.imageFeature} />
-
-                <TouchableOpacity onPress={() => showLocation({
-                      latitude: item.latitude,
-                      longitude: item.longitude
-                    })} activeOpacity={0.8} style={[styles.categoryInImage]}>
-                  <IconDefault name="Entypo|direction" size={SIZES.ICON_SIZE} color="#FFF" />
-                </TouchableOpacity>
-              </View>
-              <View style={{ marginTop: 15 }}>
-                <Text numberOfLines={1} style={styles.textTitleCard}>
-                  {item.name}
-                </Text>
-                <Text style={styles.textDescriptionCard}>
-                  {item.address !== null
-                    ? item.address.trim()
-                    : "Không có mô tả cho bà viết này"}
-                </Text>
-              </View>
-            </TouchableOpacity>
-            <View style={[{ width: SIZES.DEVICE_WIDTH_SIZE, height: 25, backgroundColor: "#f2efef"}]} />
-          </View>;
-    }
+  render() {
+    const { item } = this.props;
+    console.log(item);
+    return (
+      <View>
+        <TouchableOpacity activeOpacity={1} style={[styles.marginLeftRight]}>
+          <View style={[styles.imageFeature]}>
+            <Image
+              resizeMode={"cover"}
+              source={{ uri: formatImageLink(item.avatar_url) }}
+              style={styles.imageFeature}
+            />
+          </View>
+          <TouchableOpacity
+            onPress={() =>
+              showLocation({
+                latitude: item.latitude,
+                longitude: item.longitude
+              })
+            }
+            activeOpacity={0.8}
+            style={[styles.categoryInImage]}
+          >
+            <IconDefault
+              name="Entypo|direction"
+              size={SIZES.ICON_SIZE}
+              color="#FFF"
+              style={[{ elevation: 5 }]}
+            />
+          </TouchableOpacity>
+          <View style={{ marginTop: 15 }}>
+            <Text numberOfLines={1} style={styles.textTitleCard}>
+              {item.name}
+            </Text>
+            <Text style={styles.textDescriptionCard} numberOfLines={1}>
+              {item.address !== null
+                ? item.address.trim()
+                : "Không có mô tả cho bà viết này"}
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <View
+          style={[
+            {
+              width: SIZES.DEVICE_WIDTH_SIZE,
+              height: 25,
+              backgroundColor: "#f2efef"
+            }
+          ]}
+        />
+      </View>
+    );
+  }
 }
 
 const wrapperCenter = {
@@ -82,7 +104,7 @@ const styles = StyleSheet.create({
   categoryInImage: {
     ...wrapperCenter,
     position: "absolute",
-    bottom: -SIZES.DEVICE_WIDTH_SIZE / 16,
+    bottom: 30,
     right: SIZES.DEVICE_WIDTH_SIZE / 16,
     backgroundColor: COLORS.GREEN_COLOR,
     borderRadius: 50,
@@ -104,4 +126,4 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.NONE_COLOR
   }
 });
-export default ListBase
+export default ListBase;
