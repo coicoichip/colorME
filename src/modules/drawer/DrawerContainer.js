@@ -12,9 +12,10 @@ import {
     FooterTab
 } from 'native-base';
 import { observer } from "mobx-react";
-import {drawerStore} from './drawerStore';
+import getProfileStore from "../profile/profileStore";
 import { DrawerItems } from 'react-navigation';
 import { COLORS,SIZES, STRINGS } from '../../constants';
+import { formatImageLink } from "../../helper/index";
 
 
 @observer
@@ -28,8 +29,12 @@ class DrawerContainer extends Component {
                     barStyle={COLORS.BAR_STYLE_MAIN}
                     backgroundColor={COLORS.LIGHT_COLOR}
                 />
-                <View style={[styles.wrapperLogoDrawer, styles.wrapperCenter]}>
-
+                <View style={[styles.wrapperLogoDrawer,]}>
+                    <Image
+              resizeMode={"cover"}
+              source={getProfileStore.user.avatar_url ? { uri: formatImageLink(getProfileStore.user.avatar_url) } : require("../../../assets/image/colorMe.jpg")}
+              style={styles.imageFeature}
+            />
                 </View>
                 <Content style={{ flex: 1 }}>
                     <DrawerItems {...this.props} />
@@ -50,18 +55,30 @@ class DrawerContainer extends Component {
     }
 }
 const styles = StyleSheet.create({
-    wrapperButtonLogout: {
-        width: SIZES.DEVICE_WIDTH_SIZE * 0.75,
-        position: 'absolute',
-        height: 40,
-        bottom: 0,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    wrapperLogo: {
-        width: SIZES.DEVICE_WIDTH_SIZE * 0.75,
-        height: 200,
-    }
-})
+  wrapperButtonLogout: {
+    width: SIZES.DEVICE_WIDTH_SIZE * 0.75,
+    position: "absolute",
+    height: 40,
+    bottom: 0,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  wrapperLogo: {
+    width: SIZES.DEVICE_WIDTH_SIZE * 0.75,
+    height: 200
+  },
+  wrapperLogoDrawer: {
+    height: 200,
+    justifyContent: "center",
+    alignItems: "center",
+    //marginLeft: 15,
+    
+  },
+  imageFeature: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+  }
+});
 
 export default (DrawerContainer)

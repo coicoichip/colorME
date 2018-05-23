@@ -218,6 +218,10 @@ const Drawer = DrawerNavigator(
     useNativeAnimations: "false",
     disableOpenGesture: false,
     drawerLockMode: "locked-closed",
+    contentOptions: {
+      activeTintColor: COLORS.MAIN_COLOR,
+    },
+
     contentComponent: props => <DrawerContainer {...props} />
   }
 );
