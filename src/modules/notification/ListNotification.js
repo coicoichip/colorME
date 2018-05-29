@@ -32,12 +32,12 @@ class ListNotification extends Component {
                     <View style={{ justifyContent: 'space-between', alignItems: 'center' }}>
                         <Image
                             style={styles.avatarCircleSmall}
-                            source={{ uri: item.image_url ? formatImageLink(item.image_url) : null }}
+                            source={{ uri: item.image_url ? formatImageLink(item.image_url) : "" }}
                         />
                     </View>
                     <View style={{ alignItems: 'flex-start', marginLeft: 10, backgroundColor:'transparent', width: SIZES.DEVICE_WIDTH_SIZE - 110 }}>
                         <Text style={[styles.textDescriptionDark, { fontSize: 12 }]}>
-                        {this.convertNotificationContent(item.message ? item.message : null)}
+                        {this.convertNotificationContent(item.message ? item.message : "")}
                         </Text>
                         <Text style={{ height: 3 }} />
                         <Text style={[styles.textDescriptionGray, { fontSize: 12}]}>{item.created_at}</Text>

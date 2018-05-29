@@ -28,7 +28,7 @@ import { STRINGS, COLORS, SIZES, FONTS } from "../../constants";
         baseStore.getListBase();
     }
     loadMore() {
-        if (this.props.isLoading && this.props.current_page >= 1)
+        if (baseStore.isLoadingMore && this.props.current_page >= 1)
             return (<Loading />)
         else
             return null

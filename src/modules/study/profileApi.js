@@ -2,7 +2,6 @@ import axios from "axios";
 import {APIS} from "../../constants";
 import {AsyncStorage} from "react-native";
 
-
 export async function userProfileApi(){
   let url = "";
   await AsyncStorage.getItem('@UserToken').then((value)=> {
@@ -23,23 +22,4 @@ export async function updateProfileApi(user){
       avatar_url : user.avatar_url,
       dob : user.dob
     })
-}
-
-export async function getPortfolioApi() {
-  let url = "";
-  await AsyncStorage.getItem('@ID').then((value) => {
-     url = APIS.COLOR_ME_API + "/user/" + "7155"+ "/post";
-     console.log(value);
-  })
-  console.log(url);
-  return axios.get(url);
-}
-
-export async function getDetailPortfolioApi(slug) {
-  let url = "";
-  await AsyncStorage.getItem('@UserToken').then((value) => {
-    url = APIS.COLOR_ME_API + "/blog\/" + slug;
-  })
-  console.log(url);
-  return axios.get(url);
 }

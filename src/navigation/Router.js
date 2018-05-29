@@ -24,6 +24,7 @@ import ScheduleContainer from "../modules/schedule/ScheduleContainer";
 import SplashContainer from "../modules/splash/SplashContainer";
 import ResourceContainer from "../modules/blogs/ResourceContainer";
 import styles from '../styles/styles';
+import StudyContainer from "../modules/study/StudyContainer";
 const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
@@ -56,6 +57,16 @@ const Resource = StackNavigator(
     }, {headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'resource', title : "TÀI NGUYÊN"}}
 
 );
+const Study = StackNavigator(
+  {
+    StudyContainer: { screen: StudyContainer }
+  },
+  {
+    headerMode: "none",
+    mode: "modal",
+    initialRouteParams: { kind: "study", title: "HỌC TẬP" }
+  }
+);
 const Promotion = StackNavigator(
     {
         BlogContainer : {screen : BlogContainer},
@@ -85,8 +96,8 @@ const Tab = TabNavigator({
 
         }
     },
-    Resources: {
-        screen: Resource,
+    Study: {
+        screen: Study,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
                 let source;
@@ -199,18 +210,18 @@ const Drawer = DrawerNavigator(
         title: "Khuyến mãi"
       })
     },
+    Resource: {
+        screen : Resource,
+        navigationOptions: ({ navigation }) => ({
+            title: "Tài nguyên"
+        })
+    },
     Base: {
       screen: BaseContainer,
       navigationOptions: ({ navigation }) => ({
         title: "Chỉ Đường"
       })
     },
-    Schedule: {
-      screen: ScheduleContainer,
-      navigationOptions: ({ navigation }) => ({
-        title: "Lịch Học"
-      })
-    }
   },
   {
     drawerWidth: SIZES.DEVICE_WIDTH_SIZE * 3 / 4,
