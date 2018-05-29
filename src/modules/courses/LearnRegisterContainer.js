@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
 import {
-    ActivityIndicator, Text, View, Image, Platform, PanResponder, FlatList, TouchableOpacity, Modal
+    ActivityIndicator, Text, View, Image, Platform, PanResponder, FlatList, TouchableOpacity, Modal, StyleSheet
 } from 'react-native';
 import {
-    Body, CardItem, Header, Container, Button,
-    Left, Right, Spinner, Item
+    Container
 } from 'native-base';
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
 import { coursesStore } from './coursesStore';
 import { observer } from "mobx-react";
-import BackButton from '../../commons/BackButton';
 import { ButtonCommon } from '../../commons';
-import styles from '../../styles/styles';
 import * as size from '../../styles/sizes';
+import * as color from '../../styles/colors';
 import Icon from '../../commons/Icon';
 import IconDefault from '../../commons/IconDefault';
 import ListRegisterCourses from './ListRegisterCourses';
 import Loading from '../../commons/Loading';
 import { observable } from 'mobx';
-import { TEXT_COLOR } from '../../styles/colors';
 import SelectBase, { returnBase } from "./SelectBase";
 import { drawerStore } from "../drawer/drawerStore";
 @observer
@@ -299,3 +296,107 @@ class LearnRegisterContainer extends Component {
     }
 }
 export default LearnRegisterContainer;
+const isIOS = Platform.OS === 'ios';
+const styles = StyleSheet.create({
+    wrapperCenter: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    wrapperContainer: {
+        flex: 1,
+        backgroundColor: color.BACKGROUND_COLOR,
+    },
+    paddingLeftRight: {
+        paddingLeft: 20,
+        paddingRight: 20,
+    },
+    avatarUserNormal: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: '#fff',
+    },
+    marginRightFar: {
+        marginRight: 10,
+    },
+    textDescriptionDark: {
+        color: '#000',
+        fontFamily: FONTS.MAIN_FONT,
+        fontSize: 12,
+
+    },
+    noButtonRegister: {
+        backgroundColor: 'rgb(214, 214, 214)',
+        padding: 7,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderRadius: 3,
+        overflow: "hidden", color: 'white'
+
+    },
+    buttonRegister: {
+        backgroundColor: COLORS.GREEN,
+        padding: 7,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderRadius: 3,
+        overflow: "hidden", color: 'white'
+
+    },
+    buttonLeftRegisterGray: {
+        borderRadius: 100,
+        marginTop: 5,
+        backgroundColor: 'rgb(214, 214, 214)',
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingRight: 20,
+        paddingLeft: 20,
+
+    },
+    titleNormalLight: {
+        fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'Roboto-Medium',
+        fontSize: 11,
+        color: color.BACKGROUND_COLOR,
+        fontWeight: (Platform.OS === 'ios') ? '500' : 'normal',
+    },
+    wrapperHeader: {
+        height: isIOS ? 80 : 60,
+        paddingTop: isIOS ? 20 : 0,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: color.BACKGROUND_COLOR,
+    },
+    textHeaderScreen: {
+        color: color.TEXT_COLOR,
+        fontFamily: FONTS.MAIN_FONT,
+        fontSize: 25,
+    },
+    modalRegister: {
+        borderRadius: 20,
+        width: size.deviceWidth * 0.9,
+        backgroundColor: color.BACKGROUND_COLOR,
+    },
+    avatarUserNormals: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        backgroundColor: '#fff',
+    },
+    buttonRegisters: {
+        backgroundColor: COLORS.GREEN,
+        borderRadius: 20,
+        overflow: "hidden", color: 'white'
+
+    },
+    textDescriptionWhite: {
+        color: '#fff',
+        fontFamily: FONTS.MAIN_FONT,
+        fontSize: 12,
+    },
+    wrapperModalComment: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});

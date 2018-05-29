@@ -1,25 +1,8 @@
 import React, { Component } from 'react';
-import { Platform, StatusBar, Modal, Image, PanResponder, Text, TouchableOpacity, View, ScrollView } from 'react-native';
-
-import {
-    List,
-    ListItem,
-    Body,
-    Button,
-    Card,
-    CardItem,
-    Container,
-    Content,
-    Input,
-    Item,
-    Left,
-    Right,
-    Spinner,
-    Thumbnail
-} from 'native-base';
+import {Image, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
 import { coursesStore } from './coursesStore';
 import { observer } from "mobx-react";
-import styles from '../../styles/styles'
 import _ from "lodash"
 import * as size from '../../styles/sizes';
 import * as color from '../../styles/colors';
@@ -58,4 +41,43 @@ export default class ListRegisterCourses extends Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    wrapperContainer: {
+        flex: 1,
+        backgroundColor: color.BACKGROUND_COLOR,
+    },
+    paddingLeftRight: {
+        paddingLeft: 20,
+        paddingRight: 20,
+    },
+    avatarUserNormal: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: '#fff',
+    },
+    marginRightFar: {
+        marginRight: 10,
+    },
+    emailNameModuleEmail: {
+        fontSize: 20,
+    },
+    contentCardImageInformation: {
+        paddingRight: 10,
+        paddingTop: 5,
+        paddingLeft: 20,
+        paddingRight: 20,
+    },
+    textDescriptionDark: {
+        color: '#000',
+        fontFamily: FONTS.MAIN_FONT,
+        fontSize: 12,
+
+    },
+    footerCard: {
+        height: 25,
+        backgroundColor: 'rgb(240, 240, 240)'
+    },
+});
 
