@@ -120,7 +120,7 @@ class DetailBlogContainer extends Component {
                                 <View activeOpacity={0.8} style={{ marginBottom: 15 }}
                                 >
                                     <View>
-                                        <Image source={{ uri: formatImageLink(detailBlog.url) }} style={styles.imageAvatarModuleEmails} />
+                                        <Image source={{ uri: detailBlog.url? formatImageLink(detailBlog.url): "" }} style={styles.imageAvatarModuleEmails} />
                                     </View>
                                     <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
 
