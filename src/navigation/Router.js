@@ -48,6 +48,7 @@ const Blog = StackNavigator(
 const Profile = StackNavigator(
     {
         MyProfile: { screen: ProfileContainer },
+        DetailBlog : {screen : DetailBlogContainer},
     }, { initialRouteName: 'MyProfile', headerMode: 'none', mode: 'modal' }
 );
 const Resource = StackNavigator(

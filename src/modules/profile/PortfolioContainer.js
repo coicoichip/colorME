@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, FlatList, RefreshControl, Image, ScrollView } from "react-native";
+import { View, Text, StyleSheet, FlatList, RefreshControl, Image, ScrollView, TouchableOpacity } from "react-native";
 import { Container } from "native-base";
 import { STRINGS, COLORS, SIZES } from "../../constants";
 import Header from "../../commons/Header";
@@ -70,23 +70,33 @@ class PortfolioContaier extends React.Component {
 
                     }
                 /> */}
-        <ScrollView>
+        <ScrollView style = {[{ marginTop: 20,}]}>
           <View style={{ flexDirection: "row", justifyContent: "center", flex: 1 }}>
+            <View style = {[{flex : 1}]}>
             {GetProfileStore.blogs1.map((item, id) => {
-              return <View>
+              return <TouchableOpacity activeOpacity={0.8}
+                    onPress={() => this.props.navigation('DetailBlog', { slug: item.slug, kind : item.kind})}>
                   <Image resizeMode={"cover"} source={{ uri: formatImageLink(item.url) }} style={styles.imageFeature1} />
-                </View>;
+                </TouchableOpacity>;
             })}
+            </View>
+            <View style = {[{flex : 1}]}>
+
             {GetProfileStore.blogs2.map((item, id) => {
-              return <View>
+              return <TouchableOpacity activeOpacity={0.8}
+                    onPress={() => this.props.navigation('DetailBlog', { slug: item.slug, kind : item.kind})}>
                   <Image resizeMode={"cover"} source={{ uri: formatImageLink(item.url) }} style={styles.imageFeature2} />
-                </View>;
+                </TouchableOpacity>;
             })}
+            </View>
+            <View style = {[{flex : 1}]}>
             {GetProfileStore.blogs3.map((item, id) => {
-              return <View>
+              return <TouchableOpacity activeOpacity={0.8}
+                    onPress={() => this.props.navigation('DetailBlog', { slug: item.slug, kind : item.kind})}>
                   <Image resizeMode={"cover"} source={{ uri: formatImageLink(item.url) }} style={styles.imageFeature3} />
-                </View>;
+                </TouchableOpacity>;
             })}
+            </View>
           </View>
           </ScrollView>
         </View>
@@ -110,7 +120,8 @@ const styles = StyleSheet.create({
   },
   imageFeature1: {
     height: SIZES.DEVICE_WIDTH_SIZE / 3 - 4,
-    width: SIZES.DEVICE_WIDTH_SIZE / 3 - 4
+    width: SIZES.DEVICE_WIDTH_SIZE / 3 - 4,
+    marginBottom: 2
   },
   imageFeature2: {
     height: SIZES.DEVICE_WIDTH_SIZE / 3 - 4,
@@ -122,7 +133,7 @@ const styles = StyleSheet.create({
     height: SIZES.DEVICE_WIDTH_SIZE / 3 - 4,
     width: SIZES.DEVICE_WIDTH_SIZE / 3 - 4,
     marginLeft: 2,
-    marginBottom: 2,
+    marginBottom: 2
   }
 });
 
