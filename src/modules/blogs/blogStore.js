@@ -30,6 +30,7 @@ export default blogStore = new class BlogStore {
             this.top_tags = res.data.top_tags
             this.isLoading = false;
             this.isSearch = false;
+            console.log(this.blogs);
         })
         .catch(err => {
             this.error = true;
