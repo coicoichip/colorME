@@ -5,7 +5,7 @@ import { APIS } from "../../constants/env"
 export async function notificationApi(page) {
     let url = " ";
     await AsyncStorage.getItem('@UserToken').then((value) => {
-        url = APIS.API_URL + 'colorme.vn/notification/list?page=' + page + "&token=" + value;
+        url =  APIS.COLOR_ME_API1 + "/notifications" + "?token=" + value + "&page=" + page;
     })
     return axios.get(url);
 };

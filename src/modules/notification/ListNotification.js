@@ -3,7 +3,7 @@ import {
     Image,
     Text,
     View,
-    TouchableOpacity,StyleSheet, Platform
+    TouchableOpacity, StyleSheet, Platform, WebView
 } from 'react-native';
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
 import { Container, Item, Input } from 'native-base';
@@ -15,83 +15,84 @@ class ListNotification extends Component {
     constructor() {
         super()
     }
-    convertNotificationContent(text){
-        if(text)
-            return text.replace(/<strong>/g, "").replace(/<\/strong>/g, "").toUpperCase()
+    convertNotificationContent(text) {
+        if (text)
+            return text.replace(/<strong>/g, "").replace(/<\/strong>/g, "")
     }
 
     render() {
-        const {navigate} = this.props;
+        const { navigate } = this.props;
         const { item } = this.props;
         return (
-            <TouchableOpacity
-                activeOpacity={0.8}
-                style={[styles.cardItem,styles.shadow,
-                    { margin: 20, marginBottom: 10, marginTop: 10, paddingLeft: 15, paddingTop: 15, backgroundColor: item.seen == 2 ? COLORS.GREEN : COLORS.LIGHT_COLOR }]} onPress={() => {}}>
-                <View style={{ flexDirection: 'row' }}>
-                    <View style={{ justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Image
-                            style={styles.avatarCircleSmall}
-                            source={{ uri: item.image_url ? formatImageLink(item.image_url) : null }}
-                        />
+            // <WebView source = {{html : "<h1>chao</h1>"}} />
+            <View style = {{ backgroundColor : item.seen == 1 ? COLORS.GRAY_COLOR : "white"}}>
+               
+                <View style={[styles.paddingLeftRight, { padding: 20, borderBottomWidth: 1, borderBottomColor: 'rgb(242,242,242)'}]}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <Image source={{ uri: formatImageLink(item.image_url) }} style={styles.imageIcon} />
+                        <View style={{ marginLeft: 10 , marginRight : 20 }}>
+                        
+                            <Text numberOfLines={2} style={styles.emailNameModuleEmail}>{this.convertNotificationContent(item.message)}</Text>
+                            {item.content ?  <Text numberOfLines = {2}>{item.content.trim()} </Text> : null}
+                        </View>
                     </View>
-                    <View style={{ alignItems: 'flex-start', marginLeft: 10, backgroundColor:'transparent', width: SIZES.DEVICE_WIDTH_SIZE - 110 }}>
-                        <Text style={[styles.textDescriptionDark, { fontSize: 12 }]}>
-                        {this.convertNotificationContent(item.message ? item.message : null)}
-                        </Text>
-                        <Text style={{ height: 3 }} />
-                        <Text style={[styles.textDescriptionGray, { fontSize: 12}]}>{item.created_at}</Text>
-                        <Text style={{ height: 3 }} />
-                    </View>
-                    {
-                        item.seen == 2 
-                        ?
-                        null
-                        :
-                        <Icon name={"FontAwesome|circle"} size={10} color={COLORS.GREEN_COLOR} style={{ position: "absolute", left: -10 , top: -10, backgroundColor: 'transparent' }} />
-                    }
+                    <View style={{ marginLeft: 40, marginTop: 10 }}><Text style={styles.textName}>{item.created_at}</Text></View>
                 </View>
-            </TouchableOpacity>
+            </View>
         )
     }
 }
+
 export default ListNotification
 const wrapperCenter = {
-    alignItems: 'center',
     justifyContent: 'center',
-};
-
+    alignItems: 'center',
+}
+const text = {
+    fontFamily: 'Roboto-Regular',
+    backgroundColor: 'transparent',
+    color: COLORS.DARK_COLOR,
+    fontSize: SIZES.TEXT_BUTTON_SIZE,
+}
 const styles = StyleSheet.create({
-    cardItem: {
-        padding: 10,
-        borderRadius: 5,
+    wrapperCenter: {
+        ...wrapperCenter
     },
-    avatarCircleSmall: {
-        height: 20,
-        width: 20,
-        borderRadius: 10,
+    paddingLeftRight: {
+        paddingLeft: 20,
+        paddingRight: 20,
     },
-     textDescriptionDark: {
-        color: '#000',
-        fontFamily: 'Roboto-Regular',
-        fontSize: 12,
-
+    imageIcon: {
+        height: 30,
+        width: 30,
+        borderRadius: 15,
     },
-    textDescriptionGray: {
-        color: '#8c8c8c',
-        fontFamily: FONTS.MAIN_FONT,
-        fontSize: 12,
+    emailNameModuleEmail: {
+        fontSize: 14,
+        fontFamily: FONTS.MAIN_FONT
     },
-    shadow: Platform.OS === 'ios'
-    ?
-    {
-        shadowColor: 'rgba(0,0,0,0.5)',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.4,
+    circleGreen: {
+        marginRight: 15,
+        width: 12,
+        height: 12,
+        borderRadius: 6,
+        backgroundColor: COLORS.GREEN_COLOR,
+    },
+    circleRed: {
+        marginRight: 15,
+        width: 12,
+        height: 12,
+        borderRadius: 6,
+        backgroundColor: COLORS.MAIN_COLOR,
+    },
+    circleGray: {
+        marginRight: 15,
+        width: 12,
+        height: 12,
+        borderRadius: 6,
+        backgroundColor: COLORS.GRAY_COLOR,
+    }, textName: {
+        color: 'rgb(182,182,182)',
+        fontSize: 13
     }
-    :
-    {
-        elevation: 2,
-    },
-});
-
+})

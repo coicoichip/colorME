@@ -22,7 +22,7 @@ import ListBlog from "./ListBlog";
 import Error from '../../commons/Error';
 import TextNullData from '../../commons/TextNullData';
 import ListTag from "./ListTag";
-
+import Onesignal from "react-native-onesignal"
 @observer
 class BlogContainer extends Component {
     @observable tag = ""
@@ -33,6 +33,7 @@ class BlogContainer extends Component {
     UNSAFE_componentWillMount() {
         const {params} = this.props.navigation.state;
         blogStore.getBlog(params.kind, 1, this.tag);
+        // OneSignal.addEventListener("ids", this.onIds)
     }
     getMoreBlogs() {
         const {params} = this.props.navigation.state;

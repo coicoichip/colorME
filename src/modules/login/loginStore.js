@@ -32,14 +32,13 @@ export default loginStore = new class LoginStore {
             if (navigation) {
                 resetScreen(navigation, 'Drawer');
             }
-            OneSignal.sendTags({user_id: res.data.user ? res.data.user.id : 0});
+            OneSignal.sendTags({user_id: res.data.user ? res.data.user.id : 0, device_type : "mobile_social"});
             this.isLoading = false;
             this.token = res.data.token;
             this.user = res.data.user;
             this.status = res.status;
             this.loginStatus = true;
             AsyncStorage.setItem('@UserToken', res.data.token);
-            console.log(this.token)
         })
             .catch(err => {
                 this.isLoading = false;
