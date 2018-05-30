@@ -41,8 +41,8 @@ export default loginStore = new class LoginStore {
             this.status = res.status;
             this.id = res.data.id;
             this.loginStatus = true;
-            AsyncStorage.setItem('@UserToken', res.data.token);
-            AsyncStorage.setItem("@ID", res.data.user.id.toString());
+            AsyncStorage.setItem('@UserToken', res.data.token, ()=> AsyncStorage.setItem("@ID", res.data.user.id.toString()));
+            
             console.log(res.data.user.id.toString());
         })
             .catch(err => {

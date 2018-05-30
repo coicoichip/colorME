@@ -28,7 +28,7 @@ export async function updateProfileApi(user){
 export async function getPortfolioApi() {
   let url = "";
   await AsyncStorage.getItem('@ID').then((value) => {
-     url = APIS.COLOR_ME_API + "/user/" + "7155"+ "/post";
+     url = APIS.COLOR_ME_API + "/user/" + value+ "/post";
      console.log(value);
   })
   console.log(url);

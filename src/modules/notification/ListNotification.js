@@ -24,21 +24,34 @@ class ListNotification extends Component {
         const { navigate } = this.props;
         const { item } = this.props;
         return (
-            // <WebView source = {{html : "<h1>chao</h1>"}} />
-            <View style = {{ backgroundColor : item.seen == 1 ? COLORS.GRAY_COLOR : "white"}}>
-               
-                <View style={[styles.paddingLeftRight, { padding: 20, borderBottomWidth: 1, borderBottomColor: 'rgb(242,242,242)'}]}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <Image source={{ uri: formatImageLink(item.image_url) }} style={styles.imageIcon} />
-                        <View style={{ marginLeft: 10 , marginRight : 20 }}>
-                        
-                            <Text numberOfLines={2} style={styles.emailNameModuleEmail}>{this.convertNotificationContent(item.message)}</Text>
-                            {item.content ?  <Text numberOfLines = {2}>{item.content.trim()} </Text> : null}
-                        </View>
+            <TouchableOpacity
+                activeOpacity={0.8}
+                style={[styles.cardItem,styles.shadow,
+                    { margin: 20, marginBottom: 10, marginTop: 10, paddingLeft: 15, paddingTop: 15, backgroundColor: item.seen == 2 ? COLORS.GREEN : COLORS.LIGHT_COLOR }]} onPress={() => {}}>
+                <View style={{ flexDirection: 'row' }}>
+                    <View style={{ justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Image
+                            style={styles.avatarCircleSmall}
+                            source={{ uri: item.image_url ? formatImageLink(item.image_url) : "" }}
+                        />
                     </View>
-                    <View style={{ marginLeft: 40, marginTop: 10 }}><Text style={styles.textName}>{item.created_at}</Text></View>
+                    <View style={{ alignItems: 'flex-start', marginLeft: 10, backgroundColor:'transparent', width: SIZES.DEVICE_WIDTH_SIZE - 110 }}>
+                        <Text style={[styles.textDescriptionDark, { fontSize: 12 }]}>
+                        {this.convertNotificationContent(item.message ? item.message : "")}
+                        </Text>
+                        <Text style={{ height: 3 }} />
+                        <Text style={[styles.textDescriptionGray, { fontSize: 12}]}>{item.created_at}</Text>
+                        <Text style={{ height: 3 }} />
+                    </View>
+                    {
+                        item.seen == 2 
+                        ?
+                        null
+                        :
+                        <Icon name={"FontAwesome|circle"} size={10} color={COLORS.GREEN_COLOR} style={{ position: "absolute", left: -10 , top: -10, backgroundColor: 'transparent' }} />
+                    }
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     }
 }
