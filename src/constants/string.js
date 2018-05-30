@@ -42,4 +42,5 @@ export const STRINGS = {
     UPDATE_INFORMATION: 'Cập nhập thông tin',
     SCHEDULE: 'Lịch học',
     UPDATING_INFORMATION: 'Đang cập nhập thông tin',
+    STUDY: 'HỌC TẬP',
 }

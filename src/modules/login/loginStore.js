@@ -16,6 +16,7 @@ export default loginStore = new class LoginStore {
     @observable isGetLocalData = false;
     @observable status = 0;
     @observable user = {};
+    @observable id = -1;
 
     @action
     loginUser(navigation) {
@@ -29,6 +30,7 @@ export default loginStore = new class LoginStore {
         }
         this.isLoading = true;
         loginApi(this.login).then(res => {
+            console.log(res);
             if (navigation) {
                 resetScreen(navigation, 'Drawer');
             }
@@ -37,9 +39,11 @@ export default loginStore = new class LoginStore {
             this.token = res.data.token;
             this.user = res.data.user;
             this.status = res.status;
+            this.id = res.data.id;
             this.loginStatus = true;
             AsyncStorage.setItem('@UserToken', res.data.token);
-            console.log(this.token)
+            AsyncStorage.setItem("@ID", res.data.user.id.toString());
+            console.log(res.data.user.id.toString());
         })
             .catch(err => {
                 this.isLoading = false;
