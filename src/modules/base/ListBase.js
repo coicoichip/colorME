@@ -23,7 +23,7 @@ class ListBase extends Component {
 
   render() {
     const { item } = this.props;
-    console.log(item);
+    //console.log(item);
     return (
       <View>
         <TouchableOpacity activeOpacity={1} style={[styles.marginLeftRight]}>
@@ -58,7 +58,7 @@ class ListBase extends Component {
             <Text style={styles.textDescriptionCard} numberOfLines={1}>
               {item.address !== null
                 ? item.address.trim()
-                : "Không có mô tả cho bà viết này"}
+                : "Không có mô tả cho bài viết này"}
             </Text>
           </View>
         </TouchableOpacity>

@@ -12,9 +12,8 @@ import Avatar from "./upLoadAvatar"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import getProfileStore from "./profileStore";
 import InformationUser from "./InformationUser";
-import ProgressContainer from "./ProgressContainer";
-import AttendanceContainer from "./AttendanceContainer";
 import { observable } from "mobx";
+import PortfolioContaier from "./PortfolioContainer";
 // import loginStore from "../login/loginStore";
 @observer
 class ProfileContainer extends React.Component {
@@ -24,9 +23,8 @@ class ProfileContainer extends React.Component {
       isLoading: false,
       category: 0,
       categogyArr: [
-        { title: "Tiến độ", index: 0 },
-        { title: "Thông tin", index: 1 },
-        { title: "Điểm danh", index: 2 },
+        { title: "Thông tin", index: 0 },
+        { title: "Portfolio", index: 1 },
       ]
     }
     this.changeAvatar = this.changeAvatar.bind(this);
@@ -82,13 +80,11 @@ class ProfileContainer extends React.Component {
         ref='__data'
         scrollEnabled={false}>
         <View style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
-          <ProgressContainer progress = {getProfileStore.progress} error = {getProfileStore.error} isLoading = {getProfileStore.isLoading} />
-        </View>
-        <View style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
           <InformationUser changeAvatar = {this.changeAvatar} onChangeData={this.onChangeData} avatar_url = {getProfileStore.updateUser.avatar_url} />
+
         </View>
-        <View style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
-          <AttendanceContainer />
+        <View>
+          <PortfolioContaier navigation = {this.props.navigation} />
         </View>
       </ScrollView>
     )
