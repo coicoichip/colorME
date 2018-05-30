@@ -40,6 +40,7 @@ export default class SplashContainer extends Component {
 
     componentDidMount() {
         const { navigation } = this.props;
+        console.log(navigation)
         this.checkNetwork().then(res => {
             AsyncStorage.getItem('@UserToken')
                 .then(res => {

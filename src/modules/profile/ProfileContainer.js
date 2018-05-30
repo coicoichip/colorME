@@ -80,17 +80,17 @@ class ProfileContainer extends React.Component {
         ref='__data'
         scrollEnabled={false}>
         <View style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
-          <InformationUser onChangeData={this.onChangeData} />
+          <InformationUser changeAvatar = {this.changeAvatar} onChangeData={this.onChangeData} avatar_url = {getProfileStore.updateUser.avatar_url} />
+
         </View>
         <View>
-          <PortfolioContaier/>
+          <PortfolioContaier navigation = {this.props.navigation} />
         </View>
       </ScrollView>
     )
   }
   
   render() {
-
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.wrapperContainer}>

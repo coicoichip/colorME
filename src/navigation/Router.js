@@ -39,7 +39,7 @@ const Courses = StackNavigator(
 );
 const Blog = StackNavigator(
     {
-        BlogContainer : {screen : BlogContainer},
+        BlogContainer : {screen : BlogContainer, path : "blogContainer"},
         DetailBlog : {screen : DetailBlogContainer},
         ListBlog : {screen : ListBlog}
     }, { headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'blog'}}
@@ -55,7 +55,7 @@ const Resource = StackNavigator(
     {
         ResourceContainer : {screen : ResourceContainer},
         DetailBlog : {screen : DetailBlogContainer},
-    }, {headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'resource', title : "TÀI NGUYÊN"}}
+    }, {headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'resource', title : "Tài nguyên"}}
 
 );
 const Study = StackNavigator(
@@ -72,7 +72,7 @@ const Promotion = StackNavigator(
     {
         BlogContainer : {screen : BlogContainer},
         DetailBlog : {screen : DetailBlogContainer},
-    }, {headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'promotion', title : "KHUYẾN MÃI"}}
+    }, {headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'promotion', title : "Khuyến mãi"}}
 )
 
 const Tab = TabNavigator({
@@ -119,6 +119,7 @@ const Tab = TabNavigator({
     },
     Blogs: {
         screen: Blog,
+        path : "blogs",
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
                 let source;
@@ -140,6 +141,7 @@ const Tab = TabNavigator({
     },
     Notification: {
         screen: NotificationContainer,
+        path : "notification",
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
                 let source;
@@ -201,6 +203,7 @@ const Drawer = DrawerNavigator(
   {
     OverView: {
       screen: Tab,
+      path : "overview",
       navigationOptions: ({ navigation }) => ({
         title: "Tổng Quan"
       })
@@ -243,7 +246,7 @@ export const RootStack = StackNavigator(
         Splash: { screen: SplashContainer },
         Login: { screen: LoginContainer },
         Register: { screen: RegisterContainer },
-        Drawer: { screen: Drawer },
+        Drawer: { screen: Drawer , path : "main"},
     },
     { headerMode: 'none', mode: 'card' }
 );

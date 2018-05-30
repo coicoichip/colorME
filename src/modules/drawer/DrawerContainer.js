@@ -70,14 +70,14 @@ const styles = StyleSheet.create({
   wrapperLogoDrawer: {
     height: 200,
     justifyContent: "center",
-    alignItems: "center",
-    //marginLeft: 15,
+    // alignItems: "center",
+    marginLeft: 15,
     
   },
   imageFeature: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: 80,
+    height: 80,
+    borderRadius: 40,
   }
 });
 

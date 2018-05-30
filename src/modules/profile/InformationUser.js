@@ -21,7 +21,7 @@ class InformationUser extends React.Component {
                 :
                 <Content style={{ marginTop: 10 }} showsVerticalScrollIndicator={false} >
 
-                    <Avatar avatar_url = {this.props.avatar_url} changeAvatar = {(data) => this.props.changeAvatar(data)}  />
+                    <Avatar avatar_url = {getProfileStore.updateUser.avatar_url} changeAvatar = {(data) => this.props.changeAvatar(data)}  />
                     <KeyboardAwareScrollView
                         style={{ flex: 1, backgroundColor: COLORS.LIGHT_COLOR, marginTop: 30, paddingHorizontal: 20 }}
                         enableOnAndroid={false}

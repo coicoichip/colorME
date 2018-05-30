@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import RegisterContainer from './modules/register/RegisterContainer';
-import { RootStack } from './navigation/Router';
-import { Root } from "native-base";
+import RootStackContainer from "./navigation/RootStack"
+import navStore from "./navigation/navStore";
+import {addNavigationHelpers} from "react-navigation";
+import {Root} from "native-base"
 export default class App extends Component {
+  constructor(){
+    super()
+  } 
+ 
   render() {
     return (
       <Root>
-        <RootStack />
+        <RootStackContainer/>
       </Root>
-    );
-  }
-};
+    )}}
+    
+  

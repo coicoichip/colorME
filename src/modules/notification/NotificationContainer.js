@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Button, StyleSheet, FlatList} from 'react-native';
+import { View, Text, TouchableOpacity, Button, StyleSheet, FlatList, RefreshControl} from 'react-native';
 import { Container, Content } from 'native-base';
 import Header from '../../commons/Header';
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
@@ -20,6 +20,18 @@ class NotificationContainer extends React.Component {
     componentWillMount() {
         notificationStore.getListNotification(1);
     }
+    getMoreNotifications() {
+        if (notificationStore.current_page < notificationStore.total_pages && notificationStore.isLoading == false) {
+            notificationStore.getListNotification(notificationStore.current_page + 1)
+        }
+    }
+    loadMore() {
+        if (notificationStore.isLoading && notificationStore.current_page >= 1)
+            return (<Loading />)
+        else
+            return null
+    }
+
     renderNotification() {
         if (notificationStore.data.length == 0) {
             return <Loading />
@@ -34,11 +46,20 @@ class NotificationContainer extends React.Component {
                 <FlatList
                     keyExtractor={item => item.id + ''}
                     showsVerticalScrollIndicator={false}
+
                     data={notificationStore.data}
-                    // onEndReached={() => this.getMoreSubjects()}
-                    // ListFooterComponent={
-                    //     this.loadMore()
-                    // }
+                    onEndReached={() => this.getMoreNotifications()}
+                    ListFooterComponent={
+                        this.loadMore()
+                    }
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={notificationStore.isLoading && notificationStore.data.length == 0}
+                            onRefresh={
+                                () => this.componentWillMount()
+                            }
+                        />
+                    }
                     renderItem={({ item }) =>
                         <ListNotification item={item} navigation={this.props.navigation} />
                     }
