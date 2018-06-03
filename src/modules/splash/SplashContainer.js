@@ -39,15 +39,26 @@ export default class SplashContainer extends Component {
     }
 
     componentDidMount() {
-        const { navigation } = this.props;
-        console.log(navigation)
-        this.checkNetwork().then(res => {
-            AsyncStorage.getItem('@UserToken')
-                .then(res => {
-                   splashStore.refreshToken(navigation, res)
-                })
-                .catch(res => resetScreen(navigation, 'Login'))
+        const { navigation } = this.props;  
+        this.checkNetwork().then(async function(res) {
+            try {
+                 const token = await AsyncStorage.getItem('@UserToken')
+                 const id = await AsyncStorage.getItem("@ID")
+                if(token && id){
+                    
+                    splashStore.refreshToken(navigation, token)
+                }else{
+                    
+                    resetScreen(navigation, 'Login')
+                }
+            }
+            catch(err){
+                resetScreen(navigation, 'Login')
+            }
+            
+                
         })
+        .catch(res => {})
     }
 
     openSettings = () => {
