@@ -159,6 +159,7 @@ class LearnRegisterContainer extends Component {
                         }
                     />}
                 <Modal
+                    onRequestClose={() => {}}
                     presentationStyle="overFullScreen"
                     animationType="fade"
                     transparent={true}
@@ -237,6 +238,7 @@ class LearnRegisterContainer extends Component {
                     </View>
                 </Modal>
                 <Modal
+                    onRequestClose={() => {}}
                     presentationStyle="overFullScreen"
                     animationType="fade"
                     transparent={true}

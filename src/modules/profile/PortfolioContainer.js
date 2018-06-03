@@ -24,33 +24,33 @@ class PortfolioContaier extends React.Component {
     GetProfileStore.getPortfolio();
     //console.log(getProfileStore.portfolioData);
 
-    
+
   }
   refreshList() {
     // GetProfileStore.getPortfolio();
   }
   loadMore() {
-        if (GetProfileStore.isLoadingMore )
-            return (<Loading />)
-        else
-            return null
+    if (GetProfileStore.isLoadingMore)
+      return (<Loading />)
+    else
+      return null
+  }
+  work(data) {
+    let u = [];
+    let dataPortfolio = [];
+    for (let blog of data) {
+
+      { u = { u, blog }; }
+
     }
-    work(data) {
-            let u =[];
-            let dataPortfolio = [];
-            for(let blog of data ) {
-                
-                { u = { u,blog }; }
-                
-            }
-            
-    }
+
+  }
 
   render() {
     console.log(1);
     return <Container style={{ backgroundColor: COLORS.LIGHT_COLOR }}>
-        <View style={styles.wrapperContent}>
-          {/* <FlatList
+      <View style={styles.wrapperContent}>
+        {/* <FlatList
                     keyExtractor={item => item.id + ''}
                     showsVerticalScrollIndicator={false}
                     data={this.work(GetProfileStore.blogs)}
@@ -70,37 +70,40 @@ class PortfolioContaier extends React.Component {
 
                     }
                 /> */}
-        <ScrollView style = {[{ marginTop: 20,}]}>
+        <ScrollView style={[{ marginTop: 20, }]}>
           <View style={{ flexDirection: "row", justifyContent: "center", flex: 1 }}>
-            <View style = {[{flex : 1}]}>
-            {GetProfileStore.blogs1.map((item, id) => {
-              return <TouchableOpacity activeOpacity={0.8}
-                    onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind : item.kind})}>
+            <View style={[{ flex: 1 }]}>
+              {GetProfileStore.blogs1.map((item, id) => {
+                return <TouchableOpacity activeOpacity={0.8}
+                  key={id}
+                  onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind: item.kind })}>
                   <Image resizeMode={"cover"} source={{ uri: formatImageLink(item.url) }} style={styles.imageFeature1} />
                 </TouchableOpacity>;
-            })}
+              })}
             </View>
-            <View style = {[{flex : 1}]}>
+            <View style={[{ flex: 1 }]}>
 
-            {GetProfileStore.blogs2.map((item, id) => {
-              return <TouchableOpacity activeOpacity={0.8}
-                    onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind : item.kind})}>
+              {GetProfileStore.blogs2.map((item, id) => {
+                return <TouchableOpacity activeOpacity={0.8}
+                  key={id}
+                  onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind: item.kind })}>
                   <Image resizeMode={"cover"} source={{ uri: formatImageLink(item.url) }} style={styles.imageFeature2} />
                 </TouchableOpacity>;
-            })}
+              })}
             </View>
-            <View style = {[{flex : 1}]}>
-            {GetProfileStore.blogs3.map((item, id) => {
-              return <TouchableOpacity activeOpacity={0.8}
-                    onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind : item.kind})}>
+            <View style={[{ flex: 1 }]}>
+              {GetProfileStore.blogs3.map((item, id) => {
+                return <TouchableOpacity activeOpacity={0.8}
+                  key={id}
+                  onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind: item.kind })}>
                   <Image resizeMode={"cover"} source={{ uri: formatImageLink(item.url) }} style={styles.imageFeature3} />
                 </TouchableOpacity>;
-            })}
+              })}
             </View>
           </View>
-          </ScrollView>
-        </View>
-      </Container>;
+        </ScrollView>
+      </View>
+    </Container>;
   }
 }
 

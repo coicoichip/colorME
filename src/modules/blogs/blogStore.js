@@ -1,7 +1,8 @@
 import { observable, action, computed } from "mobx";
-import { blogApi, detailBlogApi } from "./blogApi";
+import { blogApi, detailBlogApi, attendanceApi, checkAttendanceApi} from "./blogApi";
 
 import { NavigationActions } from "react-navigation";
+import { STRINGS } from "../../constants";
 
 export default blogStore = new class BlogStore {
     @observable blogs = [];
@@ -14,6 +15,8 @@ export default blogStore = new class BlogStore {
     @observable errorDetail = false;
     @observable detailBlog = {};
     @observable top_tags = [];
+    @observable attendanceData = {};
+    @observable attendanceStatus = '';
 
     @action
     getBlog(kind, page,tag,action) {
@@ -50,5 +53,29 @@ export default blogStore = new class BlogStore {
             this.errorDetail = true;
             this.isLoadingDetail = false;
         })
-        }
     }
+
+    @action
+    checkAttendance(token){
+        checkAttendanceApi(token).then(res => {
+            console.log(res.data.data);
+            this.attendanceData = res.data.data;
+        })
+        .catch(err => {
+        })
+    }
+    
+    @action 
+    attendance(class_id, class_lesson_id, mac_wifi, token){
+        attendanceApi(class_id, class_lesson_id, mac_wifi, token)
+        .then(res => {
+            console.log(" attendance success");
+            console.log(res.data);
+            this.attendanceStatus = res.data;
+            alert(STRINGS.ATTENDANCE_SUCCESS)
+        })
+        .catch(err => {
+            console.log("fail");
+        })
+    }
+}
