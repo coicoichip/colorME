@@ -1,7 +1,7 @@
 package com.keetool.app.colorme.vn;
 
 import android.app.Application;
-
+import com.pusherman.networkinfo.RNNetworkInfoPackage;
 import com.facebook.react.ReactApplication;
 import com.microsoft.codepush.react.CodePush;
 import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
@@ -44,7 +44,8 @@ public class MainApplication extends Application implements ReactApplication {
             new RNSpinkitPackage(),
             new VectorIconsPackage(),
             new OpenSettingsPackage(),
-            new PickerPackage()
+            new PickerPackage(),
+            new RNNetworkInfoPackage()
       );
     }
 
