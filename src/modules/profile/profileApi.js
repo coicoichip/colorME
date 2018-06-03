@@ -29,9 +29,7 @@ export async function getPortfolioApi() {
   let url = "";
   await AsyncStorage.getItem('@ID').then((value) => {
      url = APIS.COLOR_ME_API + "/user/" + value+ "/post";
-     console.log(value);
   })
-  console.log(url);
   return axios.get(url);
 }
 
