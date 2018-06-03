@@ -8,7 +8,7 @@ import IconDefault from '../../commons/IconDefault';
 import splashStore from '../splash/splashStore';
 import loginStore from '../login/loginStore';
 import scheduleStore from "../profile/profileStore";
-import {ButtonCommon } from '../../commons';
+import { ButtonCommon } from '../../commons';
 
 @observer
 export default class ModalCheckInStudent extends Component {
@@ -34,8 +34,6 @@ export default class ModalCheckInStudent extends Component {
     }
 
     attendance = () => {
-        blogStore.modalVisible1 = true;
-        blogStore.modalVisible = false;
         const { mac_id } = this.state;
         console.log(mac_id, "adasdas")
         blogStore.attendance(
@@ -45,6 +43,10 @@ export default class ModalCheckInStudent extends Component {
             mac_id,
             splashStore.token || loginStore.token
         )
+        if (blogStore.isLoadingAttendent == false) {
+            blogStore.modalVisible1 = true;
+            blogStore.modalVisible = false;
+        }
     }
 
     render() {
@@ -80,23 +82,23 @@ export default class ModalCheckInStudent extends Component {
                             <Text style={[styles.textDescriptionDark, { fontWeight: 'bold' }]}>Lớp : </Text>
                             <Text style={[styles.textDescriptionDark]}>{blogStore.attendanceData.name}</Text>
                         </View>
-                        <View style={{ flexDirection: 'row', marginTop: 3}}>
+                        <View style={{ flexDirection: 'row', marginTop: 3 }}>
                             <Text style={[styles.textDescriptionDark, { fontWeight: 'bold' }]}>Buổi : </Text>
                             <Text style={[styles.textDescriptionDark]}>{blogStore.attendanceData.lesson[0].order}</Text>
                         </View>
-                        
+
                     </View>
                     <View style={styles.wrapperButton}>
-                            <ButtonCommon
-                                isLoading={blogStore.isLoadingAttendent}
-                                onPress={this.attendance}
-                                label={'ĐIỂM DANH'}
-                                text={{
-                                    fontFamily: 'Roboto-Bold',
-                                    fontSize: SIZES.SUBTITLE_SIZE
-                                }}
-                            />
-                        </View>
+                        <ButtonCommon
+                            isLoading={blogStore.isLoadingAttendent}
+                            onPress={this.attendance}
+                            label={'ĐIỂM DANH'}
+                            text={{
+                                fontFamily: 'Roboto-Bold',
+                                fontSize: SIZES.SUBTITLE_SIZE
+                            }}
+                        />
+                    </View>
                 </View>
                 : null
         );
@@ -135,7 +137,7 @@ const styles = StyleSheet.create({
     },
     wrapperButton: {
         ...wrapperCenter,
-        width: SIZES.DEVICE_WIDTH_SIZE*0.9,
+        width: SIZES.DEVICE_WIDTH_SIZE * 0.9,
         position: 'absolute',
         bottom: 30,
         paddingHorizontal: 60,

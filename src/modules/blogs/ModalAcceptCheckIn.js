@@ -41,7 +41,7 @@ export default class ModalAcceptCheckIn extends Component {
 
     render() {
         return (
-            blogStore.check == 1 ?
+            blogStore.check == 0 ?
                 <View style={[{
                     height: SIZES.DEVICE_HEIGHT_SIZE * 0.8,
                     width: SIZES.DEVICE_WIDTH_SIZE * 0.9,
