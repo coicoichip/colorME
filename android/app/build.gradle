@@ -156,6 +156,7 @@ dependencies {
     compile project(':react-native-image-crop-picker')
     compile project(':react-native-code-push')
     compile project(':appcenter-crashes')
+    compile project(':react-native-network-info')
     compile project(':appcenter-analytics')
     compile project(':appcenter')
     compile project(':react-native-spinkit')
