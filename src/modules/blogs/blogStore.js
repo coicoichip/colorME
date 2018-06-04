@@ -20,7 +20,7 @@ export default blogStore = new class BlogStore {
     @observable attendanceStatus = '';
     @observable modalVisible = false;
     @observable modalVisible1 = false;
-    @observable check = 1;
+    @observable check = 2;
 
     @action
     getBlog(kind, page,tag,action) {
@@ -77,6 +77,8 @@ export default blogStore = new class BlogStore {
         .then(res => {
             console.log("attendance success", res.data);
             this.check = 1;
+            this.modalVisible1 = true;
+            this.modalVisible = false;
             this.attendanceStatus = res.data;
             this.isLoadingAttendent = false;
             alert(STRINGS.ATTENDANCE_SUCCESS)
@@ -84,6 +86,8 @@ export default blogStore = new class BlogStore {
         .catch(err => {
             this.isLoadingAttendent = false;
             this.check = 0;
+            this.modalVisible = false;
+            this.modalVisible1 = true
             console.log("fail", err.response.data);
         })
     }

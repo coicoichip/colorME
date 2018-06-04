@@ -146,8 +146,8 @@ export default class ModalAcceptCheckIn extends Component {
                     </View>
                     <View style={styles.wrapperButton}>
                         <ButtonCommon
-                            isLoading={blogStore.isLoadingAttendent}
-                            onPress={this.attendance}
+                            isLoading={false}
+                            onPress={()=> {blogStore.modalVisible1 = false}}
                             label={'XONG'}
                             text={{
                                 fontFamily: 'Roboto-Bold',
