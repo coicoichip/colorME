@@ -25,6 +25,9 @@ import SplashContainer from "../modules/splash/SplashContainer";
 import ResourceContainer from "../modules/blogs/ResourceContainer";
 import styles from '../styles/styles';
 import StudyContainer from "../modules/study/StudyContainer";
+
+
+
 const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
@@ -101,6 +104,7 @@ const Tab = TabNavigator({
         screen: Study,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
+                
                 let source;
                 if (tintColor == 1) {
                     source = require('../../assets/icons/goal_enable.png')
@@ -122,6 +126,7 @@ const Tab = TabNavigator({
         path : "blogs",
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
+                
                 let source;
                 if (tintColor == 1) {
                     source = require('../../assets/icons/news_enable.png')
@@ -144,6 +149,7 @@ const Tab = TabNavigator({
         path : "notification",
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
+                
                 let source;
                 if (tintColor == 1) {
                     source = require('../../assets/icons/bell_enable.png')
@@ -164,6 +170,7 @@ const Tab = TabNavigator({
         screen: Profile,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
+                
                 let source;
                 if (tintColor == 1) {
                     source = require('../../assets/icons/user_enable.png')

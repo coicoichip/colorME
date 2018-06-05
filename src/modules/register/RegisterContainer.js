@@ -15,7 +15,7 @@ import { observable } from 'mobx';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { dispatch } from 'react-navigation';
 import { BackButton } from '../../commons';
-
+import Analytics from 'appcenter-analytics';
 
 @observer
 export default class RegisterContainer extends Component {
@@ -27,6 +27,10 @@ export default class RegisterContainer extends Component {
     }
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount(){
+        Analytics.trackEvent(STRINGS.ACTION_REGISTER_LOADED, {});
     }
 
     onChangeData = field => value => { this.register[field] = value };

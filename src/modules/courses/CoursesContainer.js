@@ -20,6 +20,7 @@ import { observer } from "mobx-react";
 import ListSubject from './ListCourses';
 import Error from '../../commons/Error';
 import TextNullData from '../../commons/TextNullData';
+import Analytics from 'appcenter-analytics';
 
 @observer
 class CoursesContainer extends Component {
@@ -29,16 +30,18 @@ class CoursesContainer extends Component {
             isLoading: false,
             category: 0,
             categogyArr: [
-                { title: "Thiết kế", index: 0 },
-                { title: "Lập trình", index: 1 },
+                { title: STRINGS.PROGRAM, index: 0 },
+                { title: STRINGS.DESIGN, index: 1 },
             ]
         }
     }
     componentWillMount() {
         drawerStore.getProfile();
-        coursesStore.getListSubject()
+        coursesStore.getListSubject();
+        Analytics.trackEvent(STRINGS.ACTION_ROOT_TAB_COURSE, {});
     }
     chooseCategory(index) {
+        const { categogyArr } = this.state;
         this.setState({ category: index })
         if (index === 0) {
             this.setState({ isLoading: true })
@@ -46,6 +49,8 @@ class CoursesContainer extends Component {
             coursesStore.data = coursesStore.subjects.filter(e =>
                 e.categories[0].id === 1
             )
+        Analytics.trackEvent(`${STRINGS.ACTION_CHOOSE_TAG_REGISTER_STUDY} : [${STRINGS.PROGRAM}]`, {});
+            
         }
         else {
             this.setState({ isLoading: true })
@@ -54,6 +59,7 @@ class CoursesContainer extends Component {
                 e.categories[0].id === 2
             )
         }
+        Analytics.trackEvent(`${STRINGS.ACTION_CHOOSE_TAG_REGISTER_STUDY} : [${STRINGS.DESIGN}]`, {});
     }
     __renderCategory = () => {
         return (

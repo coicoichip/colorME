@@ -18,6 +18,7 @@ import { NavigationActions } from 'react-navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { observer } from "mobx-react";
 import loginStore from './loginStore';
+import Analytics from 'appcenter-analytics';
 
 let _this;
 
@@ -30,7 +31,8 @@ class LoginContainer extends Component {
         }
         _this = this;
     }
-    UNSAFE_componentWillMount(){
+    componentDidMount(){
+        Analytics.trackEvent(STRINGS.ACTION_LOGIN_LOADED, { });
         loginStore.getData()
     }
 

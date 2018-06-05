@@ -23,6 +23,8 @@ import Error from '../../commons/Error';
 import TextNullData from '../../commons/TextNullData';
 import ListTag from "./ListTag";
 import Onesignal from "react-native-onesignal"
+import Analytics from 'appcenter-analytics';
+
 @observer
 class BlogContainer extends Component {
     @observable tag = ""
@@ -30,10 +32,11 @@ class BlogContainer extends Component {
         super();
         this.changeTag = this.changeTag.bind(this)
     }
-    UNSAFE_componentWillMount() {
+    componentDidMount() {
         const {params} = this.props.navigation.state;
         blogStore.getBlog(params.kind, 1, this.tag);
         // OneSignal.addEventListener("ids", this.onIds)
+        Analytics.trackEvent(STRINGS.ACTION_ROOT_TAB_HOME, {});
     }
     getMoreBlogs() {
         const {params} = this.props.navigation.state;

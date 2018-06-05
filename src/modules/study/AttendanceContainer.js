@@ -43,7 +43,7 @@ class AttendanceContainer extends Component {
     render() {
         return (
             <View style={{flex: 1}}>
-               {this.renderAttendance()}
+               {/* {this.renderAttendance()} */}
             </View>
         )
     }
