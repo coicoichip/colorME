@@ -4,7 +4,6 @@ import {
 } from 'react-native';
 import { STRINGS, COLORS, SIZES } from '../constants';
 import { StackNavigator, TabNavigator, DrawerNavigator, DrawerItems } from 'react-navigation';
-import NewsContainer from '../modules/news/NewsContainer';
 import BaseContainer from '../modules/base/BaseContainer';
 import NotificationContainer from '../modules/notification/NotificationContainer';
 import ProfileContainer from '../modules/profile/ProfileContainer';

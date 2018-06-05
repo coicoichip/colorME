@@ -87,6 +87,7 @@ export default class ColorME extends Component {
                 />
                 <App/>
                 <Modal
+                    onRequestClose={() => this.setState({modalUpdate: false})}
                     animationType="fade"
                     transparent={true}
                     visible={this.state.modalUpdate}

@@ -11,7 +11,7 @@ import {
     StyleSheet,
 
 } from 'react-native';
-import { STRINGS, COLORS, SIZES, FONTS} from '../../constants';
+import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
 import { Container, Item, Button, Text, Input, Form, Label } from 'native-base';
 import { InputCommon, ButtonCommon } from '../../commons';
 import { NavigationActions } from 'react-navigation';
@@ -25,14 +25,16 @@ let _this;
 class LoginContainer extends Component {
     constructor(props) {
         super(props);
+        
         this.state = {
             url: 'colorme.vn',
         }
         _this = this;
     }
-    UNSAFE_componentWillMount(){
+    componentDidMount() {
         loginStore.getData()
     }
+
 
     signInWithAccount = () => {
         loginStore.loginUser(this.props.navigation);
@@ -52,6 +54,7 @@ class LoginContainer extends Component {
                 scrollEnabled={false}
                 extraHeight={100}
             >
+               
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <Container>
                         <StatusBar
@@ -87,17 +90,19 @@ class LoginContainer extends Component {
                                 value={loginStore.login.password}
                                 label={STRINGS.PASSWORD.toUpperCase()}
                                 onChangeText={this.onChangeData('password')}
-                                onSubmitEditing = {this.signInWithAccount}
+                                onSubmitEditing={this.signInWithAccount}
                             />
-                            <View height={30}/>
+                            <View height={30} />
                         </View>
                         <View style={styles.wrapperButton}>
                             <ButtonCommon
                                 isLoading={loginStore.isLoading}
                                 onPress={this.signInWithAccount}
                                 label={STRINGS.LOGIN.toUpperCase()}
-                                text={{fontFamily: 'Roboto-Bold',
-                                fontSize: SIZES.SUBTITLE_SIZE}}
+                                text={{
+                                    fontFamily: 'Roboto-Bold',
+                                    fontSize: SIZES.SUBTITLE_SIZE
+                                }}
                             />
                         </View>
 

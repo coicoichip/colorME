@@ -1,7 +1,7 @@
 import { observable, action, computed } from "mobx";
 import { userProfileApi, updateProfileApi, getDetailPortfolioApi, getPortfolioApi } from "./profileApi";
 import { Alert, AsyncStorage } from "react-native";
-export default (scheduleStore = new class  GetProfileStore {
+export default getProfileStore = new class  GetProfileStore {
     @observable user = {};
     @observable updateUser = {};
     @observable isLoading = false;
@@ -67,4 +67,4 @@ export default (scheduleStore = new class  GetProfileStore {
             })
     }
 
-}());
+}();

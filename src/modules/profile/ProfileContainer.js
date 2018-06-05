@@ -10,7 +10,7 @@ import { formatImageLink } from "../../helper/index"
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
 import Avatar from "./upLoadAvatar"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import getProfileStore from "./profileStore";
+import se from "./profileStore";
 import InformationUser from "./InformationUser";
 import { observable } from "mobx";
 import PortfolioContaier from "./PortfolioContainer";
