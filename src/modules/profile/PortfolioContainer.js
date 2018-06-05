@@ -5,7 +5,7 @@ import { STRINGS, COLORS, SIZES } from "../../constants";
 import Header from "../../commons/Header";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
-import GetProfileStore from "./profileStore";
+import getProfileStore from "./profileStore";
 import loginStore from "../login/loginStore";
 import ListPortfolio from "./ListItem/portfolioItem"
 import Loading from "../../commons/Loading";
@@ -21,7 +21,7 @@ class PortfolioContaier extends React.Component {
   }
 
   UNSAFE_componentWillMount() {
-    GetProfileStore.getPortfolio();
+    getProfileStore.getPortfolio();
     //console.log(getProfileStore.portfolioData);
 
 
@@ -30,7 +30,7 @@ class PortfolioContaier extends React.Component {
     // GetProfileStore.getPortfolio();
   }
   loadMore() {
-    if (GetProfileStore.isLoadingMore)
+    if (getProfileStore.isLoadingMore)
       return (<Loading />)
     else
       return null
@@ -73,7 +73,7 @@ class PortfolioContaier extends React.Component {
         <ScrollView style={[{ marginTop: 20, }]}>
           <View style={{ flexDirection: "row", justifyContent: "center", flex: 1 }}>
             <View style={[{ flex: 1 }]}>
-              {GetProfileStore.blogs1.map((item, id) => {
+              {getProfileStore.blogs1.map((item, id) => {
                 return <TouchableOpacity activeOpacity={0.8}
                   key={id}
                   onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind: item.kind })}>
@@ -83,7 +83,7 @@ class PortfolioContaier extends React.Component {
             </View>
             <View style={[{ flex: 1 }]}>
 
-              {GetProfileStore.blogs2.map((item, id) => {
+              {getProfileStore.blogs2.map((item, id) => {
                 return <TouchableOpacity activeOpacity={0.8}
                   key={id}
                   onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind: item.kind })}>
@@ -92,7 +92,7 @@ class PortfolioContaier extends React.Component {
               })}
             </View>
             <View style={[{ flex: 1 }]}>
-              {GetProfileStore.blogs3.map((item, id) => {
+              {getProfileStore.blogs3.map((item, id) => {
                 return <TouchableOpacity activeOpacity={0.8}
                   key={id}
                   onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind: item.kind })}>

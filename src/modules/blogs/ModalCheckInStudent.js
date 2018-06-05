@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, Button, StyleSheet, TouchableOpacity, Image, Platform } from 'react-native';
 import { SIZES, COLORS, STRINGS, FONTS } from '../../constants';
 import { NetworkInfo } from 'react-native-network-info';
 import { observer } from "mobx-react";
@@ -7,9 +7,9 @@ import blogStore from './blogStore';
 import IconDefault from '../../commons/IconDefault';
 import splashStore from '../splash/splashStore';
 import loginStore from '../login/loginStore';
-import scheduleStore from "../profile/profileStore";
+import getProfileStore  from "../profile/profileStore";
 import { ButtonCommon } from '../../commons';
-
+import {formatImageLink} from "../../helper/index"
 @observer
 export default class ModalCheckInStudent extends Component {
     constructor(props) {
@@ -19,14 +19,14 @@ export default class ModalCheckInStudent extends Component {
         }
     }
     componentWillMount() {
-        scheduleStore.getProfile();
+        getProfileStore.getProfile();
     }
     componentDidMount() {
-        console.log(blogStore.attendanceData)
+        // console.log(blogStore.attendanceData)
         NetworkInfo.getBSSID(bssid => {
             if (bssid && bssid != 'error' && bssid.indexOf("bssid") == -1) {
                 this.state.mac_id = bssid
-                console.log(bssid)
+                
             } else {
 
             }
@@ -41,7 +41,7 @@ export default class ModalCheckInStudent extends Component {
             blogStore.attendanceData.lesson[0].class_lesson_id,
             // (Array.isArray(blogStore.attendanceData) && blogStore.attendanceData.length > 0) ? blogStore.attendanceData.length - 1 : null,
             mac_id,
-            splashStore.token || loginStore.token
+            
         )
         if (blogStore.isLoadingAttendent == false) {
             blogStore.modalVisible1 = true;
@@ -63,20 +63,20 @@ export default class ModalCheckInStudent extends Component {
                         <View style={[styles.wrapperCenter, { flexDirection: 'row', marginTop: 30 }]}>
 
                             <Image
-                                style={[styles.avatarUserNormals, { marginRight: -15 }]}
+                                style={[styles.avatarUserNormals, { marginRight: -15}]}
                                 source={{ uri: blogStore.attendanceData.avatar_url }} />
                             <Image
                                 style={[styles.avatarUserNormals]}
-                                source={scheduleStore.updateUser.avatar_url ? { uri: scheduleStore.updateUser.avatar_url } : require('../../../assets/image/colorMe.jpg')} />
+                                source={getProfileStore.updateUser.avatar_url ? { uri: formatImageLink(getProfileStore.updateUser.avatar_url) } : require('../../../assets/image/colorMe.jpg')} />
 
                         </View>
                         <Text style={[styles.textDescriptionDark, { fontWeight: 'bold', marginTop: 40, fontSize: 20 }]}>Điểm danh</Text>
-                        <Text style={[styles.textDescriptionDark, { marginTop: 20 }]}>Chào {scheduleStore.updateUser.name} , hiện tại bạn đang học buổi {blogStore.attendanceData.lesson[0].order} của lớp {blogStore.attendanceData.name}, bạn muốn thực hiện việc điểm danh không?</Text>
+                        <Text style={[styles.textDescriptionDark, { marginTop: 20 }]}>Chào {getProfileStore.updateUser.name} , hiện tại bạn đang học buổi {blogStore.attendanceData.lesson[0].order} của lớp {blogStore.attendanceData.name}, bạn muốn thực hiện việc điểm danh không?</Text>
                     </View>
                     <View style={{ flex: 1, borderTopColor: 'gray', borderTopWidth: 1 }}>
                         <View style={{ flexDirection: 'row', marginTop: 30 }}>
                             <Text style={[styles.textDescriptionDark, { fontFamily: FONTS.MAIN_FONT_BOLD }]}>Họ và tên : </Text>
-                            <Text style={[styles.textDescriptionDark]}>{scheduleStore.updateUser.name}</Text>
+                            <Text style={[styles.textDescriptionDark]}>{getProfileStore.updateUser.name}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 3 }}>
                             <Text style={[styles.textDescriptionDark, { fontWeight: 'bold' }]}>Lớp : </Text>
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
         width: 70,
         height: 70,
         borderRadius: 35,
-        backgroundColor: '#fff',
+        backgroundColor: Platform.OS == "ios" ? '#fff' : null,
     },
     wrapperModalComment: {
         flex: 1,
