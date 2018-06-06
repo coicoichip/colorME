@@ -155,7 +155,8 @@ const styles = StyleSheet.create({
 
     },
     cardItem: {
-        padding: 10,
+        paddingTop: 10,
+        paddingBottom: 10,
         borderRadius: 5,
     },
     avatarUserImage: {
