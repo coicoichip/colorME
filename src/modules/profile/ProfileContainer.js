@@ -10,7 +10,7 @@ import { formatImageLink } from "../../helper/index"
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
 import Avatar from "./upLoadAvatar"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import se from "./profileStore";
+import getProfileStore from "./profileStore";
 import InformationUser from "./InformationUser";
 import { observable } from "mobx";
 import PortfolioContaier from "./PortfolioContainer";
@@ -31,6 +31,7 @@ class ProfileContainer extends React.Component {
   }
   componentWillMount() {
     getProfileStore.getProfile();
+    getProfileStore.getPortfolio();
   }
   onChangeData = field => value => {
     getProfileStore.updateUser[field] = value;
@@ -81,9 +82,8 @@ class ProfileContainer extends React.Component {
         scrollEnabled={false}>
         <View style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
           <InformationUser changeAvatar = {this.changeAvatar} onChangeData={this.onChangeData} avatar_url = {getProfileStore.updateUser.avatar_url} />
-
         </View>
-        <View>
+        <View  style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
           <PortfolioContaier navigation = {this.props.navigation} />
         </View>
       </ScrollView>

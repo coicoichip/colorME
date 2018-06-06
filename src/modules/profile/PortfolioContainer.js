@@ -6,8 +6,8 @@ import Header from "../../commons/Header";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
 import getProfileStore from "./profileStore";
-import loginStore from "../login/loginStore";
-import ListPortfolio from "./ListItem/portfolioItem"
+import TextNullData from "../../commons/TextNullData";
+// import ListPortfolio from "./ListItem/portfolioItem"
 import Loading from "../../commons/Loading";
 import { formatImageLink } from "../../helper/index";
 
@@ -19,12 +19,20 @@ class PortfolioContaier extends React.Component {
   constructor(props) {
     super(props);
   }
+  gridPost() {
+    if (getProfileStore.blogs.length !== 0)
+      posts = getProfileStore.blogs.map((post, index) => {
+        return {
+          ...post,
+          key: index
+        }
+      });
 
-  UNSAFE_componentWillMount() {
-    getProfileStore.getPortfolio();
-    //console.log(getProfileStore.portfolioData);
-
-
+    postsGrid = _.groupBy(posts, ({ element, key }) => {
+      return Math.floor(key / 3);
+    });
+    postsGrid = _.toArray(postsGrid);
+    return postsGrid;
   }
   refreshList() {
     // GetProfileStore.getPortfolio();
@@ -35,74 +43,59 @@ class PortfolioContaier extends React.Component {
     else
       return null
   }
-  work(data) {
-    let u = [];
-    let dataPortfolio = [];
-    for (let blog of data) {
-
-      { u = { u, blog }; }
-
-    }
-
-  }
-
   render() {
-    console.log(1);
+    // console.log(getProfileStore.posts)
+
     return <Container style={{ backgroundColor: COLORS.LIGHT_COLOR }}>
-      <View style={styles.wrapperContent}>
-        {/* <FlatList
-                    keyExtractor={item => item.id + ''}
-                    showsVerticalScrollIndicator={false}
-                    data={this.work(GetProfileStore.blogs)}
-                    refreshControl={
-                        <RefreshControl
-                            refreshing={GetProfileStore.isLoadingRefresh}
-                            onRefresh={
-                                () => this.refreshList()
-                            }
-                        />
-                    }
-                    ListFooterComponent={
-                        this.loadMore()
-                    }
-                    renderItem={({ item }) =>
-                         <ListPortfolio item={item} navigation={this.props.navigation} />
+      {getProfileStore.isLoadingPortfolio ?
+        <Loading />
+        :
+        getProfileStore.blogs.length !== 0
+          ?
+          <View style={styles.wrapperContent}>
+            <FlatList
+              keyExtractor={(item, key) => key}
+              showsVerticalScrollIndicator={false}
+              data={this.gridPost()}
+              refreshControl={
+                <RefreshControl
+                  refreshing={getProfileStore.isLoadingRefresh}
+                  onRefresh={
+                    () => this.refreshList()
+                  }
+                />
+              }
+              ListFooterComponent={
+                this.loadMore()
+              }
+              renderItem={({ item }) => {
+                return (
+                  <View style={{ flex: 1, flexDirection: 'row' }}>
+                    {
+                      item.map((post, index) => {
+                        return (
+                          <TouchableOpacity activeOpacity={0.8}
+                            key={index}
+                            onPress={() => this.props.navigation.navigate('DetailBlog', { slug: post.slug, kind: post.kind })}>
+                            <Image resizeMode={"cover"} source={{ uri: formatImageLink(post.url) }} style={styles.imageFeature2} />
 
+                          </TouchableOpacity>
+                        )
+                      })
                     }
-                /> */}
-        <ScrollView style={[{ marginTop: 20, }]}>
-          <View style={{ flexDirection: "row", justifyContent: "center", flex: 1 }}>
-            <View style={[{ flex: 1 }]}>
-              {getProfileStore.blogs1.map((item, id) => {
-                return <TouchableOpacity activeOpacity={0.8}
-                  key={id}
-                  onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind: item.kind })}>
-                  <Image resizeMode={"cover"} source={{ uri: formatImageLink(item.url) }} style={styles.imageFeature1} />
-                </TouchableOpacity>;
-              })}
-            </View>
-            <View style={[{ flex: 1 }]}>
+                  </View>
 
-              {getProfileStore.blogs2.map((item, id) => {
-                return <TouchableOpacity activeOpacity={0.8}
-                  key={id}
-                  onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind: item.kind })}>
-                  <Image resizeMode={"cover"} source={{ uri: formatImageLink(item.url) }} style={styles.imageFeature2} />
-                </TouchableOpacity>;
-              })}
-            </View>
-            <View style={[{ flex: 1 }]}>
-              {getProfileStore.blogs3.map((item, id) => {
-                return <TouchableOpacity activeOpacity={0.8}
-                  key={id}
-                  onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind: item.kind })}>
-                  <Image resizeMode={"cover"} source={{ uri: formatImageLink(item.url) }} style={styles.imageFeature3} />
-                </TouchableOpacity>;
-              })}
-            </View>
+                )
+              }
+
+              }
+            />
           </View>
-        </ScrollView>
-      </View>
+          :
+          <TextNullData text={"Bạn chưa tham gia khoá học nào"} />
+      }
+
+
     </Container>;
   }
 }

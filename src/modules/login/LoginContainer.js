@@ -35,7 +35,6 @@ class LoginContainer extends Component {
         loginStore.getData()
     }
 
-
     signInWithAccount = () => {
         loginStore.loginUser(this.props.navigation);
         loginStore.saveData();

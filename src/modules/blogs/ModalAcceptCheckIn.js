@@ -31,6 +31,7 @@ export default class ModalAcceptCheckIn extends Component {
     }
 
     attendance = () => {
+        
         const { mac_id } = this.state;
         console.log(mac_id, "adasdas")
         blogStore.attendance(
@@ -38,7 +39,7 @@ export default class ModalAcceptCheckIn extends Component {
             blogStore.attendanceData.lesson[0].class_lesson_id,
             // (Array.isArray(blogStore.attendanceData) && blogStore.attendanceData.length > 0) ? blogStore.attendanceData.length - 1 : null,
             mac_id,
-           
+            
         )
     }
 

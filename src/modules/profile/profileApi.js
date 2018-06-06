@@ -8,6 +8,7 @@ export async function userProfileApi(){
   await AsyncStorage.getItem('@UserToken').then((value)=> {
       url = APIS.COLOR_ME_API1 + "/user/profile?token=" + value
   })
+  console.log(url)
   return axios.get(url)
 }
 export async function updateProfileApi(user){
@@ -29,6 +30,7 @@ export async function getPortfolioApi() {
   let url = "";
   await AsyncStorage.getItem('@ID').then((value) => {
      url = APIS.COLOR_ME_API + "/user/" + value+ "/post";
+     console.log(value)
   })
   return axios.get(url);
 }

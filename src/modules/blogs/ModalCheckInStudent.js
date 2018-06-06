@@ -5,8 +5,7 @@ import { NetworkInfo } from 'react-native-network-info';
 import { observer } from "mobx-react";
 import blogStore from './blogStore';
 import IconDefault from '../../commons/IconDefault';
-import splashStore from '../splash/splashStore';
-import loginStore from '../login/loginStore';
+
 import getProfileStore  from "../profile/profileStore";
 import { ButtonCommon } from '../../commons';
 import {formatImageLink} from "../../helper/index"
@@ -34,6 +33,7 @@ export default class ModalCheckInStudent extends Component {
     }
 
     attendance = () => {
+       
         const { mac_id } = this.state;
         console.log(mac_id, "adasdas")
         blogStore.attendance(
@@ -41,7 +41,6 @@ export default class ModalCheckInStudent extends Component {
             blogStore.attendanceData.lesson[0].class_lesson_id,
             // (Array.isArray(blogStore.attendanceData) && blogStore.attendanceData.length > 0) ? blogStore.attendanceData.length - 1 : null,
             mac_id,
-            
         )
         if (blogStore.isLoadingAttendent == false) {
             blogStore.modalVisible1 = true;

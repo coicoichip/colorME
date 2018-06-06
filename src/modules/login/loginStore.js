@@ -1,4 +1,3 @@
-
 import { observable, action, computed } from "mobx";
 import { loginApi } from "./loginApi";
 import { Alert, AsyncStorage } from "react-native"
@@ -29,8 +28,9 @@ export default loginStore = new class LoginStore {
             return;
         }
         this.isLoading = true;
-        loginApi(this.login).then(res => {
-            console.log(res);
+        loginApi(this.login).then(async res => {
+            await AsyncStorage.setItem('@UserToken', res.data.token);
+            await AsyncStorage.setItem('@ID', res.data.user.id.toString())
             if (navigation) {
                 resetScreen(navigation, 'Drawer');
             }
@@ -41,7 +41,7 @@ export default loginStore = new class LoginStore {
             this.status = res.status;
             this.id = res.data.id;
             this.loginStatus = true;
-            AsyncStorage.setItem('@UserToken', res.data.token, ()=> AsyncStorage.setItem("@ID", res.data.user.id.toString()));
+           
             
             console.log(res.data.user.id.toString());
         })
@@ -81,3 +81,4 @@ export default loginStore = new class LoginStore {
         catch (err){}
     }
 }
+
