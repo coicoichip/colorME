@@ -9,7 +9,7 @@ import Spinner from 'react-native-spinkit';
 import splashStore from "./splashStore"
 import { observer } from 'mobx-react';
 import { resetScreen } from '../../helper';
-
+import deviceStore from "../check-device/deviceStore"
 
 @observer
 export default class SplashContainer extends Component {
@@ -40,6 +40,7 @@ export default class SplashContainer extends Component {
 
     componentDidMount() {
         const { navigation } = this.props;  
+        deviceStore.checkDevice();
         this.checkNetwork().then(async function(res) {
             try {
                  const token = await AsyncStorage.getItem('@UserToken')

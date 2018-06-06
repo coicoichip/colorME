@@ -30,9 +30,7 @@ target 'colorMe' do
   
 
   pod 'react-native-network-info', :path => '../node_modules/react-native-network-info'
-
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
-
   target 'colorMeTests' do
     inherit! :search_paths
     # Pods for testing
