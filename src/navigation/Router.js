@@ -24,6 +24,10 @@ import SplashContainer from "../modules/splash/SplashContainer";
 import ResourceContainer from "../modules/blogs/ResourceContainer";
 import styles from '../styles/styles';
 import StudyContainer from "../modules/study/StudyContainer";
+import SupportContainer from "../modules/support/SupportContainer";
+import RequestFunction from "../modules/support/RequestFunction";
+import FeedbackTeacher from "../modules/support/FeedbackTeacher";
+import ProductsContainer from '../modules/products/ProductsContainer';
 const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
@@ -38,42 +42,46 @@ const Courses = StackNavigator(
 );
 const Blog = StackNavigator(
     {
-        BlogContainer : {screen : BlogContainer, path : "blogContainer"},
-        DetailBlog : {screen : DetailBlogContainer},
-        ListBlog : {screen : ListBlog}
-    }, { headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'blog'}}
+        BlogContainer: { screen: BlogContainer, path: "blogContainer" },
+        DetailBlog: { screen: DetailBlogContainer },
+        ListBlog: { screen: ListBlog }
+    }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'blog' } }
 
 );
 const Profile = StackNavigator(
     {
         MyProfile: { screen: ProfileContainer },
-        DetailBlog : {screen : DetailBlogContainer},
+        DetailBlog: { screen: DetailBlogContainer },
     }, { initialRouteName: 'MyProfile', headerMode: 'none', mode: 'modal' }
 );
 const Resource = StackNavigator(
     {
-        ResourceContainer : {screen : ResourceContainer},
-        DetailBlog : {screen : DetailBlogContainer},
-    }, {headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'resource', title : "Tài nguyên"}}
+        ResourceContainer: { screen: ResourceContainer },
+        DetailBlog: { screen: DetailBlogContainer },
+    }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'resource', title: "Tài nguyên" } }
 
 );
 const Study = StackNavigator(
-  {
-    StudyContainer: { screen: StudyContainer }
-  },
-  {
-    headerMode: "none",
-    mode: "modal",
-    initialRouteParams: { kind: "study", title: "HỌC TẬP" }
-  }
+    {
+        StudyContainer: { screen: StudyContainer }
+    },
+    {
+        headerMode: "none",
+        mode: "modal",
+        initialRouteParams: { kind: "study", title: "HỌC TẬP" }
+    }
 );
 const Promotion = StackNavigator(
     {
-        BlogContainer : {screen : BlogContainer},
-        DetailBlog : {screen : DetailBlogContainer},
-    }, {headerMode: 'none', mode: 'modal', initialRouteParams : {kind : 'promotion', title : "Khuyến mãi"}}
+        BlogContainer: { screen: BlogContainer },
+        DetailBlog: { screen: DetailBlogContainer },
+    }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'promotion', title: "Khuyến mãi" } }
 )
-
+const Products = StackNavigator({
+    Products: { screen: ProductsContainer },
+    DetailBlog: { screen: DetailBlogContainer },
+    ListBlog: { screen: ListBlog }
+}, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'post' } })
 const Tab = TabNavigator({
     Course: {
         screen: Courses,
@@ -116,9 +124,9 @@ const Tab = TabNavigator({
             }
         }
     },
-    Blogs: {
-        screen: Blog,
-        path : "blogs",
+    Products: {
+        screen: Products,
+        path: "Products",
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
                 let source;
@@ -131,16 +139,16 @@ const Tab = TabNavigator({
                     <View style={styles.wrapperIconTabNavigator}>
                         <Image
                             source={source}
-                            style={{ width:  SIZES.ICON_SIZE, height: SIZES.ICON_SIZE }} />
+                            style={{ width: SIZES.ICON_SIZE, height: SIZES.ICON_SIZE }} />
                     </View>
                 )
             }
         },
-        
+
     },
     Notification: {
         screen: NotificationContainer,
-        path : "notification",
+        path: "notification",
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
                 let source;
@@ -181,7 +189,7 @@ const Tab = TabNavigator({
     },
 },
     {
-        initialRouteName: 'Blogs',
+        initialRouteName: 'Products',
         tabBarPosition: 'bottom',
         animationEnabled: false,
         tabBarOptions: {
@@ -197,55 +205,80 @@ const Tab = TabNavigator({
         }
 
     });
-   
-const Drawer = DrawerNavigator(
-  {
-    OverView: {
-      screen: Tab,
-      path : "overview",
-      navigationOptions: ({ navigation }) => ({
-        title: "Tổng Quan"
-      })
-    },
-    Promotion: {
-      screen: Promotion,
-      navigationOptions: ({ navigation }) => ({
-        title: "Khuyến mãi"
-      })
-    },
-    Resource: {
-        screen : Resource,
-        navigationOptions: ({ navigation }) => ({
-            title: "Tài nguyên"
-        })
-    },
-    Base: {
-      screen: BaseContainer,
-      navigationOptions: ({ navigation }) => ({
-        title: "Chỉ Đường"
-      })
-    },
-  },
-  {
-    drawerWidth: SIZES.DEVICE_WIDTH_SIZE * 3 / 4,
-    drawerPosition: "right",
-    useNativeAnimations: "false",
-    disableOpenGesture: false,
-    drawerLockMode: "locked-closed",
-    contentOptions: {
-      activeTintColor: COLORS.MAIN_COLOR,
-    },
 
-    contentComponent: props => <DrawerContainer {...props} />
-  }
+const Drawer = DrawerNavigator(
+    {
+        OverView: {
+            screen: Tab,
+            path: "overview",
+            navigationOptions: ({ navigation }) => ({
+                title: "Tổng Quan"
+            })
+        },
+        Blogs: {
+            screen: Blog,
+            path: "blogs",
+            navigationOptions: ({ navigation }) => ({
+                title: "Bài viết"
+            })
+        },
+        Promotion: {
+            screen: Promotion,
+            navigationOptions: ({ navigation }) => ({
+                title: "Khuyến mãi"
+            })
+        },
+        Resource: {
+            screen: Resource,
+            navigationOptions: ({ navigation }) => ({
+                title: "Tài nguyên"
+            })
+        },
+        Base: {
+            screen: BaseContainer,
+            navigationOptions: ({ navigation }) => ({
+                title: "Chỉ Đường"
+            })
+        },
+        Support: {
+            screen: SupportContainer,
+            navigationOptions: ({ navigation }) => ({
+                title: "Hỗ trợ - Báo lỗi"
+            })
+        },
+        RequestFunction: {
+            screen: RequestFunction,
+            navigationOptions: ({ navigation }) => ({
+                title: "Yêu cầu tính năng"
+            })
+        },
+        FeedbackTeacher: {
+            screen: FeedbackTeacher,
+            navigationOptions: ({ navigation }) => ({
+                title: "Nhận xét giảng viên"
+            })
+        }
+    },
+    {
+        drawerWidth: SIZES.DEVICE_WIDTH_SIZE * 3 / 4,
+        drawerPosition: "right",
+        useNativeAnimations: "false",
+        disableOpenGesture: false,
+        drawerLockMode: "locked-closed",
+        contentOptions: {
+            activeTintColor: COLORS.MAIN_COLOR,
+        },
+
+        contentComponent: props => <DrawerContainer {...props} />
+    }
 );
 
 export const RootStack = StackNavigator(
-    { 
+    {
         Splash: { screen: SplashContainer },
         Login: { screen: LoginContainer },
         Register: { screen: RegisterContainer },
-        Drawer: { screen: Drawer , path : "main"},
+        Drawer: { screen: Drawer, path: "main" },
     },
     { headerMode: 'none', mode: 'card' }
 );

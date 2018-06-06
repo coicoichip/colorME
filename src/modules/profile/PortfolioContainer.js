@@ -35,16 +35,6 @@ class PortfolioContaier extends React.Component {
     else
       return null
   }
-  work(data) {
-    let u = [];
-    let dataPortfolio = [];
-    for (let blog of data) {
-
-      { u = { u, blog }; }
-
-    }
-
-  }
 
   render() {
     console.log(1);

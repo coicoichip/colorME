@@ -1,11 +1,12 @@
 
 import { observable, action, computed } from "mobx";
-import { loginApi } from "./loginApi";
+import { loginApi, loadCheckDevice} from "./loginApi";
 import { Alert, AsyncStorage } from "react-native"
 import { NavigationActions } from "react-navigation";
 import { STRINGS } from "../../constants";
 import { resetScreen } from '../../helper';
 import OneSignal from 'react-native-onesignal';
+import DeviceInfo from 'react-native-device-info';
 export default loginStore = new class LoginStore {
     @observable login = { email: "", password: "" };
     @observable loginStatus = false;
@@ -80,4 +81,12 @@ export default loginStore = new class LoginStore {
         }
         catch (err){}
     }
+    // @action checkDevice(device, token){
+    //     loadCheckDevice(device, token).then(res => {
+            
+    //     })
+    //     .catch(err => {
+    //         Alert.alert("Thiết bị của bạn không đúng với tài khoản này");
+    //     })
+    // }
 }

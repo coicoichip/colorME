@@ -44,5 +44,9 @@ export const STRINGS = {
     UPDATING_INFORMATION: 'Đang cập nhập thông tin',
     STUDY: 'HỌC TẬP',
     ATTENDANCE_SUCCESS: 'Điểm danh thành công',
+    SUPPORT_HEADER_TITLE: 'Hỗ trợ - Báo lỗi',
+    REQUEST_FUNCTION: "Yêu cầu tính năng",
+    FEEDBACK_TEACHER: "Nhận xét giảng viên",
+    PRODUCTS: "Bài tập học viên",
     ATTENDANCE: (name, lesson, class_name) => `Chào ${name} hiện tại bạn đang học buổi ${lesson} của lớp ${class_name} bạn có muốn thực hiện điểm danh không?`,
 }
