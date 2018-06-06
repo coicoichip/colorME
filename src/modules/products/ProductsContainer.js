@@ -1,16 +1,15 @@
 import React from "react";
-import { View, Text, StyleSheet, FlatList, RefreshControl, Image, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, FlatList, RefreshControl, Image, TouchableOpacity } from "react-native";
 import { Container } from "native-base";
 import { STRINGS, COLORS, SIZES } from "../../constants";
 import Header from "../../commons/Header";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
 import { productsStore } from "./productsStore";
-import Select, {returnInfo, returnDate} from "./Select";
-// import loginStore from "../login/loginStore";
-// import ListPortfolio from "./ListItem/portfolioItem"
+import Select, { returnInfo, returnDate } from "./Select";
 import Loading from "../../commons/Loading";
 import { formatImageLink } from "../../helper/index";
+import TextNullData from "../../commons/TextNullData";
 
 
 
@@ -23,64 +22,106 @@ class ProductsContainer extends React.Component {
   }
 
   UNSAFE_componentWillMount() {
-    productsStore.getListProducts(7);
+    productsStore.page = 1;
+    productsStore.getListProducts(7, 1);
     //console.log(getProfileStore.portfolioData);
 
 
   }
   async pickInfo() {
-    await returnInfo(info_value => { productsStore.info_id = info_value;});
-    productsStore.info_id == 7 ? productsStore.getListProducts(productsStore.data_id)
-    : productsStore.getListProductsNew();
+    productsStore.page = 1;
+    await returnInfo(info_value => { productsStore.info_id = info_value; });
+    productsStore.info_id == 7 ? productsStore.getListProducts(productsStore.data_id, 1)
+      : productsStore.getListProductsNew(1);
   }
   async pickDate() {
-    await returnInfo(date_value => { productsStore.data_id = date_value;});
-    productsStore.getListProducts(productsStore.data_id)
+    productsStore.page = 1;
+    await returnInfo(date_value => { productsStore.data_id = date_value });
+    productsStore.getListProducts(productsStore.data_id, 1);
   }
+  gridPost() {
+    if (productsStore.products.length !== 0)
+      posts = productsStore.products.map((post, index) => {
+        return {
+          ...post,
+          key: index
+        }
+      });
+
+    postsGrid = _.groupBy(posts, ({ element, key }) => {
+      return Math.floor(key / 3);
+    });
+    postsGrid = _.toArray(postsGrid);
+    return postsGrid;
+  }
+  getMoreProducts() {
+    productsStore.page = productsStore.page + 1;
+    productsStore.testproducts.length !== 0 ?
+      productsStore.info_id == 0 ? productsStore.getListProductsNew(productsStore.page)
+        : productsStore.getListProducts(productsStore.data_id, productsStore.page)
+      : null
+  }
+  loadMore() {
+    if (productsStore.isLoading && productsStore.page >= 1)
+      return (<Loading />)
+    else
+      return null
+  }
+  // refreshList() {
+  //   productsStore.page = 1;
+  //   productsStore.info_id == 0 ? productsStore.getListProductsNew(1)
+  //     : productsStore.getListProducts(productsStore.data_id, 1)
+  // }
 
   render() {
     const { navigate } = this.props.navigation;
     return <Container style={{ backgroundColor: COLORS.LIGHT_COLOR }}>
       <Header title={STRINGS.PRODUCTS} navigate={navigate} />
-      <View style ={{flexDirection: 'row'}}>
+      <View style={{ flexDirection: 'row' }}>
         <Select haveInfo functionInfo={() => this.pickInfo()} />
-        <Select haveDate = {productsStore.info_id == 0? null : 'haveDate'} functionDate={() => this.pickDate()} />
+        <Select haveDate={productsStore.info_id == 0 ? null : 'haveDate'} functionDate={() => this.pickDate()} />
       </View>
-      {productsStore.isLoading ? <Loading />
+      {productsStore.products.length === 0 || productsStore.isLoadingBegin ? <Loading />
         :
         <View style={styles.wrapperContent}>
-          <ScrollView style={[{ marginTop: 20, }]}>
-            <View style={{ flexDirection: "row", justifyContent: "center", flex: 1 }}>
-              <View style={[{ flex: 1 }]}>
-                {productsStore.products1.map((item, id) => {
-                  return <TouchableOpacity activeOpacity={0.8}
-                    key={id}
-                    onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind: item.kind })}>
-                    <Image resizeMode={"cover"} source={{ uri: formatImageLink(item.thumb_url) }} style={styles.imageFeature1} />
-                  </TouchableOpacity>;
-                })}
-              </View>
-              <View style={[{ flex: 1 }]}>
+          <FlatList
+            keyExtractor={(item, key) => key}
+            showsVerticalScrollIndicator={false}
+            data={this.gridPost()}
+            onEndReached={() => this.getMoreProducts()}
+            refreshControl={
+              <RefreshControl
+                refreshing={productsStore.isLoadingRefresh}
+                // onRefresh={
+                //   () => this.refreshList()
+                // }
+              />
+            }
+            ListFooterComponent={
+              this.loadMore()
+            }
+            renderItem={({ item }) => {
+              return (
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                  {
+                    item.map((post, index) => {
+                      return (
+                        <TouchableOpacity activeOpacity={0.8}
+                          key={index}
+                          onPress={() => this.props.navigation.navigate('DetailBlog', { slug: post.slug, kind: post.kind })}>
+                          <Image resizeMode={"cover"} source={{ uri: formatImageLink(post.url) }} style={styles.imageFeature2} />
 
-                {productsStore.products2.map((item, id) => {
-                  return <TouchableOpacity activeOpacity={0.8}
-                    key={id}
-                    onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind: item.kind })}>
-                    <Image resizeMode={"cover"} source={{ uri: formatImageLink(item.url) }} style={styles.imageFeature2} />
-                  </TouchableOpacity>;
-                })}
-              </View>
-              <View style={[{ flex: 1 }]}>
-                {productsStore.products3.map((item, id) => {
-                  return <TouchableOpacity activeOpacity={0.8}
-                    key={id}
-                    onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind: item.kind })}>
-                    <Image resizeMode={"cover"} source={{ uri: formatImageLink(item.url) }} style={styles.imageFeature3} />
-                  </TouchableOpacity>;
-                })}
-              </View>
-            </View>
-          </ScrollView>
+                        </TouchableOpacity>
+                      )
+                    })
+                  }
+                </View>
+
+              )
+            }
+
+            }
+          />
         </View>
       }
     </Container>;

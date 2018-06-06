@@ -5,18 +5,21 @@ import { NetworkInfo } from 'react-native-network-info';
 import { observer } from "mobx-react";
 import blogStore from './blogStore';
 import IconDefault from '../../commons/IconDefault';
-import splashStore from '../splash/splashStore';
-import loginStore from '../login/loginStore';
-import scheduleStore from "../profile/profileStore";
+
+import getProfileStore from "../profile/profileStore";
 import { ButtonCommon } from '../../commons';
 
 @observer
 export default class ModalAcceptCheckIn extends Component {
+    constructor(){
+    super();
+    this.state = {mac_id : ""}
+    }
     componentWillMount() {
-        scheduleStore.getProfile();
+        getProfileStore.getProfile();
     }
     componentDidMount() {
-        console.log(blogStore.attendanceData)
+        
         NetworkInfo.getBSSID(bssid => {
             if (bssid && bssid != 'error' && bssid.indexOf("bssid") == -1) {
                 this.state.mac_id = bssid
@@ -28,6 +31,7 @@ export default class ModalAcceptCheckIn extends Component {
     }
 
     attendance = () => {
+        
         const { mac_id } = this.state;
         console.log(mac_id, "adasdas")
         blogStore.attendance(
@@ -35,7 +39,7 @@ export default class ModalAcceptCheckIn extends Component {
             blogStore.attendanceData.lesson[0].class_lesson_id,
             // (Array.isArray(blogStore.attendanceData) && blogStore.attendanceData.length > 0) ? blogStore.attendanceData.length - 1 : null,
             mac_id,
-            splashStore.token || loginStore.token
+            
         )
     }
 
@@ -66,7 +70,7 @@ export default class ModalAcceptCheckIn extends Component {
                     <View style={{ flex: 1, borderTopColor: 'gray', borderTopWidth: 1 }}>
                         <View style={{ flexDirection: 'row', marginTop: 30 }}>
                             <Text style={[styles.textDescriptionDark, { fontFamily: FONTS.MAIN_FONT_BOLD }]}>Họ và tên : </Text>
-                            <Text style={[styles.textDescriptionDark]}>{scheduleStore.updateUser.name}</Text>
+                            <Text style={[styles.textDescriptionDark]}>{getProfileStore.updateUser.name}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 3 }}>
                             <Text style={[styles.textDescriptionDark, { fontWeight: 'bold' }]}>Lớp : </Text>
@@ -118,13 +122,13 @@ export default class ModalAcceptCheckIn extends Component {
 
                         </View>
                         <Text style={[styles.textDescriptionDark, { fontWeight: 'bold', marginTop: 30, fontSize: 20 }]}>Điểm danh thành công</Text>
-                        <Text style={[styles.textDescriptionDark, { marginTop: 20 }]}>chào {scheduleStore.updateUser.name}, ban đã điểm danh thành công.</Text>
+                        <Text style={[styles.textDescriptionDark, { marginTop: 20 }]}>chào {getProfileStore.updateUser.name}, ban đã điểm danh thành công.</Text>
                         <Text style={[styles.textDescriptionDark, { marginTop: 3 }]}>Chúc bạn có một buổi học vui vẻ.</Text>
                     </View>
                     <View style={{ flex: 1, borderTopColor: 'gray', borderTopWidth: 1 }}>
                         <View style={{ flexDirection: 'row', marginTop: 30 }}>
                             <Text style={[styles.textDescriptionDark, { fontFamily: FONTS.MAIN_FONT_BOLD }]}>Họ và tên : </Text>
-                            <Text style={[styles.textDescriptionDark]}>{scheduleStore.updateUser.name}</Text>
+                            <Text style={[styles.textDescriptionDark]}>{getProfileStore.updateUser.name}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 3 }}>
                             <Text style={[styles.textDescriptionDark, { fontWeight: 'bold' }]}>Lớp : </Text>

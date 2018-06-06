@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, TouchableOpacity, Image, StyleSheet, ActivityIndicator, ScrollView, Text,FlatList, RefreshControl } from "react-native";
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
-import getProfileStore from "./profileStore";
+import getProfileStore from "../profile/profileStore";
 import ListProgress from "./ListItem/ListProgress";
 import Error from "../../commons/Error";
 import TextNullData from "../../commons/TextNullData";

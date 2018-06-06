@@ -36,7 +36,6 @@ class LoginContainer extends Component {
         loginStore.getData()
     }
 
-
     signInWithAccount = () => {
         // let device = {
         //     device_id: DeviceInfo.getUniqueID()

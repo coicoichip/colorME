@@ -8,25 +8,23 @@ export const productsStore = new class productsStore {
     @observable errorProducts = false;
     @observable info_name = "";
     @observable date_name = "";
-    @observable products1 = [];
-    @observable products2 = [];
-    @observable products3 = [];
     @observable info_id = 7;
     @observable data_id = 7;
+    @observable isLoadingRefresh = false;
+    @observable page = 1;
+    @observable testproducts = [];
+    @observable isLoadingBegin = false;
     @action
-    getListProducts(filter) {
+    getListProducts(filter, page) {
+        this.page == 1 ? this.isLoadingBegin = true : this.isLoadingBegin = false;
         this.isLoading = true;
-        getProducts(filter).then(res => {
-
+        getProducts(filter, page).then(res => {
+            this.isLoadingBegin = false
             this.isLoading = false;
             this.errorProducts = false;
-            this.products = res.data.products.map((item, id) => {return { ...item, id_render: id + 1}});
-            this.products1 = this.products.filter(e => {return e.id_render % 3 == 1});
-            this.products2 = this.products.filter(e => {return e.id_render % 3 == 2});
-            this.products3 = this.products.filter(e => {
-              return e.id_render % 3 == 0;
-            });
-
+            this.products = this.page == 1 ? res.data.products :  [...this.products, ...res.data.products];
+            this.testproducts = res.data.products;
+            console.log(res);
         })
             .catch(err => {
                 this.isLoading = false;
@@ -34,19 +32,15 @@ export const productsStore = new class productsStore {
             })
     }
     @action
-    getListProductsNew() {
+    getListProductsNew(page) {
+        this.page == 1 ? this.isLoadingBegin = true : this.isLoadingBegin = false;
         this.isLoading = true;
-        getProductsNew().then(res => {
-
+        getProductsNew(page).then(res => {
+            this.isLoadingBegin = false
             this.isLoading = false;
             this.errorProducts = false;
-            this.products = res.data.products.map((item, id) => {return { ...item, id_render: id + 1}});
-            this.products1 = this.products.filter(e => {return e.id_render % 3 == 1});
-            this.products2 = this.products.filter(e => {return e.id_render % 3 == 2});
-            this.products3 = this.products.filter(e => {
-              return e.id_render % 3 == 0;
-            });
-
+            this.products = this.page == 1 ? res.data.products :  [...this.products, ...res.data.products];
+            this.testproducts = res.data.products;
         })
             .catch(err => {
                 this.isLoading = false;
