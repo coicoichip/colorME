@@ -1,6 +1,6 @@
 {
   "name": "react-native-network-info",
-  "version": "3.2.2",
+  "version": "3.0.0",
   "summary": "Get local network information",
   "homepage": "https://github.com/pusherman/react-native-network-info",
   "authors": "Corey Wilson",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/pusherman/react-native-network-info",
-    "tag": "v3.2.2"
+    "tag": "v3.0.0"
   },
   "source_files": "ios/*.{h,m}",
   "dependencies": {
