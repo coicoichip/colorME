@@ -89,7 +89,7 @@ class Select extends Component {
                 <TouchableOpacity
                     onPress={() => this.pickInfo()}
                 >
-                    <View style={{ paddingLeft: 20, paddingVertical: 10}}>
+                    <View style={{ paddingLeft: 20, paddingBottom: 20}}>
                         <View style={{ backgroundColor: 'black', borderRadius: 13, alignItems: 'center', justifyContent: 'space-between', paddingVertical: 5, flexDirection: 'row', paddingHorizontal: 15 }}>
                             <Text style={{ color: 'white', fontSize: 10 }}>{productsStore.info_name}</Text>
                             <Text></Text>
@@ -103,7 +103,7 @@ class Select extends Component {
                     <TouchableOpacity
                         onPress={() => this.pickDate()}
                     >
-                        <View style={{ paddingLeft: 20, paddingVertical: 10}}>
+                        <View style={{ paddingLeft: 20, paddingBottom: 20}}>
                             <View style={{ backgroundColor: 'black', borderRadius: 13, alignItems: 'center', justifyContent: 'space-between', paddingVertical: 5, flexDirection: 'row', paddingHorizontal: 15 }}>
                                 <Text style={{ color: 'white', fontSize: 10 }}>{productsStore.date_name}</Text>
                                 <Text></Text>

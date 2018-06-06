@@ -8,21 +8,21 @@ import {
     RefreshControl
 } from 'react-native';
 import { Content } from 'native-base'
+import { STRINGS } from '../../constants';
 import styles from '../../styles/styles';
 import { observer } from 'mobx-react';
-import blogStore from "./blogStore"
+import blogStore from "./blogStore";
+import Analytics from 'appcenter-analytics';
+
 @observer
 class ListTag extends Component {
-    constructor(props) {
-        super(props);
-    }
-    
+
     render() {
         return (
             <View height={40} >
                 <Content
                     horizontal={true}
-                    showsHorizontalScrollIndicator = {false}
+                    showsHorizontalScrollIndicator={false}
 
                     style={[styles.paddingLeftRight]}>
                     {
@@ -35,7 +35,10 @@ class ListTag extends Component {
                                     <TouchableOpacity
                                         key={i}
                                         activeOpacity={0.9}
-                                        onPress={() => this.props.changeTag(item)}
+                                        onPress={() => {
+                                            this.props.changeTag(item);
+                                            Analytics.trackEvent(`${STRINGS.ACTION_CHOOSE_TAG} : [${item.tag.trim()}] `, {});
+                                        }}
                                     >
                                         <View style={{ marginRight: 10 }}>
                                             <Text style={this.props.tag.trim() == item.tag.trim() ? styles.buttonSelected : styles.buttonNotSelect}>{item.tag}</Text>
