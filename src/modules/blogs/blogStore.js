@@ -20,7 +20,7 @@ export default blogStore = new class BlogStore {
     @observable attendanceStatus = '';
     @observable modalVisible = false;
     @observable modalVisible1 = false;
-    @observable check = 1;
+    @observable check = 2;
 
     @action
     getBlog(kind, page,tag,action) {
@@ -60,31 +60,37 @@ export default blogStore = new class BlogStore {
     }
 
     @action
-    checkAttendance(token){
-        checkAttendanceApi(token).then(res => {
-            console.log(res.data.data);
+    checkAttendance(){
+        checkAttendanceApi().then(res => {
+            
             this.attendanceData = res.data.data;
             this.modalVisible = res.data.data.id ? true : false
+            
         })
         .catch(err => {
         })
     }
     
     @action 
-    attendance(class_id, class_lesson_id, mac_wifi, token){
+    attendance(class_id, class_lesson_id, mac_wifi){
         this.isLoadingAttendent = true;
-        attendanceApi(class_id, class_lesson_id, mac_wifi, token)
+        
+        attendanceApi(class_id, class_lesson_id, mac_wifi)
         .then(res => {
-            console.log("attendance success", res.data);
+            // console.log("attendance success", res.data);
             this.check = 1;
+            this.modalVisible1 = true;
+            this.modalVisible = false;
             this.attendanceStatus = res.data;
             this.isLoadingAttendent = false;
-            alert(STRINGS.ATTENDANCE_SUCCESS)
+            // alert(STRINGS.ATTENDANCE_SUCCESS)
         })
         .catch(err => {
             this.isLoadingAttendent = false;
             this.check = 0;
-            console.log("fail", err.response.data);
+            this.modalVisible = false;
+            this.modalVisible1 = true
+            
         })
     }
 }

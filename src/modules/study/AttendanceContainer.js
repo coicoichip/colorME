@@ -3,11 +3,11 @@ import { View, TouchableOpacity, Image, StyleSheet, ActivityIndicator, ScrollVie
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
 import { observer } from "mobx-react";
 import { formatImageLink } from "../../helper/index";
-import getProfileStore from "./profileStore";
+import getProfileStore from "../profile/profileStore";
 import ListAttendence from "./ListItem/ListAttendence";
 import TextNullData from "../../commons/TextNullData";
 import Loading from "../../commons/Loading"
-
+import Error from "../../commons/Error"
 
 class AttendanceContainer extends Component {
     constructor() {

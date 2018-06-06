@@ -18,7 +18,8 @@ import { NavigationActions } from 'react-navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { observer } from "mobx-react";
 import loginStore from './loginStore';
-
+import DeviceInfo from 'react-native-device-info';
+import splashStore from "../splash/splashStore";
 let _this;
 
 @observer
@@ -35,10 +36,16 @@ class LoginContainer extends Component {
         loginStore.getData()
     }
 
-
     signInWithAccount = () => {
+        // let device = {
+        //     device_id: DeviceInfo.getUniqueID()
+        // };
+        // const deviceId = DeviceInfo.getDeviceId()
         loginStore.loginUser(this.props.navigation);
+        // console.log(deviceId + "........");
+        // loginStore.checkDevice(DeviceInfo ,splashStore.token || loginStore.token)
         loginStore.saveData();
+        
     }
 
     onChangeData = field => value => {

@@ -24,7 +24,7 @@ import { InputCommon } from "../../commons";
 import { formatImageLink } from "../../helper/index";
 import { STRINGS, COLORS, SIZES, FONTS } from "../../constants";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import getProfileStore from "./profileStore";
+import getProfileStore from "../profile/profileStore";
 import ProgressContainer from "./ProgressContainer";
 import AttendanceContainer from "./AttendanceContainer";
 import { observable } from "mobx";

@@ -44,6 +44,7 @@ export default class SplashContainer extends Component {
             try {
                  const token = await AsyncStorage.getItem('@UserToken')
                  const id = await AsyncStorage.getItem("@ID")
+                 console.log(id, token)
                 if(token && id){
                     
                     splashStore.refreshToken(navigation, token)
