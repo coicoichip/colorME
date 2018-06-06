@@ -39,7 +39,7 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
-  - RNDeviceInfo (0.21.5):
+  - RNDeviceInfo (0.17.4):
     - React
   - RNImageCropPicker (0.20.0):
     - QBImagePickerController
@@ -85,7 +85,7 @@ SPEC CHECKSUMS:
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   React: aa2040dbb6f317b95314968021bd2888816e03d5
   react-native-network-info: 2407fc3bc47c5ffdabc328afb253f741d5ff0891
-  RNDeviceInfo: 568c5641057313b4912d08a7742ff0b2f753ed5c
+  RNDeviceInfo: b75c1381182b3550fa53e06975f65e449ea2678f
   RNImageCropPicker: a637beb8f4c76bf9fe8a89d404ad65a33c4215ac
   RSKImageCropper: d9a1acbc0600bf8decc8f0d21895872c99a9e4cf
   yoga: a23273df0088bf7f2bb7e5d7b00044ea57a2a54a

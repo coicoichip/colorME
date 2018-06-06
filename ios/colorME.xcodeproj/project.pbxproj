@@ -25,6 +25,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		1871397820C855C800D9ADDD /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1871397920C855C800D9ADDD /* libRNDeviceInfo.a */; };
 		1898AE0220AB174400F9898D /* libAppCenterReactNativeCrashes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02CB6237209B0BA200CEBA25 /* libAppCenterReactNativeCrashes.a */; };
 		1898AE2F20AB174A00F9898D /* libAppCenterReactNativeAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02CB61FB209B0B9900CEBA25 /* libAppCenterReactNativeAnalytics.a */; };
 		18AB95A720B47EE200DB3CE2 /* libRCTOneSignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AB958A20B47E9600DB3CE2 /* libRCTOneSignal.a */; };
@@ -174,6 +175,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
+		};
+		187139AD20C8574600D9ADDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 187139A820C8574500D9ADDD /* RNDeviceInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA5891D81BA9A9FC002B4DB2;
+			remoteInfo = RNDeviceInfo;
+		};
+		187139AF20C8574600D9ADDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 187139A820C8574500D9ADDD /* RNDeviceInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E72EC1401F7ABB5A0001BC90;
+			remoteInfo = "RNDeviceInfo-tvOS";
 		};
 		188CF0A220AAE06400DE4481 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -455,6 +470,8 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = colorMe/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		14DE48B3C0824912A1F4BD4A /* CodePush.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
+		1871397920C855C800D9ADDD /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		187139A820C8574500D9ADDD /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		18AB957420B47E9600DB3CE2 /* RCTOneSignal.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTOneSignal.xcodeproj; path = "../node_modules/react-native-onesignal/ios/RCTOneSignal.xcodeproj"; sourceTree = "<group>"; };
 		18AB95A820B47EF500DB3CE2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		18AB95AA20B47F0100DB3CE2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -537,6 +554,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1871397820C855C800D9ADDD /* libRNDeviceInfo.a in Frameworks */,
 				18AB95AB20B47F0100DB3CE2 /* UIKit.framework in Frameworks */,
 				18AB95A920B47EF500DB3CE2 /* SystemConfiguration.framework in Frameworks */,
 				18AB95A720B47EE200DB3CE2 /* libRCTOneSignal.a in Frameworks */,
@@ -746,6 +764,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		187139A920C8574500D9ADDD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				187139AE20C8574600D9ADDD /* libRNDeviceInfo.a */,
+				187139B020C8574600D9ADDD /* libRNDeviceInfo-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		188CF09F20AAE06400DE4481 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -783,6 +810,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1871397920C855C800D9ADDD /* libRNDeviceInfo.a */,
 				18AB95AA20B47F0100DB3CE2 /* UIKit.framework */,
 				18AB95A820B47EF500DB3CE2 /* SystemConfiguration.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
@@ -816,6 +844,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				187139A820C8574500D9ADDD /* RNDeviceInfo.xcodeproj */,
 				18AB957420B47E9600DB3CE2 /* RCTOneSignal.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -1146,6 +1175,10 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+					ProductGroup = 187139A920C8574500D9ADDD /* Products */;
+					ProjectRef = 187139A820C8574500D9ADDD /* RNDeviceInfo.xcodeproj */;
+				},
+				{
 					ProductGroup = 189D860920A6827700FEE131 /* Products */;
 					ProjectRef = 27BB176C114948709BEC912E /* RNSpinkit.xcodeproj */;
 				},
@@ -1240,6 +1273,20 @@
 			fileType = archive.ar;
 			path = libReact.a;
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		187139AE20C8574600D9ADDD /* libRNDeviceInfo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNDeviceInfo.a;
+			remoteRef = 187139AD20C8574600D9ADDD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		187139B020C8574600D9ADDD /* libRNDeviceInfo-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNDeviceInfo-tvOS.a";
+			remoteRef = 187139AF20C8574600D9ADDD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		188CF0A320AAE06400DE4481 /* libAppCenterReactNative.a */ = {
@@ -1937,6 +1984,8 @@
 					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/**",
+					"$(SRCROOT)/../react-native/React",
+					"$(SRCROOT)/../../React",
 				);
 				INFOPLIST_FILE = colorMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1969,6 +2018,8 @@
 					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/**",
+					"$(SRCROOT)/../react-native/React",
+					"$(SRCROOT)/../../React",
 				);
 				INFOPLIST_FILE = colorMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
