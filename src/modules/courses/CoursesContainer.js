@@ -35,7 +35,7 @@ class CoursesContainer extends Component {
             ]
         }
     }
-    componentWillMount() {
+    componentDidMount() {
         drawerStore.getProfile();
         coursesStore.getListSubject();
         Analytics.trackEvent(STRINGS.ACTION_ROOT_TAB_COURSE, {});

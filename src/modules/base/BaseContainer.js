@@ -16,16 +16,19 @@ import ListBase from "./ListBase";
 import baseStore from "./baseStore";
 import { observer } from "mobx-react";
 import { STRINGS, COLORS, SIZES, FONTS } from "../../constants";
+import Analytics from 'appcenter-analytics';
 
 
 @observer class BaseContainer extends Component {
     constructor() {
         super();
         this.state = {
+            
         }
     }
     componentDidMount() {
         baseStore.getListBase();
+        Analytics.trackEvent(`${STRINGS.ACTION_GO_DETAIL_PRODUCT} -> ${post.name}`, {});
     }
     loadMore() {
         if (baseStore.isLoadingMore && this.props.current_page >= 1)

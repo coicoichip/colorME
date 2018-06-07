@@ -10,18 +10,16 @@ import Select, { returnInfo, returnDate } from "./Select";
 import Loading from "../../commons/Loading";
 import { formatImageLink } from "../../helper/index";
 import TextNullData from "../../commons/TextNullData";
-
-
-
+import Analytics from 'appcenter-analytics';
 
 @observer
-class ProductsContainer extends React.Component {
+class ProductsContainer extends React.PureComponent {
   @observable info_id = "";
   constructor(props) {
     super(props);
   }
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     productsStore.page = 1;
     productsStore.getListProducts(7, 1);
     //console.log(getProfileStore.portfolioData);
@@ -92,9 +90,9 @@ class ProductsContainer extends React.Component {
             refreshControl={
               <RefreshControl
                 refreshing={productsStore.isLoadingRefresh}
-                // onRefresh={
-                //   () => this.refreshList()
-                // }
+              // onRefresh={
+              //   () => this.refreshList()
+              // }
               />
             }
             ListFooterComponent={
@@ -108,7 +106,10 @@ class ProductsContainer extends React.Component {
                       return (
                         <TouchableOpacity activeOpacity={0.8}
                           key={index}
-                          onPress={() => this.props.navigation.navigate('DetailBlog', { slug: post.slug, kind: post.kind })}>
+                          onPress={() => {
+                            this.props.navigation.navigate('DetailBlog', { slug: post.slug, kind: post.kind })
+                            Analytics.trackEvent(`${STRINGS.ACTION_GO_DETAIL_PRODUCT} -> ${post.name}`, {});
+                          }}>
                           <Image resizeMode={"cover"} source={{ uri: formatImageLink(post.url) }} style={styles.imageFeature2} />
 
                         </TouchableOpacity>

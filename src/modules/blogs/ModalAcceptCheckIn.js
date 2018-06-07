@@ -19,7 +19,6 @@ export default class ModalAcceptCheckIn extends Component {
         getProfileStore.getProfile();
     }
     componentDidMount() {
-        
         NetworkInfo.getBSSID(bssid => {
             if (bssid && bssid != 'error' && bssid.indexOf("bssid") == -1) {
                 this.state.mac_id = bssid
