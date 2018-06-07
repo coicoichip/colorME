@@ -7,7 +7,7 @@ import getProfileStore from "./profileStore";
 import ListAttendence from "./ListItem/ListAttendence";
 import TextNullData from "../../commons/TextNullData";
 import Loading from "../../commons/Loading"
-
+import Error from "../../commons/Error"
 
 class AttendanceContainer extends Component {
     constructor() {

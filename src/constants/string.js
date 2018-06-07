@@ -68,4 +68,6 @@ export const STRINGS = {
     
     
 
+    ATTENDANCE_SUCCESS: 'Điểm danh thành công',
+    ATTENDANCE: (name, lesson, class_name) => `Chào ${name} hiện tại bạn đang học buổi ${lesson} của lớp ${class_name} bạn có muốn thực hiện điểm danh không?`,
 }

@@ -42,6 +42,7 @@ class FormFirstLoginModal extends Component {
     render() {
         return (
             <Modal
+                onRequestClose={() => {}}
                 animationType="fade"
                 transparent={true}
                 visible={true}

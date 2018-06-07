@@ -7,6 +7,10 @@ PODS:
   - AppCenterReactNativeShared (1.1.0):
     - AppCenter/Core (= 1.1.0)
   - QBImagePickerController (3.4.0)
+  - React (0.55.3):
+    - React/Core (= 0.55.3)
+  - react-native-network-info (3.2.2):
+    - React
   - React/Core (0.55.3):
     - yoga (= 0.55.3.React)
   - React/fishhook (0.55.3)
@@ -45,6 +49,7 @@ DEPENDENCIES:
   - AppCenter/Analytics (~> 1.1.0)
   - AppCenter/Crashes (~> 1.1.0)
   - AppCenterReactNativeShared (~> 1.1.0)
+  - react-native-network-info (from `../node_modules/react-native-network-info`)
   - React/Core (from `../node_modules/react-native`)
   - React/RCTActionSheet (from `../node_modules/react-native`)
   - React/RCTAnimation (from `../node_modules/react-native`)
@@ -62,6 +67,8 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   React:
     :path: ../node_modules/react-native
+  react-native-network-info:
+    :path: ../node_modules/react-native-network-info
   RNImageCropPicker:
     :path: ../node_modules/react-native-image-crop-picker
   yoga:
@@ -72,10 +79,11 @@ SPEC CHECKSUMS:
   AppCenterReactNativeShared: 76f8034b52ce0a9edcdb67b98f85e9790c813318
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   React: aa2040dbb6f317b95314968021bd2888816e03d5
+  react-native-network-info: fd476c8b45e9e8f39a98d1d5f9ed7e755ae229a6
   RNImageCropPicker: a637beb8f4c76bf9fe8a89d404ad65a33c4215ac
   RSKImageCropper: d9a1acbc0600bf8decc8f0d21895872c99a9e4cf
   yoga: a23273df0088bf7f2bb7e5d7b00044ea57a2a54a
 
-PODFILE CHECKSUM: 8180bcd1a524c130eecfeff5d87b74d1dcc00b18
+PODFILE CHECKSUM: b19c61db8ce6e0387bc0f481322881c38830da31
 
 COCOAPODS: 1.4.0

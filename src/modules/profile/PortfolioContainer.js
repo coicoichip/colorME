@@ -75,6 +75,7 @@ class PortfolioContaier extends React.Component {
             <View style={[{ flex: 1 }]}>
               {GetProfileStore.blogs1.map((item, id) => {
                 return <TouchableOpacity activeOpacity={0.8}
+                  key={id}
                   onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind: item.kind })}>
                   <Image resizeMode={"cover"} source={{ uri: formatImageLink(item.url) }} style={styles.imageFeature1} />
                 </TouchableOpacity>;
@@ -84,6 +85,7 @@ class PortfolioContaier extends React.Component {
 
               {GetProfileStore.blogs2.map((item, id) => {
                 return <TouchableOpacity activeOpacity={0.8}
+                  key={id}
                   onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind: item.kind })}>
                   <Image resizeMode={"cover"} source={{ uri: formatImageLink(item.url) }} style={styles.imageFeature2} />
                 </TouchableOpacity>;
@@ -92,6 +94,7 @@ class PortfolioContaier extends React.Component {
             <View style={[{ flex: 1 }]}>
               {GetProfileStore.blogs3.map((item, id) => {
                 return <TouchableOpacity activeOpacity={0.8}
+                  key={id}
                   onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind: item.kind })}>
                   <Image resizeMode={"cover"} source={{ uri: formatImageLink(item.url) }} style={styles.imageFeature3} />
                 </TouchableOpacity>;

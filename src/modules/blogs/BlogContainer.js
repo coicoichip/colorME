@@ -6,42 +6,73 @@ import {
     TouchableOpacity,
     FlatList,
     RefreshControl,
-    StyleSheet
+    StyleSheet, PanResponder, Modal
 } from 'react-native';
 import * as color from '../../styles/colors';
 import * as size from '../../styles/sizes';
 import { Container } from 'native-base';
 import Header from '../../commons/Header';
 import { STRINGS, COLORS, SIZES, FONTS } from "../../constants";
-import loginStore  from "../login/loginStore"
+import ModalCheckInStudent from './ModalCheckInStudent';
+import ModalAcceptCheckIn from './ModalAcceptCheckIn';
 import Loading from '../../commons/Loading';
-import  blogStore  from './blogStore';
 import { observer } from "mobx-react";
-import {observable} from "mobx"
+import { observable } from "mobx"
 import ListBlog from "./ListBlog";
 import Error from '../../commons/Error';
 import TextNullData from '../../commons/TextNullData';
 import ListTag from "./ListTag";
-import Onesignal from "react-native-onesignal"
 import Analytics from 'appcenter-analytics';
+import Onesignal from "react-native-onesignal";
+import blogStore from './blogStore';
+import splashStore from "../splash/splashStore";
+import loginStore from "../login/loginStore"
 
 @observer
 class BlogContainer extends Component {
     @observable tag = ""
     constructor() {
         super();
+        this.panResponder = PanResponder.create({
+            onStartShouldSetPanResponder: (event, gestureState) => true,
+            onPanResponderGrant: this.onPanResponderGrant.bind(this),
+        });
+        // this.state = {
+        //     modalVisible: false,
+        // }
         this.changeTag = this.changeTag.bind(this)
     }
+    // componentWillMount(){
+    //     blogStore.checkAttendance(splashStore.token || loginStore.token);
+    //     this.setState({modalVisible: blogStore.attendanceData.id ? true : false})
+    // }
+
     componentDidMount() {
-        const {params} = this.props.navigation.state;
+        const { params } = this.props.navigation.state;
         blogStore.getBlog(params.kind, 1, this.tag);
-        // OneSignal.addEventListener("ids", this.onIds)
+
+        //check student attendance 
+        blogStore.checkAttendance(splashStore.token || loginStore.token);
+        
+        if(!blogStore.attendanceData.isEnrolled){
+            this.setState({modalVisible: true})
+        }
         Analytics.trackEvent(STRINGS.ACTION_ROOT_TAB_HOME, {});
     }
+
+    onPanResponderGrant(event, gestureState) {
+        if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
+            blogStore.modalVisible = false;
+        }
+    }
+
+    setModalContact = (visible) => {
+        blogStore.modalVisible = visible;
+    }
     getMoreBlogs() {
-        const {params} = this.props.navigation.state;
+        const { params } = this.props.navigation.state;
         if (blogStore.current_page < blogStore.total_pages && blogStore.isLoading == false) {
-            blogStore.getBlog(params.kind,blogStore.current_page + 1, this.tag)
+            blogStore.getBlog(params.kind, blogStore.current_page + 1, this.tag)
         }
     }
     loadMore() {
@@ -50,14 +81,14 @@ class BlogContainer extends Component {
         else
             return null
     }
-    changeTag(item){
+    changeTag(item) {
         this.tag = item.tag;
-        const {params} = this.props.navigation.state;
-        setTimeout(() => blogStore.getBlog(params.kind,1, this.tag, "search"), 200)
+        const { params } = this.props.navigation.state;
+        setTimeout(() => blogStore.getBlog(params.kind, 1, this.tag, "search"), 200)
     }
     renderSubject() {
-        const {params} = this.props.navigation.state;
-        if (blogStore.blogs.length == 0|| blogStore.isSearch) {
+        const { params } = this.props.navigation.state;
+        if (blogStore.blogs.length == 0 || blogStore.isSearch) {
             return <Loading />
         }
         if (blogStore.error) {
@@ -68,7 +99,7 @@ class BlogContainer extends Component {
         if (blogStore.blogs.length !== 0) {
             return (
                 <FlatList
-                    ref = {'listBlog'}
+                    ref={'listBlog'}
                     keyExtractor={item => item.id + ''}
                     showsVerticalScrollIndicator={false}
                     data={blogStore.blogs}
@@ -82,7 +113,7 @@ class BlogContainer extends Component {
                         />
                     }
                     renderItem={({ item }) =>
-                        <ListBlog item={item} navigation={this.props.navigation} kind = {params.kind}/>
+                        <ListBlog item={item} navigation={this.props.navigation} kind={params.kind} />
                     }
                     ListFooterComponent={
                         this.loadMore()
@@ -96,24 +127,56 @@ class BlogContainer extends Component {
             )
         }
     }
-    scrollListBlog(){
-        this.refs.listBlog.scrollToOffset({x: 0, y: 0, animated: true})
+    scrollListBlog() {
+        this.refs.listBlog.scrollToOffset({ x: 0, y: 0, animated: true })
     }
     render() {
         const { navigate } = this.props.navigation;
-        const { params} =this.props.navigation.state;
+        const { params } = this.props.navigation.state;
+        
         return (
             <Container style={styles.wrapperContainer}>
+                <Modal
+                    onRequestClose={() => {
+                        blogStore.modalVisible = false;
+                    }}
+                    presentationStyle="overFullScreen"
+                    animationType="fade"
+                    transparent
+                    visible={blogStore.modalVisible}
+                >
+                    <View
+                        style={{ flex: 1, backgroundColor: '#00000040', justifyContent: 'center', alignItems: 'center' }}
+                        {...this.panResponder.panHandlers}
+                    >
+                        <ModalCheckInStudent />
+                    </View>
+                </Modal>
+                <Modal
+                    onRequestClose={() => {
+                        blogStore.modalVisible1 = false;
+                    }}
+                    presentationStyle="overFullScreen"
+                    animationType="fade"
+                    transparent
+                    visible={blogStore.modalVisible1}
+                >
+                    <View
+                        style={{ flex: 1, backgroundColor: '#00000040', justifyContent: 'center', alignItems: 'center' }}
+                        {...this.panResponder.panHandlers}
+                    >
+                        <ModalAcceptCheckIn />
+                    </View>
+                </Modal>
                 <Header title={params.title ? params.title : STRINGS.NEWS_TITLE_HEADER} navigate={navigate} />
                 {
                     blogStore.top_tags.length !== 0 ?
-                    
-                   <ListTag top_tags = {blogStore.top_tags} changeTag = {this.changeTag} tag = {this.tag}/>
-                
-                    :
-                    null
+
+                        <ListTag top_tags={blogStore.top_tags} changeTag={this.changeTag} tag={this.tag} />
+                        :
+                        null
                 }
-                <View style={{ flex: 1}}>
+                <View style={{ flex: 1 }}>
                     {this.renderSubject()}
                 </View>
             </Container>
