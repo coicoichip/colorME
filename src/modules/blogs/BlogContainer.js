@@ -52,7 +52,7 @@ class BlogContainer extends Component {
         blogStore.getBlog(params.kind, 1, this.tag);
 
         //check student attendance 
-        blogStore.checkAttendance(splashStore.token || loginStore.token);
+        blogStore.checkAttendance();
         
         if(!blogStore.attendanceData.isEnrolled){
             this.setState({modalVisible: true})
@@ -63,6 +63,7 @@ class BlogContainer extends Component {
     onPanResponderGrant(event, gestureState) {
         if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
             blogStore.modalVisible = false;
+            blogStore.modalVisible1 = false;
         }
     }
 

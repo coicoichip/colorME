@@ -84,9 +84,8 @@ class ProfileContainer extends React.Component {
         scrollEnabled={false}>
         <View style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
           <InformationUser changeAvatar = {this.changeAvatar} onChangeData={this.onChangeData} avatar_url = {getProfileStore.updateUser.avatar_url} />
-
         </View>
-        <View>
+        <View  style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
           <PortfolioContaier navigation = {this.props.navigation} />
         </View>
       </ScrollView>

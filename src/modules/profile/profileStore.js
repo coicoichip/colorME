@@ -1,7 +1,22 @@
 import { observable, action, computed } from "mobx";
 import { userProfileApi, updateProfileApi, getDetailPortfolioApi, getPortfolioApi } from "./profileApi";
 import { Alert, AsyncStorage } from "react-native";
-export default (scheduleStore = new class  GetProfileStore {
+import _ from "lodash"
+// function gridPosts(posts){
+//     posts = posts.map((post, index) => {
+//         return {
+//             ...post,
+//             key: index
+//         }
+//     });
+    
+//     postsGrid = _.groupBy(posts, ({element, key}) => {
+//         return Math.floor(key  / 3);
+//     });
+//     postsGrid = _.toArray(postsGrid);
+//     return postsGrid;
+// }
+export default getProfileStore = new class  GetProfileStore {
     @observable user = {};
     @observable updateUser = {};
     @observable isLoading = false;
@@ -14,9 +29,6 @@ export default (scheduleStore = new class  GetProfileStore {
     @observable isLoadingMore = false;
     @observable isLoadingRefresh = false;
     @observable dataPortfolio = [];
-    @observable blogs1 = [];
-    @observable blogs2 = [];
-    @observable blogs3 = [];
 
     @action
     getProfile() {
@@ -44,27 +56,26 @@ export default (scheduleStore = new class  GetProfileStore {
         })
             .catch(err => {
                 this.isLoadingUpdate = false;
-                Alert.alert("Thông báo", "Cập nhật thất bại, mời bạn kiểm tra đường truyền")
+                Alert.alert("Thông báo", ", mời bạn kiểm tra đường truyền")
             })
     }
     @action
-    getPortfolio() {
+    getPortfolio(){
         this.isLoadingPortfolio = true;
-        getPortfolioApi().then ( res => {
+        getPortfolioApi().then (res => {
             this.isLoadingPortfolio = false;
-            
-            this.blogs = res.data.blogs.map((item, id) => {return { ...item, id_render: id + 1}});
-            this.blogs1 = this.blogs.filter(e => {return e.id_render % 3 == 1});
-            this.blogs2 = this.blogs.filter(e => {return e.id_render % 3 == 2});
-            this.blogs3 = this.blogs.filter(e => {
-              return e.id_render % 3 == 0;
-            });
+            console.log(res.data.blogs)
+            this.blogs = res.data.blogs
             
         })
             .catch (err => {
                 this.isLoadingPortfolio = false;
-                Alert.alert("Thông báo", "Cập nhật thất bại, mời bạn kiểm tra đường truyền");
+                this.error = true;
+                console.log(err)
+                Alert.alert("Thông báo", ", mời bạn kiểm tra đường truyền");
             })
     }
+    
+    
 
-}());
+}();

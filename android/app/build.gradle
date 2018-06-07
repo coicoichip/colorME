@@ -156,6 +156,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-device-info')
     compile project(':react-native-onesignal')
     compile project(':react-native-image-crop-picker')
     compile project(':react-native-code-push')
