@@ -8,7 +8,8 @@ import IconDefault from '../../commons/IconDefault';
 
 import getProfileStore  from "../profile/profileStore";
 import { ButtonCommon } from '../../commons';
-import {formatImageLink} from "../../helper/index"
+import {formatImageLink} from "../../helper/index";
+import deviceStore from '../check-device/deviceStore';
 @observer
 export default class ModalCheckInStudent extends Component {
     constructor(props) {
@@ -33,19 +34,25 @@ export default class ModalCheckInStudent extends Component {
     }
 
     attendance = () => {
-       
         const { mac_id } = this.state;
         console.log(mac_id, "adasdas")
-        blogStore.attendance(
+        console.log("Aaa")
+        deviceStore.checkDevice(
             blogStore.attendanceData.id,
             blogStore.attendanceData.lesson[0].class_lesson_id,
             // (Array.isArray(blogStore.attendanceData) && blogStore.attendanceData.length > 0) ? blogStore.attendanceData.length - 1 : null,
             mac_id,
         )
-        if (blogStore.isLoadingAttendent == false) {
-            blogStore.modalVisible1 = true;
-            blogStore.modalVisible = false;
+        // if (blogStore.isLoadingAttendent == false) {
+        //     blogStore.modalVisible1 = true;
+        //     blogStore.modalVisible = false;
+        // }
+    }
+    isLoading(){
+        if(blogStore.isLoadingAttendent || deviceStore.isLoading){
+            return true;
         }
+        return false;
     }
 
     render() {
@@ -72,8 +79,8 @@ export default class ModalCheckInStudent extends Component {
                         <Text style={[styles.textDescriptionDark, { fontWeight: 'bold', marginTop: 40, fontSize: 20 }]}>Điểm danh</Text>
                         <Text style={[styles.textDescriptionDark, { marginTop: 20 }]}>Chào {getProfileStore.updateUser.name} , hiện tại bạn đang học buổi {blogStore.attendanceData.lesson[0].order} của lớp {blogStore.attendanceData.name}, bạn muốn thực hiện việc điểm danh không?</Text>
                     </View>
-                    <View style={{ flex: 1, borderTopColor: 'gray', borderTopWidth: 1 }}>
-                        <View style={{ flexDirection: 'row', marginTop: 30 }}>
+                    <View style={{ flex: 1, borderTopColor: 'gray', borderTopWidth: 1, marginTop : 30 }}>
+                        <View style={{ flexDirection: 'row', marginTop: 20 }}>
                             <Text style={[styles.textDescriptionDark, { fontFamily: FONTS.MAIN_FONT_BOLD }]}>Họ và tên : </Text>
                             <Text style={[styles.textDescriptionDark]}>{getProfileStore.updateUser.name}</Text>
                         </View>
@@ -89,7 +96,7 @@ export default class ModalCheckInStudent extends Component {
                     </View>
                     <View style={styles.wrapperButton}>
                         <ButtonCommon
-                            isLoading={blogStore.isLoadingAttendent}
+                            isLoading={this.isLoading()}
                             onPress={this.attendance}
                             label={'ĐIỂM DANH'}
                             text={{

@@ -18,6 +18,7 @@ class Avatar extends React.Component {
         this.progressHandler = this.progressHandler.bind(this);
     }
     completeHandler(event) {
+        console.log(event.target.responseText)
         const data = JSON.parse(event.target.responseText);
         this.props.changeAvatar(data.url)
         this.percent = 0;

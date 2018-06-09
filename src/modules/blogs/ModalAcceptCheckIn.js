@@ -5,7 +5,7 @@ import { NetworkInfo } from 'react-native-network-info';
 import { observer } from "mobx-react";
 import blogStore from './blogStore';
 import IconDefault from '../../commons/IconDefault';
-
+import deviceStore from '../check-device/deviceStore';
 import getProfileStore from "../profile/profileStore";
 import { ButtonCommon } from '../../commons';
 
@@ -13,17 +13,24 @@ import { ButtonCommon } from '../../commons';
 export default class ModalAcceptCheckIn extends Component {
     constructor(){
     super();
-    this.state = {mac_id : ""}
+    this.state = {mac_id : "", wifiName : ""}
     }
     componentWillMount() {
         getProfileStore.getProfile();
     }
     componentDidMount() {
-        
+        NetworkInfo.getSSID(ssid => {
+            let wifiName = '';
+            if (ssid && ssid != 'error' && ssid.indexOf("ssid") == -1) {
+                wifiName = ssid;
+            }
+            this.setState({ wifiName: wifiName });
+        });
+
         NetworkInfo.getBSSID(bssid => {
             if (bssid && bssid != 'error' && bssid.indexOf("bssid") == -1) {
                 this.state.mac_id = bssid
-                console.log(bssid)
+                
             } else {
 
             }
@@ -31,15 +38,14 @@ export default class ModalAcceptCheckIn extends Component {
     }
 
     attendance = () => {
-        
+        console.log("aaa");
         const { mac_id } = this.state;
-        console.log(mac_id, "adasdas")
-        blogStore.attendance(
+        
+        deviceStore.checkDevice(
             blogStore.attendanceData.id,
             blogStore.attendanceData.lesson[0].class_lesson_id,
             // (Array.isArray(blogStore.attendanceData) && blogStore.attendanceData.length > 0) ? blogStore.attendanceData.length - 1 : null,
             mac_id,
-            
         )
     }
 
@@ -82,11 +88,11 @@ export default class ModalAcceptCheckIn extends Component {
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 3 }}>
                             <Text style={[styles.textDescriptionDark, { fontWeight: 'bold' }]}>Wifi : </Text>
-                            <Text style={[styles.textDescriptionDark]}>COLORME</Text>
+                            <Text style={[styles.textDescriptionDark]}>{this.state.wifiName}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 3 }}>
                             <Text style={[styles.textDescriptionDark, { fontWeight: 'bold' }]}>MAC : </Text>
-                            <Text style={[styles.textDescriptionDark]}>12cfacfa4a</Text>
+                            <Text style={[styles.textDescriptionDark]}>{this.state.mac_id}</Text>
                         </View>
 
                     </View>
@@ -125,8 +131,8 @@ export default class ModalAcceptCheckIn extends Component {
                         <Text style={[styles.textDescriptionDark, { marginTop: 20 }]}>chào {getProfileStore.updateUser.name}, ban đã điểm danh thành công.</Text>
                         <Text style={[styles.textDescriptionDark, { marginTop: 3 }]}>Chúc bạn có một buổi học vui vẻ.</Text>
                     </View>
-                    <View style={{ flex: 1, borderTopColor: 'gray', borderTopWidth: 1 }}>
-                        <View style={{ flexDirection: 'row', marginTop: 30 }}>
+                    <View style={{ flex: 1, borderTopColor: 'gray', borderTopWidth: 1, marginTop : 50 }}>
+                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
                             <Text style={[styles.textDescriptionDark, { fontFamily: FONTS.MAIN_FONT_BOLD }]}>Họ và tên : </Text>
                             <Text style={[styles.textDescriptionDark]}>{getProfileStore.updateUser.name}</Text>
                         </View>
@@ -140,11 +146,11 @@ export default class ModalAcceptCheckIn extends Component {
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 3 }}>
                             <Text style={[styles.textDescriptionDark, { fontWeight: 'bold' }]}>Wifi : </Text>
-                            <Text style={[styles.textDescriptionDark]}>COLORME</Text>
+                            <Text style={[styles.textDescriptionDark]}>{this.state.wifiName}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 3 }}>
                             <Text style={[styles.textDescriptionDark, { fontWeight: 'bold' }]}>MAC : </Text>
-                            <Text style={[styles.textDescriptionDark]}>12cfacfa4a</Text>
+                            <Text style={[styles.textDescriptionDark]}>{this.state.mac_id}</Text>
                         </View>
 
                     </View>

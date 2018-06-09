@@ -72,6 +72,15 @@ import com.android.build.OutputFile
  * ]
  */
 
+buildscript {
+    repositories {
+        maven { url 'https://plugins.gradle.org/m2/' } // Gradle Plugin Portal 
+    }
+    dependencies {
+        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.10.0, 0.99.99]'
+    }
+}
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 project.ext.react = [
     entryFile: "index.js"
 ]
@@ -102,7 +111,7 @@ android {
         applicationId "com.keetool.app.colorme.vn"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 4
+        versionCode 5
         versionName "4.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
@@ -150,6 +159,7 @@ android {
         }
     }
 }
+
 
 dependencies {
     compile project(':react-native-onesignal')
