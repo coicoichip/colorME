@@ -13,7 +13,7 @@ import { ButtonCommon } from '../../commons';
 export default class ModalAcceptCheckIn extends Component {
     constructor(){
     super();
-    this.state = {mac_id : ""}
+    this.state = {mac_id : "", wifiName}
     }
     componentWillMount() {
         getProfileStore.getProfile();
