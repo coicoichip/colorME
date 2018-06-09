@@ -1,6 +1,9 @@
 import { observable, action, computed } from "mobx";
 import { supportApi } from "./supportApi";
 import { Alert, AsyncStorage } from "react-native";
+import Analytics from 'appcenter-analytics';
+import { STRINGS } from "../../constants";
+
 export const SupportStore = new class SupportStore {
     @observable info = {
         title: "",
@@ -20,10 +23,12 @@ export const SupportStore = new class SupportStore {
                     'Chúng tôi sẽ cố gắng sớm khắc phục trong thời gian sớm nhất!'
                 )
                 this.isLoading = false;
+                Analytics.trackEvent(STRINGS.ACTION_REPORT)
             })
             .catch(err =>  {
                 Alert.alert("Có lỗi xảy ra", "Mời bạn kiểm tra lại đường truyền");
                 this.isLoading = false;
+                Analytics.trackEvent(STRINGS.ACTION_REPORT_FAIL)
             })
 
     }

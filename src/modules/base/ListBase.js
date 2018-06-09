@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   Image,
   Text,
@@ -13,7 +13,7 @@ import { formatImageLink } from "../../helper/index";
 import { showLocation } from "react-native-map-link";
 import { STRINGS, COLORS, SIZES, FONTS } from "../../constants";
 
-class ListBase extends Component {
+class ListBase extends React.Component {
   constructor() {
     super();
   }
