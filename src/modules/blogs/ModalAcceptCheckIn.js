@@ -13,10 +13,7 @@ import { ButtonCommon } from '../../commons';
 export default class ModalAcceptCheckIn extends Component {
     constructor(){
     super();
-    this.state = {mac_id : "", wifiName : ""}
-    }
-    componentWillMount() {
-        getProfileStore.getProfile();
+    this.state = {mac_id : "", wifiName: ""}
     }
     componentDidMount() {
         NetworkInfo.getSSID(ssid => {
@@ -28,12 +25,11 @@ export default class ModalAcceptCheckIn extends Component {
         });
 
         NetworkInfo.getBSSID(bssid => {
+            let mac_id = ""
             if (bssid && bssid != 'error' && bssid.indexOf("bssid") == -1) {
-                this.state.mac_id = bssid
-                
-            } else {
-
+                mac_id = bssid;               
             }
+            this.setState({mac_id : mac_id})
         });
     }
 

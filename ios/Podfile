@@ -26,9 +26,6 @@ target 'colorMe' do
   ]
 
   pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
-
-  
-
   pod 'react-native-network-info', :path => '../node_modules/react-native-network-info'
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
   target 'colorMeTests' do

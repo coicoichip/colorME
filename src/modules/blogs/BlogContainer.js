@@ -22,6 +22,7 @@ import ListBlog from "./ListBlog";
 import Error from '../../commons/Error';
 import TextNullData from '../../commons/TextNullData';
 import ListTag from "./ListTag";
+import Analytics from 'appcenter-analytics';
 import Onesignal from "react-native-onesignal";
 import blogStore from './blogStore';
 import deviceStore from '../check-device/deviceStore';

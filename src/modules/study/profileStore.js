@@ -1,6 +1,8 @@
 import { observable, action, computed } from "mobx";
 import { userProfileApi, updateProfileApi } from "./profileApi";
 import { Alert, AsyncStorage } from "react-native";
+import Analytics from 'appcenter-analytics';
+import { STRINGS } from '../../constants'
 export default getProfileStore = new class GetProfileStore {
     @observable user = {};
     @observable updateUser = {};
@@ -31,7 +33,9 @@ export default getProfileStore = new class GetProfileStore {
         updateProfileApi(user).then((res) => {
             this.isLoadingUpdate = false;
             this.user = user;
-            Alert.alert("Thông báo", "Cập nhật tài khoản thành công")
+            Alert.alert("Thông báo", "Cập nhật tài khoản thành công");
+            Analytics.trackEvent(STRINGS.ACTION_UPDATE_PROFILE_STUDENT, {});
+
         })
             .catch(err => {
                 this.isLoadingUpdate = false;

@@ -18,22 +18,24 @@ import Loading from '../../commons/Loading';
 import { observable } from 'mobx';
 import SelectBase, { returnBase } from "./SelectBase";
 import { drawerStore } from "../drawer/drawerStore";
+import Analytics from 'appcenter-analytics';
+
 @observer
 class LearnRegisterContainer extends Component {
     @observable base_id = ""
     constructor(props) {
-        super(props);
-        this.state = {
-            base_id: "",
-        }
-    }
-    componentWillMount() {
-        const { params } = this.props.navigation.state;
-        coursesStore.getCourseInformation(params.linkId, "");
+        super(props); 
         this.panResponder = PanResponder.create({
             onStartShouldSetPanResponder: (event, gestureState) => true,
             onPanResponderGrant: this._onPanResponderGrant.bind(this),
         })
+        this.state = {
+            base_id: "",
+        }
+    }
+    componentDidMount() {
+        const { params } = this.props.navigation.state;
+        coursesStore.getCourseInformation(params.linkId, "");
         drawerStore.getProfile();
     }
     _onPanResponderGrant(event, gestureState) {

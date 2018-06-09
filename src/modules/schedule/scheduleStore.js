@@ -23,6 +23,7 @@ export default (scheduleStore = new class scheduleStore {
         this.error = true;
       });
   }
+  
   @computed
   get scheduleData() {
     return this.data.map(function(schedule) {

@@ -13,18 +13,21 @@ import { Container, Item, Input } from 'native-base';
 import Header from '../../commons/Header';
 import Icon from "../../commons/Icon"
 import { formatImageLink } from "../../helper/index";
+import Analytics from 'appcenter-analytics';
 
 import _ from "lodash";
 class ListBlog extends Component {
-    constructor() {
-        super()
+    goDetailBlog = () => {
+        const { item, navigation } = this.props;
+        Analytics.trackEvent(`${STRINGS.ACTION_GO_DETAIL_BLOG} ->  ${item.title.trim()}`, {})
+        navigation.navigate('DetailBlog', { slug: item.slug, kind : this.props.kind})
     }
     render() {
         const { item } = this.props;
         return (
                 <View>
                 <TouchableOpacity activeOpacity={0.8} style={{marginBottom: 15}}
-                    onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind : this.props.kind})}>
+                    onPress={this.goDetailBlog}>
                     <View >
                         <Image source={{ uri: item.thumb_url? formatImageLink(item.thumb_url) : ""}} style={styles.imageAvatarModuleEmails} />
                         <Text style={[styles.categoryInImages, styles.textDescriptionLightBold, {fontWeight: 'bold'}]}>

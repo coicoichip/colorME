@@ -2,6 +2,8 @@ import { observable, action, computed } from "mobx";
 import { userProfileApi, updateProfileApi, getDetailPortfolioApi, getPortfolioApi } from "./profileApi";
 import { Alert, AsyncStorage } from "react-native";
 import _ from "lodash"
+import Analytics from 'appcenter-analytics';
+import { STRINGS } from '../../constants'
 // function gridPosts(posts){
 //     posts = posts.map((post, index) => {
 //         return {
@@ -9,14 +11,14 @@ import _ from "lodash"
 //             key: index
 //         }
 //     });
-    
+
 //     postsGrid = _.groupBy(posts, ({element, key}) => {
 //         return Math.floor(key  / 3);
 //     });
 //     postsGrid = _.toArray(postsGrid);
 //     return postsGrid;
 // }
-export default getProfileStore = new class  GetProfileStore {
+export default getProfileStore = new class GetProfileStore {
     @observable user = {};
     @observable updateUser = {};
     @observable isLoading = false;
@@ -53,30 +55,34 @@ export default getProfileStore = new class  GetProfileStore {
         updateProfileApi(user).then((res) => {
             this.isLoadingUpdate = false;
             this.user = user;
-            Alert.alert("Thông báo", "Cập nhật tài khoản thành công")
+            Alert.alert("Thông báo", "Cập nhật tài khoản thành công");
+            Analytics.trackEvent(STRINGS.ACTION_UPDATE_PROFILE + ': ' + user.email, {})
+
         })
             .catch(err => {
                 this.isLoadingUpdate = false;
-                Alert.alert("Thông báo", ", mời bạn kiểm tra đường truyền")
+                Alert.alert("Thông báo", ", mời bạn kiểm tra đường truyền");
+                Analytics.trackEvent(STRINGS.ACTION_UPDATE_PROFILE_FAIL + ': ' + user.email, {})
+
             })
     }
     @action
-    getPortfolio(){
+    getPortfolio() {
         this.isLoadingPortfolio = true;
-        getPortfolioApi().then (res => {
+        getPortfolioApi().then(res => {
             this.isLoadingPortfolio = false;
             console.log(res.data.blogs)
             this.blogs = res.data.blogs
-            
+
         })
-            .catch (err => {
+            .catch(err => {
                 this.isLoadingPortfolio = false;
                 this.error = true;
                 console.log(err)
                 Alert.alert("Thông báo", ", mời bạn kiểm tra đường truyền");
             })
     }
-    
-    
+
+
 
 }();

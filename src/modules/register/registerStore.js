@@ -4,7 +4,9 @@ import { STRINGS } from '../../constants';
 import { resetScreen } from '../../helper';
 import { registerApi } from './registerApi';
 import {AsyncStorage} from "react-native";
+import Analytics from 'appcenter-analytics';
 import loginStore from "../login/loginStore";
+
 export default new class RegisterStore {
     @observable isLoading = false;
     @observable user = {};
@@ -41,7 +43,8 @@ export default new class RegisterStore {
                 AsyncStorage.setItem('@UserToken', res.data.token);
                 AsyncStorage.setItem('@username', res.data.user.username)
                 Alert.alert(STRINGS.WELCOME.TITLE, STRINGS.WELCOME.DESCRIPTION);
-                
+
+                Analytics.trackEvent(STRINGS.ACTION_REGISTER_SUCCESS + res.user.name, {})
                 
             })
             .catch((err) => {
