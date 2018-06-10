@@ -54,13 +54,13 @@ class ProductsContainer extends React.Component {
     postsGrid = _.toArray(postsGrid);
     return postsGrid;
   }
-  getMoreProducts() {
-    productsStore.page = productsStore.page + 1;
-    productsStore.testproducts.length !== 0 ?
-      productsStore.info_id == 0 ? productsStore.getListProductsNew(productsStore.page)
-        : productsStore.getListProducts(productsStore.data_id, productsStore.page)
-      : null
-  }
+  // getMoreProducts() {
+  //   productsStore.page = productsStore.page + 1;
+  //   productsStore.testproducts.length !== 0 ?
+  //     productsStore.info_id == 0 ? productsStore.getListProductsNew(productsStore.page)
+  //       : productsStore.getListProducts(productsStore.data_id, productsStore.page)
+  //     : null
+  // }
   loadMore() {
     if (productsStore.isLoading && productsStore.page >= 1)
       return (<Loading />)
@@ -87,8 +87,8 @@ class ProductsContainer extends React.Component {
           <FlatList
             keyExtractor={(item, key) => key}
             showsVerticalScrollIndicator={false}
-            data={this.gridPost()}
-            onEndReached={() => this.getMoreProducts()}
+            data={productsStore.products}
+            // onEndReached={() => this.getMoreProducts()}
             refreshControl={
               <RefreshControl
                 refreshing={productsStore.isLoadingRefresh}
@@ -104,16 +104,17 @@ class ProductsContainer extends React.Component {
               return (
                 <View style={{ flex: 1, flexDirection: 'row' }}>
                   {
-                    item.map((post, index) => {
-                      return (
+                    // item.map((post, index) => {
+                    //   return (
                         <TouchableOpacity activeOpacity={0.8}
-                          key={index}
-                          onPress={() => this.props.navigation.navigate('DetailBlog', { slug: post.slug, kind: post.kind })}>
-                          <Image resizeMode={"cover"} source={{ uri: formatImageLink(post.url) }} style={styles.imageFeature2} />
+                          // key={index}
+                          onPress={() => this.props.navigation.navigate('DetailBlog', { slug: item.slug, kind: item.kind })}>
+                          <Image resizeMode={"cover"} source={{ uri: formatImageLink(item.url) }} style={styles.imageFeature2} />
 
                         </TouchableOpacity>
-                      )
-                    })
+                        // <Text>{index}</Text>
+                    //   )
+                    // })
                   }
                 </View>
 
