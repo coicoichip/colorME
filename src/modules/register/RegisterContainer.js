@@ -2,18 +2,15 @@ import React, { Component } from 'react';
 import {
     Platform,
     StyleSheet,
-    View, ActivityIndicator, Alert, StatusBar, TouchableWithoutFeedback, Keyboard, SafeAreaView
+    View, Image, StatusBar, TouchableWithoutFeedback, Keyboard, SafeAreaView
 } from 'react-native';
 import { Container, Button, Text } from 'native-base';
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
-import * as color from '../../styles/colors';
 import { InputCommon, ButtonCommon } from '../../commons';
-import { resetScreen } from '../../helper';
 import { observer } from 'mobx-react';
 import registerStore from './registerStore';
 import { observable } from 'mobx';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { dispatch } from 'react-navigation';
 import { BackButton } from '../../commons';
 import Analytics from 'appcenter-analytics';
 
@@ -29,7 +26,7 @@ export default class RegisterContainer extends Component {
         super(props);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         Analytics.trackEvent(STRINGS.ACTION_REGISTER_LOADED, {});
     }
 
@@ -62,10 +59,9 @@ export default class RegisterContainer extends Component {
 
                         {/* logo */}
                         <View style={styles.wrapperLogo}>
-                            <View style={{ alignItems: 'flex-end', marginTop: -40 }}>
-                                <Text style={styles.textLogoColor}>{STRINGS.LOGO_COLOR}</Text>
-                                <Text style={styles.textLogoMe}>{STRINGS.LOGO_ME}</Text>
-                            </View>
+                            <Image style={{ width: '40%', height: '40%' }}
+                                source={require('../../../assets/image/colorme.png')}
+                            />
                         </View>
 
                         <View style={{ flex: 1, backgroundColor: COLORS.LIGHT_COLOR }} />
@@ -73,7 +69,7 @@ export default class RegisterContainer extends Component {
                         {/* form input */}
                         <View style={styles.contentForm}>
                             <InputCommon
-                                
+
                                 returnKeyType={'next'}
                                 size={styles.input}
                                 value={register.name}
@@ -94,7 +90,7 @@ export default class RegisterContainer extends Component {
                                 value={register.password}
                                 label={STRINGS.PASSWORD.toUpperCase()}
                                 onChangeText={this.onChangeData('password')}
-                                onSubmitEditing = {this.onRegister}
+                                onSubmitEditing={this.onRegister}
                             />
                             <View height={30} />
                         </View>
@@ -103,11 +99,15 @@ export default class RegisterContainer extends Component {
                                 isLoading={registerStore.isLoading}
                                 onPress={this.onRegister}
                                 label={STRINGS.REGISTER_ACCOUNT}
-                                text={{fontFamily: 'Roboto-Bold',
-                                fontSize: SIZES.SUBTITLE_SIZE}}
-                                style={{ elevation: 6 , shadowColor: COLORS.SHADOW_COLOR,
+                                text={{
+                                    fontFamily: 'Roboto-Bold',
+                                    fontSize: SIZES.SUBTITLE_SIZE
+                                }}
+                                style={{
+                                    elevation: 6, shadowColor: COLORS.SHADOW_COLOR,
                                     shadowOffset: { width: 0, height: 0 },
-                                    shadowOpacity: 0.4,}}
+                                    shadowOpacity: 0.4,
+                                }}
                             />
                         </View>
                     </Container>

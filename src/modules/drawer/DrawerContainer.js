@@ -44,7 +44,7 @@ class DrawerContainer extends Component {
                                     navigate('Profile')
                                 }}
                             >
-                                <Text>{STRINGS.EDIT_USER}</Text>
+                                <Text>{STRINGS.EDIT_USER.trim()}</Text>
 
                             </TouchableOpacity>
 

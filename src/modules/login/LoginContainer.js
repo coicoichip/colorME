@@ -75,11 +75,9 @@ class LoginContainer extends Component {
 
                         {/* logo */}
                         <View style={styles.wrapperLogo}>
-                            <View style={{ alignItems: 'flex-end' }}>
-                                <Text style={styles.textLogoColor}>color</Text>
-                                <Text style={{ height: 15 }} />
-                                <Text style={styles.textLogoMe}>ME</Text>
-                            </View>
+                            <Image style={{width: '40%', height: '40%'}} 
+                                source={require('../../../assets/image/colorme.png')}
+                            />
                         </View>
 
                         <View style={{ flex: 1, backgroundColor: COLORS.LIGHT_COLOR }} />
