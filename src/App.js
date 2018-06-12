@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import RootStackContainer from "./navigation/RootStack"
-import navStore from "./navigation/navStore";
+import AppNavigator from "./navigation/AppNavigator"
+
 import {addNavigationHelpers} from "react-navigation";
 import {Root} from "native-base"
 export default class App extends Component {
@@ -11,7 +11,7 @@ export default class App extends Component {
   render() {
     return (
       <Root>
-        <RootStackContainer/>
+        <AppNavigator/>
       </Root>
     )}}
     

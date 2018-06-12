@@ -21,7 +21,7 @@ import loginStore from './loginStore';
 import DeviceInfo from 'react-native-device-info';
 import splashStore from "../splash/splashStore";
 import Analytics from 'appcenter-analytics';
-
+import OneSignal from 'react-native-onesignal'
 let _this;
 
 @observer
@@ -34,7 +34,10 @@ class LoginContainer extends Component {
         }
         _this = this;
     }
-
+    componentWillMount(){
+        OneSignal.configure();
+        OneSignal.init("a136d5c1-400f-456a-9c64-75c43f206f4d")
+    }
     componentDidMount() {
         loginStore.getData();
         Analytics.trackEvent(STRINGS.ACTION_LOGIN_LOADED, {});

@@ -104,15 +104,15 @@ class ProductsContainer extends React.PureComponent {
                   {
                     item.map((post, index) => {
                       return (
-                        <TouchableOpacity activeOpacity={0.8}
-                          key={index}
-                          onPress={() => {
-                            this.props.navigation.navigate('DetailBlog', { slug: post.slug, kind: post.kind })
-                            Analytics.trackEvent(`${STRINGS.ACTION_GO_DETAIL_PRODUCT} -> ${post.name}`, {});
-                          }}>
-                          <Image resizeMode={"cover"} source={{ uri: formatImageLink(post.url) }} style={styles.imageFeature2} />
-
-                        </TouchableOpacity>
+                        <Text> {index}</Text>
+                        // <TouchableOpacity activeOpacity={0.8}
+                        //   key={index}
+                        //   onPress={() => {
+                        //     this.props.navigation.navigate('DetailBlog', { slug: post.slug, kind: post.kind })
+                        //     Analytics.trackEvent(`${STRINGS.ACTION_GO_DETAIL_PRODUCT} -> ${post.name}`, {});
+                        //   }}>
+                        //   <Image resizeMode={"cover"} source={{ uri: formatImageLink(post.thumb_url) }} style={styles.imageFeature2} />
+                        // </TouchableOpacity>
                       )
                     })
                   }

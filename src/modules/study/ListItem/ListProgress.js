@@ -17,8 +17,145 @@ class ListProgress extends Component {
     constructor(props) {
         super(props)
     }
+    renderStatus = (status) => {
+        let text = { status: "", button: "", backgroundColor: "" }
+        switch (status) {
+            case 0:
+                text.status = "";
+                text.button = "Hướng dẫn đăng kí học phí";
+                return text;
+                break;
+            case 1:
+                text.status = "Đã hoàn thành học phí";
+                text.button = "Bảo lưu";
+                return text;
+                break;
+
+            case 2:
+                text.status = "Đã hoàn thành học phí - Danh sách chờ";
+                text.button = "Chọn lớp";
+                return text;
+                break;
+            case 3:
+                text.status = "Đang bảo lưu";
+                text.button = "Học lại";
+                return text;
+                break;
+
+            case 4:
+                text.status = "";
+                text.button = "Đang học lại";
+                return text;
+                break;
+
+            case 5:
+                text.status = "";
+                text.button = "Đã hoàn thành khóa học";
+                return text;
+                break;
+            default:
+                return text;
+        }
+    }
+    renderViewStatus = (status) => {
+        switch(status){
+            case 0:
+            return (
+                <View style={{ alignItems: 'flex-start' }}>
+                <View style={{ marginTop: 10, justifyContent: 'center', alignItems: 'center', height: 25, borderRadius : 10, backgroundColor: COLORS.GREEN }}>
+                    <Text style={{
+                        fontFamily: 'Roboto-Bold',
+                        fontSize: SIZES.SUBTITLE_SIZE,
+                        color: "#FFF",
+                        paddingLeft: 10,
+                        paddingRight: 10
+                    }} >{this.renderStatus(0).button}</Text>
+
+                </View>
+            </View>
+            )
+            break;
+            case 1:
+            return(<View style={{ alignItems: 'flex-start' }}>
+            <View style={{ marginTop: 10, justifyContent: 'center', alignItems: 'center', height: 25,borderRadius : 10, backgroundColor: COLORS.GREEN }}>
+                <Text style={{
+                    fontFamily: 'Roboto-Bold',
+                    fontSize: SIZES.SUBTITLE_SIZE,
+                    color: "#FFF",
+                    paddingLeft: 10,
+                    paddingRight: 10
+                }} >{this.renderStatus(1).button}</Text>
+
+            </View>
+        </View>)
+        break;
+            
+            case 2:
+            return(
+            <View style={{ alignItems: 'flex-start' }}>
+            <View style={{ marginTop: 10, justifyContent: 'center', alignItems: 'center', height: 25, borderRadius : 10, backgroundColor: COLORS.GREEN }}>
+                <Text style={{
+                    fontFamily: 'Roboto-Bold',
+                    fontSize: SIZES.SUBTITLE_SIZE,
+                    color: "#FFF",
+                    paddingLeft: 10,
+                    paddingRight: 10
+                }} >{this.renderStatus(2).button}</Text>
+
+            </View>
+        </View>
+            )
+            break;
+            case 3:
+            return (
+            <View style={{ alignItems: 'flex-end' }}>
+            <View style={{ marginTop: 10, justifyContent: 'center', alignItems: 'center', height: 25, borderRadius : 10, backgroundColor: COLORS.GREEN }}>
+                <Text style={{
+                    fontFamily: 'Roboto-Bold',
+                    fontSize: SIZES.SUBTITLE_SIZE,
+                    color: "#FFF",
+                    paddingLeft: 10,
+                    paddingRight: 10
+                }} >{this.renderStatus(3).button}</Text>
+            </View>
+        </View>
+            )
+            break;
+            case 4:
+            return (
+                <View style={{ alignItems: 'flex-end' }}>
+                <View style={{ marginTop: 10, justifyContent: 'center', alignItems: 'center', height: 25, borderRadius : 10, backgroundColor: COLORS.GREEN }}>
+                    <Text style={{
+                        fontFamily: 'Roboto-Bold',
+                        fontSize: SIZES.SUBTITLE_SIZE,
+                        color: "#FFF",
+                        paddingLeft: 10,
+                        paddingRight: 10
+                    }} >{this.renderStatus(4).button}</Text>
+                </View>
+            </View>
+                )
+                break;
+
+            case 5 :
+            return (
+                <View style={{ alignItems: 'flex-end' }}>
+                <View style={{ marginTop: 10, justifyContent: 'center', alignItems: 'center', height: 25, borderRadius : 10, backgroundColor: COLORS.GREEN }}>
+                    <Text style={{
+                        fontFamily: 'Roboto-Bold',
+                        fontSize: SIZES.SUBTITLE_SIZE,
+                        color: "#FFF",
+                        paddingLeft: 10,
+                        paddingRight: 10
+                    }} >{this.renderStatus(5).button}</Text>
+                </View>
+            </View>
+                )
+                break;
+        }
+    }
     render() {
-        const { item } = this.props;
+        const { item , index} = this.props;
         const duration_studied = item.attendances.filter(e => e.status == 1);
         return (
             <View>
@@ -34,21 +171,9 @@ class ListProgress extends Component {
                         <Text numberOfLines={1} style={styles.emailNameModuleEmail}>{item.name.trim()}</Text>
                         <Text style={styles.textDescriptionDark}>{duration_studied.length + "/" + item.attendances.length} buổi</Text>
                         <View style={{ marginTop: 5 }}>
-                            <Text numberOfLines={2} style={styles.textDescriptionDark}>{item.description.trim()}</Text>
+                            <Text numberOfLines={2} style={styles.textDescriptionDark}>{this.renderStatus(this.props.status).status}</Text>
                         </View>
-                        {item.time !== 0 ?
-                        <View style = {{alignItems : 'flex-end'}}>
-                            <View style={{ marginTop : 10, justifyContent : 'center', alignItems: 'center', height: 25, width: 100, backgroundColor: COLORS.GREEN }}>
-                                <Text style={{
-                                    fontFamily: 'Roboto-Bold',
-                                    fontSize: SIZES.SUBTITLE_SIZE,
-                                    color : "#FFF"
-                                }} >Bảo lưu</Text>
-
-                            </View>
-                            </View>
-                            : null
-                        }
+                        {this.renderViewStatus(this.props.status)}
 
 
                     </View>

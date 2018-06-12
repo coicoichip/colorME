@@ -5,11 +5,14 @@ import getProfileStore from "../profile/profileStore";
 import ListProgress from "./ListItem/ListProgress";
 import Error from "../../commons/Error";
 import TextNullData from "../../commons/TextNullData";
-import Loading from "../../commons/Loading"
+import Loading from "../../commons/Loading";
+import { observer } from "mobx-react";
+
 class ProgressContainer extends Component {
     renderProgress(){
         
-        const {isLoading, error, progress} = this.props;
+        const {isLoading, error, progress, registers} = this.props;
+        console.log(registers)
         if (isLoading) {
             return <Loading />
         }
@@ -34,8 +37,8 @@ class ProgressContainer extends Component {
                     //         }
                     //     />
                     // }
-                    renderItem={({ item }) =>
-                        <ListProgress item={item} navigation={this.props.navigation}/>
+                    renderItem={({ item , index}) =>
+                        <ListProgress item={item} navigation={this.props.navigation} status = {getProfileStore.user.registers[index].status}/>
                     }
                     // ListFooterComponent={
                     //     this.loadMore()

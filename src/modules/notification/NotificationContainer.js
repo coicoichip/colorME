@@ -41,7 +41,7 @@ class NotificationContainer extends React.Component {
         }
         if (notificationStore.error) {
             return (
-                <Error onPress={() => this.componentWillMount()} />
+                <Error onPress={() => notificationStore.getListNotification(1)} />
             )
         }
         if (notificationStore.data.length !== 0) {
