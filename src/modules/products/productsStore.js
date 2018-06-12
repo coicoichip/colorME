@@ -24,7 +24,6 @@ export const productsStore = new class productsStore {
             this.isLoading = false;
             this.errorProducts = false;
             this.products = this.page == 1 ? res.data.products :  [...this.products, ...res.data.products];
-            this.datas =  this.products.map((item) => {return {thumb_url : item.thumb_url, slug: item.slug, kind: item.kind}})
             this.testproducts = res.data.products;
             console.log(res);
         })
@@ -42,7 +41,6 @@ export const productsStore = new class productsStore {
             this.isLoading = false;
             this.errorProducts = false;
             this.products = this.page == 1 ? res.data.products :  [...this.products, ...res.data.products];
-            this.datas =  this.products.map((item) => {return {thumb_url : item.thumb_url, slug: item.slug, kind: item.kind}})
             this.testproducts = res.data.products;
         })
             .catch(err => {

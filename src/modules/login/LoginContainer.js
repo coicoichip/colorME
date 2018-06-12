@@ -20,6 +20,8 @@ import { observer } from "mobx-react";
 import loginStore from './loginStore';
 import DeviceInfo from 'react-native-device-info';
 import splashStore from "../splash/splashStore";
+import Analytics from 'appcenter-analytics';
+
 let _this;
 
 @observer
@@ -32,7 +34,8 @@ class LoginContainer extends Component {
         }
         _this = this;
     }
-    componentDidMount() {
+    componentDidMount(){
+        Analytics.trackEvent(STRINGS.ACTION_LOGIN_LOADED, { });
         loginStore.getData()
     }
 

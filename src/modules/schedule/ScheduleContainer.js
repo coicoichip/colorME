@@ -120,9 +120,6 @@ class ScheduleContainer extends React.Component {
             </Text>
           </View>
         </View>
-        {/* <View style={[{ marginLeft:2}]}>
-            
-        </View> */}
       </View>;
   }
 

@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Text, StyleSheet, FlatList, RefreshControl, Image, TouchableOpacity } from "react-native";
+import React,{ Component, PureComponent } from "react";
+import { View, Text, StyleSheet, FlatList, RefreshControl, Image, TouchableOpacity, Dimensions } from "react-native";
 import { Container } from "native-base";
 import { STRINGS, COLORS, SIZES } from "../../constants";
 import Header from "../../commons/Header";
@@ -10,12 +10,28 @@ import Select, { returnInfo, returnDate } from "./Select";
 import Loading from "../../commons/Loading";
 import { formatImageLink } from "../../helper/index";
 import TextNullData from "../../commons/TextNullData";
+const { width } = Dimensions.get('window')
 
 
 
 
+class RenderItem extends PureComponent {
+  render() {
+    const {item} = this.props;
+    const { navigate } = this.props;
+    return (
+      <TouchableOpacity activeOpacity={0.8}
+        onPress={() => this.props.navigate('DetailBlog', { slug: item.slug, kind: item.kind })}>
+        <Image
+          source={{ uri: item.thumb_url ? item.thumb_url : " " }}
+          style={{ width: width / 3, height: width / 3 }}
+        />
+      </TouchableOpacity>
+    )
+  }
+}
 @observer
-class ProductsContainer extends React.Component {
+class ProductsContainer extends Component {
   @observable info_id = "";
   constructor(props) {
     super(props);
@@ -39,21 +55,21 @@ class ProductsContainer extends React.Component {
     await returnInfo(date_value => { productsStore.data_id = date_value });
     productsStore.getListProducts(productsStore.data_id, 1);
   }
-  gridPost() {
-    if (productsStore.products.length !== 0)
-      posts = productsStore.datas.map((post, index) => {
-        return {
-          ...post,
-          key: index
-        }
-      });
+  // gridPost() {
+  //   if (productsStore.products.length !== 0)
+  //     posts = productsStore.products.map((post, index) => {
+  //       return {
+  //         ...post,
+  //         key: index
+  //       }
+  //     });
 
-    postsGrid = _.groupBy(posts, ({ element, key }) => {
-      return Math.floor(key / 3);
-    });
-    postsGrid = _.toArray(postsGrid);
-    return postsGrid;
-  }
+  //   postsGrid = _.groupBy(posts, ({ element, key }) => {
+  //     return Math.floor(key / 3);
+  //   });
+  //   postsGrid = _.toArray(postsGrid);
+  //   return postsGrid;
+  // }
   getMoreProducts() {
     productsStore.page = productsStore.page + 1;
     productsStore.testproducts.length !== 0 ?
@@ -85,42 +101,20 @@ class ProductsContainer extends React.Component {
         :
         <View style={styles.wrapperContent}>
           <FlatList
-            keyExtractor={(item, key) => key}
-            showsVerticalScrollIndicator={false}
-            data={this.gridPost()}
+            extraData
+            onEndReachedThreshold={0.2}
             onEndReached={() => this.getMoreProducts()}
-            refreshControl={
-              <RefreshControl
-                refreshing={productsStore.isLoadingRefresh}
-                // onRefresh={
-                //   () => this.refreshList()
-                // }
-              />
-            }
+            numColumns={3}
+            data={productsStore.products}
+            keyExtractor={(item, key) => key}
             ListFooterComponent={
               this.loadMore()
             }
             renderItem={({ item }) => {
               return (
-                <View style={{ flex: 1, flexDirection: 'row' }}>
-                  {
-                    item.map((post, index) => {
-                      return (
-                        <TouchableOpacity activeOpacity={0.8}
-                          key={index}
-                          onPress={() => this.props.navigation.navigate('DetailBlog', { slug: post.slug, kind: post.kind })}>
-                          <Image resizeMode={"cover"} source={{ uri: formatImageLink(post.thumb_url) }} style={styles.imageFeature2} />
-
-                        </TouchableOpacity>
-                      )
-                    })
-                  }
-                </View>
-
+                <RenderItem item={item} navigate={this.props.navigation.navigate}/>
               )
-            }
-
-            }
+            }}
           />
         </View>
       }
@@ -142,23 +136,23 @@ const styles = StyleSheet.create({
   wrapperCenter: {
     ...wrapperCenter
   },
-  imageFeature1: {
-    height: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
-    width: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
-    marginBottom: 2
-  },
-  imageFeature2: {
-    height: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
-    width: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
-    marginBottom: 2,
-    marginLeft: 1,
-  },
-  imageFeature3: {
-    height: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
-    width: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
-    marginLeft: 1,
-    marginBottom: 2
-  }
+  // imageFeature1: {
+  //   height: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
+  //   width: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
+  //   marginBottom: 2
+  // },
+  // imageFeature2: {
+  //   height: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
+  //   width: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
+  //   marginBottom: 2,
+  //   marginLeft: 1,
+  // },
+  // imageFeature3: {
+  //   height: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
+  //   width: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
+  //   marginLeft: 1,
+  //   marginBottom: 2
+  // }
 });
 
 export default ProductsContainer;

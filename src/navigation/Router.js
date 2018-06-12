@@ -108,6 +108,7 @@ const Tab = TabNavigator({
         screen: Study,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
+                
                 let source;
                 if (tintColor == 1) {
                     source = require('../../assets/icons/goal_enable.png')
@@ -129,6 +130,7 @@ const Tab = TabNavigator({
         path: "Products",
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
+                
                 let source;
                 if (tintColor == 1) {
                     source = require('../../assets/icons/news_enable.png')
@@ -151,6 +153,7 @@ const Tab = TabNavigator({
         path: "notification",
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
+                
                 let source;
                 if (tintColor == 1) {
                     source = require('../../assets/icons/bell_enable.png')
@@ -171,6 +174,7 @@ const Tab = TabNavigator({
         screen: Profile,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
+                
                 let source;
                 if (tintColor == 1) {
                     source = require('../../assets/icons/user_enable.png')
