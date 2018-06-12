@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {
-    View, StyleSheet, Text, AsyncStorage, StatusBar, NetInfo, Alert, Linking, NativeModules
+    View, StyleSheet, Text, AsyncStorage, StatusBar, NetInfo, Alert, Linking, NativeModules, Image
 } from 'react-native';
 import { Container } from 'native-base';
-import { COLORS, SIZES, STRINGS , FONTS} from '../../constants';
+import { COLORS, SIZES, STRINGS, FONTS } from '../../constants';
 import Spinner from 'react-native-spinkit';
 // import loginStore from '../login/loginStore';
 import splashStore from "./splashStore"
@@ -13,7 +13,7 @@ import deviceStore from "../check-device/deviceStore"
 
 @observer
 export default class SplashContainer extends Component {
-    
+
     checkNetwork = async () => {
         const result = await NetInfo.getConnectionInfo().then((connectionInfo) => {
             //check network connect success
@@ -43,24 +43,24 @@ export default class SplashContainer extends Component {
         deviceStore.checkDevice();
         this.checkNetwork().then(async function(res) {
             try {
-                 const token = await AsyncStorage.getItem('@UserToken')
-                 const id = await AsyncStorage.getItem("@ID")
-                 console.log(id, token)
-                if(token && id){
-                    
+                const token = await AsyncStorage.getItem('@UserToken')
+                const id = await AsyncStorage.getItem("@ID")
+                console.log(id, token)
+                if (token && id) {
+
                     splashStore.refreshToken(navigation, token)
-                }else{
-                    
+                } else {
+
                     resetScreen(navigation, 'Login')
                 }
             }
-            catch(err){
+            catch (err) {
                 resetScreen(navigation, 'Login')
             }
-            
-                
+
+
         })
-        .catch(res => {})
+            .catch(res => { })
     }
 
     openSettings = () => {
@@ -78,10 +78,10 @@ export default class SplashContainer extends Component {
                     barStyle={COLORS.BAR_STYLE_LOGIN}
                     backgroundColor={COLORS.MAIN_COLOR}
                 />
-                <View style={{ alignItems: 'flex-end', marginBottom: 20 }}>
-                    <Text style={styles.textLogoColor}>{STRINGS.LOGO_COLOR}</Text>
-                    <Text style={styles.textLogoMe}>{STRINGS.LOGO_ME}</Text>
-                </View>
+                <Image style={{ width: '50%', height: '50%' }}
+                    resizeMode={'contain'}
+                    source={require('../../../assets/image/colorme.png')}
+                />
                 <Spinner
                     size={SIZES.LOADING_SIZE}
                     type={'ThreeBounce'}

@@ -19,7 +19,6 @@ export default class ModalAcceptCheckIn extends Component {
         getProfileStore.getProfile();
     }
     componentDidMount() {
-        
         NetworkInfo.getBSSID(bssid => {
             if (bssid && bssid != 'error' && bssid.indexOf("bssid") == -1) {
                 this.state.mac_id = bssid
@@ -33,7 +32,7 @@ export default class ModalAcceptCheckIn extends Component {
     attendance = () => {
         
         const { mac_id } = this.state;
-        console.log(mac_id, "adasdas")
+        console.log(mac_id)
         blogStore.attendance(
             blogStore.attendanceData.id,
             blogStore.attendanceData.lesson[0].class_lesson_id,
@@ -82,11 +81,11 @@ export default class ModalAcceptCheckIn extends Component {
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 3 }}>
                             <Text style={[styles.textDescriptionDark, { fontWeight: 'bold' }]}>Wifi : </Text>
-                            <Text style={[styles.textDescriptionDark]}>COLORME</Text>
+                            {/* <Text style={[styles.textDescriptionDark]}>COLORME</Text> */}
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 3 }}>
                             <Text style={[styles.textDescriptionDark, { fontWeight: 'bold' }]}>MAC : </Text>
-                            <Text style={[styles.textDescriptionDark]}>12cfacfa4a</Text>
+                            {/* <Text style={[styles.textDescriptionDark]}>12cfacfa4a</Text> */}
                         </View>
 
                     </View>

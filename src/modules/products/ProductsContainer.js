@@ -10,7 +10,9 @@ import Select, { returnInfo, returnDate } from "./Select";
 import Loading from "../../commons/Loading";
 import { formatImageLink } from "../../helper/index";
 import TextNullData from "../../commons/TextNullData";
+import Analytics from 'appcenter-analytics';
 const { width } = Dimensions.get('window')
+
 
 
 
@@ -31,18 +33,16 @@ class RenderItem extends PureComponent {
   }
 }
 @observer
-class ProductsContainer extends Component {
+class ProductsContainer extends React.PureComponent {
   @observable info_id = "";
   constructor(props) {
     super(props);
   }
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     productsStore.page = 1;
     productsStore.getListProducts(7, 1);
     //console.log(getProfileStore.portfolioData);
-
-
   }
   async pickInfo() {
     productsStore.page = 1;
@@ -52,7 +52,7 @@ class ProductsContainer extends Component {
   }
   async pickDate() {
     productsStore.page = 1;
-    await returnInfo(date_value => { productsStore.data_id = date_value });
+    await returnInfo(data_value => { productsStore.data_id = data_value });
     productsStore.getListProducts(productsStore.data_id, 1);
   }
   // gridPost() {

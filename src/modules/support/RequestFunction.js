@@ -17,6 +17,7 @@ import UpLoadImage from "../../commons/UploadImage";
 import { observer } from "mobx-react";
 import {SupportStore} from "./supportStore";
 import getProfileStore from "../../modules/profile/profileStore"
+import Analytics from 'appcenter-analytics';
 
 @observer
 class RequestFunction extends Component {
@@ -30,6 +31,10 @@ class RequestFunction extends Component {
     //     }
     //     this.handleFileUpload = this.handleFileUpload.bind(this)
     // }
+    componentDidMount(){
+        Analytics.trackEvent(`${STRINGS.ACTION_ROOT_DRAWER_REQUEST_FUCTION}`, {});
+    }
+
     support(value){
         SupportStore.info.name = getProfileStore.updateUser.name;
         SupportStore.info.email = getProfileStore.updateUser.email;
@@ -88,7 +93,7 @@ class RequestFunction extends Component {
                                         <Input
                                             style={[styles.inputTheme02, styles.textDescriptionCard, { fontSize: 13 }]}
                                             underlineColorAndroid={"transparent"}
-                                            placeholder="Nôi dung"
+                                            placeholder="Nội dung"
                                             returnKeyType={'next'}
                                             autoCorrect={false}
                                             onChangeText={(message) => {

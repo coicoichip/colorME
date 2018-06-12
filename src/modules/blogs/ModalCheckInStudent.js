@@ -33,9 +33,7 @@ export default class ModalCheckInStudent extends Component {
     }
 
     attendance = () => {
-       
         const { mac_id } = this.state;
-        console.log(mac_id, "adasdas")
         blogStore.attendance(
             blogStore.attendanceData.id,
             blogStore.attendanceData.lesson[0].class_lesson_id,

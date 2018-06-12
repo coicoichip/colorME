@@ -88,6 +88,10 @@ p.wrapperImg{
     padding-left: 0;
     padding-right: 0;
 }
+.imageDetail:{
+    width: 100%;
+    height: 100%
+}
 table:{
     margin: 10px;
     padding: 10px;
@@ -133,7 +137,7 @@ class WebViewAutoHeight extends React.Component {
         let sourceData = source.replace(/width: 100%px/g, 'width: 100%');
         const html = '<!DOCTYPE html><html><head><meta charset=UTF-8"/></head><body>'
             +
-            sourceData.replace(/<p><img/g, '<p class="wrapperImg"><img')
+            sourceData.replace(/<p><img/g, '<p class="wrapperImg"><img class="imageDetail"')
             +
             '</body></html>';
 

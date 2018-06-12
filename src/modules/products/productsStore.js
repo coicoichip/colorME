@@ -15,6 +15,7 @@ export const productsStore = new class productsStore {
     @observable page = 1;
     @observable testproducts = [];
     @observable isLoadingBegin = false;
+    
     @action
     getListProducts(filter, page) {
         this.page == 1 ? this.isLoadingBegin = true : this.isLoadingBegin = false;

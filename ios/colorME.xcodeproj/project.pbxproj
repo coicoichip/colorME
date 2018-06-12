@@ -87,6 +87,7 @@
 		EAFE7CB05FA4443C94DA9497 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C49D1FCE65243B090CF9EF4 /* Roboto-MediumItalic.ttf */; };
 		F148B9BB718F4CADA2483F31 /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E880C1FAA48408BA1B97E44 /* Roboto_medium.ttf */; };
 		F2EB1CECFA834C68B3C61E5D /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D51E2FD9AF7D41EFBA61F6AC /* libRNSpinkit.a */; };
+		D7507A6368194CE59370EE03 /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37C3FAFB8C2B4DD38713B2FF /* rubicon-icon-font.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -520,6 +521,7 @@
 		FDDCEA9C9BC2F219AD5C11BC /* Pods-colorMeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-colorMeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-colorMeTests/Pods-colorMeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FE5B7ADA55C34AFF83A30E73 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		FE6BEE4A9B9D4357BDFF0815 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		37C3FAFB8C2B4DD38713B2FF /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -938,6 +940,7 @@
 				A9BE3B8A3C0442128E639CBA /* Roboto-Thin.ttf */,
 				3E3FCA3D8989441BA16E4E8E /* Roboto-ThinItalic.ttf */,
 				00D2D0918F7A49C094F6B419 /* seguibl.ttf */,
+				37C3FAFB8C2B4DD38713B2FF /* rubicon-icon-font.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1538,6 +1541,7 @@
 				1F7D657D7B3947BDBBE2BC0D /* Roboto-ThinItalic.ttf in Resources */,
 				868A82C38B4F47A58C2D65B1 /* seguibl.ttf in Resources */,
 				4A731F2C9A254FF3B43EEC2D /* AppCenter-Config.plist in Resources */,
+				D7507A6368194CE59370EE03 /* rubicon-icon-font.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
