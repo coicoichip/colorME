@@ -23,8 +23,6 @@ class ProductsContainer extends React.PureComponent {
     productsStore.page = 1;
     productsStore.getListProducts(7, 1);
     //console.log(getProfileStore.portfolioData);
-
-
   }
   async pickInfo() {
     productsStore.page = 1;
