@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, FlatList, RefreshControl, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, FlatList, RefreshControl, Image, TouchableOpacity, Dimensions } from "react-native";
 import { Container } from "native-base";
 import { STRINGS, COLORS, SIZES } from "../../constants";
 import Header from "../../commons/Header";
@@ -10,10 +10,27 @@ import Select, { returnInfo, returnDate } from "./Select";
 import Loading from "../../commons/Loading";
 import { formatImageLink } from "../../helper/index";
 import TextNullData from "../../commons/TextNullData";
-import {OptimizedFlatList} from 'react-native-optimized-flatlist'
+import { OptimizedFlatList } from 'react-native-optimized-flatlist'
 
 
+const { width } = Dimensions.get('window')
+const { height } = Dimensions.get('window')
+class RenderItem extends React.PureComponent {
+  render() {
+    const {item} = this.props;
+    const {navigate} = this.props;
+    return (
+      <TouchableOpacity activeOpacity={0.8}
+        onPress={() => navigate('DetailBlog', { slug: item.slug, kind: item.kind })}>
+        <Image
+          source={{ uri: item.thumb_url }}
+          style={{ width: width / 3, height: width / 3 }}
+        />
+      </TouchableOpacity>
+    )
 
+  }
+}
 @observer
 class ProductsContainer extends React.Component {
   @observable info_id = "";
@@ -39,21 +56,21 @@ class ProductsContainer extends React.Component {
     await returnInfo(date_value => { productsStore.data_id = date_value });
     productsStore.getListProducts(productsStore.data_id, 1);
   }
-  gridPost() {
-    if (productsStore.products.length !== 0)
-      posts = productsStore.products.map((post, index) => {
-        return {
-          ...post,
-          key: index
-        }
-      });
+  // gridPost() {
+  //   if (productsStore.products.length !== 0)
+  //     posts = productsStore.products.map((post, index) => {
+  //       return {
+  //         ...post,
+  //         key: index
+  //       }
+  //     });
 
-    postsGrid = _.groupBy(posts, ({ element, key }) => {
-      return Math.floor(key / 3);
-    });
-    postsGrid = _.toArray(postsGrid);
-    return postsGrid;
-  }
+  //   postsGrid = _.groupBy(posts, ({ element, key }) => {
+  //     return Math.floor(key / 3);
+  //   });
+  //   postsGrid = _.toArray(postsGrid);
+  //   return postsGrid;
+  // }
   getMoreProducts() {
     productsStore.page = productsStore.page + 1;
     productsStore.testproducts.length !== 0 ?
@@ -72,8 +89,11 @@ class ProductsContainer extends React.Component {
   //   productsStore.info_id == 0 ? productsStore.getListProductsNew(1)
   //     : productsStore.getListProducts(productsStore.data_id, 1)
   // }
-
+  _renderItem = ({ item }) => (
+    <RenderItem item = {item} navigate={this.props.navigation.navigate}/>
+  );
   render() {
+    console.log("render");
     const { navigate } = this.props.navigation;
     return <Container style={{ backgroundColor: COLORS.LIGHT_COLOR }}>
       <Header title={STRINGS.PRODUCTS} navigate={navigate} />
@@ -84,7 +104,7 @@ class ProductsContainer extends React.Component {
       {productsStore.products.length === 0 || productsStore.isLoadingBegin ? <Loading />
         :
         <View style={styles.wrapperContent}>
-          <OptimizedFlatList
+          {/* <OptimizedFlatList
             keyExtractor={(item, key) => key}
             showsVerticalScrollIndicator={false}
             data={this.gridPost()}
@@ -92,9 +112,9 @@ class ProductsContainer extends React.Component {
             refreshControl={
               <RefreshControl
                 refreshing={productsStore.isLoadingRefresh}
-                // onRefresh={
-                //   () => this.refreshList()
-                // }
+              // onRefresh={
+              //   () => this.refreshList()
+              // }
               />
             }
             ListFooterComponent={
@@ -121,6 +141,26 @@ class ProductsContainer extends React.Component {
             }
 
             }
+          /> */}
+          <OptimizedFlatList
+            keyExtractor={(item, key) => key}
+            showsVerticalScrollIndicator={false}
+            data={productsStore.products.slice()}
+            onEndReachedThreshold={0.2}
+            ListFooterComponent={
+              this.loadMore()
+            }
+            refreshControl={
+              <RefreshControl
+                refreshing={productsStore.isLoadingRefresh}
+              // onRefresh={
+              //   () => this.refreshList()
+              // }
+              />
+            }
+            onEndReached={() => this.getMoreProducts()}
+            numColumns={3}
+            renderItem={this._renderItem}
           />
         </View>
       }

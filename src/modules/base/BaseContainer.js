@@ -28,7 +28,7 @@ import Analytics from 'appcenter-analytics';
     }
     componentDidMount() {
         baseStore.getListBase();
-        Analytics.trackEvent(`${STRINGS.ACTION_GO_DETAIL_PRODUCT} -> ${post.name}`, {});
+        Analytics.trackEvent(`${STRINGS.ACTION_GO_DETAIL_PRODUCT}`, {});
     }
     loadMore() {
         if (baseStore.isLoadingMore && this.props.current_page >= 1)

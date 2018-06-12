@@ -11,9 +11,9 @@ import { observer } from 'mobx-react';
 import { resetScreen } from '../../helper';
 import deviceStore from "../check-device/deviceStore"
 import DeviceInfo from 'react-native-device-info';
+import OneSignal from "react-native-onesignal";
 @observer
 export default class SplashContainer extends Component {
-
     checkNetwork = async () => {
         const result = await NetInfo.getConnectionInfo().then((connectionInfo) => {
             //check network connect success
@@ -50,9 +50,7 @@ export default class SplashContainer extends Component {
             try {
                  const token = await AsyncStorage.getItem('@UserToken')
                  const id = await AsyncStorage.getItem("@ID")
-                 console.log(id, token)
                 if(token && id){
-                    console.log(token, id, navigation)
                     splashStore.refreshToken(navigation, token)
                 } else {
 

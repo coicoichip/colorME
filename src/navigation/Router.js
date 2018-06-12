@@ -140,7 +140,7 @@ const Tab = TabNavigator({
         }
     },
     Blogs: {
-        screen: Blog,
+        screen: Products,
         path: "Blogs",
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {

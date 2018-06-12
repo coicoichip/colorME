@@ -26,7 +26,7 @@ export const productsStore = new class productsStore {
             this.errorProducts = false;
             this.products = this.page == 1 ? res.data.products :  [...this.products, ...res.data.products];
             this.testproducts = res.data.products;
-            console.log(res);
+            console.log(res.data, "aaaa");
         })
             .catch(err => {
                 this.isLoading = false;
