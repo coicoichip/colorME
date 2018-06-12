@@ -29,6 +29,8 @@ import ProgressContainer from "./ProgressContainer";
 import AttendanceContainer from "./AttendanceContainer";
 import { observable } from "mobx";
 import ScheduleContainer from "../schedule/ScheduleContainer";
+import Analytics from 'appcenter-analytics';
+
 // import loginStore from "../login/loginStore";
 @observer
 class StudyContainer extends React.Component {
@@ -38,13 +40,14 @@ class StudyContainer extends React.Component {
       isLoading: false,
       category: 0,
       categogyArr: [
-        { title: "Tiến độ", index: 0 },
-        { title: "Điểm danh", index: 1 },
-         { title: "Lịch học", index: 2 }
+        { title: STRINGS.PROCESS, index: 0 },
+        { title: STRINGS.ATTENDANCE, index: 1 },
+        { title: STRINGS.CALENDAR_STUDY, index: 2 }
       ]
     };
   }
-  componentWillMount() {
+  componentDidMount() {
+    Analytics.trackEvent(STRINGS.ACTION_ROOT_TAB_STUDY, {});
     getProfileStore.getProfile();
   }
   onChangeData = field => value => {
@@ -59,6 +62,7 @@ class StudyContainer extends React.Component {
       y: 0,
       animated: false
     });
+    
   }
   __renderCategory = () => {
     return (
@@ -105,12 +109,12 @@ class StudyContainer extends React.Component {
             isLoading={getProfileStore.isLoading}
           />
         </View>
-        
+
         <View style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
           <AttendanceContainer />
         </View>
         <View style={{ width: SIZES.DEVICE_WIDTH_SIZE, marginTop: 10 }}>
-          <ScheduleContainer/>
+          <ScheduleContainer />
         </View>
       </ScrollView>
     );

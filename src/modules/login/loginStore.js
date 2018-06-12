@@ -1,10 +1,11 @@
 import { observable, action, computed } from "mobx";
-import { loginApi } from "./loginApi";
+import { loginApi, loadCheckDevice} from "./loginApi";
 import { Alert, AsyncStorage } from "react-native"
 import { NavigationActions } from "react-navigation";
 import { STRINGS } from "../../constants";
 import { resetScreen } from '../../helper';
 import OneSignal from 'react-native-onesignal';
+import DeviceInfo from 'react-native-device-info';
 export default loginStore = new class LoginStore {
     @observable login = { email: "", password: "" };
     @observable loginStatus = false;

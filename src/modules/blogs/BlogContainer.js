@@ -22,9 +22,10 @@ import ListBlog from "./ListBlog";
 import Error from '../../commons/Error';
 import TextNullData from '../../commons/TextNullData';
 import ListTag from "./ListTag";
+import Analytics from 'appcenter-analytics';
 import Onesignal from "react-native-onesignal";
 import blogStore from './blogStore';
-
+import deviceStore from '../check-device/deviceStore';
 @observer
 class BlogContainer extends Component {
     @observable tag = ""
@@ -49,11 +50,11 @@ class BlogContainer extends Component {
         blogStore.getBlog(params.kind, 1, this.tag);
 
         //check student attendance 
-        blogStore.checkAttendance();
+         blogStore.checkAttendance()
         
-        if(blogStore.attendanceData.isEnrolled && !!blogStore.attendanceData.isEnrolled){
-            this.setState({modalVisible: true})
-        }
+        // if(blogStore.attendanceData.isEnrolled && !!blogStore.attendanceData.isEnrolled){
+        //     this.setState({modalVisible: true})
+        // }
 
     }
 
@@ -91,7 +92,7 @@ class BlogContainer extends Component {
         }
         if (blogStore.error) {
             return (
-                <Error onPress={() => this.componentWillMount()} />
+                <Error onPress={() => blogStore.getBlog(params.kind, 1, this.tag)} />
             )
         }
         if (blogStore.blogs.length !== 0) {
@@ -106,7 +107,7 @@ class BlogContainer extends Component {
                         <RefreshControl
                             refreshing={blogStore.isLoading && blogStore.blogs.length == 0}
                             onRefresh={
-                                () => this.UNSAFE_componentWillMount()
+                                () => blogStore.getBlog(params.kind, 1, this.tag)
                             }
                         />
                     }

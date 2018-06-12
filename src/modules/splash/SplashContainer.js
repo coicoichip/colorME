@@ -10,7 +10,7 @@ import splashStore from "./splashStore"
 import { observer } from 'mobx-react';
 import { resetScreen } from '../../helper';
 import deviceStore from "../check-device/deviceStore"
-
+import DeviceInfo from 'react-native-device-info';
 @observer
 export default class SplashContainer extends Component {
     
@@ -40,14 +40,19 @@ export default class SplashContainer extends Component {
 
     componentDidMount() {
         const { navigation } = this.props;  
-        deviceStore.checkDevice();
+        // let device = {
+        //     device_id : DeviceInfo.getUniqueID(),
+        //     device_name : DeviceInfo.getModel(),
+        //     device_os : DeviceInfo.getSystemName(),
+        // }
+        // console.log(device)
         this.checkNetwork().then(async function(res) {
             try {
                  const token = await AsyncStorage.getItem('@UserToken')
                  const id = await AsyncStorage.getItem("@ID")
                  console.log(id, token)
                 if(token && id){
-                    
+                    console.log(token, id, navigation)
                     splashStore.refreshToken(navigation, token)
                 }else{
                     

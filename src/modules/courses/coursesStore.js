@@ -1,6 +1,9 @@
 import { observable, action, computed } from "mobx";
 import { getCoursesApi, getCourseInformationApi, learnRegisterApi } from "./coursesApi";
 import { Alert, AsyncStorage } from "react-native";
+import Analytics from 'appcenter-analytics';
+import { STRINGS } from "../../constants";
+
 export const coursesStore = new class CoursesStore {
     @observable subjects = [];
     @observable data = [];
@@ -34,14 +37,13 @@ export const coursesStore = new class CoursesStore {
     getListSubject() {
         this.isLoadingSubject = true;
         getCoursesApi().then(res => {
-            
             this.isLoadingSubject = false;
             this.subjects = res.data.courses;
             this.data = this.subjects.filter(e =>
                 e.categories[0].id === 1
             )
             this.errorSubject = false;
-            
+
         })
             .catch(err => {
                 this.isLoadingSubject = false;
@@ -53,13 +55,15 @@ export const coursesStore = new class CoursesStore {
         this.isLoadingCoursesInformation = true;
         getCourseInformationApi(linkId, base).then(res => {
             this.isLoadingCoursesInformation = false;
-            this.classes = res.data.data.classes.map((item, id) => { return { ...item, isEnroll: 0} });
+            this.classes = res.data.data.classes.map((item, id) => { return { ...item, isEnroll: 0 } });
             this.courseName = res.data.data.classes[0].course.name;
             this.errorCoursesInfomation = false;
+            Analytics.trackEvent(STRINGS.ACTION_COURSE_INFO + ' -> ' + res.data.data.classes[0].course.name, {})
         })
             .catch(err => {
                 this.isLoadingCoursesInformation = false;
                 this.errorCoursesInfomation = true;
+                Analytics.trackEvent(STRINGS.ACTION_COURSE_INFO_FAIL + ' -> ' + res.data.data.classes[0].course.name, {})
             })
     }
     @action
@@ -74,10 +78,13 @@ export const coursesStore = new class CoursesStore {
             this.isLoadingLearnRegister = false;
             this.message = res.data.message;
             this.errorLearnRegister = false;
+            console.log(res);
+            Analytics.trackEvent(STRINGS.ACTION_LEARN_REGISTER + " " + id, {})
         })
             .catch(err => {
                 this.isLoadingLearnRegister = false;
                 this.errorLearnRegister = true;
+                Analytics.trackEvent(STRINGS.ACTION_LEARN_REGISTER_FAIL + " " + id, {})
             })
     }
 }

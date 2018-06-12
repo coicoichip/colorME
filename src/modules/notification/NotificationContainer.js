@@ -10,6 +10,8 @@ import { observer } from "mobx-react";
 import Error from '../../commons/Error';
 import TextNullData from '../../commons/TextNullData';
 import ListNotification from './ListNotification';
+import Analytics from 'appcenter-analytics';
+
 @observer
 class NotificationContainer extends React.Component {
     constructor() {
@@ -17,7 +19,8 @@ class NotificationContainer extends React.Component {
         this.state = {
         }
     }
-    componentWillMount() {
+    componentDidMount() {
+        Analytics.trackEvent(STRINGS.ACTION_ROOT_TAB_NOTIFICATION, {});
         notificationStore.getListNotification(1);
     }
     getMoreNotifications() {
