@@ -17,7 +17,7 @@ export const SIZES = {
     LOADING_SIZE: 50,
     //logo
     LOGO_COLOR_SIZE: 35,
-    LOGO_ME_SIZE: 100,
+    LOGO_ME_SIZE: 90,
 
     ICON_SIZE: 30,
     //button opacity

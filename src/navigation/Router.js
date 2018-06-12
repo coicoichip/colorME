@@ -139,9 +139,9 @@ const Tab = TabNavigator({
             }
         }
     },
-    Products: {
-        screen: Products,
-        path: "Products",
+    Blogs: {
+        screen: Blog,
+        path: "Blogs",
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
 
@@ -167,7 +167,6 @@ const Tab = TabNavigator({
         path: "notification",
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
-
                 let source;
                 if (tintColor == 1) {
                     source = require('../../assets/icons/bell_enable.png')
@@ -207,7 +206,7 @@ const Tab = TabNavigator({
     },
 },
     {
-        initialRouteName: 'Products',
+        initialRouteName: 'Blogs',
         tabBarPosition: 'bottom',
         animationEnabled: false,
         tabBarOptions: {

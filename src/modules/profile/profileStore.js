@@ -44,6 +44,7 @@ export default getProfileStore = new class GetProfileStore {
             //console.log(this.user);
         })
             .catch(err => {
+                console.log(err)
                 this.isLoading = false;
                 this.error = true;
             })
