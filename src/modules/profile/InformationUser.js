@@ -11,7 +11,7 @@ import Avatar from "./upLoadAvatar"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import getProfileStore from "./profileStore";
 import { observable } from "mobx";
-
+@observer
 class InformationUser extends React.Component {
     
     render() {

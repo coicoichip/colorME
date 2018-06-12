@@ -3,8 +3,10 @@ import { RootStack } from './Router';
 import { Root } from "native-base";
 import { Platform } from "react-native";
 import OneSignal from "react-native-onesignal";
+import {observable} from "mobx";
+import {observer} from "mobx-react"
 
-
+@observer
 export default class RootStackContainer extends Component {
     constructor() {
         super()
@@ -31,8 +33,7 @@ export default class RootStackContainer extends Component {
         const prefix = Platform.OS == 'android' ? 'colorme://colorme/' : 'colorme://';
         return (
             <Root>
-                <RootStack/>
-                
+                <RootStack navigation = {this.props.navigation}/>
             </Root>
         )
     }
