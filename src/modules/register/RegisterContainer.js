@@ -59,8 +59,10 @@ export default class RegisterContainer extends Component {
 
                         {/* logo */}
                         <View style={styles.wrapperLogo}>
-                            <Image style={{ width: '40%', height: '40%' }}
+                            <Image style={{ width: '50%', height: '50%' }}
                                 source={require('../../../assets/image/colorme.png')}
+                                resizeMode={'contain'}
+
                             />
                         </View>
 

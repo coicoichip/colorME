@@ -11,6 +11,8 @@ import SharingExperiencesContainer from '../modules/sharing-experiences/SharingE
 import CoursesContainer from '../modules/courses/CoursesContainer';
 import LearnRegisterContainer from '../modules/courses/LearnRegisterContainer';
 import CourseInformation from '../modules/courses/CourseInFormation';
+import DetailLecture from '../modules/lecture/DetailLecture';
+
 import IconDefault from '../commons/IconDefault';
 import Icon from "../commons/Icon";
 import DetailBlogContainer from "../modules/blogs/DetailBlogContainer"
@@ -20,6 +22,7 @@ import DrawerContainer from '../modules/drawer/DrawerContainer';
 import BlogContainer from '../modules/blogs/BlogContainer';
 import ListBlog from "../modules/blogs/ListBlog";
 import ScheduleContainer from "../modules/schedule/ScheduleContainer";
+import LectureContainer from '../modules/lecture/LectureContainer';
 import SplashContainer from "../modules/splash/SplashContainer";
 import ResourceContainer from "../modules/blogs/ResourceContainer";
 import styles from '../styles/styles';
@@ -60,6 +63,17 @@ const Resource = StackNavigator(
         DetailBlog: { screen: DetailBlogContainer },
     }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'resource', title: "Tài nguyên" } }
 
+);
+const Lecure = StackNavigator(
+    {
+        LectureContainer: { screen: LectureContainer },
+        DetailLecture: { screen: DetailLecture }
+    },
+    {
+        headerMode: "none",
+        mode: "modal",
+        initialRouteParams: { kind: "lecture", title: "GIÁO TRÌNH" }
+    }
 );
 const Study = StackNavigator(
     {
@@ -108,7 +122,7 @@ const Tab = TabNavigator({
         screen: Study,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
-                
+
                 let source;
                 if (tintColor == 1) {
                     source = require('../../assets/icons/goal_enable.png')
@@ -130,7 +144,7 @@ const Tab = TabNavigator({
         path: "Products",
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
-                
+
                 let source;
                 if (tintColor == 1) {
                     source = require('../../assets/icons/news_enable.png')
@@ -153,7 +167,7 @@ const Tab = TabNavigator({
         path: "notification",
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
-                
+
                 let source;
                 if (tintColor == 1) {
                     source = require('../../assets/icons/bell_enable.png')
@@ -174,7 +188,7 @@ const Tab = TabNavigator({
         screen: Profile,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
-                
+
                 let source;
                 if (tintColor == 1) {
                     source = require('../../assets/icons/user_enable.png')
@@ -225,6 +239,13 @@ const Drawer = DrawerNavigator(
             navigationOptions: ({ navigation }) => ({
                 title: "Bài viết"
             })
+        },
+        Lectures: {
+            screen: Lecure,
+            navigationOptions: ({ navigation }) => ({
+                title: "Giáo trình"
+            })
+
         },
         Promotion: {
             screen: Promotion,
