@@ -10,7 +10,7 @@ import Select, { returnInfo, returnDate } from "./Select";
 import Loading from "../../commons/Loading";
 import { formatImageLink } from "../../helper/index";
 import TextNullData from "../../commons/TextNullData";
-import { OptimizedFlatList } from 'react-native-optimized-flatlist'
+
 
 
 class RenderItem extends React.PureComponent {
