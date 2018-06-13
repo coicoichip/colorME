@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, FlatList, RefreshControl, Image, TouchableOpacity, Dimensions, Platform } from "react-native";
+import { View, Text, StyleSheet, FlatList, RefreshControl, Image, TouchableOpacity, Dimensions, Modal, PanResponder } from "react-native";
 import { Container } from "native-base";
 import { STRINGS, COLORS, SIZES } from "../../constants";
 import Header from "../../commons/Header";
@@ -9,10 +9,13 @@ import { productsStore } from "./productsStore";
 import Select, { returnInfo, returnDate } from "./Select";
 import Loading from "../../commons/Loading";
 import { formatImageLink } from "../../helper/index";
+import blogStore from "../blogs/blogStore";
+import ModalCheckInStudent from '../blogs/ModalCheckInStudent';
+import ModalAcceptCheckIn from '../blogs/ModalAcceptCheckIn';
 import TextNullData from "../../commons/TextNullData";
-import { OptimizedFlatList } from 'react-native-optimized-flatlist'
 
-
+const { width } = Dimensions.get('window')
+const { height } = Dimensions.get('window')
 class RenderItem extends React.PureComponent {
   render() {
     const { item } = this.props;
@@ -24,7 +27,7 @@ class RenderItem extends React.PureComponent {
             return (
               <TouchableOpacity activeOpacity={0.8}
                 key={index}
-                onPress={() => navigate('DetailBlog', { slug: post.slug, kind: post.kind })}>
+                onPress={() => blogStore.isLoadingDetail == false ?  navigate('DetailBlog', { slug: post.slug, kind: post.kind }) : {}}>
                 <Image resizeMode={"cover"} source={{ uri: formatImageLink(post.thumb_url) }} style={styles.imageFeature2} />
               </TouchableOpacity>
             )
@@ -38,16 +41,29 @@ class RenderItem extends React.PureComponent {
 @observer
 class ProductsContainer extends React.PureComponent {
   @observable info_id = "";
-  constructor(props) {
-    super(props);
-  }
+  constructor() {
+    super();
+    this.panResponder = PanResponder.create({
+        onStartShouldSetPanResponder: (event, gestureState) => true,
+        onPanResponderGrant: this.onPanResponderGrant.bind(this),
+    });
+}
 
   UNSAFE_componentWillMount() {
     productsStore.page = 1;
     productsStore.getListProducts(7, 1);
     //console.log(getProfileStore.portfolioData);
+    blogStore.checkAttendance()
 
-
+  }
+  onPanResponderGrant(event, gestureState) {
+    if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
+      blogStore.modalVisible = false;
+      blogStore.modalVisible1 = false;
+    }
+  }
+  setModalContact = (visible) => {
+    blogStore.modalVisible = visible;
   }
   async pickInfo() {
     productsStore.page = 1;
@@ -100,6 +116,38 @@ class ProductsContainer extends React.PureComponent {
     console.log("render");
     const { navigate } = this.props.navigation;
     return <Container style={{ backgroundColor: COLORS.LIGHT_COLOR }}>
+      <Modal
+        onRequestClose={() => {
+          blogStore.modalVisible = false;
+        }}
+        presentationStyle="overFullScreen"
+        animationType="fade"
+        transparent
+        visible={blogStore.modalVisible}
+      >
+        <View
+          style={{ flex: 1, backgroundColor: '#00000040', justifyContent: 'center', alignItems: 'center' }}
+          {...this.panResponder.panHandlers}
+        >
+          <ModalCheckInStudent />
+        </View>
+      </Modal>
+      <Modal
+        onRequestClose={() => {
+          blogStore.modalVisible1 = false;
+        }}
+        presentationStyle="overFullScreen"
+        animationType="fade"
+        transparent
+        visible={blogStore.modalVisible1}
+      >
+        <View
+          style={{ flex: 1, backgroundColor: '#00000040', justifyContent: 'center', alignItems: 'center' }}
+          {...this.panResponder.panHandlers}
+        >
+          <ModalAcceptCheckIn />
+        </View>
+      </Modal>
       <Header title={STRINGS.PRODUCTS} navigate={navigate} />
       <View style={{ flexDirection: 'row' }}>
         <Select haveInfo functionInfo={() => this.pickInfo()} />
@@ -109,7 +157,7 @@ class ProductsContainer extends React.PureComponent {
         :
         <View style={styles.wrapperContent}>
           <FlatList
-            removeClippedSubviews={Platform.OS === 'android'}
+            removeClippedSubviews
             // disableVirtualization
             keyExtractor={(item, key) => key}
             showsVerticalScrollIndicator={false}
