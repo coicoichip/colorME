@@ -139,9 +139,9 @@ const Tab = TabNavigator({
             }
         }
     },
-    Blogs: {
+    Products: {
         screen: Products,
-        path: "Blogs",
+        path: "Products",
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
 
@@ -206,7 +206,7 @@ const Tab = TabNavigator({
     },
 },
     {
-        initialRouteName: 'Blogs',
+        initialRouteName: 'Products',
         tabBarPosition: 'bottom',
         animationEnabled: false,
         tabBarOptions: {

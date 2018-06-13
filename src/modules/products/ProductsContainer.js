@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, FlatList, RefreshControl, Image, TouchableOpacity, Dimensions } from "react-native";
+import { View, Text, StyleSheet, FlatList, RefreshControl, Image, TouchableOpacity, Dimensions, Platform } from "react-native";
 import { Container } from "native-base";
 import { STRINGS, COLORS, SIZES } from "../../constants";
 import Header from "../../commons/Header";
@@ -13,26 +13,30 @@ import TextNullData from "../../commons/TextNullData";
 import { OptimizedFlatList } from 'react-native-optimized-flatlist'
 
 
-const { width } = Dimensions.get('window')
-const { height } = Dimensions.get('window')
 class RenderItem extends React.PureComponent {
   render() {
-    const {item} = this.props;
-    const {navigate} = this.props;
+    const { item } = this.props;
+    const { navigate } = this.props;
     return (
-      <TouchableOpacity activeOpacity={0.8}
-        onPress={() => navigate('DetailBlog', { slug: item.slug, kind: item.kind })}>
-        <Image
-          source={{ uri: item.thumb_url }}
-          style={{ width: width / 3, height: width / 3 }}
-        />
-      </TouchableOpacity>
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        {
+          item.map((post, index) => {
+            return (
+              <TouchableOpacity activeOpacity={0.8}
+                key={index}
+                onPress={() => navigate('DetailBlog', { slug: post.slug, kind: post.kind })}>
+                <Image resizeMode={"cover"} source={{ uri: formatImageLink(post.thumb_url) }} style={styles.imageFeature2} />
+              </TouchableOpacity>
+            )
+          })
+        }
+      </View>
     )
 
   }
 }
 @observer
-class ProductsContainer extends React.Component {
+class ProductsContainer extends React.PureComponent {
   @observable info_id = "";
   constructor(props) {
     super(props);
@@ -56,21 +60,21 @@ class ProductsContainer extends React.Component {
     await returnInfo(date_value => { productsStore.data_id = date_value });
     productsStore.getListProducts(productsStore.data_id, 1);
   }
-  // gridPost() {
-  //   if (productsStore.products.length !== 0)
-  //     posts = productsStore.products.map((post, index) => {
-  //       return {
-  //         ...post,
-  //         key: index
-  //       }
-  //     });
+  gridPost() {
+    if (productsStore.products.length !== 0)
+      posts = productsStore.products.map((post, index) => {
+        return {
+          ...post,
+          key: index
+        }
+      });
 
-  //   postsGrid = _.groupBy(posts, ({ element, key }) => {
-  //     return Math.floor(key / 3);
-  //   });
-  //   postsGrid = _.toArray(postsGrid);
-  //   return postsGrid;
-  // }
+    postsGrid = _.groupBy(posts, ({ element, key }) => {
+      return Math.floor(key / 3);
+    });
+    postsGrid = _.toArray(postsGrid);
+    return postsGrid;
+  }
   getMoreProducts() {
     productsStore.page = productsStore.page + 1;
     productsStore.testproducts.length !== 0 ?
@@ -90,7 +94,7 @@ class ProductsContainer extends React.Component {
   //     : productsStore.getListProducts(productsStore.data_id, 1)
   // }
   _renderItem = ({ item }) => (
-    <RenderItem item = {item} navigate={this.props.navigation.navigate}/>
+    <RenderItem item={item} navigate={this.props.navigation.navigate} />
   );
   render() {
     console.log("render");
@@ -104,14 +108,17 @@ class ProductsContainer extends React.Component {
       {productsStore.products.length === 0 || productsStore.isLoadingBegin ? <Loading />
         :
         <View style={styles.wrapperContent}>
-          {/* <OptimizedFlatList
+          <FlatList
+            removeClippedSubviews={Platform.OS === 'android'}
+            // disableVirtualization
             keyExtractor={(item, key) => key}
             showsVerticalScrollIndicator={false}
             data={this.gridPost()}
+            onEndReachedThreshold={200}
             onEndReached={() => this.getMoreProducts()}
             refreshControl={
               <RefreshControl
-                refreshing={productsStore.isLoadingRefresh}
+                refreshing={false}
               // onRefresh={
               //   () => this.refreshList()
               // }
@@ -120,46 +127,6 @@ class ProductsContainer extends React.Component {
             ListFooterComponent={
               this.loadMore()
             }
-            renderItem={({ item }) => {
-              return (
-                <View style={{ flex: 1, flexDirection: 'row' }}>
-                  {
-                    item.map((post, index) => {
-                      return (
-                        <TouchableOpacity activeOpacity={0.8}
-                          key={index}
-                          onPress={() => this.props.navigation.navigate('DetailBlog', { slug: post.slug, kind: post.kind })}>
-                          <Image resizeMode={"cover"} source={{ uri: formatImageLink(post.thumb_url) }} style={styles.imageFeature2} />
-
-                        </TouchableOpacity>
-                      )
-                    })
-                  }
-                </View>
-
-              )
-            }
-
-            }
-          /> */}
-          <OptimizedFlatList
-            keyExtractor={(item, key) => key}
-            showsVerticalScrollIndicator={false}
-            data={productsStore.products.slice()}
-            onEndReachedThreshold={0.2}
-            ListFooterComponent={
-              this.loadMore()
-            }
-            refreshControl={
-              <RefreshControl
-                refreshing={productsStore.isLoadingRefresh}
-              // onRefresh={
-              //   () => this.refreshList()
-              // }
-              />
-            }
-            onEndReached={() => this.getMoreProducts()}
-            numColumns={3}
             renderItem={this._renderItem}
           />
         </View>
@@ -182,23 +149,12 @@ const styles = StyleSheet.create({
   wrapperCenter: {
     ...wrapperCenter
   },
-  imageFeature1: {
-    height: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
-    width: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
-    marginBottom: 2
-  },
   imageFeature2: {
     height: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
     width: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
     marginBottom: 2,
     marginLeft: 1,
   },
-  imageFeature3: {
-    height: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
-    width: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
-    marginLeft: 1,
-    marginBottom: 2
-  }
 });
 
 export default ProductsContainer;
