@@ -91,6 +91,7 @@ class DetailBlogContainer extends Component {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         const { detailBlog, isLoadingDetail } = blogStore;
+        console.log(detailBlog)
         return (
             <Container style={styles.wrapperContainer}>
                 <View style={[styles.wrapperHeader, styles.paddingLeftRight, { flexDirection: 'row' }]}>
@@ -119,8 +120,8 @@ class DetailBlogContainer extends Component {
                             <View style={{flex: 1}}>
                                 <View activeOpacity={0.8} style={{ marginBottom: 15 }}
                                 >
-                                    <View>
-                                        <Image source={{ uri: detailBlog.url? formatImageLink(detailBlog.url): "" }} style={styles.imageAvatarModuleEmails} />
+                                    <View style={{alignItems: 'center'}}>
+                                        <Image source={{ uri: detailBlog.url ? formatImageLink(detailBlog.url): "" }} style={styles.imageAvatarModuleEmails} />
                                     </View>
                                     <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
 
@@ -129,7 +130,7 @@ class DetailBlogContainer extends Component {
                                         <View style={{ marginTop: 5, flexDirection: 'row', alignItems: 'center' }}>
                                             <Image
                                                 style={{ height: 20, width: 20, borderRadius: 10 }}
-                                                source={{ uri: detailBlog.author.avatar_url ? formatImageLink(detailBlog.author.avatar_url) : "" }}
+                                                source={  detailBlog.author.avatar_url !== "http://" ? {uri : formatImageLink(detailBlog.author.avatar_url)} : require('../../../assets/image/colorMe.jpg') }
                                             />
                                             <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5 }}>{detailBlog.author.name.trim()}</Text>
                                             <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5, color: 'gray' }}>{detailBlog.time.trim()}</Text>

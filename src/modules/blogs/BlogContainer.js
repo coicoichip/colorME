@@ -13,8 +13,6 @@ import * as size from '../../styles/sizes';
 import { Container } from 'native-base';
 import Header from '../../commons/Header';
 import { STRINGS, COLORS, SIZES, FONTS } from "../../constants";
-import ModalCheckInStudent from './ModalCheckInStudent';
-import ModalAcceptCheckIn from './ModalAcceptCheckIn';
 import Loading from '../../commons/Loading';
 import { observer } from "mobx-react";
 import { observable } from "mobx"
@@ -31,10 +29,6 @@ class BlogContainer extends Component {
     @observable tag = ""
     constructor() {
         super();
-        this.panResponder = PanResponder.create({
-            onStartShouldSetPanResponder: (event, gestureState) => true,
-            onPanResponderGrant: this.onPanResponderGrant.bind(this),
-        });
         // this.state = {
         //     modalVisible: false,
         // }
@@ -49,24 +43,11 @@ class BlogContainer extends Component {
         const { params } = this.props.navigation.state;
         blogStore.getBlog(params.kind, 1, this.tag);
 
-        //check student attendance 
-         blogStore.checkAttendance()
         
         // if(blogStore.attendanceData.isEnrolled && !!blogStore.attendanceData.isEnrolled){
         //     this.setState({modalVisible: true})
         // }
 
-    }
-
-    onPanResponderGrant(event, gestureState) {
-        if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
-            blogStore.modalVisible = false;
-            blogStore.modalVisible1 = false;
-        }
-    }
-
-    setModalContact = (visible) => {
-        blogStore.modalVisible = visible;
     }
     getMoreBlogs() {
         const { params } = this.props.navigation.state;
@@ -135,38 +116,6 @@ class BlogContainer extends Component {
         
         return (
             <Container style={styles.wrapperContainer}>
-                <Modal
-                    onRequestClose={() => {
-                        blogStore.modalVisible = false;
-                    }}
-                    presentationStyle="overFullScreen"
-                    animationType="fade"
-                    transparent
-                    visible={blogStore.modalVisible}
-                >
-                    <View
-                        style={{ flex: 1, backgroundColor: '#00000040', justifyContent: 'center', alignItems: 'center' }}
-                        {...this.panResponder.panHandlers}
-                    >
-                        <ModalCheckInStudent />
-                    </View>
-                </Modal>
-                <Modal
-                    onRequestClose={() => {
-                        blogStore.modalVisible1 = false;
-                    }}
-                    presentationStyle="overFullScreen"
-                    animationType="fade"
-                    transparent
-                    visible={blogStore.modalVisible1}
-                >
-                    <View
-                        style={{ flex: 1, backgroundColor: '#00000040', justifyContent: 'center', alignItems: 'center' }}
-                        {...this.panResponder.panHandlers}
-                    >
-                        <ModalAcceptCheckIn />
-                    </View>
-                </Modal>
                 <Header title={params.title ? params.title : STRINGS.NEWS_TITLE_HEADER} navigate={navigate} />
                 {
                     blogStore.top_tags.length !== 0 ?

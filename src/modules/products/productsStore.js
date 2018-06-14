@@ -18,6 +18,7 @@ export const productsStore = new class productsStore {
     
     @action
     getListProducts(filter, page) {
+        this.page = page;
         this.page == 1 ? this.isLoadingBegin = true : this.isLoadingBegin = false;
         this.isLoading = true;
         getProducts(filter, page).then(res => {
@@ -26,7 +27,6 @@ export const productsStore = new class productsStore {
             this.errorProducts = false;
             this.products = this.page == 1 ? res.data.products :  [...this.products, ...res.data.products];
             this.testproducts = res.data.products;
-            console.log(res.data, "aaaa");
         })
             .catch(err => {
                 this.isLoading = false;
