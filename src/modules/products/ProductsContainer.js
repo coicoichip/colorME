@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, FlatList, RefreshControl, Image, TouchableOpacity, Dimensions, Modal, PanResponder } from "react-native";
+import { View, Text, StyleSheet, FlatList, RefreshControl, Image, TouchableOpacity, Dimensions, Modal, PanResponder, Platform } from "react-native";
 import { Container } from "native-base";
 import { STRINGS, COLORS, SIZES } from "../../constants";
 import Header from "../../commons/Header";
@@ -16,7 +16,7 @@ import TextNullData from "../../commons/TextNullData";
 
 const { width } = Dimensions.get('window')
 const { height } = Dimensions.get('window')
-class RenderItem extends React.PureComponent {
+class RenderItem extends React.Component {
   render() {
     const { item } = this.props;
     const { navigate } = this.props;
@@ -27,7 +27,7 @@ class RenderItem extends React.PureComponent {
             return (
               <TouchableOpacity activeOpacity={0.8}
                 key={index}
-                onPress={() => blogStore.isLoadingDetail == false ?  navigate('DetailBlog', { slug: post.slug, kind: post.kind }) : {}}>
+                onPress={() => blogStore.isLoadingDetail == false ? navigate('DetailBlog', { slug: post.slug, kind: post.kind }) : {}}>
                 <Image resizeMode={"cover"} source={{ uri: formatImageLink(post.thumb_url) }} style={styles.imageFeature2} />
               </TouchableOpacity>
             )
@@ -44,10 +44,10 @@ class ProductsContainer extends React.PureComponent {
   constructor() {
     super();
     this.panResponder = PanResponder.create({
-        onStartShouldSetPanResponder: (event, gestureState) => true,
-        onPanResponderGrant: this.onPanResponderGrant.bind(this),
+      onStartShouldSetPanResponder: (event, gestureState) => true,
+      onPanResponderGrant: this.onPanResponderGrant.bind(this),
     });
-}
+  }
 
   UNSAFE_componentWillMount() {
     productsStore.page = 1;
@@ -66,15 +66,21 @@ class ProductsContainer extends React.PureComponent {
     blogStore.modalVisible = visible;
   }
   async pickInfo() {
+    productsStore.products = [];
     productsStore.page = 1;
-    await returnInfo(info_value => { productsStore.info_id = info_value; });
-    productsStore.info_id == 7 ? productsStore.getListProducts(productsStore.data_id, 1)
-      : productsStore.getListProductsNew(1);
+    if (productsStore.products.length == 0) {
+      await returnInfo(info_value => { productsStore.info_id = info_value; });
+      productsStore.info_id == 7 ? productsStore.getListProducts(productsStore.data_id, 1)
+        : productsStore.getListProductsNew(1);
+    }
   }
   async pickDate() {
+    productsStore.products = [];
     productsStore.page = 1;
-    await returnInfo(date_value => { productsStore.data_id = date_value });
-    productsStore.getListProducts(productsStore.data_id, 1);
+    if (productsStore.products.length == 0) {
+      await returnInfo(date_value => { productsStore.data_id = date_value });
+      productsStore.getListProducts(productsStore.data_id, 1);
+    }
   }
   gridPost() {
     if (productsStore.products.length !== 0)
@@ -92,11 +98,11 @@ class ProductsContainer extends React.PureComponent {
     return postsGrid;
   }
   getMoreProducts() {
-    productsStore.page = productsStore.page + 1;
-    productsStore.testproducts.length !== 0 ?
+    if (productsStore.testproducts.length !== 0) {
+      productsStore.page = productsStore.page + 1;
       productsStore.info_id == 0 ? productsStore.getListProductsNew(productsStore.page)
         : productsStore.getListProducts(productsStore.data_id, productsStore.page)
-      : null
+    }
   }
   loadMore() {
     if (productsStore.isLoading && productsStore.page >= 1)
@@ -113,7 +119,7 @@ class ProductsContainer extends React.PureComponent {
     <RenderItem item={item} navigate={this.props.navigation.navigate} />
   );
   render() {
-    console.log("render");
+    console.log("render" + productsStore.data.id);
     const { navigate } = this.props.navigation;
     return <Container style={{ backgroundColor: COLORS.LIGHT_COLOR }}>
       <Modal
@@ -160,9 +166,10 @@ class ProductsContainer extends React.PureComponent {
             removeClippedSubviews
             // disableVirtualization
             keyExtractor={(item, key) => key}
+            initialNumToRender={1}
             showsVerticalScrollIndicator={false}
             data={this.gridPost()}
-            onEndReachedThreshold={200}
+            onEndReachedThreshold={50}
             onEndReached={() => this.getMoreProducts()}
             refreshControl={
               <RefreshControl
@@ -172,6 +179,12 @@ class ProductsContainer extends React.PureComponent {
               // }
               />
             }
+            ListHeaderComponent= {() => {return(
+              <TouchableOpacity activeOpacity={0.8} style={{alignItems: 'center'}}
+                onPress={() => blogStore.isLoadingDetail == false ? navigate('DetailBlog', { slug: productsStore.data.slug, kind: productsStore.data.kind }) : {}}>
+                <Image resizeMode={"cover"} source={{ uri: formatImageLink(productsStore.data.thumb_url) }} style={styles.imageFeature} />
+              </TouchableOpacity>
+            )}}
             ListFooterComponent={
               this.loadMore()
             }
@@ -197,9 +210,16 @@ const styles = StyleSheet.create({
   wrapperCenter: {
     ...wrapperCenter
   },
+  imageFeature: {
+    height: SIZES.DEVICE_WIDTH_SIZE / 1.5 - 2,
+    width: SIZES.DEVICE_WIDTH_SIZE/1.5 - 1.5,
+    marginBottom: 10,
+    marginLeft: 1,
+    alignItems: 'center',
+  },
   imageFeature2: {
     height: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
-    width: SIZES.DEVICE_WIDTH_SIZE / 3 - 2,
+    width: SIZES.DEVICE_WIDTH_SIZE / 3 - 1.5,
     marginBottom: 2,
     marginLeft: 1,
   },

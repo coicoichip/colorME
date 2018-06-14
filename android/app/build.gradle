@@ -113,7 +113,7 @@ android {
         applicationId "com.keetool.app.colorme.vn"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 6
+        versionCode 7
         versionName "4.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
