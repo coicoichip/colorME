@@ -83,7 +83,7 @@ export default class SplashContainer extends Component {
                 />
                 <Image style={{ width: '50%', height: '50%' }}
                     resizeMode={'contain'}
-                    source={require('../../../assets/image/colorME.png')}
+                    source={require('../../../assets/image/colorme.png')}
                 />
                 <Spinner
                     size={SIZES.LOADING_SIZE}
