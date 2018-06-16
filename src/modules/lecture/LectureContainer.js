@@ -52,7 +52,7 @@ class LectureContainer extends Component {
         const { navigate } = this.props.navigation;
         return (
             <Container style={styles.wrapperContainer}>
-                <Header title={"ĐĂNG KÝ HỌC"} navigate={navigate} onPress={() => this.scrollListCourses()} />
+                <Header title={STRINGS.LECTURE_HEADER} navigate={navigate} onPress={() => this.scrollListCourses()} />
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 10 }}>
                     {this.renderSubject()}
                 </View>
