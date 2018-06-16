@@ -20,6 +20,7 @@ import TextNullData from '../../commons/TextNullData';
 
 @observer
 class LectureContainer extends Component {
+
     constructor() {
         super();
     }
