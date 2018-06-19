@@ -27,7 +27,7 @@ class RenderItem extends React.Component {
             return (
               <TouchableOpacity activeOpacity={0.8}
                 key={index}
-                onPress={() => blogStore.isLoadingDetail == false ? navigate('DetailBlog', { slug: post.slug, kind: post.kind }) : {}}>
+                onPress={() => blogStore.isLoadingDetail == false ? navigate('DetailBlog', { slug: post.slug, kind: post.kind, id : item.id }) : {}}>
                 <Image resizeMode={"cover"} source={{ uri: formatImageLink(post.thumb_url) }} style={styles.imageFeature2} />
               </TouchableOpacity>
             )
