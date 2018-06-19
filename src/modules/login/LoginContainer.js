@@ -79,7 +79,7 @@ class LoginContainer extends Component {
                         {/* logo */}
                         <View style={styles.wrapperLogo}>
                         <Image style={{ width: '50%', height: '50%' }}
-                                source={require('../../../assets/image/colorME.png')}
+                                source={require('../../../assets/image/Image_2.png')}
                                 resizeMode={'contain'}
 
                             />
