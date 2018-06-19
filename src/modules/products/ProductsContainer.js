@@ -119,7 +119,6 @@ class ProductsContainer extends React.Component {
     <RenderItem item={item} navigate={this.props.navigation.navigate} />
   );
   render() {
-    console.log("render" + productsStore.data.id);
     const { navigate } = this.props.navigation;
     return <Container style={{ backgroundColor: COLORS.LIGHT_COLOR }}>
       <Modal
