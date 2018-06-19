@@ -8,6 +8,7 @@ export function blogApi(kind, page, tag) {
 
 export function detailBlogApi(slug){
     let url = APIS.COLOR_ME_API + "/blog/" + slug
+    console.log(url);
     return axios.get(url);   
 }
 

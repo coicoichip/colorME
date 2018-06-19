@@ -6,5 +6,5 @@ export const APIS = {
 
     API_URL : "http://manageapi.colorme.vn",
     SERVER_TEST: 'http://keetool.xyz',
-    API_DATA       = 'http://colorme.vn:8000'
+    API_DATA : 'http://colorme.vn:8000'
 }
