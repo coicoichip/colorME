@@ -25,8 +25,8 @@ export async function postCommentOnePostApi(product_id, value){
 export async function deleteCommentApi(product_id) {
     let url = "";
     await AsyncStorage.getItem('@UserToken').then((token) => {
-        console.log(value)
         url = APIS.COLOR_ME + "/comment/"+ product_id + "/delete?token=" + token;
     })
+    console.log(url)
     return axios.post(url);
 }

@@ -10,7 +10,6 @@ export default commentStore = new class commentStore {
 getComment(products_id) {
     getCommentOnePost(products_id).then(res => {
         this.comments = res.data.comments;
-        console.log(res, "aaaa");
     })
         .catch(err => {
         })

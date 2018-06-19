@@ -101,7 +101,7 @@ class DetailBlogContainer extends Component {
                                 style={part.avatarUserSmall}
                                 source={{ uri: item.commenter.avatar_url }} />
                         </TouchableOpacity>
-                        <View style={{paddingRight: 20}}>
+                        <View style={{ paddingRight: 20 }}>
                             <Text
                                 style={[part.titleSmallBlue, part.paddingTLB]}
                             >
@@ -119,6 +119,9 @@ class DetailBlogContainer extends Component {
                                     {/* {item.created_at} &middot; {numberOfLikesComment[i]} lượt thích */}
                                     lượt thích
                                                                 </Text>
+                                <TouchableOpacity onPress={() => commentStore.deleteComment(item.id)}>
+                                    <Text style={{ marginLeft: 30 }}>xoá</Text>
+                                </TouchableOpacity>
 
                                 {/* {item.commenter.username === this.props.user.username ?
                                     (
@@ -158,6 +161,7 @@ class DetailBlogContainer extends Component {
     }
 
     render() {
+        const { params } = this.props.navigation.state;
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         const { detailBlog, isLoadingDetail } = blogStore;
@@ -239,13 +243,12 @@ class DetailBlogContainer extends Component {
                                         returnKeyType={'send'}
                                         // placeholderTextColor={color.icon}
                                         style={part.inputTheme01}
-                                        // onChangeText={
-                                        //     (text) => {
-                                        //         this.setState({ comment_content: text })
-                                        //     }
-                                        // }
-                                        // value={this.state.comment_content}
-                                        value={'hello'}
+                                        onChangeText={
+                                            (text) => {
+                                                commentStore.value.comment_content = text
+                                            }
+                                        }
+                                        value={commentStore.value.comment_content}
                                     />
                                     {/*<TouchableOpacity>*/}
                                     {/*<Icon active name='fontawesome|camera-retro'*/}
@@ -258,14 +261,16 @@ class DetailBlogContainer extends Component {
                                 {/* )} */}
                             </Body>
                             <TouchableOpacity
-                            // onPress={
-                            //     this.state.comment_content == ''
-                            //         ?
-                            //         () => {
-                            //         }
-                            //         :
-                            //         () => this.commentPost(this.props.item.id, this.props.token, this.state)
-                            // }
+                                onPress={
+                                    commentStore.value.comment_content == ''
+                                        ?
+                                        () => {
+                                        }
+                                        :
+                                        () => {
+                                            commentStore.postComment(params.id, commentStore.value);
+                                        }
+                                }
                             >
                                 <IconDefault active name={'FontAwesome|paper-plane'}
                                     size={20}
