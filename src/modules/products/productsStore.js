@@ -28,7 +28,6 @@ export const productsStore = new class productsStore {
             if(this.page == 1) this.data = res.data.products[0];
             this.products = this.page == 1 ? res.data.products.filter(e => e.id !== this.data.id) :  [...this.products, ...res.data.products];
             this.testproducts = res.data.products;
-            console.log(res.data, "aaaa");
         })
             .catch(err => {
                 this.isLoading = false;
