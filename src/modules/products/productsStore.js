@@ -18,7 +18,6 @@ export const productsStore = new class productsStore {
     
     @action
     getListProducts(filter, page) {
-        this.page = page;
         this.page == 1 ? this.isLoadingBegin = true : this.isLoadingBegin = false;
         this.isLoading = true;
         getProducts(filter, page).then(res => {

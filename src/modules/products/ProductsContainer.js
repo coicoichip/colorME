@@ -67,13 +67,15 @@ class ProductsContainer extends React.PureComponent {
   }
   async pickInfo() {
     productsStore.page = 1;
+    productsStore.products = [];
     await returnInfo(info_value => { productsStore.info_id = info_value; });
     productsStore.info_id == 7 ? productsStore.getListProducts(productsStore.data_id, 1)
       : productsStore.getListProductsNew(1);
   }
   async pickDate() {
     productsStore.page = 1;
-    await returnInfo(date_value => { productsStore.data_id = date_value });
+    productsStore.products = [];
+    await returnDate(date_value => { productsStore.data_id = date_value });
     productsStore.getListProducts(productsStore.data_id, 1);
   }
   gridPost() {
@@ -92,11 +94,11 @@ class ProductsContainer extends React.PureComponent {
     return postsGrid;
   }
   getMoreProducts() {
-    
-    productsStore.testproducts.length !== 0 ?
-      productsStore.info_id == 0 ? productsStore.getListProductsNew(productsStore.page + 1)
-        : productsStore.getListProducts(productsStore.data_id, productsStore.page + 1)
-      : null
+    if (productsStore.testproducts.length !== 0) {
+      productsStore.page = productsStore.page + 1;
+      productsStore.info_id == 0 ? productsStore.getListProductsNew(productsStore.page)
+        : productsStore.getListProducts(productsStore.data_id, productsStore.page)
+    }
   }
   loadMore() {
     if (productsStore.isLoading && productsStore.page >= 1)
