@@ -27,7 +27,7 @@ class RenderItem extends React.Component {
             return (
               <TouchableOpacity activeOpacity={0.8}
                 key={index}
-                onPress={() => blogStore.isLoadingDetail == false ? navigate('DetailBlog', { slug: post.slug, kind: post.kind }) : {}}>
+                onPress={() => blogStore.isLoadingDetail == false ? navigate('DetailBlog', { slug: post.slug, kind: post.kind, id: post.id }) : {}}>
                 <Image resizeMode={"cover"} source={{ uri: formatImageLink(post.thumb_url) }} style={styles.imageFeature2} />
               </TouchableOpacity>
             )
@@ -39,7 +39,7 @@ class RenderItem extends React.Component {
   }
 }
 @observer
-class ProductsContainer extends React.PureComponent {
+class ProductsContainer extends React.Component {
   @observable info_id = "";
   constructor() {
     super();
@@ -213,7 +213,6 @@ const styles = StyleSheet.create({
   imageFeature: {
     height: SIZES.DEVICE_WIDTH_SIZE / 1.5 - 2,
     width: SIZES.DEVICE_WIDTH_SIZE/1.5 - 1.5,
-    marginBottom: 10,
     marginLeft: 1,
     alignItems: 'center',
   },

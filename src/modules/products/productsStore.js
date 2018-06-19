@@ -16,6 +16,7 @@ export const productsStore = new class productsStore {
     @observable testproducts = [];
     @observable isLoadingBegin = false;
     @observable data = {};
+    @observable headerProducts = [];
     
     @action
     getListProducts(filter, page) {
@@ -25,7 +26,7 @@ export const productsStore = new class productsStore {
             this.isLoadingBegin = false
             this.isLoading = false;
             this.errorProducts = false;
-            if(this.page == 1) this.data = res.data.products[0];
+            if(this.page === 1) this.data = res.data.products[0];
             this.products = this.page == 1 ? res.data.products.filter(e => e.id !== this.data.id) :  [...this.products, ...res.data.products];
             this.testproducts = res.data.products;
             console.log(res.data, "aaaa");
@@ -43,7 +44,7 @@ export const productsStore = new class productsStore {
             this.isLoadingBegin = false
             this.isLoading = false;
             this.errorProducts = false;
-            if(this.page == 1) this.data = res.data.products[0];
+            if(this.page === 1) this.data = res.data.products[0];
             this.products = this.page == 1 ? res.data.products.filter(e => e.id !== this.data.id) :  [...this.products, ...res.data.products];
             this.testproducts = res.data.products;
         })
