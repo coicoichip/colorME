@@ -134,7 +134,6 @@ class DetailBlogContainer extends Component {
                     ref={'detailBlog'}
                     keyExtractor={item => item.id + ''}
                     showsVerticalScrollIndicator={false}
-                    data={1}
                     ListHeaderComponent = {() => {
                         return(
                             isLoadingDetail

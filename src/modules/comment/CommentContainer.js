@@ -15,20 +15,19 @@ import {
     Spinner,
     Thumbnail,
 } from 'native-base';
-import BackButton from '../../commons/BackButton';
+
 import Loading from '../../commons/Loading';
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
-import styles from '../../styles/styles';
-import * as size from '../../styles/sizes';
+
 import { formatImageLink } from "../../helper/index"
 import commentStore from "./commentStore";
-import { ButtonCommon } from "../../commons/Button"
 import IconDefault from '../../commons/IconDefault';
-import { observer } from "mobx-react"
+import { observer } from "mobx-react";
+import getProfileStore from "../profile/profileStore"
 @observer
 export default class CommentContainer extends Component {
     componentWillMount() {
-        commentStore.getComment(this.props.id);
+            commentStore.getComment(this.props.id, getProfileStore.updateUser.name);
     }
     convertComment(comments) {
         let parrent = comments.filter(item => item.parent_id == 0);
@@ -43,7 +42,7 @@ export default class CommentContainer extends Component {
     render() {
         return (
             commentStore.isLoading == true ? <Loading /> :
-                <View style = {{flex: 1}}>
+                <View style={{ flex: 1 }}>
                     <FlatList
                         ref={'listSubject'}
                         keyExtractor={item => item.id + ''}
@@ -65,7 +64,7 @@ export default class CommentContainer extends Component {
                                                 onPress={() => navigate('UserInNewFeed', { username: item.commenter.username })}
                                             >
                                                 <Image
-                                                    style={item.parent_id === 0? part.avatarUserNormal : part.avatarUserSmall}
+                                                    style={item.parent_id === 0 ? part.avatarUserNormal : part.avatarUserSmall}
                                                     source={{ uri: formatImageLink(item.commenter.avatar_url) }} />
                                             </TouchableOpacity>
                                             <View style={{ paddingRight: 20 }}>
@@ -83,11 +82,16 @@ export default class CommentContainer extends Component {
                                                     <Text
                                                         style={[part.textDescriptionDark, part.paddingTLB]}
                                                     >
-                                                        {item.likes + " " +  "lượt thích"}
-                                                                        </Text>
-                                                    <TouchableOpacity onPress={() => commentStore.deleteComment(item.id)}>
-                                                        <Text style={[part.textDescriptionDark, part.paddingTLB]}>Xoá</Text>
-                                                    </TouchableOpacity>
+                                                        {item.likes + " " + "lượt thích"}
+                                                    </Text>
+                                                    {item.commenter.id === getProfileStore.updateUser.id
+                                                        ?
+                                                        <TouchableOpacity onPress={() => commentStore.deleteComment(item.id)}>
+                                                            <Text style={[part.textDescriptionDark, part.paddingTLB]}>Xoá</Text>
+                                                        </TouchableOpacity>
+                                                        : null
+                                                    }
+
                                                     {
                                                         item.parent_id === 0 ?
                                                             <TouchableOpacity onPress={() => { commentStore.value.parent_id = item.id; console.log(commentStore.value.parent_id) }} >
@@ -97,10 +101,10 @@ export default class CommentContainer extends Component {
                                                     }
                                                 </View>
                                                 <TouchableOpacity transparent onPress={() => {
-                                                    this.likeComment(item.id, this.props.user.id, i)
+                                                    commentStore.likeComment(item)
                                                 }}>
                                                     <IconDefault name={'FontAwesome|heart'}
-                                                        color={"red"}
+                                                        color={item.liked ? COLORS.MAIN_COLOR : COLORS.GRAY_COLOR}
                                                         size={15}
                                                         style={[part.paddingRight, part.marginTop]}
                                                     />
