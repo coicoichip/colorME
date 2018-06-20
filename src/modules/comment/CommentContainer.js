@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AsyncStorage, StyleSheet, Image, Platform, Text, View, StatusBar, TouchableOpacity, ScrollView, FlatList, Linking, KeyboardAvoidingView, ActivityIndicator, } from 'react-native';
+import { AsyncStorage, StyleSheet, Image, Platform, Text, View, TouchableOpacity, FlatList, Alert } from 'react-native';
 import {
     Body,
     Button,
@@ -39,6 +39,18 @@ export default class CommentContainer extends Component {
                 comments_related: [item].concat(children.filter(post => post.parent_id == item.id))
             }
         })
+    }
+    deleteComment(id){
+        Alert.alert(
+            'Thông báo',
+             "Bạn chắc chắn muốn xoá bình luận này",
+            [
+             
+              {text: 'Cancel', onPress: () => {}, style: 'cancel'},
+              {text: 'OK', onPress: () => commentStore.deleteComment(id)},
+            ],
+            { cancelable: false }
+          )
     }
     render() {
         
@@ -89,7 +101,8 @@ export default class CommentContainer extends Component {
                                                         {item.likes + " " + "lượt thích"}
                                                     </Text>
                                                     {getProfileStore.updateUser.id == item.commenter.id ?
-                                                        <TouchableOpacity onPress={() => commentStore.deleteComment(item.id)}>
+                                                        <TouchableOpacity onPress={() => this.deleteComment(item.id)}>
+                                                        
                                                             <Text style={[part.textDescriptionDark, part.paddingTLB]}>Xoá</Text>
                                                         </TouchableOpacity>
                                                         : null
