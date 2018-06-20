@@ -24,6 +24,7 @@ import * as size from '../../styles/sizes';
 import { formatImageLink } from "../../helper/index"
 import blogStore from "./blogStore";
 import commentStore from "../comment/commentStore";
+import TextInputContainer from "../comment/TextInputContainer"
 import { ButtonCommon } from "../../commons/Button"
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import IconDefault from '../../commons/IconDefault';
@@ -134,39 +135,40 @@ class DetailBlogContainer extends Component {
                     ref={'detailBlog'}
                     keyExtractor={item => item.id + ''}
                     showsVerticalScrollIndicator={false}
-                    data={1}
-                    ListHeaderComponent = {() => {
-                        return(
+                    data={[1]}
+                    renderItem={() => { }}
+                    ListHeaderComponent={() => {
+                        return (
                             isLoadingDetail
-                            ?
-                            <Loading />
-                            :
+                                ?
+                                <Loading />
+                                :
 
-                            <View style={{ flex: 1 }}>
-                                <View activeOpacity={0.8} style={{ marginBottom: 15 }}
-                                >
-                                    {/* <View style={{alignItems: 'center'}}>
+                                <View style={{ flex: 1 }}>
+                                    <View activeOpacity={0.8} style={{ marginBottom: 15 }}
+                                    >
+                                        {/* <View style={{alignItems: 'center'}}>
                                         <Image source={{ uri: detailBlog.url ? formatImageLink(detailBlog.url): "" }} style={styles.imageAvatarModuleEmails} />
                                     </View> */}
-                                    <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
+                                        <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
 
 
 
-                                        <View style={{ marginTop: 5, flexDirection: 'row', alignItems: 'center' }}>
-                                            <Image
-                                                style={{ height: 20, width: 20, borderRadius: 10 }}
-                                                source={detailBlog.author.avatar_url !== "http://" ? { uri: formatImageLink(detailBlog.author.avatar_url) } : require('../../../assets/image/colorMe.jpg')}
-                                            />
-                                            <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5 }}>{detailBlog.author.name.trim()}</Text>
-                                            <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5, color: 'gray' }}>{detailBlog.time.trim()}</Text>
+                                            <View style={{ marginTop: 5, flexDirection: 'row', alignItems: 'center' }}>
+                                                <Image
+                                                    style={{ height: 20, width: 20, borderRadius: 10 }}
+                                                    source={detailBlog.author.avatar_url !== "http://" ? { uri: formatImageLink(detailBlog.author.avatar_url) } : require('../../../assets/image/colorMe.jpg')}
+                                                />
+                                                <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5 }}>{detailBlog.author.name.trim()}</Text>
+                                                <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5, color: 'gray' }}>{detailBlog.time.trim()}</Text>
+                                            </View>
                                         </View>
                                     </View>
+
+                                    <WebViewAutoHeight source={this.getContent(detailBlog.url, detailBlog.content) !== "" ? this.editString(this.getContent(detailBlog.url, detailBlog.content)) : ''} />
+                                    {this.renderDownLoad(detailBlog.content)}
+
                                 </View>
-
-                                <WebViewAutoHeight source={this.getContent(detailBlog.url, detailBlog.content) !== "" ? this.editString(this.getContent(detailBlog.url, detailBlog.content)) : ''} />
-                                {this.renderDownLoad(detailBlog.content)}
-
-                            </View>
                         )
                     }}
                     // onEndReached={() => this.getMoreSubjects()}
@@ -174,7 +176,8 @@ class DetailBlogContainer extends Component {
                         <CommentContainer id={params.id} />
                     }
                 />
-                
+                <TextInputContainer id={params.id}/>
+
             </Container>
         );
     }
@@ -186,7 +189,7 @@ const part = StyleSheet.create({
         backgroundColor: COLORS.LIGHT_COLOR,
     },
     cardBottomInModal: {
-        width: SIZES.DEVICE_WIDTH_SIZE * 0.9,
+        width: SIZES.DEVICE_WIDTH_SIZE - 10,
         flexDirection: 'row',
         height: 50,
         backgroundColor: COLORS.LIGHT_COLOR,
