@@ -45,7 +45,7 @@ export default commentStore = new class commentStore {
         postCommentOnePostApi(product_id, value).then(res => {
             this.isLoadingPost = false;
             this.commentPost = res.data;
-            this.comments.push(this.commentPost);
+            this.comments.push({...this.commentPost, ...{liked : false}});
             this.value.comment_content = "";
             this.value.parent_id = 0;
             console.log(res);
@@ -62,14 +62,15 @@ export default commentStore = new class commentStore {
     @action
     likeComment(item){
         likeCommentApi(item.id).then((res)=> {
+            
             let index = this.comments.findIndex(comment => comment.id == item.id);
             item.liked ? item.likes-=1 : item.likes+=1;
             item.liked = !item.liked;
             this.comments[index] = item;
-            console.log(this.comments[index])
+            this.comments = this.comments.map(item => {return item})
+            console.log(this.comments[index], index)
         }).catch(err => console.log(err))
     }
-
 
 }
 
