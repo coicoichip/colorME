@@ -40,8 +40,6 @@ class DetailBlogContainer extends Component {
     componentWillMount() {
         const { params } = this.props.navigation.state;
         blogStore.getDetailBlog(params.slug);
-        commentStore.getComment(params.id);
-        console.log(params.kind)
     }
     getContent(url, content) {
         return "<p><img src=" + formatImageLink(url) + ' style="width: 100%px; height: 100%px"></p>' + content
@@ -64,15 +62,6 @@ class DetailBlogContainer extends Component {
             return content.slice(start + str1.length, end)
         }
     }
-    // async checkDelete(item){
-    //     const id = await AsyncStorage.getItem('@ID');
-    //     console.log(id + "aaaaaaa");
-    //         if (id == item.commenter.id) {return(
-    //             <TouchableOpacity onPress={() => commentStore.deleteComment(item.id)}>
-    //                 <Text style={{ marginLeft: 30 }}>xoá</Text>
-    //             </TouchableOpacity>)
-    //         }
-
 
     renderDownLoad(link) {
         const { params } = this.props.navigation.state;
@@ -139,7 +128,7 @@ class DetailBlogContainer extends Component {
                     renderItem={() => { }}
                     ListHeaderComponent={() => {
                         return (
-                            isLoadingDetail
+                            isLoadingDetail || commentStore.isLoading
                                 ?
                                 <Loading />
                                 :

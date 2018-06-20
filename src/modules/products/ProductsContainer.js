@@ -180,7 +180,7 @@ class ProductsContainer extends React.Component {
             }
             ListHeaderComponent= {() => {return(
               <TouchableOpacity activeOpacity={0.8} style={{alignItems: 'center'}}
-                onPress={() => blogStore.isLoadingDetail == false ? navigate('DetailBlog', { slug: productsStore.data.slug, kind: productsStore.data.kind }) : {}}>
+                onPress={() => blogStore.isLoadingDetail == false ? navigate('DetailBlog', { slug: productsStore.data.slug, kind: productsStore.data.kind, id: productsStore.data.id }) : {}}>
                 <Image resizeMode={"cover"} source={{ uri: formatImageLink(productsStore.data.thumb_url) }} style={styles.imageFeature} />
               </TouchableOpacity>
             )}}
@@ -211,8 +211,10 @@ const styles = StyleSheet.create({
   },
   imageFeature: {
     height: SIZES.DEVICE_WIDTH_SIZE / 1.5 - 2,
-    width: SIZES.DEVICE_WIDTH_SIZE/1.5 - 1.5,
-    marginLeft: 1,
+    width: SIZES.DEVICE_WIDTH_SIZE - 1.5,
+    marginLeft : 1,
+    marginRight: 1,
+    marginBottom: 15,
     alignItems: 'center',
   },
   imageFeature2: {

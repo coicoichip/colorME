@@ -55,7 +55,7 @@ export default class CommentContainer extends Component {
     render() {
         
         return (
-            commentStore.isLoading == true ? <Loading /> :
+            commentStore.isLoading == true ? null :
                 <View style={{ flex: 1 }}>
                     <FlatList
                         ref={'listSubject'}
@@ -121,7 +121,7 @@ export default class CommentContainer extends Component {
                                                     commentStore.likeComment(item)
                                                 }}>
                                                     <IconDefault name={(item.liked) ? 'FontAwesome|heart' : 'FontAwesome|heart-o'}
-                                                        color={(item.liked) ? COLORS.MAIN_COLOR : COLORS.GRAY_COLOR}
+                                                        color={(item.liked) ? COLORS.MAIN_COLOR : COLORS.ICON}
                                                         size={15}
                                                         style={[part.paddingRight, part.marginTop]}
                                                     />

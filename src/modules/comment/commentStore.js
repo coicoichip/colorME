@@ -28,12 +28,13 @@ export default commentStore = new class commentStore {
     getComment(products_id, name) {
         console.log(name)
         this.isLoading = true;
-        getCommentOnePost(products_id).then(res => {
-            this.isLoading = false;
-            this.comments = res.data.comments.map((item) => {
-                let liked = (item.likers.length == 0 || item.likers.filter(liker => liker.name == name).length == 0) ? false : true;
-                return {...item, ...{liked : liked}}
+        getCommentOnePost(products_id).then(async res => {
+             this.comments = await res.data.comments.map((item) => {
+                 let liked = (item.likers.length == 0 || item.likers.filter(liker => liker.name == name).length == 0) ? false : true;
+                 console.log(liked);
+                return {...item, ...{liked : liked}};
             });
+            this.isLoading = false;
            
         })
             .catch(err => {
