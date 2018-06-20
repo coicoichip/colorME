@@ -1,5 +1,5 @@
 import { observable, action, computed } from "mobx";
-import { getCommentOnePost, postCommentOnePostApi, deleteCommentApi } from "./commentApi";
+import { getCommentOnePost, postCommentOnePostApi, deleteCommentApi, likeCommentApi } from "./commentApi";
 import { Alert, AsyncStorage } from "react-native";
 convertComment = (comments) => {
     let parrent = comments.filter(item => item.parent_id == 0);
@@ -17,6 +17,7 @@ export default commentStore = new class commentStore {
     @observable commentPost = {}
     @observable isLoadingPost = false;
     @observable isLoading = false;
+    @observable checkFocus = false;
     @observable value = {
         parent_id: 0,
         comment_content: '',
@@ -24,12 +25,16 @@ export default commentStore = new class commentStore {
 
 
     @action
-    getComment(products_id) {
+    getComment(products_id, name) {
+        console.log(name)
         this.isLoading = true;
         getCommentOnePost(products_id).then(res => {
             this.isLoading = false;
-            this.comments = res.data.comments;
-            console.log(res, "aaaa");
+            this.comments = res.data.comments.map((item) => {
+                let liked = (item.likers.length == 0 || item.likers.filter(liker => liker.name == name).length == 0) ? false : true;
+                return {...item, ...{liked : liked}}
+            });
+           
         })
             .catch(err => {
                 this.isLoading = false;
@@ -54,6 +59,20 @@ export default commentStore = new class commentStore {
             this.comments = this.comments.filter(item => item.id !== product_id);
         })
             .catch(err => {})
+    }
+    @action
+    likeComment(item){
+        likeCommentApi(item.id).then((res)=> {
+            let index = this.comments.findIndex(comment => comment.id == item.id);
+            item.liked ? item.likes-=1 : item.likes+=1;
+            item.liked = !item.liked;
+            this.comments[index] = item;
+            this.comments = this.comments.map(e => {
+                if(e.id == item.id) return {...e, liked: !e.liked}
+                else return e;
+            });
+            console.log(this.comments)
+        }).catch(err => console.log(err))
     }
 
 

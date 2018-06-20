@@ -15,21 +15,20 @@ import {
     Spinner,
     Thumbnail,
 } from 'native-base';
-import BackButton from '../../commons/BackButton';
+
 import Loading from '../../commons/Loading';
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
-import styles from '../../styles/styles';
-import * as size from '../../styles/sizes';
+
 import { formatImageLink } from "../../helper/index"
 import commentStore from "./commentStore";
-import { ButtonCommon } from "../../commons/Button"
 import IconDefault from '../../commons/IconDefault';
 import { observer } from "mobx-react";
 import getProfileStore from "../profile/profileStore";
+import TextInputContainer from "./TextInputContainer";
 @observer
 export default class CommentContainer extends Component {
     componentWillMount() {
-        commentStore.getComment(this.props.id);
+        commentStore.getComment(this.props.id, getProfileStore.updateUser.name);
     }
     convertComment(comments) {
         let parrent = comments.filter(item => item.parent_id == 0);
@@ -42,6 +41,7 @@ export default class CommentContainer extends Component {
         })
     }
     render() {
+        
         return (
             commentStore.isLoading == true ? <Loading /> :
                 <View style={{ flex: 1 }}>
@@ -69,12 +69,14 @@ export default class CommentContainer extends Component {
                                                     style={item.parent_id === 0 ? part.avatarUserNormal : part.avatarUserSmall}
                                                     source={item.commenter.avatar_url ? { uri: formatImageLink(item.commenter.avatar_url) } : require('../../../assets/image/colorMe.jpg')} />
                                             </TouchableOpacity>
-                                            <View style={{ paddingRight: 20 }}>
-                                                <Text
-                                                    style={[part.titleSmallDark, part.paddingTLB]}
-                                                >
-                                                    {item.commenter.name}
-                                                </Text>
+                                            <View style={{ paddingRight: 20, flex: 1 }}>
+                                                <View style={{ flexDirection: 'row', flex: 1 }}>
+                                                    <Text
+                                                        style={[part.titleSmallDark, part.paddingTLB]}
+                                                    >
+                                                        {item.commenter.name}
+                                                    </Text>
+                                                </View>
                                                 <Text
                                                     style={[part.textDescriptionDark, part.paddingLeft]}
                                                 >
@@ -94,17 +96,19 @@ export default class CommentContainer extends Component {
                                                     }
                                                     {
                                                         item.parent_id === 0 ?
-                                                            <TouchableOpacity onPress={() => { commentStore.value.parent_id = item.id; console.log(commentStore.value.parent_id) }} >
+                                                            <TouchableOpacity onPress={() => { commentStore.value.parent_id = item.id; commentStore.checkFocus = true; console.log(commentStore.checkFocus) }} >
                                                                 <Text style={[part.textDescriptionDark, part.paddingTLB]}>Trả lời</Text>
                                                             </TouchableOpacity>
                                                             : null
                                                     }
                                                 </View>
+                                            </View>
+                                            <View style={[part.itemLike]}>
                                                 <TouchableOpacity transparent onPress={() => {
-                                                    this.likeComment(item.id, this.props.user.id, i)
+                                                    commentStore.likeComment(item)
                                                 }}>
-                                                    <IconDefault name={'FontAwesome|heart'}
-                                                        color={"red"}
+                                                    <IconDefault name={(item.liked) ? 'FontAwesome|heart' : 'FontAwesome|heart-o'}
+                                                        color={(item.liked) ? COLORS.MAIN_COLOR : COLORS.GRAY_COLOR}
                                                         size={15}
                                                         style={[part.paddingRight, part.marginTop]}
                                                     />
@@ -126,6 +130,11 @@ const part = StyleSheet.create({
     wrapperContainer: {
         padding: 0,
         backgroundColor: COLORS.LIGHT_COLOR,
+    },
+    itemLike: {
+        position: 'absolute',
+        top: 3,
+        right: 10,
     },
     cardBottomInModal: {
         width: SIZES.DEVICE_WIDTH_SIZE - 10,
@@ -169,7 +178,7 @@ const part = StyleSheet.create({
     },
     cardCmtChild: {
         flexDirection: 'row',
-        paddingLeft: 40,
+        paddingLeft: 50,
         marginRight: 20,
         paddingRight: 20,
         flex: 1,

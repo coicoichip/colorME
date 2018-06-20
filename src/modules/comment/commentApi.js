@@ -30,3 +30,11 @@ export async function deleteCommentApi(product_id) {
     console.log(url)
     return axios.post(url);
 }
+export async function likeCommentApi(comment_id){
+    let url = "";
+    await AsyncStorage.getItem('@ID').then((value)=> {
+       url = APIS.API_DATA + '/comment/' + comment_id + '/like?user_id=' + value;
+    })
+    console.log(url);
+    return axios.post(url);
+}

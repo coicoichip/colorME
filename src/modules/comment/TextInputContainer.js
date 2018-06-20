@@ -31,74 +31,75 @@ export default class TextInputContainer extends Component {
     render() {
         return (
             <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'position' : undefined}
-            keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : 200}
-            style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}
-        // NEED HEIGHT KEYBOARD
-        >
-            <CardItem style={part.cardBottomInModal}>
-                <Thumbnail
-                    style={part.avatarUserSmall}
-                    // source={{ uri: user.avatar_url }} />
-                    source={getProfileStore.updateUser.avatar_url ? { uri: formatImageLink(getProfileStore.updateUser.avatar_url) } : require('../../../assets/image/colorMe.jpg')} />
-                <Body style={{justifyContent: 'center', marginLeft: 10}}>
-                    {/* {this.state.isLoadingPostComment ? (
+                behavior={Platform.OS === 'ios' ? 'position' : undefined}
+                keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : 200}
+                style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}
+            // NEED HEIGHT KEYBOARD
+            >
+                <CardItem style={part.cardBottomInModal}>
+                    <Thumbnail
+                        style={part.avatarUserSmall}
+                        // source={{ uri: user.avatar_url }} />
+                        source={getProfileStore.updateUser.avatar_url ? { uri: formatImageLink(getProfileStore.updateUser.avatar_url) } : require('../../../assets/image/colorMe.jpg')} />
+                    <Body style={{ justifyContent: 'center', marginLeft: 10 }}>
+                        {/* {this.state.isLoadingPostComment ? (
                                             <View style={[part.wrapperContainer, { height: 15 }]}>
                                                 <ActivityIndicator color={color.gray} />
                                             </View>
                                         ) : ( */}
-                    <Item rounded>
-                        <Input
-                            placeholder='Viết bình luận'
-                            autoCorrect={false}
-                            underlineColorAndroid={'transparent'}
-                            returnKeyType={'send'}
-                            onSubmitEditing={() => {
-                                commentStore.postComment(this.props.id, commentStore.value);
-                            }}
-                            // placeholderTextColor={color.icon}
-                            style={part.inputTheme01}
-                            onChangeText={
-                                (text) => {
-                                    commentStore.value.comment_content = text
+                        <Item rounded>
+                            <Input
+                                // autoFocus={commentStore.checkFocus}
+                                placeholder='Viết bình luận'
+                                autoCorrect={false}
+                                underlineColorAndroid={'transparent'}
+                                returnKeyType={'send'}
+                                onSubmitEditing={() => {
+                                    commentStore.postComment(this.props.id, commentStore.value);
+                                }}
+                                // placeholderTextColor={color.icon}
+                                style={part.inputTheme01}
+                                onChangeText={
+                                    (text) => {
+                                        commentStore.value.comment_content = text
+                                    }
                                 }
-                            }
-                            value={commentStore.value.comment_content}
+                                value={commentStore.value.comment_content}
+                            />
+                            {/*<TouchableOpacity>*/}
+                            {/*<Icon active name='fontawesome|camera-retro'*/}
+                            {/*size={size.iconBig}*/}
+                            {/*color={color.icon}*/}
+                            {/*style={{paddingRight: 15}}*/}
+                            {/*/>*/}
+                            {/*</TouchableOpacity>*/}
+                        </Item>
+                        {/* )} */}
+                    </Body>
+                    <TouchableOpacity
+                        onPress={
+                            commentStore.value.comment_content == ''
+                                ?
+                                () => {
+                                }
+                                :
+                                () => {
+                                    commentStore.postComment(this.props.id, commentStore.value);
+                                }
+                        }
+                    >
+                        <IconDefault active name={'FontAwesome|paper-plane'}
+                            size={20}
+                            // color={colorCommentIcon}
+                            color={commentStore.value.comment_content.length > 0 ? 'red' : 'gray'}
+                            style={[part.paddingTLB, { paddingLeft: 10 }]}
                         />
-                        {/*<TouchableOpacity>*/}
-                        {/*<Icon active name='fontawesome|camera-retro'*/}
-                        {/*size={size.iconBig}*/}
-                        {/*color={color.icon}*/}
-                        {/*style={{paddingRight: 15}}*/}
-                        {/*/>*/}
-                        {/*</TouchableOpacity>*/}
-                    </Item>
-                    {/* )} */}
-                </Body>
-                <TouchableOpacity
-                    onPress={
-                        commentStore.value.comment_content == ''
-                            ?
-                            () => {
-                            }
-                            :
-                            () => {
-                                commentStore.postComment(this.props.id, commentStore.value);
-                            }
-                    }
-                >
-                    <IconDefault active name={'FontAwesome|paper-plane'}
-                        size={20}
-                        // color={colorCommentIcon}
-                        color={commentStore.value.comment_content.length > 0? 'red' : 'gray'}
-                        style={[part.paddingTLB, { paddingLeft: 10 }]}
-                    />
-                </TouchableOpacity>
-            </CardItem>
-        </KeyboardAvoidingView>
+                    </TouchableOpacity>
+                </CardItem>
+            </KeyboardAvoidingView>
         )
     }
 
