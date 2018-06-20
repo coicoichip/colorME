@@ -40,8 +40,6 @@ class DetailBlogContainer extends Component {
     componentWillMount() {
         const { params } = this.props.navigation.state;
         blogStore.getDetailBlog(params.slug);
-        commentStore.getComment(params.id);
-        console.log(params.kind)
     }
     getContent(url, content) {
         return "<p><img src=" + formatImageLink(url) + ' style="width: 100%px; height: 100%px"></p>' + content

@@ -17,7 +17,7 @@ export default commentStore = new class commentStore {
     @observable commentPost = {}
     @observable isLoadingPost = false;
     @observable isLoading = false;
-    @observable checkFocus = false;
+    @observable checkFocus = {};
     @observable value = {
         parent_id: 0,
         comment_content: '',
@@ -26,13 +26,14 @@ export default commentStore = new class commentStore {
 
     @action
     getComment(products_id, name) {
-        console.log(name)
+        console.log(name);
         this.isLoading = true;
         getCommentOnePost(products_id).then(res => {
             this.isLoading = false;
             this.comments = res.data.comments.map((item) => {
-                let liked = (item.likers.length == 0 || item.likers.filter(liker => liker.name == name).length == 0) ? false : true;
-                return {...item, ...{liked : liked}}
+                let likers = item.likers.length !== 0? item.likers.filter(liker => liker.name == name) : []
+                let liked = likers.length == 0 ? false : true;
+                return {...item, liked : liked}
             });
            
         })

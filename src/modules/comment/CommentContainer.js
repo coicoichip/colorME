@@ -109,7 +109,7 @@ export default class CommentContainer extends Component {
                                                     }
                                                     {
                                                         item.parent_id === 0 ?
-                                                            <TouchableOpacity onPress={() => { commentStore.value.parent_id = item.id; commentStore.checkFocus = true; console.log(commentStore.checkFocus) }} >
+                                                            <TouchableOpacity onPress={() => { commentStore.value.parent_id = item.id; }} >
                                                                 <Text style={[part.textDescriptionDark, part.paddingTLB]}>Trả lời</Text>
                                                             </TouchableOpacity>
                                                             : null

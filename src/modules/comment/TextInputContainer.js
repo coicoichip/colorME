@@ -15,15 +15,13 @@ import {
     Spinner,
     Thumbnail,
 } from 'native-base';
-import BackButton from '../../commons/BackButton';
-import Loading from '../../commons/Loading';
+
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
 import getProfileStore from "../profile/profileStore";
-import styles from '../../styles/styles';
-import * as size from '../../styles/sizes';
+
 import { formatImageLink } from "../../helper/index"
 import commentStore from "./commentStore";
-import { ButtonCommon } from "../../commons/Button"
+
 import IconDefault from '../../commons/IconDefault';
 import { observer } from "mobx-react"
 @observer
@@ -55,6 +53,8 @@ export default class TextInputContainer extends Component {
                                 // autoFocus={commentStore.checkFocus}
                                 placeholder='Viết bình luận'
                                 autoCorrect={false}
+                                ref = {input => {
+                                    commentStore.checkFocus['one'] = input}}
                                 underlineColorAndroid={'transparent'}
                                 returnKeyType={'send'}
                                 onSubmitEditing={() => {
