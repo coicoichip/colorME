@@ -81,7 +81,7 @@ class ProductsContainer extends React.PureComponent {
         :
         <View style={styles.wrapperContent}>
           <FlatList
-            keyExtractor={(item, key) => key}
+            keyExtractor={(item, key) => key + ''}
             showsVerticalScrollIndicator={false}
             data={this.gridPost()}
             onEndReached={() => this.getMoreProducts()}
@@ -115,10 +115,8 @@ class ProductsContainer extends React.PureComponent {
                     })
                   }
                 </View>
-
               )
             }
-
             }
           />
         </View>

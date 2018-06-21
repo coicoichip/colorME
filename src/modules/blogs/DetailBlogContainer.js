@@ -10,7 +10,6 @@ import * as size from '../../styles/sizes';
 import { formatImageLink } from "../../helper/index"
 import blogStore from "./blogStore";
 import {ButtonCommon} from "../../commons/Button"
-import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import IconDefault from '../../commons/IconDefault';
 import { observer } from "mobx-react"
 

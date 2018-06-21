@@ -12,7 +12,12 @@ import CoursesContainer from '../modules/courses/CoursesContainer';
 import LearnRegisterContainer from '../modules/courses/LearnRegisterContainer';
 import CourseInformation from '../modules/courses/CourseInFormation';
 import DetailLecture from '../modules/lecture/DetailLecture';
-
+import SurveyContainer from '../modules/survey/SurveyContainer';
+import DetailSurveyContainer from '../modules/survey/DetailSurveyContainer';
+import HistorySurveyContainer from '../modules/survey/HistorySurveyContainer';
+import DetailHistorySurveyContainer from '../modules/survey/DetailHistorySurveyContainer';
+import QuestionSurveyContainer from '../modules/survey/QuestionSurveyContainer';
+import FinishSurveyContainer from '../modules/survey/FinishSurveyContainer';
 import IconDefault from '../commons/IconDefault';
 import Icon from "../commons/Icon";
 import DetailBlogContainer from "../modules/blogs/DetailBlogContainer"
@@ -91,6 +96,17 @@ const Promotion = StackNavigator(
         DetailBlog: { screen: DetailBlogContainer },
     }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'promotion', title: "Khuyến mãi" } }
 )
+const Survey = StackNavigator(
+    {
+        Survey: {screen: SurveyContainer},
+        DetailSurvey: {screen: DetailSurveyContainer},
+        QuestionSurvey: {screen: QuestionSurveyContainer},
+        HistorySurvey: {screen: HistorySurveyContainer},
+        DetailHistorySurvey: {screen: DetailHistorySurveyContainer},
+        FinishSurvey: {screen: FinishSurveyContainer},
+    }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'promotion', title: "Khảo sát" } }
+)
+
 const Products = StackNavigator({
     Products: { screen: ProductsContainer },
     DetailBlog: { screen: DetailBlogContainer },
@@ -246,6 +262,18 @@ const Drawer = DrawerNavigator(
                 title: "Giáo trình"
             })
 
+        },
+        Survey: {
+            screen: Survey,
+            navigationOptions: ({ navigation }) => ({
+                title: "Khảo sát"
+            })
+        },
+        HistorySurvey: {
+            screen: HistorySurveyContainer,
+            navigationOptions: ({ navigation }) => ({
+                title: "Lịch sử khảo sát"
+            })
         },
         Promotion: {
             screen: Promotion,
