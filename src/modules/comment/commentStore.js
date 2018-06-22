@@ -1,6 +1,7 @@
 import { observable, action, computed } from "mobx";
 import { getCommentOnePost, postCommentOnePostApi, deleteCommentApi, likeCommentApi } from "./commentApi";
 import { Alert, AsyncStorage } from "react-native";
+
 convertComment = (comments) => {
     let parrent = comments.filter(item => item.parent_id == 0);
     let children = comments.filter(item => item.parent_id !== 0);
@@ -50,7 +51,6 @@ export default commentStore = new class commentStore {
             this.comments.push({...this.commentPost, ...{liked : false}});
             this.value.comment_content = "";
             this.value.parent_id = 0;
-            console.log(res);
         })
             .catch(err => { this.isLoadingPost = false; })
     }

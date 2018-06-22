@@ -174,7 +174,7 @@ class DetailBlogContainer extends Component {
                         <CommentContainer id={params.id} />
                     }
                 />
-                <TextInputContainer id={params.id}/>
+                <TextInputContainer id={params.id} />
 
             </Container>
         );

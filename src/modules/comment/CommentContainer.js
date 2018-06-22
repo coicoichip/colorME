@@ -27,6 +27,10 @@ import getProfileStore from "../profile/profileStore";
 import TextInputContainer from "./TextInputContainer";
 @observer
 export default class CommentContainer extends Component {
+    constructor(){
+        super();
+        this.flatListRef = null;
+    }
     componentWillMount() {
         commentStore.getComment(this.props.id, getProfileStore.updateUser.name);
     }
@@ -40,7 +44,9 @@ export default class CommentContainer extends Component {
             }
         })
     }
-    deleteComment(id){
+    deleteComment(){
+        
+  
         Alert.alert(
             'Thông báo',
              "Bạn chắc chắn muốn xoá bình luận này",
@@ -52,15 +58,16 @@ export default class CommentContainer extends Component {
             { cancelable: false }
           )
     }
+    
     render() {
         
         return (
             commentStore.isLoading == true ? <Loading /> :
-                <View style={{ flex: 1 }}>
+                   <View style = {{flex : 1}}>
                     <FlatList
-                        ref={'listSubject'}
                         keyExtractor={item => item.id + ''}
                         showsVerticalScrollIndicator={false}
+                        ref={'comments'}
                         data={this.convertComment(commentStore.comments)}
                         // onEndReached={() => this.getMoreSubjects()}
                         // ListFooterComponent={
@@ -134,9 +141,11 @@ export default class CommentContainer extends Component {
                         }
                         }
                     />
-                </View>
+                    </View>
+               
         )
     }
+    
 
 }
 const part = StyleSheet.create({
