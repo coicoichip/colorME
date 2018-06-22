@@ -1,5 +1,5 @@
 import { observable, action, computed } from "mobx";
-import { getCommentOnePost, postCommentOnePostApi, deleteCommentApi, likeCommentApi } from "./commentApi";
+import { getCommentOnePost, postCommentOnePostApi, deleteCommentApi, likeCommentApi, getInfoAboutPostApi } from "./commentApi";
 import { Alert, AsyncStorage } from "react-native";
 convertComment = (comments) => {
     let parrent = comments.filter(item => item.parent_id == 0);
@@ -17,7 +17,8 @@ export default commentStore = new class commentStore {
     @observable commentPost = {}
     @observable isLoadingPost = false;
     @observable isLoading = false;
-    @observable checkFocus = false;
+    @observable checkFocus = {};
+    @observable dataInfoPost = {};
     @observable value = {
         parent_id: 0,
         comment_content: '',
@@ -26,7 +27,7 @@ export default commentStore = new class commentStore {
 
     @action
     getComment(products_id, name) {
-        console.log(name)
+        console.log(name);
         this.isLoading = true;
         getCommentOnePost(products_id).then(async res => {
              this.comments = await res.data.comments.map((item) => {
@@ -40,6 +41,13 @@ export default commentStore = new class commentStore {
             .catch(err => {
                 this.isLoading = false;
             })
+    }
+    @action
+    getInfoPost(product_id){
+        getInfoAboutPostApi(product_id).then(res => {
+            this.dataInfoPost = res.data;
+        })
+        .catch(err => {})
     }
     @action
     postComment(product_id, value) {

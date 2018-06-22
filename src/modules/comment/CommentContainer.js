@@ -29,6 +29,7 @@ import TextInputContainer from "./TextInputContainer";
 export default class CommentContainer extends Component {
     componentWillMount() {
         commentStore.getComment(this.props.id, getProfileStore.updateUser.name);
+        commentStore.getInfoPost(this.props.id);
     }
     convertComment(comments) {
         let parrent = comments.filter(item => item.parent_id == 0);
@@ -40,23 +41,57 @@ export default class CommentContainer extends Component {
             }
         })
     }
-    deleteComment(id){
+    deleteComment(id) {
         Alert.alert(
             'Thông báo',
-             "Bạn chắc chắn muốn xoá bình luận này",
+            "Bạn chắc chắn muốn xoá bình luận này",
             [
-             
-              {text: 'Cancel', onPress: () => {}, style: 'cancel'},
-              {text: 'OK', onPress: () => commentStore.deleteComment(id)},
+
+                { text: 'Cancel', onPress: () => { }, style: 'cancel' },
+                { text: 'OK', onPress: () => commentStore.deleteComment(id) },
             ],
             { cancelable: false }
-          )
+        )
     }
     render() {
-        
+
         return (
             commentStore.isLoading == true ? null :
-                <View style={{ flex: 1 }}>
+                <View style={{ flex: 1, marginTop: -10 }}>
+                    <View style={{ flexDirection: 'row', paddingHorizontal: 17, marginBottom: 10 }}>
+                        <View style={{justifyContent: 'flex-start', flexDirection: 'row', flex: 1}}>
+                            <Button
+                                transparent style={{ paddingRight: 10 }}
+                            >
+                                <IconDefault name="FontAwesome|heart-o" size={20}
+                                    color={COLORS.ICON} />
+                                <Text
+                                    style={[part.describeLight, part.paddingLeft]}>{commentStore.dataInfoPost.likes_count ? commentStore.dataInfoPost.likes_count : '0'}</Text>
+                            </Button>
+                            <Button transparent style={{ paddingRight: 10 }}
+                            >
+                                <IconDefault name="FontAwesome|comment-o"
+                                    size={20}
+                                    color={COLORS.ICON} />
+                                <Text
+                                    style={[part.describeLight, part.paddingLeft]}>{commentStore.dataInfoPost.comments_count ? commentStore.dataInfoPost.comments_count : '0'}</Text>
+                            </Button>
+                            <Button transparent style={{ paddingRight: 10 }}>
+                                <IconDefault name="FontAwesome|circle-thin"
+                                    size={23}
+                                    color={COLORS.ICON} />
+                                <Text
+                                    style={[part.describeLight, part.paddingLeft]}>{commentStore.dataInfoPost.views_count ? commentStore.dataInfoPost.views_count : '0'}</Text>
+                            </Button>
+                        </View>
+                        <View style={{justifyContent: 'flex-end'}}>
+                            <Button transparent>
+                                <IconDefault name="FontAwesome|star" size={23}
+                                    color={'#ffd800'} />
+                            </Button>
+                        </View>
+                    </View>
+
                     <FlatList
                         ref={'listSubject'}
                         keyExtractor={item => item.id + ''}
@@ -90,7 +125,7 @@ export default class CommentContainer extends Component {
                                                     </Text>
                                                 </View>
                                                 <Text
-                                                    style={[part.textDescriptionDark, part.paddingLeft]}
+                                                    style={[part.textDescriptionDark, {paddingLeft: 5}]}
                                                 >
                                                     {item.content}
                                                 </Text>
@@ -102,14 +137,14 @@ export default class CommentContainer extends Component {
                                                     </Text>
                                                     {getProfileStore.updateUser.id == item.commenter.id ?
                                                         <TouchableOpacity onPress={() => this.deleteComment(item.id)}>
-                                                        
+
                                                             <Text style={[part.textDescriptionDark, part.paddingTLB]}>Xoá</Text>
                                                         </TouchableOpacity>
                                                         : null
                                                     }
                                                     {
                                                         item.parent_id === 0 ?
-                                                            <TouchableOpacity onPress={() => { commentStore.value.parent_id = item.id; commentStore.checkFocus = true; console.log(commentStore.checkFocus) }} >
+                                                            <TouchableOpacity onPress={() => { commentStore.value.parent_id = item.id; }} >
                                                                 <Text style={[part.textDescriptionDark, part.paddingTLB]}>Trả lời</Text>
                                                             </TouchableOpacity>
                                                             : null
@@ -147,7 +182,8 @@ const part = StyleSheet.create({
     itemLike: {
         position: 'absolute',
         top: 3,
-        right: 10,
+        right: 0,
+
     },
     cardBottomInModal: {
         width: SIZES.DEVICE_WIDTH_SIZE - 10,
@@ -168,6 +204,12 @@ const part = StyleSheet.create({
         height: 26,
         borderRadius: 13,
         backgroundColor: COLORS.LIGHT_COLOR,
+    },
+    describeLight: {
+        fontSize: SIZES.DESCRIPTION_SIZE,
+        color: COLORS.GRAY_COLOR,
+        fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
+
     },
     inputTheme01: {
         fontFamily: (Platform.OS === 'ios') ? FONTS.MAIN_FONT : FONTS.MAIN_FONT,
@@ -202,7 +244,8 @@ const part = StyleSheet.create({
         paddingTop: 5,
     },
     titleSmallDark: {
-        fontFamily: FONTS.MAIN_FONT_BOLD,
+        fontWeight: '500',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: 15,
     },
     textDescriptionDark: {
@@ -212,6 +255,6 @@ const part = StyleSheet.create({
 
     },
     paddingLeft: {
-        paddingLeft: 5,
+        paddingLeft: 1,
     },
 });

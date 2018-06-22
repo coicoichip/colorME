@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, FlatList, RefreshControl, Image, TouchableOpacity, Dimensions, Modal, PanResponder, Platform } from "react-native";
-import { Container } from "native-base";
+import { Container, Button } from "native-base";
 import { STRINGS, COLORS, SIZES } from "../../constants";
 import Header from "../../commons/Header";
 import { observer } from "mobx-react";
@@ -12,6 +12,8 @@ import { formatImageLink } from "../../helper/index";
 import blogStore from "../blogs/blogStore";
 import ModalCheckInStudent from '../blogs/ModalCheckInStudent';
 import ModalAcceptCheckIn from '../blogs/ModalAcceptCheckIn';
+import IconDefault from '../../commons/IconDefault';
+// import LinearGradient from 'react-native-linear-gradient';
 import TextNullData from "../../commons/TextNullData";
 
 const { width } = Dimensions.get('window')
@@ -36,6 +38,52 @@ class RenderItem extends React.Component {
       </View>
     )
 
+  }
+}
+@observer
+class HeaderProducts extends React.Component {
+  render() {
+    return (
+      <View>
+        <TouchableOpacity activeOpacity={0.8} style={{ alignItems: 'center' }}
+          onPress={() => blogStore.isLoadingDetail == false ? navigate('DetailBlog', { slug: productsStore.data.slug, kind: productsStore.data.kind, id: productsStore.data.id }) : {}}>
+          <Image resizeMode={"cover"} source={{ uri: formatImageLink(productsStore.data.thumb_url) }} style={styles.imageFeature} />
+        </TouchableOpacity>
+        <View style={{ flexDirection: 'row', paddingHorizontal: 17, marginBottom: 10, position: 'absolute', bottom: 10 }}>
+          <View style={{ justifyContent: 'flex-start', flexDirection: 'row', flex: 1 }}>
+            <Button
+              transparent style={{ paddingRight: 5 }}
+            >
+              <IconDefault name="FontAwesome|heart" size={20}
+                color={COLORS.NAV_TITLE} />
+              <Text
+                style={[styles.describeLight, styles.paddingLeft]}>5</Text>
+            </Button>
+            <Button transparent style={{ paddingRight: 5 }}
+            >
+              <IconDefault name="FontAwesome|comment"
+                size={20}
+                color={COLORS.NAV_TITLE} />
+              <Text
+                style={[styles.describeLight, styles.paddingLeft]}>5</Text>
+            </Button>
+            <Button transparent style={{ paddingRight: 5 }}>
+              <IconDefault name="MaterialCommunityIcons|eye"
+                size={23}
+                color={COLORS.NAV_TITLE} />
+              <Text
+                style={[styles.describeLight, styles.paddingLeft]}>5</Text>
+            </Button>
+          </View>
+          <View style={{ justifyContent: 'flex-end' }}>
+            <Button transparent>
+              <IconDefault name="FontAwesome|star" size={23}
+                color={'#ffd800'} />
+            </Button>
+          </View>
+        </View>
+      </View>
+    )
   }
 }
 @observer
@@ -178,12 +226,9 @@ class ProductsContainer extends React.Component {
               // }
               />
             }
-            ListHeaderComponent= {() => {return(
-              <TouchableOpacity activeOpacity={0.8} style={{alignItems: 'center'}}
-                onPress={() => blogStore.isLoadingDetail == false ? navigate('DetailBlog', { slug: productsStore.data.slug, kind: productsStore.data.kind, id: productsStore.data.id }) : {}}>
-                <Image resizeMode={"cover"} source={{ uri: formatImageLink(productsStore.data.thumb_url) }} style={styles.imageFeature} />
-              </TouchableOpacity>
-            )}}
+            ListHeaderComponent={() => {
+              return (<HeaderProducts/>)
+            }}
             ListFooterComponent={
               this.loadMore()
             }
@@ -212,7 +257,7 @@ const styles = StyleSheet.create({
   imageFeature: {
     height: SIZES.DEVICE_WIDTH_SIZE / 1.5 - 2,
     width: SIZES.DEVICE_WIDTH_SIZE - 1.5,
-    marginLeft : 1,
+    marginLeft: 1,
     marginRight: 1,
     marginBottom: 15,
     alignItems: 'center',
@@ -222,6 +267,15 @@ const styles = StyleSheet.create({
     width: SIZES.DEVICE_WIDTH_SIZE / 3 - 1.5,
     marginBottom: 2,
     marginLeft: 1,
+  },
+  describeLight: {
+    fontSize: SIZES.DESCRIPTION_SIZE,
+    color: COLORS.MAIN_COLOR,
+    fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
+
+  },
+  paddingLeft: {
+    paddingLeft: 5,
   },
 });
 
