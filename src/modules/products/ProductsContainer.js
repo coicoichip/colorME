@@ -43,6 +43,7 @@ class RenderItem extends React.Component {
 @observer
 class HeaderProducts extends React.Component {
   render() {
+    const {navigate} = this.props;
     return (
       <View>
         <TouchableOpacity activeOpacity={0.8} style={{ alignItems: 'center' }}
@@ -227,7 +228,7 @@ class ProductsContainer extends React.Component {
               />
             }
             ListHeaderComponent={() => {
-              return (<HeaderProducts/>)
+              return (<HeaderProducts navigate = {navigate}/>)
             }}
             ListFooterComponent={
               this.loadMore()
