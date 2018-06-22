@@ -51,7 +51,7 @@ export default commentStore = new class commentStore {
         .catch(err => {})
     }
     @action
-    postComment(product_id, value,scrollTo) {
+    postComment(product_id, value) {
         this.isLoadingPost = true;
         postCommentOnePostApi(product_id, value).then(async res => {
             this.isLoadingPost = false;
@@ -59,7 +59,7 @@ export default commentStore = new class commentStore {
             this.value.comment_content = "";
             this.value.parent_id = 0;
             this.comments.push({...this.commentPost, ...{liked : false}});
-            // scrollTo();
+            
         })
             .catch(err => { this.isLoadingPost = false; })
     }
