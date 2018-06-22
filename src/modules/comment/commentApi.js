@@ -38,3 +38,19 @@ export async function likeCommentApi(comment_id){
     console.log(url);
     return axios.post(url);
 }
+export async function likePostApi(product_id){
+    let url = "";
+    await AsyncStorage.getItem('@UserToken').then((value)=> {
+       url = APIS.COLOR_ME + '/product/' + product_id + '/like?token=' + value;
+    })
+    console.log(url)
+    return axios.post(url);
+}
+export async function unlikePostApi(product_id){
+    let url = "";
+    await AsyncStorage.getItem('@UserToken').then((value)=> {
+       url = APIS.COLOR_ME + '/product/' + product_id + '/unlike?token=' + value;
+    })
+    return axios.post(url);
+}
+

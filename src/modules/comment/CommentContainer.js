@@ -27,19 +27,9 @@ import getProfileStore from "../profile/profileStore";
 import TextInputContainer from "./TextInputContainer";
 @observer
 export default class CommentContainer extends Component {
-    componentWillMount() {
-        commentStore.getComment(this.props.id, getProfileStore.updateUser.name);
-        commentStore.getInfoPost(this.props.id);
-    }
-    convertComment(comments) {
-        let parrent = comments.filter(item => item.parent_id == 0);
-        let children = comments.filter(item => item.parent_id !== 0);
-        return parrent.map((item) => {
-            return {
-                id: item.id,
-                comments_related: [item].concat(children.filter(post => post.parent_id == item.id))
-            }
-        })
+    constructor() {
+        super();
+
     }
     deleteComment(id) {
         Alert.alert(
@@ -53,127 +43,78 @@ export default class CommentContainer extends Component {
             { cancelable: false }
         )
     }
+
     render() {
-
+     const {items, index}= this.props;
         return (
-            commentStore.isLoading == true ? null :
-                <View style={{ flex: 1, marginTop: -10 }}>
-                    <View style={{ flexDirection: 'row', paddingHorizontal: 17, marginBottom: 10 }}>
-                        <View style={{justifyContent: 'flex-start', flexDirection: 'row', flex: 1}}>
-                            <Button
-                                transparent style={{ paddingRight: 10 }}
+            
+            items.comments_related.map((item, index) => {
+                return (
+                    <View
+                        style={[item.parent_id === 0 ? part.cardCmt : part.cardCmtChild]}>
+                        <TouchableOpacity
+                            activeOpacity={0.8}
+                            style={part.paddingTRB}
+                            onPress={() => navigate('UserInNewFeed', { username: item.commenter.username })}
+                        >
+                            <Image
+                                style={item.parent_id === 0 ? part.avatarUserNormal : part.avatarUserSmall}
+                                source={item.commenter.avatar_url ? { uri: formatImageLink(item.commenter.avatar_url) } : require('../../../assets/image/colorMe.jpg')} />
+                        </TouchableOpacity>
+                        <View style={{ paddingRight: 20, flex: 1 }}>
+                            <View style={{ flexDirection: 'row', flex: 1 }}>
+                                <Text
+                                    style={[part.titleSmallDark, part.paddingTLB]}
+                                >
+                                    {item.commenter.name}
+                                </Text>
+                            </View>
+                            <Text
+                                style={[part.textDescriptionDark, { paddingLeft: 5 }]}
                             >
-                                <IconDefault name="FontAwesome|heart-o" size={20}
-                                    color={COLORS.ICON} />
+                                {item.content}
+                            </Text>
+                            <View style={{ flexDirection: 'row' }}>
                                 <Text
-                                    style={[part.describeLight, part.paddingLeft]}>{commentStore.dataInfoPost.likes_count ? commentStore.dataInfoPost.likes_count : '0'}</Text>
-                            </Button>
-                            <Button transparent style={{ paddingRight: 10 }}
-                            >
-                                <IconDefault name="FontAwesome|comment-o"
-                                    size={20}
-                                    color={COLORS.ICON} />
-                                <Text
-                                    style={[part.describeLight, part.paddingLeft]}>{commentStore.dataInfoPost.comments_count ? commentStore.dataInfoPost.comments_count : '0'}</Text>
-                            </Button>
-                            <Button transparent style={{ paddingRight: 10 }}>
-                                <IconDefault name="FontAwesome|circle-thin"
-                                    size={23}
-                                    color={COLORS.ICON} />
-                                <Text
-                                    style={[part.describeLight, part.paddingLeft]}>{commentStore.dataInfoPost.views_count ? commentStore.dataInfoPost.views_count : '0'}</Text>
-                            </Button>
+                                    style={[part.textDescriptionDark, part.paddingTLB]}
+                                >
+                                    {item.likes + " " + "lượt thích"}
+                                </Text>
+                                {getProfileStore.updateUser.id == item.commenter.id ?
+                                    <TouchableOpacity onPress={() => this.deleteComment(item.id)}>
+
+                                        <Text style={[part.textDescriptionDark, part.paddingTLB]}>Xoá</Text>
+                                    </TouchableOpacity>
+                                    : null
+                                }
+                                {
+                                    item.parent_id === 0 ?
+                                        <TouchableOpacity onPress={() => { commentStore.value.parent_id = item.id; }} >
+                                            <Text style={[part.textDescriptionDark, part.paddingTLB]}>Trả lời</Text>
+                                        </TouchableOpacity>
+                                        : null
+                                }
+                            </View>
                         </View>
-                        <View style={{justifyContent: 'flex-end'}}>
-                            <Button transparent>
-                                <IconDefault name="FontAwesome|star" size={23}
-                                    color={'#ffd800'} />
-                            </Button>
+                        <View style={[part.itemLike]}>
+                            <TouchableOpacity transparent onPress={() => {
+                                commentStore.likeComment(item)
+                            }}>
+                                <IconDefault name={(item.liked) ? 'FontAwesome|heart' : 'FontAwesome|heart-o'}
+                                    color={(item.liked) ? COLORS.MAIN_COLOR : COLORS.ICON}
+                                    size={15}
+                                    style={[part.paddingRight, part.marginTop]}
+                                />
+                            </TouchableOpacity>
                         </View>
-                    </View>
 
-                    <FlatList
-                        ref={'listSubject'}
-                        keyExtractor={item => item.id + ''}
-                        showsVerticalScrollIndicator={false}
-                        data={this.convertComment(commentStore.comments)}
-                        // onEndReached={() => this.getMoreSubjects()}
-                        // ListFooterComponent={
-                        //     this.loadMore()
-                        // }
-                        renderItem={({ item }) => {
-                            return (
-                                item.comments_related.map((item, index) => {
-                                    return (
-                                        <View
-                                            style={[item.parent_id === 0 ? part.cardCmt : part.cardCmtChild]}>
-                                            <TouchableOpacity
-                                                activeOpacity={0.8}
-                                                style={part.paddingTRB}
-                                                onPress={() => navigate('UserInNewFeed', { username: item.commenter.username })}
-                                            >
-                                                <Image
-                                                    style={item.parent_id === 0 ? part.avatarUserNormal : part.avatarUserSmall}
-                                                    source={item.commenter.avatar_url ? { uri: formatImageLink(item.commenter.avatar_url) } : require('../../../assets/image/colorMe.jpg')} />
-                                            </TouchableOpacity>
-                                            <View style={{ paddingRight: 20, flex: 1 }}>
-                                                <View style={{ flexDirection: 'row', flex: 1 }}>
-                                                    <Text
-                                                        style={[part.titleSmallDark, part.paddingTLB]}
-                                                    >
-                                                        {item.commenter.name}
-                                                    </Text>
-                                                </View>
-                                                <Text
-                                                    style={[part.textDescriptionDark, {paddingLeft: 5}]}
-                                                >
-                                                    {item.content}
-                                                </Text>
-                                                <View style={{ flexDirection: 'row' }}>
-                                                    <Text
-                                                        style={[part.textDescriptionDark, part.paddingTLB]}
-                                                    >
-                                                        {item.likes + " " + "lượt thích"}
-                                                    </Text>
-                                                    {getProfileStore.updateUser.id == item.commenter.id ?
-                                                        <TouchableOpacity onPress={() => this.deleteComment(item.id)}>
-
-                                                            <Text style={[part.textDescriptionDark, part.paddingTLB]}>Xoá</Text>
-                                                        </TouchableOpacity>
-                                                        : null
-                                                    }
-                                                    {
-                                                        item.parent_id === 0 ?
-                                                            <TouchableOpacity onPress={() => { commentStore.value.parent_id = item.id; }} >
-                                                                <Text style={[part.textDescriptionDark, part.paddingTLB]}>Trả lời</Text>
-                                                            </TouchableOpacity>
-                                                            : null
-                                                    }
-                                                </View>
-                                            </View>
-                                            <View style={[part.itemLike]}>
-                                                <TouchableOpacity transparent onPress={() => {
-                                                    commentStore.likeComment(item)
-                                                }}>
-                                                    <IconDefault name={(item.liked) ? 'FontAwesome|heart' : 'FontAwesome|heart-o'}
-                                                        color={(item.liked) ? COLORS.MAIN_COLOR : COLORS.ICON}
-                                                        size={15}
-                                                        style={[part.paddingRight, part.marginTop]}
-                                                    />
-                                                </TouchableOpacity>
-                                            </View>
-
-                                        </View>)
-                                })
-                            )
-                        }
-                        }
-                    />
-                </View>
+                    </View>)
+                        
+            })
         )
     }
-
 }
+
 const part = StyleSheet.create({
     wrapperContainer: {
         padding: 0,

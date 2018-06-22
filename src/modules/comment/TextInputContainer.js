@@ -26,6 +26,11 @@ import IconDefault from '../../commons/IconDefault';
 import { observer } from "mobx-react"
 @observer
 export default class TextInputContainer extends Component {
+    
+        postComment = async () => {
+            await commentStore.postComment(this.props.id, commentStore.value).then(() => this.props.scrollToItem());
+            
+    }
     render() {
         return (
             <KeyboardAvoidingView
@@ -57,9 +62,7 @@ export default class TextInputContainer extends Component {
                                     commentStore.checkFocus['one'] = input}}
                                 underlineColorAndroid={'transparent'}
                                 returnKeyType={'send'}
-                                onSubmitEditing={() => {
-                                    commentStore.postComment(this.props.id, commentStore.value);
-                                }}
+                                onSubmitEditing={this.postComment}
                                 // placeholderTextColor={color.icon}
                                 style={part.inputTheme01}
                                 onChangeText={
@@ -86,10 +89,9 @@ export default class TextInputContainer extends Component {
                                 () => {
                                 }
                                 :
-                                () => {
-                                    commentStore.postComment(this.props.id, commentStore.value);
+                                 this.postComment
                                 }
-                        }
+                        
                     >
                         <IconDefault active name={'FontAwesome|paper-plane'}
                             size={20}

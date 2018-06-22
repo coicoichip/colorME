@@ -1,6 +1,7 @@
 import { observable, action, computed } from "mobx";
-import { getCommentOnePost, postCommentOnePostApi, deleteCommentApi, likeCommentApi, getInfoAboutPostApi } from "./commentApi";
+import { getCommentOnePost, postCommentOnePostApi, deleteCommentApi, likeCommentApi, getInfoAboutPostApi, likePostApi, unlikePostApi } from "./commentApi";
 import { Alert, AsyncStorage } from "react-native";
+
 convertComment = (comments) => {
     let parrent = comments.filter(item => item.parent_id == 0);
     let children = comments.filter(item => item.parent_id !== 0);
@@ -23,8 +24,7 @@ export default commentStore = new class commentStore {
         parent_id: 0,
         comment_content: '',
     }
-
-
+    @observable liked = false; 
     @action
     getComment(products_id, name) {
         console.log(name);
@@ -43,22 +43,23 @@ export default commentStore = new class commentStore {
             })
     }
     @action
-    getInfoPost(product_id){
+    getInfoPost(product_id, name){
         getInfoAboutPostApi(product_id).then(res => {
-            this.dataInfoPost = res.data;
+            this.dataInfoPost = {likes_count : res.data.likes_count, comments_count : res.data.comments_count, views_count : res.data.views_count};
+            this.liked = (res.data.likers.length == 0|| res.data.likers.filter(item => item.name == name).length ==0) ? false : true;
         })
         .catch(err => {})
     }
     @action
     postComment(product_id, value) {
         this.isLoadingPost = true;
-        postCommentOnePostApi(product_id, value).then(res => {
+        postCommentOnePostApi(product_id, value).then(async res => {
             this.isLoadingPost = false;
             this.commentPost = res.data;
-            this.comments.push({...this.commentPost, ...{liked : false}});
             this.value.comment_content = "";
             this.value.parent_id = 0;
-            console.log(res);
+            this.comments.push({...this.commentPost, ...{liked : false}});
+            
         })
             .catch(err => { this.isLoadingPost = false; })
     }
@@ -78,9 +79,25 @@ export default commentStore = new class commentStore {
             item.liked = !item.liked;
             this.comments[index] = item;
             this.comments = this.comments.map(item => {return item})
-            console.log(this.comments[index], index)
         }).catch(err => console.log(err))
     }
+    @action
+    likePost(product_id){
+       if(this.liked){
+            unlikePostApi(product_id).then((res)=> {
+                console.log(res)
+                this.liked = !this.liked;
+                this.dataInfoPost.likes_count -=1;
+            }).catch(err => console.log(err))
+       }
+       else{
+           likePostApi(product_id).then((res)=> {
+               this.liked = !this.liked;
+               this.dataInfoPost.likes_count +=1;
+           }).catch(err=> console.log(err))
+       }
+    }
+
 
 }
 
