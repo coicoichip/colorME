@@ -14,4 +14,6 @@ export const COLORS = {
     BLUE_COLOR: '#1783FF',
     GREEN_COLOR: '#009900',
     GREEN : '#009900',
+    ICON : 'rgb(214, 214, 214)',
+    NAV_TITLE : 'rgb(255, 255, 255)',
 }

@@ -58,7 +58,8 @@ export default class TextInputContainer extends Component {
                                 underlineColorAndroid={'transparent'}
                                 returnKeyType={'send'}
                                 onSubmitEditing={() => {
-                                    commentStore.postComment(this.props.id, commentStore.value);
+                                     commentStore.postComment(this.props.id, commentStore.value, this.props.scrollToItem());
+
                                 }}
                                 // placeholderTextColor={color.icon}
                                 style={part.inputTheme01}
@@ -86,8 +87,9 @@ export default class TextInputContainer extends Component {
                                 () => {
                                 }
                                 :
-                                () => {
-                                    commentStore.postComment(this.props.id, commentStore.value);
+                                 async () => {
+                                    await commentStore.postComment(this.props.id, commentStore.value);
+                                    this.props.scrollToItem()
                                 }
                         }
                     >

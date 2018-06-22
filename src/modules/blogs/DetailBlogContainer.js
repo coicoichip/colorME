@@ -23,14 +23,14 @@ import styles from '../../styles/styles';
 import * as size from '../../styles/sizes';
 import { formatImageLink } from "../../helper/index"
 import blogStore from "./blogStore";
-import commentStore from "../comment/commentStore";
 import TextInputContainer from "../comment/TextInputContainer"
 import { ButtonCommon } from "../../commons/Button"
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import IconDefault from '../../commons/IconDefault';
-import CommentContainer from "../comment/CommentContainer"
+import CommentContainer from "../comment/CommentContainer";
+import commentStore from "../comment/commentStore";
 import { observer } from "mobx-react"
-
+import HeaderDetailContainer from "./HeaderDetailContainer";
 @observer
 class DetailBlogContainer extends Component {
     constructor() {
@@ -40,10 +40,10 @@ class DetailBlogContainer extends Component {
     componentWillMount() {
         const { params } = this.props.navigation.state;
         blogStore.getDetailBlog(params.slug);
+        commentStore.getComment(params.id, getProfileStore.updateUser.name);
+        commentStore.getInfoPost(params.id, getProfileStore.updateUser.name);
     }
-    getContent(url, content) {
-        return "<p><img src=" + formatImageLink(url) + ' style="width: 100%px; height: 100%px"></p>' + content
-    }
+   
     // getContent(content){
     //   const {params} = this.props.navigation.state;
     //   if(params.kind == "resource") {
@@ -52,60 +52,22 @@ class DetailBlogContainer extends Component {
     //    return content.slice(0, end)
     //   }
     // }
-    getLink(content) {
-        const { params } = this.props.navigation.state;
-        if (params.kind == "resource") {
-            let str1 = "[[share_to_download]]"
-            let str2 = "[[/share_to_download]]"
-            let start = content.indexOf(str1);
-            let end = content.indexOf(str2);
-            return content.slice(start + str1.length, end)
-        }
+    
+    convertComment(comments) {
+        let parrent = comments.filter(item => item.parent_id == 0);
+        let children = comments.filter(item => item.parent_id !== 0);
+        return parrent.map((item) => {
+            return {
+                id: item.id,
+                comments_related: [item].concat(children.filter(post => post.parent_id == item.id))
+            }
+        })
     }
-    // async checkDelete(item){
-    //     const id = await AsyncStorage.getItem('@ID');
-    //     console.log(id + "aaaaaaa");
-    //         if (id == item.commenter.id) {return(
-    //             <TouchableOpacity onPress={() => commentStore.deleteComment(item.id)}>
-    //                 <Text style={{ marginLeft: 30 }}>xoá</Text>
-    //             </TouchableOpacity>)
-    //         }
-
-
-    renderDownLoad(link) {
-        const { params } = this.props.navigation.state;
-        if (params.kind == "resource") {
-            return (
-                <TouchableOpacity activeOpacity={0.8} >
-                    <View style={styles.wrapperButton}>
-                        <ButtonCommon
-                            haveColorGreen
-                            onPress={() => { Linking.openURL(this.getLink(link)) }}
-                            label={"Tải Ngay".toUpperCase()}
-                            text={{
-                                fontFamily: 'Roboto-Bold',
-                                fontSize: SIZES.SUBTITLE_SIZE
-                            }}
-                        />
-                    </View>
-
-                </TouchableOpacity>
-            )
-        } else {
-            return null
-        }
+    scrollToItem() {
+        this.flatList.scrollToEnd(); 
     }
 
-    editString(string) {
-        const { params } = this.props.navigation.state;
-        let index = string.indexOf("<p><br></p><p><a");
-        if (index == -1) index = string.indexOf("<a");
-        let string1 = string.slice(index, string.length);
-        if (params.kind === "resource")
-            return (string.replace(string1, ""));
-        else return string;
-    }
-
+    
     render() {
         const { params } = this.props.navigation.state;
         const { navigate } = this.props.navigation;
@@ -130,51 +92,22 @@ class DetailBlogContainer extends Component {
                     </TouchableOpacity>
                 </View>
                 <FlatList
-                    ref={'detailBlog'}
+                    ref={(ref) => this.flatList = ref}
                     keyExtractor={item => item.id + ''}
                     showsVerticalScrollIndicator={false}
-                    data={[1]}
+                    data={this.convertComment(commentStore.comments)}
                     renderItem={() => { }}
                     ListHeaderComponent={() => {
                         return (
-                            isLoadingDetail
-                                ?
-                                <Loading />
-                                :
-
-                                <View style={{ flex: 1 }}>
-                                    <View activeOpacity={0.8} style={{ marginBottom: 15 }}
-                                    >
-                                        {/* <View style={{alignItems: 'center'}}>
-                                        <Image source={{ uri: detailBlog.url ? formatImageLink(detailBlog.url): "" }} style={styles.imageAvatarModuleEmails} />
-                                    </View> */}
-                                        <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
-
-
-
-                                            <View style={{ marginTop: 5, flexDirection: 'row', alignItems: 'center' }}>
-                                                <Image
-                                                    style={{ height: 20, width: 20, borderRadius: 10 }}
-                                                    source={detailBlog.author.avatar_url !== "http://" ? { uri: formatImageLink(detailBlog.author.avatar_url) } : require('../../../assets/image/colorMe.jpg')}
-                                                />
-                                                <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5 }}>{detailBlog.author.name.trim()}</Text>
-                                                <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5, color: 'gray' }}>{detailBlog.time.trim()}</Text>
-                                            </View>
-                                        </View>
-                                    </View>
-
-                                    <WebViewAutoHeight source={this.getContent(detailBlog.url, detailBlog.content) !== "" ? this.editString(this.getContent(detailBlog.url, detailBlog.content)) : ''} />
-                                    {this.renderDownLoad(detailBlog.content)}
-
-                                </View>
+                            <HeaderDetailContainer params = {params}/>
                         )
                     }}
-                    // onEndReached={() => this.getMoreSubjects()}
-                    ListFooterComponent={
-                        <CommentContainer id={params.id} />
-                    }
+                    
+                    renderItem={({item, index}) => 
+                     <CommentContainer items = {item} index = {index}/>
+                }
                 />
-                <TextInputContainer id={params.id} />
+                <TextInputContainer id={params.id} scrollToItem = {this.scrollToItem.bind(this)} />
 
             </Container>
         );
