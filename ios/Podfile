@@ -29,7 +29,6 @@ target 'colorMe' do
   pod 'react-native-network-info', :path => '../node_modules/react-native-network-info'
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
   platform :ios, '9.0'
-  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
   target 'colorMeTests' do
     inherit! :search_paths

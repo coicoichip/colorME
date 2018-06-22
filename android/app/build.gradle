@@ -163,7 +163,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-linear-gradient')
     compile project(':react-native-onesignal')
     compile project(':react-native-image-crop-picker')
     compile project(':react-native-code-push')
