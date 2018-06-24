@@ -93,7 +93,6 @@ export default class CommentContainer extends Component {
                     </View>
 
                     <FlatList
-                        ref={'listSubject'}
                         keyExtractor={item => item.id + ''}
                         showsVerticalScrollIndicator={false}
                         data={this.convertComment(commentStore.comments)}
