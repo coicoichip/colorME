@@ -100,9 +100,10 @@ export default class CommentContainer extends Component {
                         // ListFooterComponent={
                         //     this.loadMore()
                         // }
-                        renderItem={({ item }) => {
+                        renderItem={({ item, index }) => {
+                            commentStore.commentsChild[index] = item.comments_related;
                             return (
-                                item.comments_related.map((post, index) => {
+                                item.comments_related.map((post, i) => {
                                     return (
                                         <View
                                             style={[post.parent_id === 0 ? part.cardCmt : part.cardCmtChild]}>
@@ -143,7 +144,7 @@ export default class CommentContainer extends Component {
                                                     }
                                                     {
                                                         post.parent_id === 0 ?
-                                                            <TouchableOpacity onPress={() => { commentStore.value.parent_id = post.id; navigate('ReplyComment', {items: item, id: this.props.id }) }} >
+                                                            <TouchableOpacity onPress={() => { commentStore.value.parent_id = post.id; navigate('ReplyComment', {index: index, id: this.props.id }) }} >
                                                                 <Text style={[part.textDescriptionDark, part.paddingTLB]}>Trả lời</Text>
                                                             </TouchableOpacity>
                                                             : null

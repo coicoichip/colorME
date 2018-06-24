@@ -27,6 +27,18 @@ import getProfileStore from "../profile/profileStore";
 import TextInputContainer from "./TextInputContainer";
 @observer
 export default class ReplyCommentContainer extends Component {
+    deleteComment(id) {
+        Alert.alert(
+            'Thông báo',
+            "Bạn chắc chắn muốn xoá bình luận này",
+            [
+
+                { text: 'Cancel', onPress: () => { }, style: 'cancel' },
+                { text: 'OK', onPress: () => commentStore.deleteComment(id) },
+            ],
+            { cancelable: false }
+        )
+    }
     render() {
         const { navigate } = this.props.navigation;
         const { params } = this.props.navigation.state;
@@ -52,7 +64,7 @@ export default class ReplyCommentContainer extends Component {
                     ref={(ref) => this.flatList = ref}
                     keyExtractor={item => item.id + ''}
                     showsVerticalScrollIndicator={false}
-                    data={params.items.comments_related}
+                    data={commentStore.commentsChild[params.index]}
                     renderItem={({ item }) => {
                         return (
                             <View
