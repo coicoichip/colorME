@@ -28,14 +28,14 @@ import { observer } from "mobx-react"
 export default class TextInputContainer extends Component {
     
         postComment = async () => {
-            await commentStore.postComment(this.props.id, commentStore.value);
-            setTimeout(() => this.props.flatList.scrollToEnd(), 2000);
+            await commentStore.postComment(this.props.id, commentStore.value, getProfileStore.updateUser);
+            setTimeout(() => this.props.flatList.scrollToEnd(), 200);
             
     }
     render() {
         return (
             <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'position' : undefined}
+                behavior={Platform.OS === 'ios' ? 'position' : 'padding'}
                 keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : 200}
                 style={{
                     justifyContent: 'center',
@@ -63,7 +63,7 @@ export default class TextInputContainer extends Component {
                                     commentStore.checkFocus['one'] = input}}
                                 underlineColorAndroid={'transparent'}
                                 returnKeyType={'send'}
-                                onSubmitEditing={this.postComment}
+                                onSubmitEditing={ commentStore.value.comment_content == '' ? () => {} : this.postComment}
                                 // placeholderTextColor={color.icon}
                                 style={part.inputTheme01}
                                 onChangeText={

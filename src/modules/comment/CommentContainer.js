@@ -54,12 +54,12 @@ export default class CommentContainer extends Component {
         )
     }
     render() {
-        const {navigate} = this.props;
+        const { navigate } = this.props;
         return (
             commentStore.isLoading == true ? null :
                 <View style={{ flex: 1, marginTop: -10 }}>
                     <View style={{ flexDirection: 'row', paddingHorizontal: 17, marginBottom: 10 }}>
-                        <View style={{justifyContent: 'flex-start', flexDirection: 'row', flex: 1}}>
+                        <View style={{ justifyContent: 'flex-start', flexDirection: 'row', flex: 1 }}>
                             <Button
                                 transparent style={{ paddingRight: 10 }}
                             >
@@ -84,7 +84,7 @@ export default class CommentContainer extends Component {
                                     style={[part.describeLight, part.paddingLeft]}>{commentStore.dataInfoPost.views_count ? commentStore.dataInfoPost.views_count : '0'}</Text>
                             </Button>
                         </View>
-                        <View style={{justifyContent: 'flex-end'}}>
+                        <View style={{ justifyContent: 'flex-end' }}>
                             <Button transparent>
                                 <IconDefault name="FontAwesome|star" size={23}
                                     color={'#ffd800'} />
@@ -96,10 +96,6 @@ export default class CommentContainer extends Component {
                         keyExtractor={item => item.id + ''}
                         showsVerticalScrollIndicator={false}
                         data={this.convertComment(commentStore.comments)}
-                        // onEndReached={() => this.getMoreSubjects()}
-                        // ListFooterComponent={
-                        //     this.loadMore()
-                        // }
                         renderItem={({ item, index }) => {
                             commentStore.commentsChild[index] = item.comments_related;
                             return (
@@ -125,31 +121,43 @@ export default class CommentContainer extends Component {
                                                     </Text>
                                                 </View>
                                                 <Text
-                                                    style={[part.textDescriptionDark, {paddingLeft: 5}]}
+                                                    style={[part.textDescriptionDark, { paddingLeft: 5 }]}
                                                 >
                                                     {post.content}
                                                 </Text>
-                                                <View style={{ flexDirection: 'row' }}>
-                                                    <Text
-                                                        style={[part.textDescriptionDark, part.paddingTLB]}
-                                                    >
-                                                        {post.likes + " " + "lượt thích"}
-                                                    </Text>
-                                                    {getProfileStore.updateUser.id == post.commenter.id ?
-                                                        <TouchableOpacity onPress={() => this.deleteComment(post.id)}>
+                                                {
+                                                    post.isLoading == true
+                                                        ?
+                                                        <View>
+                                                        <Text
+                                                            style={[part.textDescriptionDark, part.paddingTLB]}
+                                                        >
+                                                            {"Đang đăng..."}
+                                                        </Text>
+                                                        </View>
+                                                        :
+                                                        <View style={{ flexDirection: 'row' }}>
+                                                            <Text
+                                                                style={[part.textDescriptionDark, part.paddingTLB]}
+                                                            >
+                                                                {post.likes + " " + "lượt thích"}
+                                                            </Text>
+                                                            {getProfileStore.updateUser.id == post.commenter.id ?
+                                                                <TouchableOpacity onPress={() => this.deleteComment(post.id)}>
 
-                                                            <Text style={[part.textDescriptionDark, part.paddingTLB]}>Xoá</Text>
-                                                        </TouchableOpacity>
-                                                        : null
-                                                    }
-                                                    {
-                                                        post.parent_id === 0 ?
-                                                            <TouchableOpacity onPress={() => { commentStore.value.parent_id = post.id; navigate('ReplyComment', {index: index, id: this.props.id }) }} >
-                                                                <Text style={[part.textDescriptionDark, part.paddingTLB]}>Trả lời</Text>
-                                                            </TouchableOpacity>
-                                                            : null
-                                                    }
-                                                </View>
+                                                                    <Text style={[part.textDescriptionDark, part.paddingTLB]}>Xoá</Text>
+                                                                </TouchableOpacity>
+                                                                : null
+                                                            }
+                                                            {
+                                                                post.parent_id === 0 ?
+                                                                    <TouchableOpacity onPress={() => { commentStore.value.parent_id = post.id; navigate('ReplyComment', { index: index, id: this.props.id }) }} >
+                                                                        <Text style={[part.textDescriptionDark, part.paddingTLB]}>Trả lời</Text>
+                                                                    </TouchableOpacity>
+                                                                    : null
+                                                            }
+                                                        </View>
+                                                }
                                             </View>
                                             <View style={[part.itemLike]}>
                                                 <TouchableOpacity transparent onPress={() => {
