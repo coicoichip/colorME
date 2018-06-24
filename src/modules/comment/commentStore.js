@@ -25,6 +25,7 @@ export default commentStore = new class commentStore {
         comment_content: '',
     }
     @observable liked = false; 
+    @observable check = 0;
     @action
     getComment(products_id, name) {
         console.log(name);
@@ -58,7 +59,7 @@ export default commentStore = new class commentStore {
             this.commentPost = res.data;
             this.value.comment_content = "";
             this.value.parent_id = 0;
-            this.comments.push({...this.commentPost, ...{liked : false}});
+            await this.comments.push({...this.commentPost, ...{liked : false}}).then(() => this.check = 1);
             
         })
             .catch(err => { this.isLoadingPost = false; })

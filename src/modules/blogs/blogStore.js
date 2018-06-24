@@ -21,6 +21,7 @@ export default blogStore = new class BlogStore {
     @observable modalVisible = false;
     @observable modalVisible1 = false;
     @observable check = 2;
+    @observable index = 0;
 
     @action
     getBlog(kind, page,tag,action) {

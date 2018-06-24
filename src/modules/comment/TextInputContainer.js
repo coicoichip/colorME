@@ -28,7 +28,8 @@ import { observer } from "mobx-react"
 export default class TextInputContainer extends Component {
     
         postComment = async () => {
-            await commentStore.postComment(this.props.id, commentStore.value).then(() => this.props.scrollToItem());
+            await commentStore.postComment(this.props.id, commentStore.value);
+            setTimeout(() => this.props.flatList.scrollToEnd(), 2000);
             
     }
     render() {

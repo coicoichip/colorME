@@ -30,9 +30,12 @@ import commentStore from "../comment/commentStore";
 import { observer } from "mobx-react"
 
 @observer
-class HeaderDetailContainer extends Component {
+class HeaderDetailContainer extends React.PureComponent {
     getContent(url, content) {
         return "<p><img src=" + formatImageLink(url) + ' style="width: 100%px; height: 100%px"></p>' + content
+    }
+    shouldComponentUpdate(){
+        return false;
     }
     getLink(content) {
         const { params } = this.props;
@@ -82,7 +85,7 @@ class HeaderDetailContainer extends Component {
         const{detailBlog, isLoadingDetail} = blogStore;
         const{params} = this.props;
         return (
-           isLoadingDetail || commentStore.isLoading
+            isLoadingDetail || commentStore.isLoading
             ?
             <Loading />
             :
@@ -90,7 +93,9 @@ class HeaderDetailContainer extends Component {
             <View style={{ flex: 1 }}>
                 <View activeOpacity={0.8} style={{ marginBottom: 15 }}
                 >
-                   
+                    {/* <View style={{alignItems: 'center'}}>
+                    <Image source={{ uri: detailBlog.url ? formatImageLink(detailBlog.url): "" }} style={styles.imageAvatarModuleEmails} />
+                </View> */}
                     <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
 
 
@@ -105,44 +110,9 @@ class HeaderDetailContainer extends Component {
                         </View>
                     </View>
                 </View>
-                
+
                 <WebViewAutoHeight source={this.getContent(detailBlog.url, detailBlog.content) !== "" ? this.editString(this.getContent(detailBlog.url, detailBlog.content)) : ''} />
                 {this.renderDownLoad(detailBlog.content)}
-                <View style={{ flexDirection: 'row', paddingHorizontal: 17, marginBottom: 10 }}>
-                    <View style={{ justifyContent: 'flex-start', flexDirection: 'row', flex: 1 }}>
-                        <TouchableOpacity
-                            style={{ marginTop: 10, flexDirection: 'row', marginRight: 5 }}
-                            activeOpacity={0.8}
-                            onPress={() => commentStore.likePost(params.id)}
-                        >
-                            <IconDefault name={(commentStore.liked) ? 'FontAwesome|heart' : 'FontAwesome|heart-o'} size={20}
-                                color={(commentStore.liked) ? COLORS.MAIN_COLOR : COLORS.ICON} />
-                            <Text
-                                style={[part.describeLight, part.paddingLeft, { marginTop: 5 }]}>{commentStore.dataInfoPost.likes_count ? commentStore.dataInfoPost.likes_count : '0'}</Text>
-                        </TouchableOpacity>
-                        <Button transparent style={{ paddingRight: 10 }}
-                        >
-                            <IconDefault name="FontAwesome|comment-o"
-                                size={20}
-                                color={COLORS.ICON} />
-                            <Text
-                                style={[part.describeLight, part.paddingLeft]}>{commentStore.dataInfoPost.comments_count ? commentStore.dataInfoPost.comments_count : '0'}</Text>
-                        </Button>
-                        <Button transparent style={{ paddingRight: 10 }}>
-                            <IconDefault name="FontAwesome|circle-thin"
-                                size={23}
-                                color={COLORS.ICON} />
-                            <Text
-                                style={[part.describeLight, part.paddingLeft]}>{commentStore.dataInfoPost.views_count ? commentStore.dataInfoPost.views_count : '0'}</Text>
-                        </Button>
-                    </View>
-                    <View style={{ justifyContent: 'flex-end' }}>
-                        <Button transparent>
-                            <IconDefault name="FontAwesome|star" size={23}
-                                color={'#ffd800'} />
-                        </Button>
-                    </View>
-                </View>
 
             </View>
         )
