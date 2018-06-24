@@ -136,9 +136,6 @@ class DetailBlogContainer extends Component {
                                 <View style={{ flex: 1 }}>
                                     <View activeOpacity={0.8} style={{ marginBottom: 15 }}
                                     >
-                                        {/* <View style={{alignItems: 'center'}}>
-                                        <Image source={{ uri: detailBlog.url ? formatImageLink(detailBlog.url): "" }} style={styles.imageAvatarModuleEmails} />
-                                    </View> */}
                                         <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
 
 
@@ -162,7 +159,7 @@ class DetailBlogContainer extends Component {
                     }}
                     // onEndReached={() => this.getMoreSubjects()}
                     ListFooterComponent={
-                        <CommentContainer id={params.id} />
+                        <CommentContainer id={params.id}  navigate = {navigate}/>
                     }
                 />
                 <TextInputContainer id={params.id} flatList={this.flatList}/>

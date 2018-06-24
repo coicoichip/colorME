@@ -116,7 +116,7 @@ export default class ReplyCommentContainer extends Component {
                     }
                     }
                 />
-                <TextInputContainer id={params.id} flatList={this.flatList} />
+                <TextInputContainer id={params.id} flatList={this.flatList} haveAutoFocus/>
             </Container>
         )
     }
