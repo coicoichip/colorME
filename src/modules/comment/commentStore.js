@@ -53,13 +53,20 @@ export default commentStore = new class commentStore {
         .catch(err => {})
     }
     @action
-    postComment(product_id, value) {
-        this.isLoadingPost = true;
+    postComment(product_id, value, user) {
+        let item = {
+              parent_id : value.parent_id,
+              content : value.comment_content,
+              commenter : user,
+              isLoading : true,
+        }
+        this.comments.push(item);
         postCommentOnePostApi(product_id, value).then(async res => {
             this.isLoadingPost = false;
             this.commentPost = res.data;
             this.value.comment_content = "";
-            await this.comments.push({...this.commentPost, ...{liked : false}}).then(() => this.check = 1);
+            this.comments[this.comments.length -1] = res.data;
+            this.comments = this.comments.map((item) => {return item});
             
         })
             .catch(err => { this.isLoadingPost = false; })

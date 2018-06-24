@@ -26,16 +26,16 @@ import IconDefault from '../../commons/IconDefault';
 import { observer } from "mobx-react"
 @observer
 export default class TextInputContainer extends Component {
-
-    postComment = async () => {
-        await commentStore.postComment(this.props.id, commentStore.value);
-        setTimeout(() => this.props.flatList.scrollToEnd(), 2000);
-
+    
+        postComment = async () => {
+            await commentStore.postComment(this.props.id, commentStore.value, getProfileStore.updateUser);
+            setTimeout(() => this.props.flatList.scrollToEnd(), 200);
+            
     }
     render() {
         return (
             <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'position' : undefined}
+                behavior={Platform.OS === 'ios' ? 'position' : 'padding'}
                 keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : 200}
                 style={{
                     justifyContent: 'center',
