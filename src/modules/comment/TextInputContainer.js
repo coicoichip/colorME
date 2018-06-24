@@ -26,11 +26,11 @@ import IconDefault from '../../commons/IconDefault';
 import { observer } from "mobx-react"
 @observer
 export default class TextInputContainer extends Component {
-    
-        postComment = async () => {
-            await commentStore.postComment(this.props.id, commentStore.value);
-            setTimeout(() => this.props.flatList.scrollToEnd(), 2000);
-            
+
+    postComment = async () => {
+        await commentStore.postComment(this.props.id, commentStore.value);
+        setTimeout(() => this.props.flatList.scrollToEnd(), 2000);
+
     }
     render() {
         return (
@@ -59,11 +59,16 @@ export default class TextInputContainer extends Component {
                                 autoFocus={this.props.haveAutoFocus ? true : false}
                                 placeholder='Viết bình luận'
                                 autoCorrect={false}
-                                ref = {input => {
-                                    commentStore.checkFocus['one'] = input}}
+                                ref={input => {
+                                    commentStore.checkFocus['one'] = input
+                                }}
                                 underlineColorAndroid={'transparent'}
                                 returnKeyType={'send'}
-                                onSubmitEditing={this.postComment}
+                                onSubmitEditing={commentStore.value.comment_content == ''
+                                    ?
+                                    () => { }
+                                    :
+                                    this.postComment}
                                 // placeholderTextColor={color.icon}
                                 style={part.inputTheme01}
                                 onChangeText={
@@ -90,9 +95,9 @@ export default class TextInputContainer extends Component {
                                 () => {
                                 }
                                 :
-                                 this.postComment
-                                }
-                        
+                                this.postComment
+                        }
+
                     >
                         <IconDefault active name={'FontAwesome|paper-plane'}
                             size={20}

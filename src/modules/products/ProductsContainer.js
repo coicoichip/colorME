@@ -50,7 +50,7 @@ class HeaderProducts extends React.Component {
           onPress={() => blogStore.isLoadingDetail == false ? navigate('DetailBlog', { slug: productsStore.data.slug, kind: productsStore.data.kind, id: productsStore.data.id }) : {}}>
           <Image resizeMode={"cover"} source={{ uri: formatImageLink(productsStore.data.thumb_url) }} style={styles.imageFeature} />
         </TouchableOpacity>
-        <View style={{ flexDirection: 'row', paddingHorizontal: 17, marginBottom: 10, position: 'absolute', bottom: 10 }}>
+        {/* <View style={{ flexDirection: 'row', paddingHorizontal: 17, marginBottom: 10, position: 'absolute', bottom: 10 }}>
           <View style={{ justifyContent: 'flex-start', flexDirection: 'row', flex: 1 }}>
             <Button
               transparent style={{ paddingRight: 5 }}
@@ -82,7 +82,7 @@ class HeaderProducts extends React.Component {
                 color={'#ffd800'} />
             </Button>
           </View>
-        </View>
+        </View> */}
       </View>
     )
   }
@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
     width: SIZES.DEVICE_WIDTH_SIZE - 1.5,
     marginLeft: 1,
     marginRight: 1,
-    marginBottom: 15,
+    marginBottom: 2,
     alignItems: 'center',
   },
   imageFeature2: {
