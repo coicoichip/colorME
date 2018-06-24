@@ -90,27 +90,39 @@ export default class ReplyCommentContainer extends Component {
                                     >
                                         {item.content}
                                     </Text>
-                                    <View style={{ flexDirection: 'row' }}>
-                                        <Text
-                                            style={[part.textDescriptionDark, part.paddingTLB]}
-                                        >
-                                            {item.likes + " " + "lượt thích"}
-                                        </Text>
-                                        {getProfileStore.updateUser.id == item.commenter.id ?
-                                            <TouchableOpacity onPress={() => this.deleteComment(item.id)}>
+                                    {
+                                                    item.isLoading == true
+                                                        ?
+                                                        <View>
+                                                        <Text
+                                                            style={[part.textDescriptionDark, part.paddingTLB]}
+                                                        >
+                                                            {"Đang đăng..."}
+                                                        </Text>
+                                                        </View>
+                                                        :
+                                                        <View style={{ flexDirection: 'row' }}>
+                                                            <Text
+                                                                style={[part.textDescriptionDark, part.paddingTLB]}
+                                                            >
+                                                                {item.likes + " " + "lượt thích"}
+                                                            </Text>
+                                                            {getProfileStore.updateUser.id == item.commenter.id ?
+                                                                <TouchableOpacity onPress={() => this.deleteComment(item.id)}>
 
-                                                <Text style={[part.textDescriptionDark, part.paddingTLB]}>Xoá</Text>
-                                            </TouchableOpacity>
-                                            : null
-                                        }
-                                        {
-                                            item.parent_id === 0 ?
-                                                <TouchableOpacity>
-                                                    <Text style={[part.textDescriptionDark, part.paddingTLB]}>Trả lời</Text>
-                                                </TouchableOpacity>
-                                                : null
-                                        }
-                                    </View>
+                                                                    <Text style={[part.textDescriptionDark, part.paddingTLB]}>Xoá</Text>
+                                                                </TouchableOpacity>
+                                                                : null
+                                                            }
+                                                            {
+                                                                item.parent_id === 0 ?
+                                                                    <TouchableOpacity onPress={() => { commentStore.value.parent_id = item.id; navigate('ReplyComment', { index: index, id: this.props.id }) }} >
+                                                                        <Text style={[part.textDescriptionDark, part.paddingTLB]}>Trả lời</Text>
+                                                                    </TouchableOpacity>
+                                                                    : null
+                                                            }
+                                                        </View>
+                                                }
                                 </View>
                                 <View style={[part.itemLike]}>
                                     <TouchableOpacity transparent onPress={() => {
