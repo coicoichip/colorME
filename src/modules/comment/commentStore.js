@@ -27,6 +27,7 @@ export default commentStore = new class commentStore {
     @observable liked = false; 
     @observable check = 0;
     @observable commentsChild = [];
+    @observable checkfocus = true;
     @action
     getComment(products_id, name) {
         console.log(name);
