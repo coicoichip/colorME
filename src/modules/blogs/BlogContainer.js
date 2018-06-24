@@ -116,7 +116,7 @@ class BlogContainer extends Component {
         
         return (
             <Container style={styles.wrapperContainer}>
-                <Header title={params.title ? params.title : STRINGS.NEWS_TITLE_HEADER} navigate={navigate} />
+                <Header title={params.title ? params.title : STRINGS.NEWS_TITLE_HEADER} navigate={navigate} onPress={this.scrollListBlog.bind(this)} />
                 {
                     blogStore.top_tags.length !== 0 ?
 

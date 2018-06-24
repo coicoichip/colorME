@@ -31,6 +31,7 @@ import SupportContainer from "../modules/support/SupportContainer";
 import RequestFunction from "../modules/support/RequestFunction";
 import FeedbackTeacher from "../modules/support/FeedbackTeacher";
 import ProductsContainer from '../modules/products/ProductsContainer';
+import ReplyCommentContainer from '../modules/comment/ReplyCommentContainer';
 const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
@@ -47,7 +48,8 @@ const Blog = StackNavigator(
     {
         BlogContainer: { screen: BlogContainer, path: "blogContainer" },
         DetailBlog: { screen: DetailBlogContainer },
-        ListBlog: { screen: ListBlog }
+        ListBlog: { screen: ListBlog },
+        ReplyComment: { screen: ReplyCommentContainer},
     }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'blog' } }
 
 );
@@ -89,12 +91,14 @@ const Promotion = StackNavigator(
     {
         BlogContainer: { screen: BlogContainer },
         DetailBlog: { screen: DetailBlogContainer },
+        ReplyComment: { screen: ReplyCommentContainer},
     }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'promotion', title: "Khuyến mãi" } }
 )
 const Products = StackNavigator({
     Products: { screen: ProductsContainer },
     DetailBlog: { screen: DetailBlogContainer },
-    ListBlog: { screen: ListBlog }
+    ListBlog: { screen: ListBlog },
+    ReplyComment: { screen: ReplyCommentContainer},
 }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'post' } })
 const Tab = TabNavigator({
     Course: {

@@ -121,7 +121,7 @@ class DetailBlogContainer extends Component {
                     </TouchableOpacity>
                 </View>
                 <FlatList
-                    ref={'detailBlog'}
+                    ref = {ref => this.flatList = ref}
                     keyExtractor={item => item.id + ''}
                     showsVerticalScrollIndicator={false}
                     data={[1]}
@@ -165,7 +165,7 @@ class DetailBlogContainer extends Component {
                         <CommentContainer id={params.id} />
                     }
                 />
-                <TextInputContainer id={params.id}/>
+                <TextInputContainer id={params.id} flatList={this.flatList}/>
 
             </Container>
         );
