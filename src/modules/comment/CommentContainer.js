@@ -54,7 +54,7 @@ export default class CommentContainer extends Component {
         )
     }
     render() {
-
+        const {navigate} = this.props;
         return (
             commentStore.isLoading == true ? null :
                 <View style={{ flex: 1, marginTop: -10 }}>
@@ -100,50 +100,51 @@ export default class CommentContainer extends Component {
                         // ListFooterComponent={
                         //     this.loadMore()
                         // }
-                        renderItem={({ item }) => {
+                        renderItem={({ item, index }) => {
+                            commentStore.commentsChild[index] = item.comments_related;
                             return (
-                                item.comments_related.map((item, index) => {
+                                item.comments_related.map((post, i) => {
                                     return (
                                         <View
-                                            style={[item.parent_id === 0 ? part.cardCmt : part.cardCmtChild]}>
+                                            style={[post.parent_id === 0 ? part.cardCmt : part.cardCmtChild]}>
                                             <TouchableOpacity
                                                 activeOpacity={0.8}
                                                 style={part.paddingTRB}
-                                                onPress={() => navigate('UserInNewFeed', { username: item.commenter.username })}
+                                                onPress={() => navigate('UserInNewFeed', { username: post.commenter.username })}
                                             >
                                                 <Image
-                                                    style={item.parent_id === 0 ? part.avatarUserNormal : part.avatarUserSmall}
-                                                    source={item.commenter.avatar_url ? { uri: formatImageLink(item.commenter.avatar_url) } : require('../../../assets/image/colorMe.jpg')} />
+                                                    style={post.parent_id === 0 ? part.avatarUserNormal : part.avatarUserSmall}
+                                                    source={post.commenter.avatar_url ? { uri: formatImageLink(post.commenter.avatar_url) } : require('../../../assets/image/colorMe.jpg')} />
                                             </TouchableOpacity>
                                             <View style={{ paddingRight: 20, flex: 1 }}>
                                                 <View style={{ flexDirection: 'row', flex: 1 }}>
                                                     <Text
                                                         style={[part.titleSmallDark, part.paddingTLB]}
                                                     >
-                                                        {item.commenter.name}
+                                                        {post.commenter.name}
                                                     </Text>
                                                 </View>
                                                 <Text
                                                     style={[part.textDescriptionDark, {paddingLeft: 5}]}
                                                 >
-                                                    {item.content}
+                                                    {post.content}
                                                 </Text>
                                                 <View style={{ flexDirection: 'row' }}>
                                                     <Text
                                                         style={[part.textDescriptionDark, part.paddingTLB]}
                                                     >
-                                                        {item.likes + " " + "lượt thích"}
+                                                        {post.likes + " " + "lượt thích"}
                                                     </Text>
-                                                    {getProfileStore.updateUser.id == item.commenter.id ?
-                                                        <TouchableOpacity onPress={() => this.deleteComment(item.id)}>
+                                                    {getProfileStore.updateUser.id == post.commenter.id ?
+                                                        <TouchableOpacity onPress={() => this.deleteComment(post.id)}>
 
                                                             <Text style={[part.textDescriptionDark, part.paddingTLB]}>Xoá</Text>
                                                         </TouchableOpacity>
                                                         : null
                                                     }
                                                     {
-                                                        item.parent_id === 0 ?
-                                                            <TouchableOpacity onPress={() => { commentStore.value.parent_id = item.id; }} >
+                                                        post.parent_id === 0 ?
+                                                            <TouchableOpacity onPress={() => { commentStore.value.parent_id = post.id; navigate('ReplyComment', {index: index, id: this.props.id }) }} >
                                                                 <Text style={[part.textDescriptionDark, part.paddingTLB]}>Trả lời</Text>
                                                             </TouchableOpacity>
                                                             : null
@@ -152,10 +153,10 @@ export default class CommentContainer extends Component {
                                             </View>
                                             <View style={[part.itemLike]}>
                                                 <TouchableOpacity transparent onPress={() => {
-                                                    commentStore.likeComment(item)
+                                                    commentStore.likeComment(post)
                                                 }}>
-                                                    <IconDefault name={(item.liked) ? 'FontAwesome|heart' : 'FontAwesome|heart-o'}
-                                                        color={(item.liked) ? COLORS.MAIN_COLOR : COLORS.ICON}
+                                                    <IconDefault name={(post.liked) ? 'FontAwesome|heart' : 'FontAwesome|heart-o'}
+                                                        color={(post.liked) ? COLORS.MAIN_COLOR : COLORS.ICON}
                                                         size={15}
                                                         style={[part.paddingRight, part.marginTop]}
                                                     />
