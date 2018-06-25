@@ -25,13 +25,12 @@ import IconDefault from '../../commons/IconDefault';
 import { observer } from "mobx-react";
 import getProfileStore from "../profile/profileStore";
 import TextInputContainer from "./TextInputContainer";
+
 @observer
 export default class ReplyCommentContainer extends Component {
     constructor() {
         super();
-        this.state = {
-            visibleHeight: Dimensions.get('window').height,
-        }
+
     }
     deleteComment(id) {
         Alert.alert(
@@ -48,9 +47,11 @@ export default class ReplyCommentContainer extends Component {
     render() {
         const { navigate } = this.props.navigation;
         const { params } = this.props.navigation.state;
-        return (
 
-            <Container style={part.wrapperContainer}>
+        return (
+            <View
+                style={[{ height:  (commentStore.height < Dimensions.get('window').height)? commentStore.height : commentStore.height-70}, part.wrapperContainer]}
+            >
                 <View style={[part.wrapperHeader, part.paddingLeftRight, { flexDirection: 'row' }]}>
                     <TouchableOpacity style={{ flex: 8, justifyContent: 'center' }}>
                         <Text style={[part.textHeaderScreen, { fontSize: 20 }]} >Phản hồi</Text>
@@ -123,7 +124,7 @@ export default class ReplyCommentContainer extends Component {
                                                 }
                                                 {
                                                     item.parent_id === 0 ?
-                                                        <TouchableOpacity onPress={() => { commentStore.value.parent_id = item.id; navigate('ReplyComment', { index: index, id: this.props.id }) }} >
+                                                        <TouchableOpacity onPress={() => { }} >
                                                             <Text style={[part.textDescriptionDark, part.paddingTLB]}>Trả lời</Text>
                                                         </TouchableOpacity>
                                                         : null
@@ -147,10 +148,8 @@ export default class ReplyCommentContainer extends Component {
                     }
                     }
                 />
-                <TextInputContainer id={params.id} flatList={this.flatList} haveAutoFocus />
-            </Container>
-
-
+                <TextInputContainer flatList={this.flatList} id={params.id} haveAutoFocus onFocus={this.keyboardDidShow} />
+            </View>
         )
     }
 }
@@ -161,7 +160,6 @@ const part = StyleSheet.create({
         justifyContent: 'center',
     },
     wrapperContainer: {
-        flex: 1,
         backgroundColor: COLORS.LIGHT_COLOR,
     },
     paddingLeftRight: {
