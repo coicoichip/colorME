@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AsyncStorage, StyleSheet, Image, Platform, Text, View, StatusBar, TouchableOpacity, ScrollView, FlatList, Linking, KeyboardAvoidingView, ActivityIndicator, } from 'react-native';
+import { StyleSheet, Platform, TouchableOpacity, KeyboardAvoidingView, Keyboard, Dimensions } from 'react-native';
 import {
     Body,
     Button,
@@ -27,89 +27,83 @@ import { observer } from "mobx-react"
 @observer
 export default class TextInputContainer extends Component {
     
-        postComment = async () => {
-            await commentStore.postComment(this.props.id, commentStore.value, getProfileStore.updateUser);
-            setTimeout(() => this.props.flatList.scrollToEnd(), 200);
-            
+    componentWillMount() {
+        this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this));
+        this.keyboardDidHideSub = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide.bind(this));
+    }
+
+    componentWillUnmount() {
+        this.keyboardDidShowSub.remove();
+        this.keyboardDidHideSub.remove();
+    }
+    keyboardDidShow(e) {
+        commentStore.height = Dimensions.get('window').height - e.endCoordinates.height;
+    }
+
+    keyboardDidHide(e) {
+        commentStore.height = Dimensions.get('window').height;
+    }
+    postComment = async () => {
+        await commentStore.postComment(this.props.id, commentStore.value, getProfileStore.updateUser);
+        setTimeout(() => this.props.flatList.scrollToEnd(), 200);
     }
     render() {
+        console.log(commentStore.height);
         return (
-            <KeyboardAvoidingView
-                enabled = {Platform.OS === "ios"? true : false}
-                behavior={Platform.OS === 'ios' ? 'position' : undefined}
-                keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : undefined}
-                style={{
-                    
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                }}
-            // NEED HEIGHT KEYBOARD
-            >
-                <CardItem style={part.cardBottomInModal}>
-                    <Thumbnail
-                        style={part.avatarUserSmall}
-                        // source={{ uri: user.avatar_url }} />
-                        source={getProfileStore.updateUser.avatar_url ? { uri: formatImageLink(getProfileStore.updateUser.avatar_url) } : require('../../../assets/image/colorMe.jpg')} />
-                    <Body style={{ justifyContent: 'center', marginLeft: 10 }}>
-                        {/* {this.state.isLoadingPostComment ? (
-                                            <View style={[part.wrapperContainer, { height: 15 }]}>
-                                                <ActivityIndicator color={color.gray} />
-                                            </View>
-                                        ) : ( */}
-                        <Item rounded>
-                            <Input
-                                autoFocus={this.props.haveAutoFocus ? true : false}
-                                placeholder='Viết bình luận'
-                                autoCorrect={false}
-                                ref={input => {
-                                    commentStore.checkFocus['one'] = input
-                                }}
-                                underlineColorAndroid={'transparent'}
-                                returnKeyType={'send'}
-                                onSubmitEditing={commentStore.value.comment_content == ''
-                                    ?
-                                    () => { }
-                                    :
-                                    this.postComment}
-                                // placeholderTextColor={color.icon}
-                                style={part.inputTheme01}
-                                onChangeText={
-                                    (text) => {
-                                        commentStore.value.comment_content = text
-                                    }
-                                }
-                                value={commentStore.value.comment_content}
-                            />
-                            {/*<TouchableOpacity>*/}
-                            {/*<Icon active name='fontawesome|camera-retro'*/}
-                            {/*size={size.iconBig}*/}
-                            {/*color={color.icon}*/}
-                            {/*style={{paddingRight: 15}}*/}
-                            {/*/>*/}
-                            {/*</TouchableOpacity>*/}
-                        </Item>
-                        {/* )} */}
-                    </Body>
-                    <TouchableOpacity
-                        onPress={
-                            commentStore.value.comment_content == ''
+             
+            <CardItem style={part.cardBottomInModal}>
+                <Thumbnail
+                    style={part.avatarUserSmall}
+                    source={getProfileStore.updateUser.avatar_url ? { uri: formatImageLink(getProfileStore.updateUser.avatar_url) } : require('../../../assets/image/colorMe.jpg')} />
+                <Body style={{ justifyContent: 'center', marginLeft: 10 }}>
+                    <Item rounded>
+                        <Input
+                            ref={ref => (this.input = ref)}
+                            autoFocus={this.props.haveAutoFocus ? true : false}
+                            placeholder='Viết bình luận'
+                            // onFocus={this.props.onFocus ? this.props.onFocus : ()=> {}}
+                            autoCorrect={false}
+                            // ref={input => {
+                            //     commentStore.checkFocus['one'] = input
+                            // }}
+                            underlineColorAndroid={'transparent'}
+                            returnKeyType={'send'}
+                            onSubmitEditing={commentStore.value.comment_content == ''
                                 ?
-                                () => {
-                                }
+                                () => { }
                                 :
-                                this.postComment
-                        }
-
-                    >
-                        <IconDefault active name={'FontAwesome|paper-plane'}
-                            size={20}
-                            // color={colorCommentIcon}
-                            color={commentStore.value.comment_content.length > 0 ? 'red' : 'gray'}
-                            style={[part.paddingTLB, { paddingLeft: 10 }]}
+                                this.postComment}
+                            // placeholderTextColor={color.icon}
+                            style={part.inputTheme01}
+                            onChangeText={
+                                (text) => {
+                                    commentStore.value.comment_content = text
+                                }
+                            }
+                            value={commentStore.value.comment_content}
                         />
-                    </TouchableOpacity>
-                </CardItem>
-            </KeyboardAvoidingView>
+                    </Item>
+                    {/* )} */}
+                </Body>
+                <TouchableOpacity
+                    onPress={
+                        commentStore.value.comment_content == ''
+                            ?
+                            () => {
+                            }
+                            :
+                            this.postComment
+                    }
+
+                >
+                    <IconDefault active name={'FontAwesome|paper-plane'}
+                        size={20}
+                        // color={colorCommentIcon}
+                        color={commentStore.value.comment_content.length > 0 ? 'red' : 'gray'}
+                        style={[part.paddingTLB, { paddingLeft: 10 }]}
+                    />
+                </TouchableOpacity>
+            </CardItem>
         )
     }
 

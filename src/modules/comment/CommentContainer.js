@@ -106,7 +106,7 @@ export default class CommentContainer extends Component {
                                             <TouchableOpacity
                                                 activeOpacity={0.8}
                                                 style={part.paddingTRB}
-                                                onPress={() => navigate('UserInNewFeed', { username: post.commenter.username })}
+                                                // onPress={() => navigate('UserInNewFeed', { username: post.commenter.username })}
                                             >
                                                 <Image
                                                     style={post.parent_id === 0 ? part.avatarUserNormal : part.avatarUserSmall}

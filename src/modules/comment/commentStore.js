@@ -1,6 +1,6 @@
 import { observable, action, computed } from "mobx";
 import { getCommentOnePost, postCommentOnePostApi, deleteCommentApi, likeCommentApi, getInfoAboutPostApi, likePostApi, unlikePostApi } from "./commentApi";
-import { Alert, AsyncStorage } from "react-native";
+import { Alert, AsyncStorage, Dimensions} from "react-native";
 
 convertComment = (comments) => {
     let parrent = comments.filter(item => item.parent_id == 0);
@@ -13,7 +13,7 @@ convertComment = (comments) => {
     })
 }
 export default commentStore = new class commentStore {
-   
+    @observable height = Dimensions.get('window').height;
     @observable comments = [];
     @observable commentPost = {}
     @observable isLoadingPost = false;
@@ -27,6 +27,7 @@ export default commentStore = new class commentStore {
     @observable liked = false; 
     @observable check = 0;
     @observable commentsChild = [];
+    @observable checkfocus = true;
     @action
     getComment(products_id, name) {
         console.log(name);
