@@ -35,59 +35,62 @@ export default class TextInputContainer extends Component {
     }
     render() {
         return (
-
-            <CardItem style={part.cardBottomInModal}>
-                <Thumbnail
-                    style={part.avatarUserSmall}
-                    source={getProfileStore.updateUser.avatar_url ? { uri: formatImageLink(getProfileStore.updateUser.avatar_url) } : require('../../../assets/image/colorMe.jpg')} />
-                <Body style={{ justifyContent: 'center', marginLeft: 10 }}>
-                    <Item rounded>
-                        <Input
-                            ref={ref => (this.input = ref)}
-                            autoFocus={this.props.haveAutoFocus ? true : false}
-                            placeholder='Viết bình luận'
-                            autoCorrect={false}
-                            ref={input => {
-                                commentStore.checkFocus['one'] = input
-                            }}
-                            underlineColorAndroid={'transparent'}
-                            returnKeyType={'send'}
-                            onSubmitEditing={commentStore.value.comment_content == ''
-                                ?
-                                () => { }
-                                :
-                                this.postComment}
-                            // placeholderTextColor={color.icon}
-                            style={part.inputTheme01}
-                            onChangeText={
-                                (text) => {
-                                    commentStore.value.comment_content = text
+            <KeyboardAvoidingView
+                behavior={Platform.OS === 'ios' ? 'position' : undefined}
+                keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : 200}
+            >
+                <CardItem style={part.cardBottomInModal}>
+                    <Thumbnail
+                        style={part.avatarUserSmall}
+                        source={getProfileStore.updateUser.avatar_url ? { uri: formatImageLink(getProfileStore.updateUser.avatar_url) } : require('../../../assets/image/colorMe.jpg')} />
+                    <Body style={{ justifyContent: 'center', marginLeft: 10 }}>
+                        <Item rounded>
+                            <Input
+                                autoFocus={this.props.haveAutoFocus ? true : false}
+                                placeholder='Viết bình luận'
+                                autoCorrect={false}
+                                ref={input => {
+                                    commentStore.checkFocus['one'] = input
+                                }}
+                                underlineColorAndroid={'transparent'}
+                                returnKeyType={'send'}
+                                onSubmitEditing={commentStore.value.comment_content == ''
+                                    ?
+                                    () => { }
+                                    :
+                                    this.postComment}
+                                // placeholderTextColor={color.icon}
+                                style={part.inputTheme01}
+                                onChangeText={
+                                    (text) => {
+                                        commentStore.value.comment_content = text
+                                    }
                                 }
-                            }
-                            value={commentStore.value.comment_content}
-                        />
-                    </Item>
-                    {/* )} */}
-                </Body>
-                <TouchableOpacity
-                    onPress={
-                        commentStore.value.comment_content == ''
-                            ?
-                            () => {
-                            }
-                            :
-                            this.postComment
-                    }
+                                value={commentStore.value.comment_content}
+                            />
+                        </Item>
+                        {/* )} */}
+                    </Body>
+                    <TouchableOpacity
+                        onPress={
+                            commentStore.value.comment_content == ''
+                                ?
+                                () => {
+                                }
+                                :
+                                this.postComment
+                        }
 
-                >
-                    <IconDefault active name={'FontAwesome|paper-plane'}
-                        size={20}
-                        // color={colorCommentIcon}
-                        color={commentStore.value.comment_content.length > 0 ? 'red' : 'gray'}
-                        style={[part.paddingTLB, { paddingLeft: 10 }]}
-                    />
-                </TouchableOpacity>
-            </CardItem>
+                    >
+                        <IconDefault active name={'FontAwesome|paper-plane'}
+                            size={20}
+                            // color={colorCommentIcon}
+                            color={commentStore.value.comment_content.length > 0 ? 'red' : 'gray'}
+                            style={[part.paddingTLB, { paddingLeft: 10 }]}
+                        />
+                    </TouchableOpacity>
+                </CardItem>
+            </KeyboardAvoidingView>
         )
     }
 
