@@ -125,7 +125,7 @@ export default class ReplyCommentContainer extends Component {
                                                     }
                                                     {
                                                         item.parent_id === 0 ?
-                                                            <TouchableOpacity onPress={() => { commentStore.value.parent_id = item.id; navigate('ReplyComment', { index: index, id: this.props.id }) }} >
+                                                            <TouchableOpacity onPress={() => {}} >
                                                                 <Text style={[part.textDescriptionDark, part.paddingTLB]}>Trả lời</Text>
                                                             </TouchableOpacity>
                                                             : null
@@ -161,7 +161,7 @@ const part = StyleSheet.create({
         justifyContent: 'center',
     },
     wrapperContainer: {
-        flex: 1,
+        
         backgroundColor: COLORS.LIGHT_COLOR,
     },
     paddingLeftRight: {

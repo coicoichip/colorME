@@ -37,11 +37,11 @@ export default class TextInputContainer extends Component {
         this.keyboardDidHideSub.remove();
     }
     keyboardDidShow(e) {
-        commentStore.height = Dimensions.get('window').height - e.endCoordinates.height;
+        commentStore.height = Dimensions.get('window').height  - e.endCoordinates.height;
     }
 
     keyboardDidHide(e) {
-        commentStore.height = Dimensions.get('window').height;
+        commentStore.height = Dimensions.get('window').height ;
     }
     postComment = async () => {
         await commentStore.postComment(this.props.id, commentStore.value, getProfileStore.updateUser);
@@ -118,7 +118,7 @@ const part = StyleSheet.create({
         flexDirection: 'row',
         height: 50,
         backgroundColor: COLORS.LIGHT_COLOR,
-        bottom: 0,
+        bottom: 5,
         borderRadius: 10,
     },
     avatarUserNormal: {

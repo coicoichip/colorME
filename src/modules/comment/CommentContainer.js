@@ -29,7 +29,7 @@ import TextInputContainer from "./TextInputContainer";
 export default class CommentContainer extends Component {
     componentWillMount() {
         commentStore.getComment(this.props.id, getProfileStore.updateUser.name);
-        commentStore.getInfoPost(this.props.id);
+        commentStore.getInfoPost(this.props.id, getProfileStore.updateUser.name);
     }
     convertComment(comments) {
         let parrent = comments.filter(item => item.parent_id == 0);
@@ -62,9 +62,10 @@ export default class CommentContainer extends Component {
                         <View style={{ justifyContent: 'flex-start', flexDirection: 'row', flex: 1 }}>
                             <Button
                                 transparent style={{ paddingRight: 10 }}
+                                onPress = {() => commentStore.likePost(this.props.id)}
                             >
-                                <IconDefault name="FontAwesome|heart-o" size={20}
-                                    color={COLORS.ICON} />
+                                <IconDefault name={(commentStore.liked) ? 'FontAwesome|heart' : 'FontAwesome|heart-o'} size={20}
+                                    color={(commentStore.liked) ? COLORS.MAIN_COLOR : COLORS.ICON} />
                                 <Text
                                     style={[part.describeLight, part.paddingLeft]}>{commentStore.dataInfoPost.likes_count ? commentStore.dataInfoPost.likes_count : '0'}</Text>
                             </Button>
