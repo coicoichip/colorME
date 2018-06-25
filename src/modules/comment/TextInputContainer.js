@@ -35,9 +35,11 @@ export default class TextInputContainer extends Component {
     render() {
         return (
             <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'position' : 'padding'}
-                keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : 200}
+                enabled = {Platform.OS === "ios"? true : false}
+                behavior={Platform.OS === 'ios' ? 'position' : undefined}
+                keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : undefined}
                 style={{
+                    
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}
