@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextInput, Dimensions, StyleSheet, Image, Platform, Text, View, TouchableOpacity, FlatList, Alert, KeyboardAvoidingView, Animated, Keyboard } from 'react-native';
+import { TextInput, Dimensions, StyleSheet, Image, Platform, Text, View, TouchableOpacity, FlatList, Alert} from 'react-native';
 import {
     Body,
     Button,
@@ -32,6 +32,10 @@ import TextInputContainer from "./TextInputContainer";
 export default class ReplyCommentContainer extends Component {
     constructor() {
         super();
+        this.panResponder = PanResponder.create({
+            onStartShouldSetPanResponder: (event, gestureState) => true,
+            onPanResponderGrant: this._onPanResponderGrant.bind(this),
+        })
 
     }
     deleteComment(id) {
@@ -54,7 +58,7 @@ export default class ReplyCommentContainer extends Component {
             <View
                 style={[{ height: commentStore.height }, part.wrapperContainer]}
             >
-                <View style={{ flex: 1, marginBottom : (Platform.OS === 'ios') ? 0 : 25 }}>
+                <View style={{ flex: 1, marginBottom: (Platform.OS === 'ios') ? 0 : 25 }}>
                     <View style={[part.wrapperHeader, part.paddingLeftRight, { flexDirection: 'row' }]}>
                         <TouchableOpacity style={{ flex: 8, justifyContent: 'center' }}>
                             <Text style={[part.textHeaderScreen, { fontSize: 20 }]} >Phản hồi</Text>
