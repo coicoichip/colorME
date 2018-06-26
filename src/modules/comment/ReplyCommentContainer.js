@@ -16,6 +16,8 @@ import {
     Thumbnail,
 } from 'native-base';
 
+import KeyboardResponsiveView from 'react-native-keyboard-responsive-view';
+
 import Loading from '../../commons/Loading';
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
 import Header from '../../commons/Header';
@@ -50,8 +52,10 @@ export default class ReplyCommentContainer extends Component {
 
         return (
             <View
-                style={[{ height:  (commentStore.height < Dimensions.get('window').height)? commentStore.height : commentStore.height-70}, part.wrapperContainer]}
+                style={[{ height:  (commentStore.height < Dimensions.get('window').height)? commentStore.height : 
+                Platform.OS === 'ios' ? commentStore.height-50 : commentStore.height - 70}, part.wrapperContainer]}
             >
+            <View style={{flex : 1 }}>
                 <View style={[part.wrapperHeader, part.paddingLeftRight, { flexDirection: 'row' }]}>
                     <TouchableOpacity style={{ flex: 8, justifyContent: 'center' }}>
                         <Text style={[part.textHeaderScreen, { fontSize: 20 }]} >Phản hồi</Text>
@@ -148,6 +152,7 @@ export default class ReplyCommentContainer extends Component {
                     }
                     }
                 />
+                </View>
                 <TextInputContainer flatList={this.flatList} id={params.id} haveAutoFocus onFocus={this.keyboardDidShow} />
             </View>
         )
@@ -212,14 +217,12 @@ const part = StyleSheet.create({
     cardCmt: {
         flexDirection: 'row',
         paddingLeft: 20,
-        marginRight: 20,
         paddingRight: 20,
         flex: 1,
     },
     cardCmtChild: {
         flexDirection: 'row',
         paddingLeft: 50,
-        marginRight: 20,
         paddingRight: 20,
         flex: 1,
     },
