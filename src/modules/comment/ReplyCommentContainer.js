@@ -50,7 +50,7 @@ export default class ReplyCommentContainer extends Component {
 
         return (
             <View
-                style={[{ height:  (commentStore.height < Dimensions.get('window').height)? commentStore.height : commentStore.height-70}, part.wrapperContainer]}
+                style={[{ height:  commentStore.height}, part.wrapperContainer]}
             >
                 <View style={[part.wrapperHeader, part.paddingLeftRight, { flexDirection: 'row' }]}>
                     <TouchableOpacity style={{ flex: 8, justifyContent: 'center' }}>

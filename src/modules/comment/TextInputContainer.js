@@ -37,7 +37,7 @@ export default class TextInputContainer extends Component {
         this.keyboardDidHideSub.remove();
     }
     keyboardDidShow(e) {
-        commentStore.height = Dimensions.get('window').height  - e.endCoordinates.height;
+        commentStore.height = Dimensions.get('window').height   - e.endCoordinates.height;
     }
 
     keyboardDidHide(e) {
@@ -48,10 +48,10 @@ export default class TextInputContainer extends Component {
         setTimeout(() => this.props.flatList.scrollToEnd(), 200);
     }
     render() {
-        console.log(commentStore.height);
+
         return (
              
-            <CardItem style={part.cardBottomInModal}>
+            <CardItem style={[part.cardBottomInModal, {bottom : this.props.haveAutoFocus ? 25 : 0}]}>
                 <Thumbnail
                     style={part.avatarUserSmall}
                     source={getProfileStore.updateUser.avatar_url ? { uri: formatImageLink(getProfileStore.updateUser.avatar_url) } : require('../../../assets/image/colorMe.jpg')} />
@@ -63,9 +63,7 @@ export default class TextInputContainer extends Component {
                             placeholder='Viết bình luận'
                             // onFocus={this.props.onFocus ? this.props.onFocus : ()=> {}}
                             autoCorrect={false}
-                            // ref={input => {
-                            //     commentStore.checkFocus['one'] = input
-                            // }}
+                            
                             underlineColorAndroid={'transparent'}
                             returnKeyType={'send'}
                             onSubmitEditing={commentStore.value.comment_content == ''
@@ -118,7 +116,7 @@ const part = StyleSheet.create({
         flexDirection: 'row',
         height: 50,
         backgroundColor: COLORS.LIGHT_COLOR,
-        bottom: 5,
+        bottom: 0,
         borderRadius: 10,
     },
     avatarUserNormal: {
