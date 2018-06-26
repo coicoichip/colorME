@@ -28,6 +28,7 @@ export default commentStore = new class commentStore {
     @observable check = 0;
     @observable commentsChild = [];
     @observable checkfocus = true;
+    @observable modalDelete = false;
     @action
     getComment(products_id, name) {
         console.log(name);
@@ -74,10 +75,25 @@ export default commentStore = new class commentStore {
     }
     @action
     deleteComment(product_id) {
+        this.isLoadingDelete = true;
+        this.modalDelete = true;
         deleteCommentApi(product_id).then(res => {
             this.comments = this.comments.filter(item => item.id !== product_id);
+            this.isLoadingDelete = false;
+            this.modalDelete = false;
         })
-            .catch(err => {})
+            .catch(err => {
+                this.isLoadingDelete = false;
+                let index = this.comments.findIndex(item => item.id == product_id);
+                if(this.comments[index].liked){
+                    Alert.alert("Thông báo", "Bạn đã thích comment này", [
+                        {text : "OK", onPress : ()=> {this.modalDelete = false}}
+                    ])
+                }
+                Alert.alert("Thông báo", "Có lỗi xảy ra", [
+                    {text : "OK", onPress : ()=> {this.modalDelete = false}}
+                ])
+            })
     }
     @action
     likeComment(item){

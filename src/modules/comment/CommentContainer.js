@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AsyncStorage, StyleSheet, Image, Platform, Text, View, TouchableOpacity, FlatList, Alert } from 'react-native';
+import { AsyncStorage, StyleSheet, Image, Platform, Text, View, TouchableOpacity, FlatList, Alert, Modal, PanResponder } from 'react-native';
 import {
     Body,
     Button,
@@ -30,6 +30,15 @@ export default class CommentContainer extends Component {
     componentWillMount() {
         commentStore.getComment(this.props.id, getProfileStore.updateUser.name);
         commentStore.getInfoPost(this.props.id, getProfileStore.updateUser.name);
+        this.panResponder = PanResponder.create({
+            onStartShouldSetPanResponder: (event, gestureState) => true,
+            onPanResponderGrant: this._onPanResponderGrant.bind(this),
+        })
+    }
+    _onPanResponderGrant(event, gestureState) {
+        if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
+            commentStore.modalDelete = false;
+        }
     }
     convertComment(comments) {
         let parrent = comments.filter(item => item.parent_id == 0);
@@ -178,6 +187,27 @@ export default class CommentContainer extends Component {
                         }
                         }
                     />
+                    <Modal
+                    onRequestClose={() => commentStore.modalDelete = false}
+                    animationType="fade"
+                    transparent={true}
+                    visible={commentStore.modalDelete}
+                    position={'center'}
+                >
+                    <View style={part.wrapperModalUpdate}
+                          {...this.panResponder.panHandlers}>
+                        <View style={part.modalUpdate}>
+                            {
+                               commentStore.isLoadingDelete
+                                    ?
+                                    <Loading/>
+                                    :
+                                    <View/>
+                            }
+                            <Text style={[part.textUpdate, {paddingBottom: 10}]}>{"Đang xoá bình luận ..."}</Text>
+                        </View>
+                    </View>
+                </Modal>
                 </View>
         )
     }
@@ -266,4 +296,23 @@ const part = StyleSheet.create({
     paddingLeft: {
         paddingLeft: 1,
     },
+    wrapperModalUpdate : {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    modalUpdate : {
+        borderRadius: 10,
+        width: SIZES.DEVICE_WIDTH_SIZE * 0.75,
+        height: SIZES.DEVICE_HEIGHT_SIZE / 4,
+        backgroundColor: '#FFF',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    textUpdate: {
+        fontSize: 14,
+        color: 'gray',
+        fontFamily: 'Roboto-Regular',
+    }
 });
