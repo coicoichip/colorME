@@ -2,6 +2,8 @@ import {Platform, StyleSheet} from 'react-native';
 import * as colorLight from './color';
 import * as size from './size';
 import {hei, wid} from './size';
+// import { STRINGS, COLORS, SIZES } from "../../constants";
+import { FONTS } from '../constants';
 
 let color = colorLight;
 
@@ -53,7 +55,7 @@ export const style = {
         alignItems: 'center'
     },
     textTitleInput: {
-        fontFamily: 'Montserrat',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: 12,
         backgroundColor: color.none,
         paddingLeft: 25,
@@ -61,7 +63,7 @@ export const style = {
         color: color.darkGray,
     },
     inputTheme02: {
-        fontFamily: 'Montserrat',
+        fontFamily: FONTS.MAIN_FONT,
         padding: 0,
         margin: 0,
         fontSize: 13,
@@ -179,30 +181,30 @@ export const style = {
         backgroundColor: 'rgba(47, 24, 71, 0.8)'
     },
     textTitleHeader: {
-        fontFamily: 'Montserrat-SemiBold',
+        fontFamily: FONTS.MAIN_FONT_BOLD,
         fontSize: size.titleHeader,
         color: color.textColor,
     },
 
     textTitleBoldNormal: {
         backgroundColor: color.none,
-        fontFamily: 'Montserrat-Bold',
+        fontFamily: FONTS.MAIN_FONT_BOLD,
         fontSize: 12,
         color: color.textColor,
     },
     textNotActive: {
         color: color.textColorNotActive,
-        fontFamily: 'Montserrat-Regular',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: size.defaultText,
     },
     textIsActive: {
         color: color.textColor,
-        fontFamily: 'Montserrat-Regular',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: size.defaultText,
     },
     textTitleCard: {
         color: color.textColor,
-        fontFamily: 'Montserrat-Medium',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: size.defaultText,
     },
     wrapperIconFixedHeader: {
@@ -213,37 +215,37 @@ export const style = {
     },
     textTitleCardLight: {
         color: '#FFFFFF',
-        fontFamily: 'Montserrat-Medium',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: size.defaultText,
     },
     textTitleCardDark: {
         color: '#000000',
-        fontFamily: 'Montserrat-Medium',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: size.defaultText,
     },
     textTitleCardBlue: {
         color: color.blue,
-        fontFamily: 'Montserrat-Medium',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: size.defaultText,
     },
     textTitleBig: {
         color: color.textColor,
-        fontFamily: 'Montserrat-Medium',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: size.titleBig,
     },
     textTitleBigLight: {
         color: '#FFFFFF',
-        fontFamily: 'Montserrat-Medium',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: size.titleBig,
     },
     textTitleBigBlue: {
         color: color.blue,
-        fontFamily: 'Montserrat-Medium',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: size.titleBig,
     },
     textTitleGiant: {
         color: color.textColor,
-        fontFamily: 'Montserrat-Medium',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: size.titleGiant,
     },
     textAlign: {
@@ -251,60 +253,60 @@ export const style = {
     },
     textTitleBigThin: {
         color: color.textColor,
-        fontFamily: 'Montserrat-Light',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: 25
     },
     textDescriptionCard: {
         color: color.textColor,
-        fontFamily: 'Montserrat-Light',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: size.titleNormal,
         backgroundColor: color.none,
     },
     textNameCard: {
         color: color.gray,
-        fontFamily: 'Montserrat-Regular',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: size.titleNormal,
         backgroundColor: color.none,
     },
     textTimeCard: {
         color: color.textColorNotActive,
-        fontFamily: 'Montserrat-Light',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: size.titleNormal,
         backgroundColor: color.none,
     },
     textDescriptionCardLight: {
         color: '#FFFFFF',
-        fontFamily: 'Montserrat-Light',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: size.titleNormal,
     },
     textDescriptionCardDark: {
         color: '#000000',
-        fontFamily: 'Montserrat-Light',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: size.titleNormal,
     },
     textNoteCard: {
         color: color.textColorNotActive,
-        fontFamily: 'Montserrat-Light',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: size.titleSmall,
     },
     textSmallDarkGray: {
         color: color.darkGray,
-        fontFamily: 'Montserrat-Regular',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: 11,
     },
     textInDrawer: {
-        fontFamily: 'Montserrat-Light',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: size.titleNormal,
         color: 'black',
     },
     textNumberChart: {
         color: color.textColor,
-        fontFamily: 'Montserrat-Regular',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: 35,
     },
     textNotification: {
         color: color.textColorReverse,
-        fontFamily: 'Montserrat-Regular',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: 12,
     },
     iconGray: {
@@ -540,13 +542,13 @@ export const style = {
     },
     textBigLight: {
         paddingBottom: 0,
-        fontFamily: 'Montserrat',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: 13,
         color: color.navTitle,
     },
     textLogin: {
         paddingBottom: 0,
-        fontFamily: 'Montserrat',
+        fontFamily: FONTS.MAIN_FONT,
         fontSize: 13,
         color: color.darkGray,
     },
