@@ -49,7 +49,7 @@ const Blog = StackNavigator(
         BlogContainer: { screen: BlogContainer, path: "blogContainer" },
         DetailBlog: { screen: DetailBlogContainer },
         ListBlog: { screen: ListBlog },
-        ReplyComment: { screen: ReplyCommentContainer},
+        // ReplyComment: { screen: ReplyCommentContainer},
     }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'blog' } }
 
 );
@@ -91,14 +91,14 @@ const Promotion = StackNavigator(
     {
         BlogContainer: { screen: BlogContainer },
         DetailBlog: { screen: DetailBlogContainer },
-        ReplyComment: { screen: ReplyCommentContainer},
+        // ReplyComment: { screen: ReplyCommentContainer},
     }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'promotion', title: "Khuyến mãi" } }
 )
 const Products = StackNavigator({
     Products: { screen: ProductsContainer },
     DetailBlog: { screen: DetailBlogContainer },
     ListBlog: { screen: ListBlog },
-    ReplyComment: { screen: ReplyCommentContainer},
+    // ReplyComment: { screen: ReplyCommentContainer},
 }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'post' } })
 const Tab = TabNavigator({
     Course: {
@@ -306,6 +306,7 @@ export const RootStack = StackNavigator(
         Splash: { screen: SplashContainer },
         Login: { screen: LoginContainer },
         Register: { screen: RegisterContainer },
+        ReplyComment: { screen: ReplyCommentContainer},
         Drawer: { screen: Drawer, path: "main" },
     },
     { headerMode: 'none', mode: 'card' }

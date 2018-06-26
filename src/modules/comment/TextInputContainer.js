@@ -14,6 +14,7 @@ import {
     Right,
     Spinner,
     Thumbnail,
+    View,
 } from 'native-base';
 
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
@@ -26,7 +27,7 @@ import IconDefault from '../../commons/IconDefault';
 import { observer } from "mobx-react"
 @observer
 export default class TextInputContainer extends Component {
-    
+
     componentWillMount() {
         this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this));
         this.keyboardDidHideSub = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide.bind(this));
@@ -37,25 +38,25 @@ export default class TextInputContainer extends Component {
         this.keyboardDidHideSub.remove();
     }
     keyboardDidShow(e) {
-        commentStore.height = Dimensions.get('window').height  - e.endCoordinates.height;
+        commentStore.height = Dimensions.get('window').height - e.endCoordinates.height;
     }
 
     keyboardDidHide(e) {
-        commentStore.height = Dimensions.get('window').height ;
+        commentStore.height = Dimensions.get('window').height;
     }
     postComment = async () => {
         await commentStore.postComment(this.props.id, commentStore.value, getProfileStore.updateUser);
         setTimeout(() => this.props.flatList.scrollToEnd(), 200);
     }
     render() {
-        console.log(commentStore.height);
+
         return (
-             
-            <CardItem style={part.cardBottomInModal}>
+
+            <CardItem style={[part.cardBottomInModal, { bottom: this.props.haveAutoFocus ? ((Platform.OS === 'ios') ? 0 : 25) : 0 }]}>
                 <Thumbnail
                     style={part.avatarUserSmall}
                     source={getProfileStore.updateUser.avatar_url ? { uri: formatImageLink(getProfileStore.updateUser.avatar_url) } : require('../../../assets/image/colorMe.jpg')} />
-                <Body style={{ justifyContent: 'center', marginLeft: 10 }}>
+                <View style={{ flex: 1, marginLeft : 10}}>
                     <Item rounded>
                         <Input
                             ref={ref => (this.input = ref)}
@@ -63,9 +64,7 @@ export default class TextInputContainer extends Component {
                             placeholder='Viết bình luận'
                             // onFocus={this.props.onFocus ? this.props.onFocus : ()=> {}}
                             autoCorrect={false}
-                            // ref={input => {
-                            //     commentStore.checkFocus['one'] = input
-                            // }}
+
                             underlineColorAndroid={'transparent'}
                             returnKeyType={'send'}
                             onSubmitEditing={commentStore.value.comment_content == ''
@@ -83,8 +82,8 @@ export default class TextInputContainer extends Component {
                             value={commentStore.value.comment_content}
                         />
                     </Item>
-                    {/* )} */}
-                </Body>
+                </View>
+                {/* )} */}
                 <TouchableOpacity
                     onPress={
                         commentStore.value.comment_content == ''
@@ -114,11 +113,11 @@ const part = StyleSheet.create({
         backgroundColor: COLORS.LIGHT_COLOR,
     },
     cardBottomInModal: {
-        width: SIZES.DEVICE_WIDTH_SIZE - 10,
+        width: SIZES.DEVICE_WIDTH_SIZE,
         flexDirection: 'row',
         height: 50,
         backgroundColor: COLORS.LIGHT_COLOR,
-        bottom: 5,
+        bottom: 0,
         borderRadius: 10,
     },
     avatarUserNormal: {
@@ -136,13 +135,12 @@ const part = StyleSheet.create({
     inputTheme01: {
         fontFamily: (Platform.OS === 'ios') ? FONTS.MAIN_FONT : FONTS.MAIN_FONT,
         fontSize: 12,
-        lineHeight: 10,
+        lineHeight: 12,
         height: (Platform.OS === 'ios') ? 30 : 40,
         fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
     },
     paddingTLB: {
         paddingLeft: 5,
-        paddingRight: 15,
         paddingBottom: 5,
         paddingTop: 5,
     },

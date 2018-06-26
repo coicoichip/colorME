@@ -52,106 +52,105 @@ export default class ReplyCommentContainer extends Component {
 
         return (
             <View
-                style={[{ height:  (commentStore.height < Dimensions.get('window').height)? commentStore.height : 
-                Platform.OS === 'ios' ? commentStore.height-50 : commentStore.height - 70}, part.wrapperContainer]}
+                style={[{ height: commentStore.height }, part.wrapperContainer]}
             >
-            <View style={{flex : 1 }}>
-                <View style={[part.wrapperHeader, part.paddingLeftRight, { flexDirection: 'row' }]}>
-                    <TouchableOpacity style={{ flex: 8, justifyContent: 'center' }}>
-                        <Text style={[part.textHeaderScreen, { fontSize: 20 }]} >Phản hồi</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ flex: 1, justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.goBack(); commentStore.value.parent_id = 0; }}
-                    >
-                        <View style={{ alignItems: 'flex-end' }}>
-                            <IconDefault
-                                name={'Ionicons|md-close'}
-                                style={{ padding: 0 }}
-                                color={this.props.color ? this.props.color : null}
-                            />
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <FlatList
-                    ref={(ref) => this.flatList = ref}
-                    keyExtractor={item => item.id + ''}
-                    showsVerticalScrollIndicator={false}
-                    data={commentStore.commentsChild[params.index]}
-                    renderItem={({ item }) => {
-                        return (
-                            <View
-                                style={[item.parent_id === 0 ? part.cardCmt : part.cardCmtChild]}>
-                                <TouchableOpacity
-                                    activeOpacity={0.8}
-                                    style={part.paddingTRB}
-                                >
-                                    <Image
-                                        style={item.parent_id === 0 ? part.avatarUserNormal : part.avatarUserSmall}
-                                        source={item.commenter.avatar_url ? { uri: formatImageLink(item.commenter.avatar_url) } : require('../../../assets/image/colorMe.jpg')} />
-                                </TouchableOpacity>
-                                <View style={{ paddingRight: 20, flex: 1 }}>
-                                    <View style={{ flexDirection: 'row', flex: 1 }}>
-                                        <Text
-                                            style={[part.titleSmallDark, part.paddingTLB]}
-                                        >
-                                            {item.commenter.name}
-                                        </Text>
-                                    </View>
-                                    <Text
-                                        style={[part.textDescriptionDark, { paddingLeft: 5 }]}
+                <View style={{ flex: 1, marginBottom : (Platform.OS === 'ios') ? 0 : 25 }}>
+                    <View style={[part.wrapperHeader, part.paddingLeftRight, { flexDirection: 'row' }]}>
+                        <TouchableOpacity style={{ flex: 8, justifyContent: 'center' }}>
+                            <Text style={[part.textHeaderScreen, { fontSize: 20 }]} >Phản hồi</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{ flex: 1, justifyContent: 'center' }}
+                            onPress={() => { this.props.navigation.goBack(); commentStore.value.parent_id = 0; }}
+                        >
+                            <View style={{ alignItems: 'flex-end' }}>
+                                <IconDefault
+                                    name={'Ionicons|md-close'}
+                                    style={{ padding: 0 }}
+                                    color={this.props.color ? this.props.color : null}
+                                />
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <FlatList
+                        ref={(ref) => this.flatList = ref}
+                        keyExtractor={item => item.id + ''}
+                        showsVerticalScrollIndicator={false}
+                        data={commentStore.commentsChild[params.index]}
+                        renderItem={({ item }) => {
+                            return (
+                                <View
+                                    style={[item.parent_id === 0 ? part.cardCmt : part.cardCmtChild]}>
+                                    <TouchableOpacity
+                                        activeOpacity={0.8}
+                                        style={part.paddingTRB}
                                     >
-                                        {item.content}
-                                    </Text>
-                                    {
-                                        item.isLoading == true
-                                            ?
-                                            <View>
-                                                <Text
-                                                    style={[part.textDescriptionDark, part.paddingTLB]}
-                                                >
-                                                    {"Đang đăng..."}
-                                                </Text>
-                                            </View>
-                                            :
-                                            <View style={{ flexDirection: 'row' }}>
-                                                <Text
-                                                    style={[part.textDescriptionDark, part.paddingTLB]}
-                                                >
-                                                    {item.likes + " " + "lượt thích"}
-                                                </Text>
-                                                {getProfileStore.updateUser.id == item.commenter.id ?
-                                                    <TouchableOpacity onPress={() => this.deleteComment(item.id)}>
+                                        <Image
+                                            style={item.parent_id === 0 ? part.avatarUserNormal : part.avatarUserSmall}
+                                            source={item.commenter.avatar_url ? { uri: formatImageLink(item.commenter.avatar_url) } : require('../../../assets/image/colorMe.jpg')} />
+                                    </TouchableOpacity>
+                                    <View style={{ paddingRight: 20, flex: 1 }}>
+                                        <View style={{ flexDirection: 'row', flex: 1 }}>
+                                            <Text
+                                                style={[part.titleSmallDark, part.paddingTLB]}
+                                            >
+                                                {item.commenter.name}
+                                            </Text>
+                                        </View>
+                                        <Text
+                                            style={[part.textDescriptionDark, { paddingLeft: 5 }]}
+                                        >
+                                            {item.content}
+                                        </Text>
+                                        {
+                                            item.isLoading == true
+                                                ?
+                                                <View>
+                                                    <Text
+                                                        style={[part.textDescriptionDark, part.paddingTLB]}
+                                                    >
+                                                        {"Đang đăng..."}
+                                                    </Text>
+                                                </View>
+                                                :
+                                                <View style={{ flexDirection: 'row' }}>
+                                                    <Text
+                                                        style={[part.textDescriptionDark, part.paddingTLB]}
+                                                    >
+                                                        {item.likes + " " + "lượt thích"}
+                                                    </Text>
+                                                    {getProfileStore.updateUser.id == item.commenter.id ?
+                                                        <TouchableOpacity onPress={() => this.deleteComment(item.id)}>
 
-                                                        <Text style={[part.textDescriptionDark, part.paddingTLB]}>Xoá</Text>
-                                                    </TouchableOpacity>
-                                                    : null
-                                                }
-                                                {
-                                                    item.parent_id === 0 ?
-                                                        <TouchableOpacity onPress={() => { }} >
-                                                            <Text style={[part.textDescriptionDark, part.paddingTLB]}>Trả lời</Text>
+                                                            <Text style={[part.textDescriptionDark, part.paddingTLB]}>Xoá</Text>
                                                         </TouchableOpacity>
                                                         : null
-                                                }
-                                            </View>
-                                    }
-                                </View>
-                                <View style={[part.itemLike]}>
-                                    <TouchableOpacity transparent onPress={() => {
-                                        commentStore.likeComment(item)
-                                    }}>
-                                        <IconDefault name={(item.liked) ? 'FontAwesome|heart' : 'FontAwesome|heart-o'}
-                                            color={(item.liked) ? COLORS.MAIN_COLOR : COLORS.ICON}
-                                            size={15}
-                                            style={[part.paddingRight, part.marginTop]}
-                                        />
-                                    </TouchableOpacity>
-                                </View>
+                                                    }
+                                                    {
+                                                        item.parent_id === 0 ?
+                                                            <TouchableOpacity onPress={() => { }} >
+                                                                <Text style={[part.textDescriptionDark, part.paddingTLB]}>Trả lời</Text>
+                                                            </TouchableOpacity>
+                                                            : null
+                                                    }
+                                                </View>
+                                        }
+                                    </View>
+                                    <View style={[part.itemLike]}>
+                                        <TouchableOpacity transparent onPress={() => {
+                                            commentStore.likeComment(item)
+                                        }}>
+                                            <IconDefault name={(item.liked) ? 'FontAwesome|heart' : 'FontAwesome|heart-o'}
+                                                color={(item.liked) ? COLORS.MAIN_COLOR : COLORS.ICON}
+                                                size={15}
+                                                style={[part.paddingRight, part.marginTop]}
+                                            />
+                                        </TouchableOpacity>
+                                    </View>
 
-                            </View>)
-                    }
-                    }
-                />
+                                </View>)
+                        }
+                        }
+                    />
                 </View>
                 <TextInputContainer flatList={this.flatList} id={params.id} haveAutoFocus onFocus={this.keyboardDidShow} />
             </View>
