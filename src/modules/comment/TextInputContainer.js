@@ -60,7 +60,7 @@ export default class TextInputContainer extends Component {
                     <Item rounded>
                         <Input
                             ref={ref => (this.input = ref)}
-                            autoFocus={this.props.haveAutoFocus ? true : false}
+                            // autoFocus={this.props.haveAutoFocus ? true : false}
                             placeholder='Viết bình luận'
                             // onFocus={this.props.onFocus ? this.props.onFocus : ()=> {}}
                             autoCorrect={false}

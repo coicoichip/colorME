@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextInput, Dimensions, StyleSheet, Image, Platform, Text, View, TouchableOpacity, FlatList, Alert} from 'react-native';
+import { TextInput, Dimensions, PanResponder, Modal, StyleSheet, Image, Platform, Text, View, TouchableOpacity, FlatList, Alert, KeyboardAvoidingView, Animated, Keyboard } from 'react-native';
 import {
     Body,
     Button,
@@ -15,8 +15,6 @@ import {
     Spinner,
     Thumbnail,
 } from 'native-base';
-
-import KeyboardResponsiveView from 'react-native-keyboard-responsive-view';
 
 import Loading from '../../commons/Loading';
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
@@ -37,6 +35,17 @@ export default class ReplyCommentContainer extends Component {
             onPanResponderGrant: this._onPanResponderGrant.bind(this),
         })
 
+    }
+    componentWillMount() {
+        this.panResponder = PanResponder.create({
+            onStartShouldSetPanResponder: (event, gestureState) => true,
+            onPanResponderGrant: this._onPanResponderGrant.bind(this),
+        })
+    }
+    _onPanResponderGrant(event, gestureState) {
+        if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
+            commentStore.modalDelete = false;
+        }
     }
     deleteComment(id) {
         Alert.alert(
@@ -156,7 +165,29 @@ export default class ReplyCommentContainer extends Component {
                         }
                     />
                 </View>
+                
                 <TextInputContainer flatList={this.flatList} id={params.id} haveAutoFocus onFocus={this.keyboardDidShow} />
+                <Modal
+                    onRequestClose={() => commentStore.modalDelete = false}
+                    animationType="fade"
+                    transparent={true}
+                    visible={commentStore.modalDelete}
+                    position={'center'}
+                >
+                    <View style={part.wrapperModalUpdate}
+                          {...this.panResponder.panHandlers}>
+                        <View style={part.modalUpdate}>
+                            {
+                                commentStore.isLoadingDelete
+                                    ?
+                                    <Loading/>
+                                    :
+                                    <View/>
+                            }
+                            <Text style={[part.textUpdate, {paddingBottom: 10}]}>{"Đang xoá bình luận ..."}</Text>
+                        </View>
+                    </View>
+                </Modal>
             </View>
         )
     }
@@ -248,4 +279,23 @@ const part = StyleSheet.create({
     paddingLeft: {
         paddingLeft: 1,
     },
+    wrapperModalUpdate : {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    modalUpdate : {
+        borderRadius: 10,
+        width: SIZES.DEVICE_WIDTH_SIZE * 0.75,
+        height: SIZES.DEVICE_HEIGHT_SIZE / 4,
+        backgroundColor: '#FFF',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    textUpdate: {
+        fontSize: 14,
+        color: 'gray',
+        fontFamily: 'Roboto-Regular',
+    }
 })

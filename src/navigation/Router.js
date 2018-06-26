@@ -309,5 +309,5 @@ export const RootStack = StackNavigator(
         ReplyComment: { screen: ReplyCommentContainer},
         Drawer: { screen: Drawer, path: "main" },
     },
-    { headerMode: 'none', mode: 'card' }
+    { headerMode: 'none', mode: 'modal' }
 );
