@@ -14,6 +14,7 @@ import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import parallaxStyle from '../../Style/parallaxStyle';
 import * as color from "../../Style/color";
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 class DetailHistorySurveyContainer extends Component {
     constructor() {
