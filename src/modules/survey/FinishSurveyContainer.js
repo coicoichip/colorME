@@ -10,8 +10,9 @@ import general from '../../Style/generalStyle';
 import * as surveyAction from './surveyAction';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import Header from "../../commons/Header";
-
+import IconDefault from '../../commons/IconDefault';
+import styles from '../../styles/styles';
+import { FONTS } from '../../constants';
 
 class FinishSurveyContainer extends Component {
     constructor() {
@@ -29,8 +30,25 @@ class FinishSurveyContainer extends Component {
         const {isLoadingCloseSurvey} = this.props;
         return (
             <Container style={general.wrapperContainer}>
-                <Header title={"Lịch sử khảo sát"} navigate={navigate} />
-
+                {/* <Header title={"Lịch sử khảo sát"} navigate={navigate} /> */}
+                <View style={[styles.wrapperHeader, styles.paddingLeftRight, { flexDirection: 'row' }]}>
+                    <View style={{ flex: 8, justifyContent: 'center' }}>
+                        <Text style={[styles.textHeaderScreen, { fontSize: 17, fontFamily : FONTS.MAIN_FONT_BOLD }]} numberOfLines={1}>
+                        {"Lịch sử khảo sát"}
+                        </Text>
+                    </View>
+                    <TouchableOpacity style={{ flex: 1, justifyContent: 'center' }}
+                        onPress={() => this.props.navigation.goBack()}
+                    >
+                        <View style={{ alignItems: 'flex-end' }}>
+                            <IconDefault
+                                name={'Ionicons|md-close'}
+                                style={{ padding: 0 }}
+                                color={"gray"}
+                            />
+                        </View>
+                    </TouchableOpacity>
+                </View>
                 <View style={{flex: 1}}>
                     {
                         isLoadingCloseSurvey
@@ -72,7 +90,7 @@ class FinishSurveyContainer extends Component {
                                     <View style={general.wrapperSpace}/>
                                     <Text style={general.textDescriptionCard}>Cuộc khảo sát hoàn tất</Text>
                                     <Text style={[general.textDescriptionCard, {textAlign: 'center'}]}>Cảm ơn bạn đã dành thời
-                                        gian cho Sociology Hue</Text>
+                                        gian cho colorME</Text>
 
                                 </View>
                             </View>
@@ -80,9 +98,9 @@ class FinishSurveyContainer extends Component {
                     }
 
                 </View>
-                <NextButton function={() => {
-                    navigate('DetailSurvey')
-                }}/>
+                {/* <NextButton function={() => {
+                    navigate('Survey')
+                }}/> */}
             </Container>
         );
     }

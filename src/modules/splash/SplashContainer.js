@@ -9,9 +9,7 @@ import Spinner from 'react-native-spinkit';
 import splashStore from "./splashStore"
 import { observer } from 'mobx-react';
 import { resetScreen } from '../../helper';
-import deviceStore from "../check-device/deviceStore"
-import DeviceInfo from 'react-native-device-info';
-import OneSignal from "react-native-onesignal";
+
 @observer
 export default class SplashContainer extends Component {
     checkNetwork = async () => {

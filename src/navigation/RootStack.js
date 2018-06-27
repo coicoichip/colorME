@@ -5,11 +5,15 @@ import { Platform } from "react-native";
 import OneSignal from "react-native-onesignal";
 import {observable} from "mobx";
 import {observer} from "mobx-react"
-
+import OneSignal from "react-native-onesignal";
 @observer
 export default class RootStackContainer extends Component {
     constructor() {
         super()
+    }
+    componentWillMount(){
+        OneSignal.configure();
+        OneSignal.init("a136d5c1-400f-456a-9c64-75c43f206f4d")
     }
     handleUrl(url) {
         const
