@@ -62,9 +62,7 @@ export default class TextInputContainer extends Component {
                             ref={ref => (this.input = ref)}
                             // autoFocus={this.props.haveAutoFocus ? true : false}
                             placeholder='Viết bình luận'
-                            // onFocus={this.props.onFocus ? this.props.onFocus : ()=> {}}
                             autoCorrect={false}
-
                             underlineColorAndroid={'transparent'}
                             returnKeyType={'send'}
                             onSubmitEditing={commentStore.value.comment_content == ''
