@@ -21,7 +21,7 @@ export default class ModalCheckInStudent extends Component {
         getProfileStore.getProfile();
     }
     componentDidMount() {
-        // console.log(blogStore.attendanceData)
+        
         NetworkInfo.getBSSID(bssid => {
             if (bssid && bssid != 'error' && bssid.indexOf("bssid") == -1) {
                 this.state.mac_id = bssid
@@ -31,21 +31,19 @@ export default class ModalCheckInStudent extends Component {
             }
         });
     }
-
     attendance = () => {
+        console.log("aaa");
         const { mac_id } = this.state;
-        blogStore.attendance(
+        
+        deviceStore.checkDevice(
             blogStore.attendanceData.id,
             blogStore.attendanceData.lesson[0].class_lesson_id,
             // (Array.isArray(blogStore.attendanceData) && blogStore.attendanceData.length > 0) ? blogStore.attendanceData.length - 1 : null,
             mac_id,
         )
-        if (blogStore.isLoadingAttendent == false) {
-            blogStore.modalVisible1 = true;
-            blogStore.modalVisible = false;
-        }
     }
 
+    
     render() {
         return (
             blogStore.attendanceData.id ?
@@ -111,9 +109,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     avatarUserNormals: {
-        width: 70,
-        height: 70,
-        borderRadius: 35,
+        width: 60,
+        height: 60,
+        borderRadius: 30,
         backgroundColor: Platform.OS == "ios" ? '#fff' : null,
     },
     wrapperModalComment: {

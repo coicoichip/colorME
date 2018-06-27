@@ -13,13 +13,13 @@ import { observable } from 'mobx';
 import { productsStore } from './productsStore';
 import Icon from '../../commons/Icon';
 let info_value = null;
-let date_value = null;
+let data_value = null;
 
 export let returnInfo = (value) => {
     value(info_value)
 }
 export let returnDate = (value) => {
-    value(date_value)
+    value(data_value)
 }
 @observer
 class Select extends Component {

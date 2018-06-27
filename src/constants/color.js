@@ -3,7 +3,7 @@ export const COLORS = {
     BAR_STYLE_MAIN: 'dark-content',
     NONE_COLOR: 'transparent',
     MAIN_COLOR: '#c50000',
-    GRAY_COLOR: 'gray',
+    GRAY_COLOR: 'rgb(79, 79, 79)',
     LIGHT_COLOR: '#fff',
     DARK_COLOR: '#000',
     SHADOW_COLOR: 'rgba(0, 0, 0, 0.5)',
@@ -14,4 +14,6 @@ export const COLORS = {
     BLUE_COLOR: '#1783FF',
     GREEN_COLOR: '#009900',
     GREEN : '#009900',
+    ICON : 'rgb(214, 214, 214)',
+    NAV_TITLE : 'rgb(255, 255, 255)',
 }

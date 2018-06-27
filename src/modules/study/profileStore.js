@@ -10,7 +10,7 @@ export default getProfileStore = new class GetProfileStore {
     @observable error = false;
     @observable isLoadingUpdate = false;
     @observable progress = [];
-
+    @observable registers = [];
     @action
     getProfile() {
         this.isLoading = true;
@@ -19,6 +19,7 @@ export default getProfileStore = new class GetProfileStore {
             this.user = res.data.data;
             this.progress = res.data.data.progress;
             this.updateUser = res.data.data;
+            this.registers = res.data.data.registers;
             this.error = false;
             //console.log(this.user);
         })

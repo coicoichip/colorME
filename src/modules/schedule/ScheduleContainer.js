@@ -30,7 +30,6 @@ class ScheduleContainer extends React.Component {
     }
 
   componentDidMount() {
-    //console.log(1);
     scheduleStore.getListSchedule();
   }
 
@@ -70,7 +69,7 @@ class ScheduleContainer extends React.Component {
               icon_url: schedule.course.icon_url,
               name_lesson: schedule.name_lesson,
               name_teacher: schedule.name_teacher,
-              base: schedule.room.base,
+              base: schedule.room.base ? schedule.room.base : "",
               name_room: schedule.name_room,
               address_room: schedule.room.address,
             });
