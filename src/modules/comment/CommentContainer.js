@@ -69,15 +69,15 @@ export default class CommentContainer extends Component {
                 <View style={{ flex: 1, marginTop: -10 }}>
                     <View style={{ flexDirection: 'row', paddingHorizontal: 17, marginBottom: 10 }}>
                         <View style={{ justifyContent: 'flex-start', flexDirection: 'row', flex: 1 }}>
-                            <Button
-                                transparent style={{ paddingRight: 10 }}
+                            <TouchableOpacity
+                                style={{ paddingRight: 10, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingTop: 1 }}
                                 onPress = {() => commentStore.likePost(this.props.id)}
                             >
                                 <IconDefault name={(commentStore.liked) ? 'FontAwesome|heart' : 'FontAwesome|heart-o'} size={20}
                                     color={(commentStore.liked) ? COLORS.MAIN_COLOR : COLORS.ICON} />
                                 <Text
                                     style={[part.describeLight, part.paddingLeft]}>{commentStore.dataInfoPost.likes_count ? commentStore.dataInfoPost.likes_count : '0'}</Text>
-                            </Button>
+                            </TouchableOpacity>
                             <Button transparent style={{ paddingRight: 10 }}
                             >
                                 <IconDefault name="FontAwesome|comment-o"
@@ -88,7 +88,7 @@ export default class CommentContainer extends Component {
                             </Button>
                             <Button transparent style={{ paddingRight: 10 }}>
                                 <IconDefault name="FontAwesome|circle-thin"
-                                    size={23}
+                                    size={21}
                                     color={COLORS.ICON} />
                                 <Text
                                     style={[part.describeLight, part.paddingLeft]}>{commentStore.dataInfoPost.views_count ? commentStore.dataInfoPost.views_count : '0'}</Text>
