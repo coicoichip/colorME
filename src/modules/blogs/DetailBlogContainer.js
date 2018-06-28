@@ -103,7 +103,7 @@ class DetailBlogContainer extends Component {
         const { goBack } = this.props.navigation;
         const { detailBlog, isLoadingDetail } = blogStore;
         return (
-            <Container style={styles.wrapperContainer}>
+            <Container style={[styles.wrapperContainer]}>
                 <View style={[styles.wrapperHeader, styles.paddingLeftRight, { flexDirection: 'row' }]}>
                     <View style={{ flex: 8, justifyContent: 'center' }}>
                         <Text style={[styles.textHeaderScreen, { fontSize: 17 }]} numberOfLines={1} onPress={() => this.refs.detailBlog.scrollTo({ x: 0, y: 0, animated: true })} >{detailBlog.title}</Text>

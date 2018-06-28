@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { RootStack } from './Router';
 import { Root } from "native-base";
 import { Platform } from "react-native";
-import OneSignal from "react-native-onesignal";
+
 import {observable} from "mobx";
 import {observer} from "mobx-react"
 import OneSignal from "react-native-onesignal";

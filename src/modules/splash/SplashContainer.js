@@ -9,9 +9,13 @@ import Spinner from 'react-native-spinkit';
 import splashStore from "./splashStore"
 import { observer } from 'mobx-react';
 import { resetScreen } from '../../helper';
-
+import OneSignal from "react-native-onesignal"
 @observer
 export default class SplashContainer extends Component {
+    componentWillMount(){
+        OneSignal.configure();
+        OneSignal.init("a136d5c1-400f-456a-9c64-75c43f206f4d")
+    }
     checkNetwork = async () => {
         const result = await NetInfo.getConnectionInfo().then((connectionInfo) => {
             //check network connect success
