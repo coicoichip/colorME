@@ -28,7 +28,7 @@ import { observer } from "mobx-react"
 @observer
 export default class TextInputContainer extends Component {
 
-    componentWillMount() {
+    componentDidMount() {
         this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this));
         this.keyboardDidHideSub = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide.bind(this));
     }
