@@ -33,6 +33,7 @@ class DetailHistorySurveyContainer extends Component {
 
     componentWillMount() {
         const {index} = this.props.navigation.state.params.data;
+        console.log(index)
         this.setState({historyAnswerQuestion: this.props.historySurvey[index], page: index});
     }
 
@@ -98,9 +99,9 @@ class DetailHistorySurveyContainer extends Component {
                         <View key="parallax-header" style={[parallaxStyle.parallaxHeaderTitle, {alignItems: 'flex-start',}]}>
                             <View style={general.paddingLR}>
                                 <Text numberOfLines={2}
-                                    style={[general.textTitleBig, general.marginBottom]}>{historyAnswerQuestion.survey.name.toUpperCase()}</Text>
+                                    style={[general.textTitleBig, general.marginBottom]}>{historyAnswerQuestion.survey ? historyAnswerQuestion.survey.name.toUpperCase()  : '' }</Text>
                                 <Text numberOfLines={4}
-                                    style={general.textDescriptionCard}>{historyAnswerQuestion.survey.description}</Text>
+                                    style={general.textDescriptionCard}>{historyAnswerQuestion.survey ? historyAnswerQuestion.survey.description  : ''}</Text>
                             </View>
                         </View>
                     )}
@@ -110,7 +111,7 @@ class DetailHistorySurveyContainer extends Component {
                                 style={[general.wrapperCenter, Platform.OS === 'ios' ? {marginTop: 30} : {marginTop: 20}]}>
                                 <Text style={[general.textTitleBig, {paddingLeft: 50, paddingRight: 50}]}
                                       numberOfLines={1}>
-                                    {historyAnswerQuestion.survey.name}
+                                    {historyAnswerQuestion.survey ? historyAnswerQuestion.survey.name  : ''}
                                 </Text>
                             </View>
                         </View>
@@ -123,7 +124,7 @@ class DetailHistorySurveyContainer extends Component {
                                     activeOpacity={1}
                                     style={[general.padding, general.wrapperBackButton]}
                                 >
-                                    <Icon name="entypo|chevron-thin-left"
+                                    <Icon name="Entypo|chevron-thin-left"
                                           size={25}
                                           color={color.iconColor}
                                     />
@@ -138,7 +139,7 @@ class DetailHistorySurveyContainer extends Component {
                                 ?
                                 <Loading/>
                                 :
-                                historyAnswerQuestion.questions.length != 0
+                                historyAnswerQuestion && historyAnswerQuestion.questions && Array.isArray(historyAnswerQuestion.questions) && historyAnswerQuestion.questions.length != 0
                                     ?
                                     <FlatList
                                         keyExtractor={(item, key) => key + ''}
