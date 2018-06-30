@@ -30,7 +30,7 @@ export async function getPortfolioApi() {
   let url = "";
   await AsyncStorage.getItem('@ID').then((value) => {
      url = APIS.COLOR_ME_API + "/user/" + value+ "/post";
-     console.log(value)
+    
   })
   return axios.get(url);
 }
@@ -40,6 +40,13 @@ export async function getDetailPortfolioApi(slug) {
   await AsyncStorage.getItem('@UserToken').then((value) => {
     url = APIS.COLOR_ME_API + "/blog\/" + slug;
   })
-  console.log(url);
+
   return axios.get(url);
+}
+export async function reserveStudyApi() {
+  let url;
+  await AsyncStorage.getItem('@UserToken').then(value => {
+    url = ""
+  })
+  return axios.post(url)
 }

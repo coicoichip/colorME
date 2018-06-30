@@ -3,26 +3,24 @@ import {
     Image,
     Text,
     View,
-    TouchableOpacity, StyleSheet
+    TouchableOpacity, StyleSheet,
+    Alert
 } from 'react-native';
 import { STRINGS, COLORS, SIZES, FONTS } from '../../../constants';
 
-import { Container, Item, Input } from 'native-base';
-import Header from '../../../commons/Header';
-import Icon from "../../../commons/Icon"
-import IconDefault from "../../../commons/IconDefault"
 import { formatImageLink, dotNumber } from "../../../helper/index";
 
 class ListProgress extends Component {
     constructor(props) {
         super(props)
     }
+   
     renderStatus = (status) => {
         let text = { status: "", button: "", backgroundColor: "" }
         switch (status) {
             case 0:
                 text.status = "";
-                text.button = "Hướng dẫn đăng kí học phí";
+                text.button = "Chưa hoàn thành học phí";
                 return text;
                 break;
             case 1:
@@ -43,13 +41,13 @@ class ListProgress extends Component {
                 break;
 
             case 4:
-                text.status = "";
+                text.status = "Đang học lại";
                 text.button = "Đang học lại";
                 return text;
                 break;
 
             case 5:
-                text.status = "";
+                text.status = "Đã hoàn thành khoá học";
                 text.button = "Đã hoàn thành khóa học";
                 return text;
                 break;
@@ -62,7 +60,7 @@ class ListProgress extends Component {
             case 0:
             return (
                 <View style={{ alignItems: 'flex-start' }}>
-                <View style={{ marginTop: 10, justifyContent: 'center', alignItems: 'center', height: 25, borderRadius : 10, backgroundColor: COLORS.GREEN }}>
+                <View style={{ marginTop: 10, justifyContent: 'center', alignItems: 'center', height: 25,borderRadius : 10, backgroundColor: COLORS.GREEN }}>
                     <Text style={{
                         fontFamily: 'Roboto-Bold',
                         fontSize: SIZES.SUBTITLE_SIZE,
@@ -70,13 +68,13 @@ class ListProgress extends Component {
                         paddingLeft: 10,
                         paddingRight: 10
                     }} >{this.renderStatus(0).button}</Text>
-
+    
                 </View>
             </View>
             )
             break;
             case 1:
-            return(<View style={{ alignItems: 'flex-start' }}>
+            return(<TouchableOpacity activeOpacity = {0.8} style={{ alignItems: 'flex-start' }} onPress = {() => this.props.reserveStudy()}>
             <View style={{ marginTop: 10, justifyContent: 'center', alignItems: 'center', height: 25,borderRadius : 10, backgroundColor: COLORS.GREEN }}>
                 <Text style={{
                     fontFamily: 'Roboto-Bold',
@@ -87,71 +85,11 @@ class ListProgress extends Component {
                 }} >{this.renderStatus(1).button}</Text>
 
             </View>
-        </View>)
-        break;
-            
-            case 2:
-            return(
-            <View style={{ alignItems: 'flex-start' }}>
-            <View style={{ marginTop: 10, justifyContent: 'center', alignItems: 'center', height: 25, borderRadius : 10, backgroundColor: COLORS.GREEN }}>
-                <Text style={{
-                    fontFamily: 'Roboto-Bold',
-                    fontSize: SIZES.SUBTITLE_SIZE,
-                    color: "#FFF",
-                    paddingLeft: 10,
-                    paddingRight: 10
-                }} >{this.renderStatus(2).button}</Text>
-
-            </View>
-        </View>
-            )
-            break;
-            case 3:
-            return (
-            <View style={{ alignItems: 'flex-end' }}>
-            <View style={{ marginTop: 10, justifyContent: 'center', alignItems: 'center', height: 25, borderRadius : 10, backgroundColor: COLORS.GREEN }}>
-                <Text style={{
-                    fontFamily: 'Roboto-Bold',
-                    fontSize: SIZES.SUBTITLE_SIZE,
-                    color: "#FFF",
-                    paddingLeft: 10,
-                    paddingRight: 10
-                }} >{this.renderStatus(3).button}</Text>
-            </View>
-        </View>
-            )
-            break;
-            case 4:
-            return (
-                <View style={{ alignItems: 'flex-end' }}>
-                <View style={{ marginTop: 10, justifyContent: 'center', alignItems: 'center', height: 25, borderRadius : 10, backgroundColor: COLORS.GREEN }}>
-                    <Text style={{
-                        fontFamily: 'Roboto-Bold',
-                        fontSize: SIZES.SUBTITLE_SIZE,
-                        color: "#FFF",
-                        paddingLeft: 10,
-                        paddingRight: 10
-                    }} >{this.renderStatus(4).button}</Text>
-                </View>
-            </View>
-                )
+        </TouchableOpacity>)
                 break;
+            default:
+            return null;
 
-            case 5 :
-            return (
-                <View style={{ alignItems: 'flex-end' }}>
-                <View style={{ marginTop: 10, justifyContent: 'center', alignItems: 'center', height: 25, borderRadius : 10, backgroundColor: COLORS.GREEN }}>
-                    <Text style={{
-                        fontFamily: 'Roboto-Bold',
-                        fontSize: SIZES.SUBTITLE_SIZE,
-                        color: "#FFF",
-                        paddingLeft: 10,
-                        paddingRight: 10
-                    }} >{this.renderStatus(5).button}</Text>
-                </View>
-            </View>
-                )
-                break;
         }
     }
     render() {

@@ -27,11 +27,11 @@ class ListNotification extends Component {
             <TouchableOpacity
                 activeOpacity={0.8}
                 style={[styles.cardItem,styles.shadow,
-                    { margin: 20, marginBottom: 10, marginTop: 10, paddingLeft: 15, paddingTop: 15, backgroundColor: item.seen == 2 ? COLORS.GREEN : COLORS.LIGHT_COLOR }]} onPress={() => {}}>
+                    { marginLeft: 5, marginBottom: 10, marginTop: 10, paddingLeft: 15, paddingTop: 15, backgroundColor: item.seen == 2 ? COLORS.GREEN : COLORS.LIGHT_COLOR }]} onPress={() => {}}>
                 <View style={{ flexDirection: 'row' }}>
                     <View style={{ justifyContent: 'space-between', alignItems: 'center' }}>
                         <Image
-                            style={styles.avatarCircleSmall}
+                            style={styles.imageIcon}
                             source={{ uri: item.image_url ? formatImageLink(item.image_url) : "" }}
                         />
                     </View>
@@ -48,7 +48,7 @@ class ListNotification extends Component {
                         ?
                         null
                         :
-                        <Icon name={"FontAwesome|circle"} size={10} color={COLORS.GREEN_COLOR} style={{ position: "absolute", left: -10 , top: -10, backgroundColor: 'transparent' }} />
+                        <Icon name={"FontAwesome|circle"} size={10} color={COLORS.GREEN_COLOR} style={{ position: "absolute", left: -5 , top: -5, backgroundColor: 'transparent' }} />
                     }
                 </View>
             </TouchableOpacity>

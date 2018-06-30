@@ -19,7 +19,7 @@ class NotificationContainer extends React.Component {
         this.state = {
         }
     }
-    componentDidMount() {
+    componentWillMount() {
         Analytics.trackEvent(STRINGS.ACTION_ROOT_TAB_NOTIFICATION, {});
         notificationStore.getListNotification(1);
     }
@@ -36,39 +36,46 @@ class NotificationContainer extends React.Component {
     }
 
     renderNotification() {
-        if (notificationStore.data.length == 0) {
+        if (notificationStore.isLoading && notificationStore.data.length == 0) {
             return <Loading />
+        } else {
+            if (notificationStore.error) {
+                return (
+                    <Error onPress={() => notificationStore.getListNotification(1)} />
+                )
+            }
+            if (notificationStore.data.length !== 0) {
+                return (
+                    <FlatList
+                        keyExtractor={item => item.id + ''}
+                        showsVerticalScrollIndicator={false}
+    
+                        data={notificationStore.data}
+                        onEndReached={() => this.getMoreNotifications()}
+                        ListFooterComponent={
+                            this.loadMore()
+                        }
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={notificationStore.isLoading && notificationStore.data.length == 0}
+                                onRefresh={
+                                    () => this.componentWillMount()
+                                }
+                            />
+                        }
+                        renderItem={({ item }) =>
+                            <ListNotification item={item} navigation={this.props.navigation} />
+                        }
+                    />
+                )
+            }
+            else {
+                return (
+                <TextNullData text = {"Bạn không có thông báo nào"} />
+                )
+            }
         }
-        if (notificationStore.error) {
-            return (
-                <Error onPress={() => notificationStore.getListNotification(1)} />
-            )
-        }
-        if (notificationStore.data.length !== 0) {
-            return (
-                <FlatList
-                    keyExtractor={item => item.id + ''}
-                    showsVerticalScrollIndicator={false}
-
-                    data={notificationStore.data}
-                    onEndReached={() => this.getMoreNotifications()}
-                    ListFooterComponent={
-                        this.loadMore()
-                    }
-                    refreshControl={
-                        <RefreshControl
-                            refreshing={notificationStore.isLoading && notificationStore.data.length == 0}
-                            onRefresh={
-                                () => this.componentWillMount()
-                            }
-                        />
-                    }
-                    renderItem={({ item }) =>
-                        <ListNotification item={item} navigation={this.props.navigation} />
-                    }
-                />
-            )
-        }
+        
 
     }
 render() {

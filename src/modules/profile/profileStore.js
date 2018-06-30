@@ -1,23 +1,10 @@
 import { observable, action, computed } from "mobx";
-import { userProfileApi, updateProfileApi, getDetailPortfolioApi, getPortfolioApi } from "./profileApi";
+import { userProfileApi, updateProfileApi, getDetailPortfolioApi, getPortfolioApi , reserveStudyApi} from "./profileApi";
 import { Alert, AsyncStorage } from "react-native";
 import _ from "lodash"
 import Analytics from 'appcenter-analytics';
 import { STRINGS } from '../../constants'
-// function gridPosts(posts){
-//     posts = posts.map((post, index) => {
-//         return {
-//             ...post,
-//             key: index
-//         }
-//     });
 
-//     postsGrid = _.groupBy(posts, ({element, key}) => {
-//         return Math.floor(key  / 3);
-//     });
-//     postsGrid = _.toArray(postsGrid);
-//     return postsGrid;
-// }
 export default getProfileStore = new class GetProfileStore {
     @observable user = {};
     @observable updateUser = {};
@@ -32,7 +19,8 @@ export default getProfileStore = new class GetProfileStore {
     @observable isLoadingMore = false;
     @observable isLoadingRefresh = false;
     @observable dataPortfolio = [];
-   
+    @observable modalReserve = false;
+    @observable isLoadingReserve = false;
     @action
     getProfile() {
         this.isLoading = true;
@@ -83,6 +71,22 @@ export default getProfileStore = new class GetProfileStore {
                 console.log(err)
                 Alert.alert("Thông báo", ", mời bạn kiểm tra đường truyền");
             })
+    }
+    @action
+    reserveStudy(){
+        this.isLoadingReserve = true;
+        this.modalReserve = true;
+        reserveStudyApi().then(res=> {
+            this.isLoadingReserve = false;
+            Alert.alert("Thông báo", "Phản hồi của bạn đã được ghi nhận, chúng tôi sẽ liên lạc với bạn sau",[
+                {text : "OK", onPress : ()=> {this.modalReserve = false}}
+            ])
+        }).catch(err=> {
+            this.isLoadingReserve = false;
+            Alert.alert("Thông báo", "Kết nối thất bại, kiểm tra lại đường truyền",[
+                {text : "OK", onPress : () => {this.modalReserve = false}}
+            ])
+        })
     }
 
 

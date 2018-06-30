@@ -54,7 +54,6 @@ const Blog = StackNavigator(
         BlogContainer: { screen: BlogContainer, path: "blogContainer" },
         DetailBlog: { screen: DetailBlogContainer },
         ListBlog: { screen: ListBlog },
-        // ReplyComment: { screen: ReplyCommentContainer},
     }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'blog' } }
 
 );

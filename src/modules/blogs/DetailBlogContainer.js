@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {StyleSheet, Image, Platform, Text, View,TouchableOpacity, ScrollView, FlatList, Linking, KeyboardAvoidingView, ActivityIndicator, } from 'react-native';
+import { Dimensions, StyleSheet, Image, Platform, Text, View, TouchableOpacity, ScrollView, FlatList, Linking, KeyboardAvoidingView, ActivityIndicator, } from 'react-native';
 import {
     Body,
     Button,
@@ -103,7 +103,8 @@ class DetailBlogContainer extends Component {
         const { goBack } = this.props.navigation;
         const { detailBlog, isLoadingDetail } = blogStore;
         return (
-            <Container style={[styles.wrapperContainer]}>
+
+            <Container style={styles.wrapperContainer}>
                 <View style={[styles.wrapperHeader, styles.paddingLeftRight, { flexDirection: 'row' }]}>
                     <View style={{ flex: 8, justifyContent: 'center' }}>
                         <Text style={[styles.textHeaderScreen, { fontSize: 17 }]} numberOfLines={1} onPress={() => this.refs.detailBlog.scrollTo({ x: 0, y: 0, animated: true })} >{detailBlog.title}</Text>
@@ -121,7 +122,7 @@ class DetailBlogContainer extends Component {
                     </TouchableOpacity>
                 </View>
                 <FlatList
-                    ref = {ref => this.flatList = ref}
+                    ref={ref => this.flatList = ref}
                     keyExtractor={item => item.id + ''}
                     showsVerticalScrollIndicator={false}
                     data={[1]}
@@ -159,12 +160,15 @@ class DetailBlogContainer extends Component {
                     }}
                     // onEndReached={() => this.getMoreSubjects()}
                     ListFooterComponent={
-                        <CommentContainer id={params.id}  navigate = {navigate}/>
+                        <CommentContainer id={params.id} navigate={navigate} />
                     }
                 />
-                <TextInputContainer id={params.id} flatList={this.flatList}/>
-
+                <KeyboardAvoidingView
+                    behavior={Platform.OS === 'ios' ? 'position' : undefined}>
+                    <TextInputContainer id={params.id} flatList={this.flatList} />
+                </KeyboardAvoidingView>
             </Container>
+
         );
     }
 }
