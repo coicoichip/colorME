@@ -8,6 +8,7 @@ export async function surveyApi(page) {
     await AsyncStorage.getItem('@UserToken').then((value) => {
         url = APIS.MANAGER_API + '/v2/survey?page=' + page + '&token=' + value;
     })
+    
     console.log(url)
     return axios.get(url);
 }
