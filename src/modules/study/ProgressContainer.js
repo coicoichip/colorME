@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, TouchableOpacity, Image, StyleSheet, Text,FlatList, RefreshControl ,Modal, PanResponder} from "react-native";
+import { View, TouchableOpacity, Image, StyleSheet, Text,FlatList, RefreshControl ,Modal, PanResponder, Alert} from "react-native";
 import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
 import getProfileStore from "../profile/profileStore";
 import ListProgress from "./ListItem/ListProgress";
@@ -16,14 +16,14 @@ class ProgressContainer extends Component {
         })
     }
     _onPanResponderGrant(event, gestureState) {
-        if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
+        if (event.nativeEvent.locationX === event.nativeEvent.pageX && getProfileStore.isLoadingReserve == false) {
             getProfileStore.modalReserve = false;
         }
     }
-    reserveStudy(){
+    reserveStudy (class_id){
         Alert.alert("Thông báo", "Bạn đang sắp gửi yêu cầu cho colorME, bạn có chắc chắn", [
             {text : "Huỷ", onPress : () => {}},
-            {text : "Đồng ý", onPress : () => {getProfileStore.reserveStudy()}}
+            {text : "Đồng ý", onPress : () => {getProfileStore.reserveStudy(class_id)}}
         ])
     }
    

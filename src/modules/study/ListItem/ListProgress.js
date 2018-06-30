@@ -74,7 +74,7 @@ class ListProgress extends Component {
             )
             break;
             case 1:
-            return(<TouchableOpacity activeOpacity = {0.8} style={{ alignItems: 'flex-start' }} onPress = {() => this.props.reserveStudy()}>
+            return(<TouchableOpacity activeOpacity = {0.8} style={{ alignItems: 'flex-start' }} onPress = {() => this.props.reserveStudy(this.props.item.class_id)}>
             <View style={{ marginTop: 10, justifyContent: 'center', alignItems: 'center', height: 25,borderRadius : 10, backgroundColor: COLORS.GREEN }}>
                 <Text style={{
                     fontFamily: 'Roboto-Bold',
@@ -107,7 +107,7 @@ class ListProgress extends Component {
                     </View>
                     <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
                         <Text numberOfLines={1} style={styles.emailNameModuleEmail}>{item.name.trim()}</Text>
-                        <Text style={styles.textDescriptionDark}>{duration_studied.length + "/" + item.attendances.length} buổi</Text>
+                        {/* <Text style={styles.textDescriptionDark}>{duration_studied.length + "/" + item.attendances.length} buổi</Text> */}
                         <View style={{ marginTop: 5 }}>
                             <Text numberOfLines={2} style={styles.textDescriptionDark}>{this.renderStatus(this.props.status).status}</Text>
                         </View>

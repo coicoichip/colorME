@@ -55,7 +55,7 @@ export function typeConnect(type) {
 
 export function formatImageLink(url) {
     if (url == null) {
-        return "http://"
+        return "https://i.stack.imgur.com/l60Hf.png"
     }
     else if (url.indexOf("http://") === -1 && url.split("://")[0] !== "https") {
         return "http://" + url

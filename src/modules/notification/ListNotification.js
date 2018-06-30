@@ -48,7 +48,7 @@ class ListNotification extends Component {
                         ?
                         null
                         :
-                        <Icon name={"FontAwesome|circle"} size={10} color={COLORS.GREEN_COLOR} style={{ position: "absolute", left: -5 , top: -5, backgroundColor: 'transparent' }} />
+                        <Icon name={"FontAwesome|circle"} size={10} color={COLORS.GREEN_COLOR} style={{ position: "absolute",  elevation: 5,left: 2 , top: -3, backgroundColor: 'transparent' }} />
                     }
                 </View>
             </TouchableOpacity>

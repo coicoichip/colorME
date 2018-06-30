@@ -13,7 +13,7 @@ import {bindActionCreators} from 'redux';
 import IconDefault from '../../commons/IconDefault';
 import styles from '../../styles/styles';
 import { FONTS } from '../../constants';
-
+import {resetScreen} from "../../helper/index"
 class FinishSurveyContainer extends Component {
     constructor() {
         super();
@@ -99,7 +99,7 @@ class FinishSurveyContainer extends Component {
 
                 </View>
                 {/* <NextButton function={() => {
-                    navigate('Survey')
+                    
                 }}/> */}
             </Container>
         );

@@ -73,10 +73,10 @@ export default getProfileStore = new class GetProfileStore {
             })
     }
     @action
-    reserveStudy(){
+    reserveStudy(class_id){
         this.isLoadingReserve = true;
         this.modalReserve = true;
-        reserveStudyApi().then(res=> {
+        reserveStudyApi(class_id).then(res=> {
             this.isLoadingReserve = false;
             Alert.alert("Thông báo", "Phản hồi của bạn đã được ghi nhận, chúng tôi sẽ liên lạc với bạn sau",[
                 {text : "OK", onPress : ()=> {this.modalReserve = false}}

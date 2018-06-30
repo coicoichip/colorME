@@ -43,10 +43,12 @@ export async function getDetailPortfolioApi(slug) {
 
   return axios.get(url);
 }
-export async function reserveStudyApi() {
+export async function reserveStudyApi(class_id) {
   let url;
   await AsyncStorage.getItem('@UserToken').then(value => {
-    url = ""
+    url = APIS.COLOR_ME_API1 + "/class/bao-luu?token=" + value
   })
-  return axios.post(url)
+  return axios.post(url, {
+    class_id : class_id
+  })
 }
