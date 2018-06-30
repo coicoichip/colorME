@@ -32,15 +32,15 @@ class HistorySurveyContainer extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
-        const newArr = this.props.historySurvey.map((item, i) => {
-            return {
-                ...item,
-                index: i
-            }
-        })
-        this.setState({ historySurveyState: newArr })
-    }
+    // componentWillReceiveProps(nextProps) {
+    //     const newArr = this.props.historySurvey.map((item, i) => {
+    //         return {
+    //             ...item,
+    //             index: i
+    //         }
+    //     })
+    //     this.setState({ historySurveyState: newArr })
+    // }
 
     loadMore() {
         if (this.props.isLoadingMoreHistorySurvey)
@@ -61,12 +61,18 @@ class HistorySurveyContainer extends Component {
                         ?
                         <Loading />
                         :
+                        
                         <View style={{ flex: 1 }}>
                             <View style={{ flex: 1, alignItems: 'center' }}>
                                 <FlatList
                                     ref="listRef"
                                     showsVerticalScrollIndicator={false}
-                                    data={this.state.historySurveyState}
+                                    data={Array.isArray(historySurvey) ? historySurvey.map((item, i) => {
+                                        return {
+                                            ...item,
+                                            index: i
+                                        }
+                                    })  :[]}
                                     keyExtractor={(item, key) => key + ''}
                                     onEndReachedThreshold={5}
                                     onEndReached={
@@ -76,7 +82,7 @@ class HistorySurveyContainer extends Component {
                                         <RefreshControl
                                             refreshing={isRefreshingHistorySurvey}
                                             onRefresh={
-                                                () => this.props.surveyAction.refreshHistorySurvey()
+                                                () => this.props.surveyAction.getHistorySurvey(1)
                                             }
                                         />
                                     }
