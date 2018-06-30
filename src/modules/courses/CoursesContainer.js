@@ -30,8 +30,8 @@ class CoursesContainer extends Component {
             isLoading: false,
             category: 0,
             categogyArr: [
-                { title: STRINGS.PROGRAM, index: 0 },
-                { title: STRINGS.DESIGN, index: 1 },
+                { title: STRINGS.DESIGN, index: 0 },
+                { title: STRINGS.PROGRAM, index: 1 },
             ]
         }
     }

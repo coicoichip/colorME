@@ -4,6 +4,7 @@ import { Alert, AsyncStorage } from "react-native";
 
 export const productsStore = new class productsStore {
     @observable products = [];
+    @observable datas = [];
     @observable isLoading = false;
     @observable errorProducts = false;
     @observable info_name = "";
@@ -14,6 +15,8 @@ export const productsStore = new class productsStore {
     @observable page = 1;
     @observable testproducts = [];
     @observable isLoadingBegin = false;
+    @observable data = {};
+    @observable headerProducts = [];
     
     @action
     getListProducts(filter, page) {
@@ -23,9 +26,9 @@ export const productsStore = new class productsStore {
             this.isLoadingBegin = false
             this.isLoading = false;
             this.errorProducts = false;
-            this.products = this.page == 1 ? res.data.products :  [...this.products, ...res.data.products];
+            if(this.page === 1) this.data = res.data.products[0];
+            this.products = this.page == 1 ? res.data.products.filter(e => e.id !== this.data.id) :  [...this.products, ...res.data.products];
             this.testproducts = res.data.products;
-            console.log(res);
         })
             .catch(err => {
                 this.isLoading = false;
@@ -40,7 +43,8 @@ export const productsStore = new class productsStore {
             this.isLoadingBegin = false
             this.isLoading = false;
             this.errorProducts = false;
-            this.products = this.page == 1 ? res.data.products :  [...this.products, ...res.data.products];
+            if(this.page === 1) this.data = res.data.products[0];
+            this.products = this.page == 1 ? res.data.products.filter(e => e.id !== this.data.id) :  [...this.products, ...res.data.products];
             this.testproducts = res.data.products;
         })
             .catch(err => {

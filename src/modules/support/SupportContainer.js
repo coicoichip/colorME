@@ -95,7 +95,7 @@ class SupportContainer extends Component {
                                         <Input
                                             style={[styles.inputTheme02, styles.textDescriptionCard, { fontSize: 13 }]}
                                             underlineColorAndroid={"transparent"}
-                                            placeholder="Nôi dung"
+                                            placeholder="Nội dung"
                                             returnKeyType={'next'}
                                             autoCorrect={false}
                                             onChangeText={(message) => {
@@ -160,7 +160,8 @@ const styles = StyleSheet.create({
 
     },
     cardItem: {
-        padding: 10,
+        paddingTop: 10,
+        paddingBottom: 10,
         borderRadius: 5,
     },
     avatarUserImage: {

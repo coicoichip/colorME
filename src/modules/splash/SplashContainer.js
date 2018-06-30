@@ -9,11 +9,11 @@ import Spinner from 'react-native-spinkit';
 import splashStore from "./splashStore"
 import { observer } from 'mobx-react';
 import { resetScreen } from '../../helper';
-
-
+import deviceStore from "../check-device/deviceStore"
+import DeviceInfo from 'react-native-device-info';
+import OneSignal from "react-native-onesignal";
 @observer
 export default class SplashContainer extends Component {
-
     checkNetwork = async () => {
         const result = await NetInfo.getConnectionInfo().then((connectionInfo) => {
             //check network connect success
@@ -39,14 +39,18 @@ export default class SplashContainer extends Component {
     }
 
     componentDidMount() {
-        const { navigation } = this.props;
-        this.checkNetwork().then(async function (res) {
+        const { navigation } = this.props;  
+        // let device = {
+        //     device_id : DeviceInfo.getUniqueID(),
+        //     device_name : DeviceInfo.getModel(),
+        //     device_os : DeviceInfo.getSystemName(),
+        // }
+        // console.log(device)
+        this.checkNetwork().then(async function(res) {
             try {
-                const token = await AsyncStorage.getItem('@UserToken')
-                const id = await AsyncStorage.getItem("@ID")
-                console.log(id, token)
-                if (token && id) {
-
+                 const token = await AsyncStorage.getItem('@UserToken')
+                 const id = await AsyncStorage.getItem("@ID")
+                if(token && id){
                     splashStore.refreshToken(navigation, token)
                 } else {
 
@@ -79,7 +83,7 @@ export default class SplashContainer extends Component {
                 />
                 <Image style={{ width: '50%', height: '50%' }}
                     resizeMode={'contain'}
-                    source={require('../../../assets/image/colorme.png')}
+                    source={require('../../../assets/image/Image_2.png')}
                 />
                 <Spinner
                     size={SIZES.LOADING_SIZE}

@@ -78,6 +78,8 @@ export async function uploadImage(file, completeHandler, progressHandler, error)
     await AsyncStorage.getItem('@UserToken').then((value) => {
         url = "http://colorme.vn" + "/manageapi/v3/file/upload?token=" + value;
     })
+    console.log(url)
+    
     let formData = new FormData();
     formData.append("file", file);
     console.log(file)

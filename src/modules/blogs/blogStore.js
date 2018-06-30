@@ -1,9 +1,9 @@
 import { observable, action, computed } from "mobx";
 import { blogApi, detailBlogApi, attendanceApi, checkAttendanceApi} from "./blogApi";
-
+import {AsyncStorage} from "react-native";
 import { NavigationActions } from "react-navigation";
 import { STRINGS } from "../../constants";
-
+import deviceStore from "../check-device/deviceStore";
 export default blogStore = new class BlogStore {
     @observable blogs = [];
     @observable current_page = 0;
@@ -21,6 +21,7 @@ export default blogStore = new class BlogStore {
     @observable modalVisible = false;
     @observable modalVisible1 = false;
     @observable check = 2;
+    @observable index = 0;
 
     @action
     getBlog(kind, page,tag,action) {
@@ -62,22 +63,22 @@ export default blogStore = new class BlogStore {
     @action
     checkAttendance(){
         checkAttendanceApi().then(res => {
-            
             this.attendanceData = res.data.data;
+            console.log(res.data.data)
             this.modalVisible = res.data.data.id ? true : false
-            
         })
         .catch(err => {
+            console.log(err)
         })
     }
     
     @action 
     attendance(class_id, class_lesson_id, mac_wifi){
         this.isLoadingAttendent = true;
-        
+        console.log(class_id, class_lesson_id)
         attendanceApi(class_id, class_lesson_id, mac_wifi)
         .then(res => {
-            // console.log("attendance success", res.data);
+            console.log(res);
             this.check = 1;
             this.modalVisible1 = true;
             this.modalVisible = false;
@@ -86,6 +87,7 @@ export default blogStore = new class BlogStore {
             // alert(STRINGS.ATTENDANCE_SUCCESS)
         })
         .catch(err => {
+            console.log(err)
             this.isLoadingAttendent = false;
             this.check = 0;
             this.modalVisible = false;

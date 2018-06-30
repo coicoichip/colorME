@@ -25,17 +25,19 @@ export default getProfileStore = new class GetProfileStore {
     @observable error = false;
     @observable isLoadingUpdate = false;
     @observable progress = [];
+    @observable registers = [];
     @observable isLoadingPortfolio = false;
     @observable portfolio = [];
     @observable blogs = [];
     @observable isLoadingMore = false;
     @observable isLoadingRefresh = false;
     @observable dataPortfolio = [];
-
+   
     @action
     getProfile() {
         this.isLoading = true;
         userProfileApi().then(res => {
+            // console.log(res.data.data.registers)
             this.isLoading = false;
             this.user = res.data.data;
             this.progress = res.data.data.progress;
@@ -44,6 +46,7 @@ export default getProfileStore = new class GetProfileStore {
             //console.log(this.user);
         })
             .catch(err => {
+                console.log(err)
                 this.isLoading = false;
                 this.error = true;
             })
