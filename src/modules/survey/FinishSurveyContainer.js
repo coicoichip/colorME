@@ -81,7 +81,7 @@ class FinishSurveyContainer extends Component {
 
                 </View>
                 <NextButton function={() => {
-                    navigate('DetailSurvey')
+                    navigate('Survey')
                 }}/>
             </Container>
         );

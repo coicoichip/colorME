@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { observer } from "mobx-react";
 import loginStore from "../login/loginStore";
+import {formatImageLink} from '../../helper'
 
 @observer
 class HistorySurveyContainer extends Component {
@@ -84,7 +85,7 @@ class HistorySurveyContainer extends Component {
                                             style={[general.wrapperRowCenter, general.padding, general.marginBottomFar]}>
                                             <Image
                                                 style={[general.imageCircleNormal]}
-                                                source={{ uri: user ? user.avatar_url : '' }}
+                                                source={{ uri: user ? formatImageLink(user.avatar_url) : '' }}
                                             />
                                             <View style={general.marginLR}>
                                                 <Text style={general.textTitleBig}>{user.name}</Text>
