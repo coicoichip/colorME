@@ -26,8 +26,8 @@ export const productsStore = new class productsStore {
             this.isLoadingBegin = false
             this.isLoading = false;
             this.errorProducts = false;
-            if(this.page === 1) this.data = res.data.products[0];
-            this.products = this.page == 1 ? res.data.products.filter(e => e.id !== this.data.id) :  [...this.products, ...res.data.products];
+           
+            this.products = this.page == 1 ? res.data.products:  [...this.products, ...res.data.products];
             this.testproducts = res.data.products;
         })
             .catch(err => {
@@ -43,8 +43,8 @@ export const productsStore = new class productsStore {
             this.isLoadingBegin = false
             this.isLoading = false;
             this.errorProducts = false;
-            if(this.page === 1) this.data = res.data.products[0];
-            this.products = this.page == 1 ? res.data.products.filter(e => e.id !== this.data.id) :  [...this.products, ...res.data.products];
+            
+            this.products = this.page == 1 ? res.data.products :  [...this.products, ...res.data.products];
             this.testproducts = res.data.products;
         })
             .catch(err => {

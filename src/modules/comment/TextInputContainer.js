@@ -44,9 +44,13 @@ export default class TextInputContainer extends Component {
     keyboardDidHide(e) {
         commentStore.height = Dimensions.get('window').height;
     }
+    keyboard(){
+       this.props.flatList.scrollToEnd();
+    }
     postComment = async () => {
         await commentStore.postComment(this.props.id, commentStore.value, getProfileStore.updateUser);
-        setTimeout(() => this.props.flatList.scrollToEnd(), 200);
+        Keyboard.dismiss();
+        setTimeout(() => this.keyboard(), 200)
     }
     render() {
 
@@ -59,7 +63,7 @@ export default class TextInputContainer extends Component {
                 <View style={{ flex: 1, marginLeft : 10}}>
                     <Item rounded>
                         <Input
-                            ref={ref => (this.input = ref)}
+                            ref={'input'}
                             // autoFocus={this.props.haveAutoFocus ? true : false}
                             placeholder='Viết bình luận'
                             autoCorrect={false}
@@ -90,6 +94,8 @@ export default class TextInputContainer extends Component {
                             }
                             :
                             this.postComment
+                            
+
                     }
 
                 >

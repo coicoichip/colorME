@@ -8,85 +8,12 @@ import { observable } from "mobx";
 import { productsStore } from "./productsStore";
 import Select, { returnInfo, returnDate } from "./Select";
 import Loading from "../../commons/Loading";
-import { formatImageLink } from "../../helper/index";
+
 import blogStore from "../blogs/blogStore";
 import ModalCheckInStudent from '../blogs/ModalCheckInStudent';
 import ModalAcceptCheckIn from '../blogs/ModalAcceptCheckIn';
-import IconDefault from '../../commons/IconDefault';
-// import LinearGradient from 'react-native-linear-gradient';
-import TextNullData from "../../commons/TextNullData";
-
-const { width } = Dimensions.get('window')
-const { height } = Dimensions.get('window')
-class RenderItem extends React.Component {
-  render() {
-    const { item } = this.props;
-    const { navigate } = this.props;
-    return (
-      <View style={{ flex: 1, flexDirection: 'row' }}>
-        {
-          item.map((post, index) => {
-            return (
-              <TouchableOpacity activeOpacity={0.8}
-                key={index}
-                onPress={() => blogStore.isLoadingDetail == false ? navigate('DetailBlog', { slug: post.slug, kind: post.kind, id: post.id }) : {}}>
-                <Image resizeMode={"cover"} source={{ uri: formatImageLink(post.thumb_url) }} style={styles.imageFeature2} />
-              </TouchableOpacity>
-            )
-          })
-        }
-      </View>
-    )
-
-  }
-}
-@observer
-class HeaderProducts extends React.Component {
-  render() {
-    const {navigate} = this.props;
-    return (
-      <View>
-        <TouchableOpacity activeOpacity={0.8} style={{ alignItems: 'center' }}
-          onPress={() => blogStore.isLoadingDetail == false ? navigate('DetailBlog', { slug: productsStore.data.slug, kind: productsStore.data.kind, id: productsStore.data.id }) : {}}>
-          <Image resizeMode={"cover"} source={{ uri: formatImageLink(productsStore.data.thumb_url) }} style={styles.imageFeature} />
-        </TouchableOpacity>
-        {/* <View style={{ flexDirection: 'row', paddingHorizontal: 17, marginBottom: 10, position: 'absolute', bottom: 10 }}>
-          <View style={{ justifyContent: 'flex-start', flexDirection: 'row', flex: 1 }}>
-            <Button
-              transparent style={{ paddingRight: 5 }}
-            >
-              <IconDefault name="FontAwesome|heart" size={20}
-                color={COLORS.NAV_TITLE} />
-              <Text
-                style={[styles.describeLight, styles.paddingLeft]}>5</Text>
-            </Button>
-            <Button transparent style={{ paddingRight: 5 }}
-            >
-              <IconDefault name="FontAwesome|comment"
-                size={20}
-                color={COLORS.NAV_TITLE} />
-              <Text
-                style={[styles.describeLight, styles.paddingLeft]}>5</Text>
-            </Button>
-            <Button transparent style={{ paddingRight: 5 }}>
-              <IconDefault name="MaterialCommunityIcons|eye"
-                size={23}
-                color={COLORS.NAV_TITLE} />
-              <Text
-                style={[styles.describeLight, styles.paddingLeft]}>5</Text>
-            </Button>
-          </View>
-          <View style={{ justifyContent: 'flex-end' }}>
-            <Button transparent>
-              <IconDefault name="FontAwesome|star" size={23}
-                color={'#ffd800'} />
-            </Button>
-          </View>
-        </View> */}
-      </View>
-    )
-  }
-}
+import HeaderProducts from "./HeaderProduct";
+import RenderItem from "./RenderItem"
 @observer
 class ProductsContainer extends React.Component {
   @observable info_id = "";
@@ -139,11 +66,11 @@ class ProductsContainer extends React.Component {
           key: index
         }
       });
-
-    postsGrid = _.groupBy(posts, ({ element, key }) => {
-      return Math.floor(key / 3);
+    postsGrid = posts.filter((value, key) => key > 0)
+    postsGrid = _.groupBy(postsGrid, ({ element, key }) => {
+      return Math.floor((key - 1) / 3);
     });
-    postsGrid = _.toArray(postsGrid);
+    postsGrid = [posts[0], ..._.toArray(postsGrid)];
     return postsGrid;
   }
   getMoreProducts() {
@@ -159,13 +86,11 @@ class ProductsContainer extends React.Component {
     else
       return null
   }
-  // refreshList() {
-  //   productsStore.page = 1;
-  //   productsStore.info_id == 0 ? productsStore.getListProductsNew(1)
-  //     : productsStore.getListProducts(productsStore.data_id, 1)
-  // }
+  scrollList() {
+    this.refs.flatlist.scrollToOffset({ x: 0, y: 0, animated: true })
+}
   _renderItem = ({ item }) => (
-    <RenderItem item={item} navigate={this.props.navigation.navigate} />
+    <RenderItem item={item} navigate={this.props.navigation.navigate} gridPost = {this.gridPost()} />
   );
   render() {
     const { navigate } = this.props.navigation;
@@ -202,7 +127,7 @@ class ProductsContainer extends React.Component {
           <ModalAcceptCheckIn />
         </View>
       </Modal>
-      <Header title={STRINGS.PRODUCTS} navigate={navigate} />
+      <Header title={STRINGS.PRODUCTS} navigate={navigate} onPress = {this.scrollList.bind(this)} />
       <View style={{ flexDirection: 'row' }}>
         <Select haveInfo functionInfo={() => this.pickInfo()} />
         <Select haveDate={productsStore.info_id == 0 ? null : 'haveDate'} functionDate={() => this.pickDate()} />
@@ -215,6 +140,7 @@ class ProductsContainer extends React.Component {
             // disableVirtualization
             keyExtractor={(item, key) => key}
             initialNumToRender={1}
+            ref = {'flatlist'}
             showsVerticalScrollIndicator={false}
             data={this.gridPost()}
             onEndReachedThreshold={50}
@@ -227,9 +153,9 @@ class ProductsContainer extends React.Component {
               // }
               />
             }
-            ListHeaderComponent={() => {
-              return (<HeaderProducts navigate = {navigate}/>)
-            }}
+            // ListHeaderComponent={() => {
+            //   return (<HeaderProducts navigate = {navigate}/>)
+            // }}
             ListFooterComponent={
               this.loadMore()
             }

@@ -34,7 +34,9 @@ class NotificationContainer extends React.Component {
         else
             return null
     }
-
+    scrollList() {
+        this.refs.flatlist.scrollToOffset({ x: 0, y: 0, animated: true })
+    }
     renderNotification() {
         if (notificationStore.isLoading && notificationStore.data.length == 0) {
             return <Loading />
@@ -49,7 +51,7 @@ class NotificationContainer extends React.Component {
                     <FlatList
                         keyExtractor={item => item.id + ''}
                         showsVerticalScrollIndicator={false}
-    
+                        ref = {'flatlist'}
                         data={notificationStore.data}
                         onEndReached={() => this.getMoreNotifications()}
                         ListFooterComponent={
@@ -82,7 +84,7 @@ render() {
     const { navigate } = this.props.navigation;
     return (
         <Container style={styles.wrapperContainer}>
-            <Header title={STRINGS.NOTIFICATION_TITLE_HEADER} navigate={navigate} />
+            <Header title={STRINGS.NOTIFICATION_TITLE_HEADER} navigate={navigate} onPress = {this.scrollList.bind(this)} />
             {this.renderNotification()}
         </Container>
     );
