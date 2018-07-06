@@ -21,13 +21,16 @@ class ListNotification extends Component {
     }
 
     render() {
-        const { navigate } = this.props;
+        const { navigate } = this.props.navigation;
         const { item } = this.props;
         return (
             <TouchableOpacity
                 activeOpacity={0.8}
-                style={[styles.cardItem,styles.shadow,
-                    { marginLeft: 5, marginBottom: 10, marginTop: 10, paddingLeft: 15, paddingTop: 15, backgroundColor: item.seen == 2 ? COLORS.GREEN : COLORS.LIGHT_COLOR }]} onPress={() => {}}>
+                onPress={() => {
+                    navigate('DetailBlog', { id: item.object_id });
+                }}
+                style={[styles.cardItem, styles.shadow,
+                { marginLeft: 5, marginBottom: 10, marginTop: 10, paddingLeft: 15, paddingTop: 15, backgroundColor: item.seen == 2 ? COLORS.GREEN : COLORS.LIGHT_COLOR }]}>
                 <View style={{ flexDirection: 'row' }}>
                     <View style={{ justifyContent: 'space-between', alignItems: 'center' }}>
                         <Image
@@ -35,20 +38,20 @@ class ListNotification extends Component {
                             source={{ uri: item.image_url ? formatImageLink(item.image_url) : "" }}
                         />
                     </View>
-                    <View style={{ alignItems: 'flex-start', marginLeft: 10, backgroundColor:'transparent', width: SIZES.DEVICE_WIDTH_SIZE - 110 }}>
+                    <View style={{ alignItems: 'flex-start', marginLeft: 10, backgroundColor: 'transparent', width: SIZES.DEVICE_WIDTH_SIZE - 110 }}>
                         <Text style={[styles.textDescriptionDark, { fontSize: 12 }]}>
-                        {this.convertNotificationContent(item.message ? item.message : "")}
+                            {this.convertNotificationContent(item.message ? item.message : "")}
                         </Text>
                         <Text style={{ height: 3 }} />
-                        <Text style={[styles.textDescriptionGray, { fontSize: 12}]}>{item.created_at}</Text>
+                        <Text style={[styles.textDescriptionGray, { fontSize: 12 }]}>{item.created_at}</Text>
                         <Text style={{ height: 3 }} />
                     </View>
                     {
-                        item.seen == 2 
-                        ?
-                        null
-                        :
-                        <Icon name={"FontAwesome|circle"} size={10} color={COLORS.GREEN_COLOR} style={{ position: "absolute",  elevation: 5,left: 2 , top: -3, backgroundColor: 'transparent' }} />
+                        item.seen == 2
+                            ?
+                            null
+                            :
+                            <Icon name={"FontAwesome|circle"} size={10} color={COLORS.GREEN_COLOR} style={{ position: "absolute", elevation: 5, left: 2, top: -3, backgroundColor: 'transparent' }} />
                     }
                 </View>
             </TouchableOpacity>

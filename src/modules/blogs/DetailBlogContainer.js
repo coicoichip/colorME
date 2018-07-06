@@ -39,10 +39,11 @@ class DetailBlogContainer extends Component {
 
     componentWillMount() {
         const { params } = this.props.navigation.state;
-        blogStore.getDetailBlog(params.slug);
+        blogStore.getDetailBlog(params.id);
     }
     getContent(url, content) {
-        return "<p><img src=" + formatImageLink(url) + ' style="width: 100%px; height: 100%px"></p>' + content
+        if(content !== null) return "<p><img src=" + formatImageLink(url) + ' style="width: 100%px; height: 100%px"></p>' + content
+        else return "<p><img src=" + formatImageLink(url) + ' style="width: 100%px; height: 100%px"></p>'
     }
     // getContent(content){
     //   const {params} = this.props.navigation.state;
@@ -102,6 +103,7 @@ class DetailBlogContainer extends Component {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         const { detailBlog, isLoadingDetail } = blogStore;
+        console.log(isLoadingDetail);
         return (
 
             <Container style={styles.wrapperContainer}>
@@ -147,7 +149,7 @@ class DetailBlogContainer extends Component {
                                                     source={detailBlog.author.avatar_url !== "http://" ? { uri: formatImageLink(detailBlog.author.avatar_url) } : require('../../../assets/image/colorMe.jpg')}
                                                 />
                                                 <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5 }}>{detailBlog.author.name.trim()}</Text>
-                                                <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5, color: 'gray' }}>{detailBlog.time.trim()}</Text>
+                                                <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5, color: 'gray' }}>{detailBlog.created_at.trim()}</Text>
                                             </View>
                                         </View>
                                     </View>

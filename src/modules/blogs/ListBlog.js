@@ -20,7 +20,7 @@ class ListBlog extends Component {
     goDetailBlog = () => {
         const { item, navigation } = this.props;
         Analytics.trackEvent(`${STRINGS.ACTION_GO_DETAIL_BLOG} ->  ${item.title.trim()}`, {})
-        navigation.navigate('DetailBlog', { slug: item.slug, kind : this.props.kind, id : item.id})
+        navigation.navigate('DetailBlog', { id: item.id, kind : this.props.kind})
     }
     render() {
         const { item } = this.props;

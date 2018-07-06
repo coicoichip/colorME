@@ -98,14 +98,21 @@ const Promotion = StackNavigator(
         // ReplyComment: { screen: ReplyCommentContainer},
     }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'promotion', title: "Khuyến mãi" } }
 )
+const Notifications = StackNavigator(
+    {
+        NotificationContainer: { screen: NotificationContainer },
+        DetailBlog: { screen: DetailBlogContainer },
+        
+    }, { headerMode: 'none', mode: 'modal'}
+)
 const Survey = StackNavigator(
     {
-        Survey: {screen: SurveyContainer},
-        DetailSurvey: {screen: DetailSurveyContainer},
-        QuestionSurvey: {screen: QuestionSurveyContainer},
-        HistorySurvey: {screen: HistorySurveyContainer},
-        DetailHistorySurvey: {screen: DetailHistorySurveyContainer},
-        FinishSurvey: {screen: FinishSurveyContainer},
+        Survey: { screen: SurveyContainer },
+        DetailSurvey: { screen: DetailSurveyContainer },
+        QuestionSurvey: { screen: QuestionSurveyContainer },
+        HistorySurvey: { screen: HistorySurveyContainer },
+        DetailHistorySurvey: { screen: DetailHistorySurveyContainer },
+        FinishSurvey: { screen: FinishSurveyContainer },
     }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'promotion', title: "Khảo sát" } }
 )
 
@@ -182,7 +189,7 @@ const Tab = TabNavigator({
 
     },
     Notification: {
-        screen: NotificationContainer,
+        screen: Notifications,
         path: "notification",
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
@@ -333,7 +340,7 @@ export const RootStack = StackNavigator(
         Splash: { screen: SplashContainer },
         Login: { screen: LoginContainer },
         Register: { screen: RegisterContainer },
-        ReplyComment: { screen: ReplyCommentContainer},
+        ReplyComment: { screen: ReplyCommentContainer },
         Drawer: { screen: Drawer, path: "main" },
     },
     { headerMode: 'none', mode: 'modal' }

@@ -36,7 +36,6 @@ export default commentStore = new class commentStore {
         getCommentOnePost(products_id).then(async res => {
              this.comments = await res.data.comments.map((item) => {
                  let liked = (item.likers.length == 0 || item.likers.filter(liker => liker.name == name).length == 0) ? false : true;
-                 console.log(liked);
                 return {...item, ...{liked : liked}};
             });
             this.isLoading = false;
