@@ -13,9 +13,7 @@ export default navStore = new class NavStore {
   };
   @action dispatch = (action, stackNavState = true) => {
     const previousNavState = stackNavState ? this.navigationState : null;
-    return this.navigationState = RootStack
-      .router
-      .getStateForAction(action, previousNavState);
+    return this.navigationState = RootStack.router.getStateForAction(action, previousNavState);
   }
 
 }

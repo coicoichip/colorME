@@ -14,10 +14,10 @@ export default splashStore =  new class SplashStore {
             .then(res => {
                 this.isLoading = false;
                 this.token = res.data.token;
-                this.status = 200;
                 AsyncStorage.setItem("@UserToken", res.data.token)
                 resetScreen(navigation, 'Drawer');
-            }).catch(err => { 
+                this.status = 200;
+            }).catch(err => {
                 resetScreen(navigation, 'Login');
             });
     }

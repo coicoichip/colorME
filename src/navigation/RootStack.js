@@ -62,7 +62,7 @@ export default class RootStackContainer extends Component {
     }
     componentDidMount() {
         if (splashStore.status === 200) {
-               OneSignal.addEventListener('opened', this.onOpened);
+            OneSignal.addEventListener('opened', this.onOpened);
         }
     }
 
