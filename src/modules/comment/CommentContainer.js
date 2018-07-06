@@ -24,7 +24,7 @@ import commentStore from "./commentStore";
 import IconDefault from '../../commons/IconDefault';
 import { observer } from "mobx-react";
 import getProfileStore from "../profile/profileStore";
-import TextInputContainer from "./TextInputContainer";
+
 @observer
 export default class CommentContainer extends Component {
     componentWillMount() {

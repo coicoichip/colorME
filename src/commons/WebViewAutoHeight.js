@@ -1,5 +1,5 @@
 import React from 'react';
-import {WebView, View, Text, Dimensions} from "react-native";
+import {WebView, View, Text, Dimensions, Linking} from "react-native";
 import PropTypes from 'prop-types';
 const BODY_TAG_PATTERN = /\<\/ *body\>/;
 
@@ -112,7 +112,15 @@ ${script}
 const codeInject = (html) => html.replace(BODY_TAG_PATTERN, style + "</body>");
 
 let {height, width} = Dimensions.get('window');
-
+const injectScript = `
+  (function () {
+    window.onclick = function(e) {
+      e.preventDefault();
+      window.postMessage(e.target.href);
+      e.stopPropagation()
+    }
+  }());
+`;
 class WebViewAutoHeight extends React.Component {
     constructor(props) {
         super(props);
@@ -121,6 +129,13 @@ class WebViewAutoHeight extends React.Component {
         };
         this.handleNavigationChange = this.handleNavigationChange.bind(this);
     }
+    onMessage({ nativeEvent }) {
+        const data = nativeEvent.data;
+    
+        if (data !== undefined && data !== null) {
+          Linking.openURL(data);
+        }
+      }
 
     handleNavigationChange(navState) {
         if (navState.title) {
@@ -131,6 +146,8 @@ class WebViewAutoHeight extends React.Component {
             this.props.onNavigationStateChange(navState);
         }
     }
+    
+
 
     render() {
         const {source, style, ...otherProps} = this.props;
@@ -159,6 +176,8 @@ class WebViewAutoHeight extends React.Component {
                     style={{...style, ...{height: this.state.realContentHeight, width: width}}}
                     javaScriptEnabled
                     onNavigationStateChange={this.handleNavigationChange}
+                    injectedJavaScript={injectScript}
+                    onMessage={this.onMessage.bind(this)}
                 />
             </View>
         );
