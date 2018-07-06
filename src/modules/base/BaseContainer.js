@@ -17,8 +17,7 @@ import baseStore from "./baseStore";
 import { observer } from "mobx-react";
 import { STRINGS, COLORS, SIZES, FONTS } from "../../constants";
 import Analytics from 'appcenter-analytics';
-
-
+import OneSignal from "react-native-onesignal";
 @observer class BaseContainer extends Component {
     constructor() {
         super();
@@ -102,6 +101,9 @@ import Analytics from 'appcenter-analytics';
                 </View>
             </Container>
         );
+    }
+    componentDidMount(){
+        OneSignal.inFocusDisplaying(2);
     }
 } 
 

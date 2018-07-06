@@ -9,7 +9,7 @@ import Spinner from 'react-native-spinkit';
 import splashStore from "./splashStore"
 import { observer } from 'mobx-react';
 import { resetScreen } from '../../helper';
-import OneSignal from "react-native-onesignal"
+import OneSignal from "react-native-onesignal";
 @observer
 export default class SplashContainer extends Component {
     componentWillMount(){
@@ -42,12 +42,9 @@ export default class SplashContainer extends Component {
 
     componentDidMount() {
         const { navigation } = this.props;  
-        // let device = {
-        //     device_id : DeviceInfo.getUniqueID(),
-        //     device_name : DeviceInfo.getModel(),
-        //     device_os : DeviceInfo.getSystemName(),
-        // }
-        // console.log(device)
+        
+        OneSignal.inFocusDisplaying(2);
+    
         this.checkNetwork().then(async function(res) {
             try {
                  const token = await AsyncStorage.getItem('@UserToken')

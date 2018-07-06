@@ -15,7 +15,7 @@ import scheduleStore from "./scheduleStore";
 import loginStory from "../login/loginStore";
 import { observer } from "mobx-react";
 import Header from "../../commons/Header";
-
+import OneSignal from "react-native-onesignal";
 
 const isIOS = Platform.OS === "ios";
 
@@ -138,6 +138,9 @@ class ScheduleContainer extends React.Component {
     const date = new Date(time);
     return date.toISOString().split("T")[0];
   }
+  componentDidMount(){
+        OneSignal.inFocusDisplaying(2);
+    }
 }
 
 const wrapperCenter = {

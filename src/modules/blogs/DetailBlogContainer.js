@@ -28,9 +28,9 @@ import TextInputContainer from "../comment/TextInputContainer"
 import { ButtonCommon } from "../../commons/Button"
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import IconDefault from '../../commons/IconDefault';
-import CommentContainer from "../comment/CommentContainer"
-import { observer } from "mobx-react"
-
+import CommentContainer from "../comment/CommentContainer";
+import { observer } from "mobx-react";
+import OneSignal from "react-native-onesignal";
 @observer
 class DetailBlogContainer extends Component {
     constructor() {
@@ -170,6 +170,9 @@ class DetailBlogContainer extends Component {
             </Container>
 
         );
+    }
+    componentDidMount(){
+        OneSignal.inFocusDisplaying(2);
     }
 }
 

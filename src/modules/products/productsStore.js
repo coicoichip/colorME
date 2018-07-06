@@ -43,7 +43,6 @@ export const productsStore = new class productsStore {
             this.isLoadingBegin = false
             this.isLoading = false;
             this.errorProducts = false;
-            
             this.products = this.page == 1 ? res.data.products :  [...this.products, ...res.data.products];
             this.testproducts = res.data.products;
         })

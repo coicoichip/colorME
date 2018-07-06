@@ -59,7 +59,7 @@ const Blog = StackNavigator(
 );
 const Profile = StackNavigator(
     {
-        MyProfile: { screen: ProfileContainer },
+        MyProfile: { screen: ProfileContainer, path : "myProfile" },
         DetailBlog: { screen: DetailBlogContainer },
     }, { initialRouteName: 'MyProfile', headerMode: 'none', mode: 'modal' }
 );
@@ -111,7 +111,7 @@ const Survey = StackNavigator(
 
 const Products = StackNavigator({
     Products: { screen: ProductsContainer },
-    DetailBlog: { screen: DetailBlogContainer },
+    DetailBlog: { screen: DetailBlogContainer,  },
     ListBlog: { screen: ListBlog },
     // ReplyComment: { screen: ReplyCommentContainer},
 }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'post' } })
@@ -160,7 +160,7 @@ const Tab = TabNavigator({
     },
     Products: {
         screen: Products,
-        path: "Products",
+        path: "products",
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
 
@@ -204,6 +204,7 @@ const Tab = TabNavigator({
     },
     Profile: {
         screen: Profile,
+        path : "profile",
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
 
@@ -331,10 +332,11 @@ const Drawer = DrawerNavigator(
 export const RootStack = StackNavigator(
     {
         Splash: { screen: SplashContainer },
-        Login: { screen: LoginContainer },
+        Login: { screen: LoginContainer, path : "login" },
         Register: { screen: RegisterContainer },
         ReplyComment: { screen: ReplyCommentContainer},
+
         Drawer: { screen: Drawer, path: "main" },
     },
-    { headerMode: 'none', mode: 'modal' }
+    { headerMode: 'none', mode: 'card' }
 );

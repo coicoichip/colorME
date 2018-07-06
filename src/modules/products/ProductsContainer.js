@@ -12,8 +12,8 @@ import Loading from "../../commons/Loading";
 import blogStore from "../blogs/blogStore";
 import ModalCheckInStudent from '../blogs/ModalCheckInStudent';
 import ModalAcceptCheckIn from '../blogs/ModalAcceptCheckIn';
-import HeaderProducts from "./HeaderProduct";
-import RenderItem from "./RenderItem"
+import OneSignal from "react-native-onesignal";
+import RenderItem from "./RenderItem";
 @observer
 class ProductsContainer extends React.Component {
   @observable info_id = "";
@@ -165,6 +165,9 @@ class ProductsContainer extends React.Component {
       }
     </Container>;
   }
+  componentDidMount(){
+        OneSignal.inFocusDisplaying(2);
+    }
 }
 
 const wrapperCenter = {

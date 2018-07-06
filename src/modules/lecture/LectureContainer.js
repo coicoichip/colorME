@@ -17,7 +17,7 @@ import { observer } from "mobx-react";
 import ListLeture from './ListLeture';
 import Error from '../../commons/Error';
 import TextNullData from '../../commons/TextNullData';
-
+import OneSignal from "react-native-onesignal";
 @observer
 class LectureContainer extends Component {
     constructor() {
@@ -58,6 +58,9 @@ class LectureContainer extends Component {
                 </View>
             </Container>
         );
+    }
+    componentDidMount(){
+        OneSignal.inFocusDisplaying(2);
     }
 }
 export default LectureContainer;

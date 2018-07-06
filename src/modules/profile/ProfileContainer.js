@@ -15,7 +15,7 @@ import InformationUser from "./InformationUser";
 import { observable } from "mobx";
 import PortfolioContaier from "./PortfolioContainer";
 import Analytics from 'appcenter-analytics';
-
+import OneSignal from "react-native-onesignal";
 // import loginStore from "../login/loginStore";
 @observer
 class ProfileContainer extends React.Component {
@@ -32,6 +32,7 @@ class ProfileContainer extends React.Component {
     this.changeAvatar = this.changeAvatar.bind(this);
   }
   componentDidMount() {
+    OneSignal.inFocusDisplaying(2);
     getProfileStore.getProfile();
     Analytics.trackEvent(STRINGS.ACTION_ROOT_TAB_USER, {});
   }
@@ -107,6 +108,9 @@ class ProfileContainer extends React.Component {
       </View>
     );
   }
+  componentDidMount(){
+        OneSignal.inFocusDisplaying(2);
+    }
 }
 export default ProfileContainer;
 const wrapperCenter = {

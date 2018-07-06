@@ -11,7 +11,7 @@ import Error from '../../commons/Error';
 import TextNullData from '../../commons/TextNullData';
 import ListNotification from './ListNotification';
 import Analytics from 'appcenter-analytics';
-
+import OneSignal from "react-native-onesignal";
 @observer
 class NotificationContainer extends React.Component {
     constructor() {
@@ -89,6 +89,9 @@ render() {
         </Container>
     );
 }
+componentDidMount(){
+        OneSignal.inFocusDisplaying(2);
+    }
 }
 export default NotificationContainer
 

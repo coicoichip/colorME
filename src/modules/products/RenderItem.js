@@ -3,12 +3,11 @@ import {View, TouchableOpacity, Image, StyleSheet, Platform } from "react-native
 import { STRINGS, COLORS, SIZES } from "../../constants";
 import {formatImageLink} from "../../helper";
 import _ from "lodash";
-import blogStore from "../blogs/blogStore"
+import blogStore from "../blogs/blogStore";
 class RenderItem extends React.Component {
     renderItem() {
       const { item } = this.props;
       const { navigate } = this.props;
-      console.log(this.props.gridPost)
       if(_.isEqual(item, this.props.gridPost[0])){
         return (
           <View>
