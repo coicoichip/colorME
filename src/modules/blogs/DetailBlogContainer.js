@@ -36,13 +36,17 @@ class DetailBlogContainer extends Component {
     constructor() {
         super();
     }
-
+    static navigationOptions = ({navigation}) => {
+        return ({
+            id: navigation.state.params.id
+        })};
     componentWillMount() {
         const { params } = this.props.navigation.state;
-        blogStore.getDetailBlog(params.slug);
+        blogStore.getDetailBlog(params.id);
     }
     getContent(url, content) {
-        return "<p><img src=" + formatImageLink(url) + ' style="width: 100%px; height: 100%px"></p>' + content
+        if(content !== null) return "<p><img src=" + formatImageLink(url) + ' style="width: 100%px; height: 100%px"></p>' + content
+        else return "<p><img src=" + formatImageLink(url) + ' style="width: 100%px; height: 100%px"></p>'
     }
     // getContent(content){
     //   const {params} = this.props.navigation.state;
@@ -53,8 +57,8 @@ class DetailBlogContainer extends Component {
     //   }
     // }
     getLink(content) {
-        const { params } = this.props.navigation.state;
-        if (params.kind == "resource") {
+        const { detailBlog, isLoadingDetail } = blogStore;
+        if (detailBlog.kind == "resource") {
             let str1 = "[[share_to_download]]"
             let str2 = "[[/share_to_download]]"
             let start = content.indexOf(str1);
@@ -64,8 +68,8 @@ class DetailBlogContainer extends Component {
     }
 
     renderDownLoad(link) {
-        const { params } = this.props.navigation.state;
-        if (params.kind == "resource") {
+        const { detailBlog, isLoadingDetail } = blogStore;
+        if (detailBlog.kind == "resource") {
             return (
                 <TouchableOpacity activeOpacity={0.8} >
                     <View style={styles.wrapperButton}>
@@ -102,6 +106,7 @@ class DetailBlogContainer extends Component {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         const { detailBlog, isLoadingDetail } = blogStore;
+        
         return (
 
             <Container style={styles.wrapperContainer}>
@@ -147,7 +152,7 @@ class DetailBlogContainer extends Component {
                                                     source={detailBlog.author.avatar_url !== "http://" ? { uri: formatImageLink(detailBlog.author.avatar_url) } : require('../../../assets/image/colorMe.jpg')}
                                                 />
                                                 <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5 }}>{detailBlog.author.name.trim()}</Text>
-                                                <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5, color: 'gray' }}>{detailBlog.time.trim()}</Text>
+                                                <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5, color: 'gray' }}>{detailBlog.created_at.trim()}</Text>
                                             </View>
                                         </View>
                                     </View>

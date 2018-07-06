@@ -98,20 +98,27 @@ const Promotion = StackNavigator(
         // ReplyComment: { screen: ReplyCommentContainer},
     }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'promotion', title: "Khuyến mãi" } }
 )
+const Notifications = StackNavigator(
+    {
+        NotificationContainer: { screen: NotificationContainer, path : "notification" },
+        DetailBlog: { screen: DetailBlogContainer , path : "product/:id" },
+        
+    }, { headerMode: 'none', mode: 'modal'}
+)
 const Survey = StackNavigator(
     {
-        Survey: {screen: SurveyContainer},
-        DetailSurvey: {screen: DetailSurveyContainer},
-        QuestionSurvey: {screen: QuestionSurveyContainer},
-        HistorySurvey: {screen: HistorySurveyContainer},
-        DetailHistorySurvey: {screen: DetailHistorySurveyContainer},
-        FinishSurvey: {screen: FinishSurveyContainer},
+        Survey: { screen: SurveyContainer },
+        DetailSurvey: { screen: DetailSurveyContainer },
+        QuestionSurvey: { screen: QuestionSurveyContainer },
+        HistorySurvey: { screen: HistorySurveyContainer },
+        DetailHistorySurvey: { screen: DetailHistorySurveyContainer },
+        FinishSurvey: { screen: FinishSurveyContainer },
     }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'promotion', title: "Khảo sát" } }
 )
 
 const Products = StackNavigator({
     Products: { screen: ProductsContainer },
-    DetailBlog: { screen: DetailBlogContainer,  },
+    DetailBlog: { screen: DetailBlogContainer, path : "product/:id" },
     ListBlog: { screen: ListBlog },
     // ReplyComment: { screen: ReplyCommentContainer},
 }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'post' } })
@@ -182,8 +189,8 @@ const Tab = TabNavigator({
 
     },
     Notification: {
-        screen: NotificationContainer,
-        path: "notification",
+        screen: Notifications,
+        path: "notifications",
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
                 let source;
@@ -334,8 +341,7 @@ export const RootStack = StackNavigator(
         Splash: { screen: SplashContainer },
         Login: { screen: LoginContainer, path : "login" },
         Register: { screen: RegisterContainer },
-        ReplyComment: { screen: ReplyCommentContainer},
-
+        ReplyComment: { screen: ReplyCommentContainer },
         Drawer: { screen: Drawer, path: "main" },
     },
     { headerMode: 'none', mode: 'card' }

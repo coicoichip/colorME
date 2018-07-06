@@ -12,7 +12,7 @@ class RenderItem extends React.Component {
         return (
           <View>
           <TouchableOpacity activeOpacity={0.8} style={{ alignItems: 'center' }}
-            onPress={() => blogStore.isLoadingDetail == false ? navigate('DetailBlog', { slug: item.slug, kind: item.kind, id: item.id }) : {}}>
+            onPress={() => blogStore.isLoadingDetail == false ? navigate('DetailBlog', {kind: item.kind, id: item.id }) : {}}>
             <Image resizeMode={"cover"} source={{ uri: formatImageLink(item.thumb_url) }} style={styles.imageFeature} />
           </TouchableOpacity>
         </View>
@@ -25,7 +25,7 @@ class RenderItem extends React.Component {
               return (
                 <TouchableOpacity activeOpacity={0.8}
                   key={index}
-                  onPress={() => blogStore.isLoadingDetail == false ? navigate('DetailBlog', { slug: post.slug, kind: post.kind, id: post.id }) : {}}>
+                  onPress={() => blogStore.isLoadingDetail == false ? navigate('DetailBlog', {kind: post.kind, id: post.id }) : {}}>
                   <Image resizeMode={"cover"} source={{ uri: formatImageLink(post.thumb_url) }} style={styles.imageFeature2} />
                 </TouchableOpacity>
               )

@@ -47,11 +47,11 @@ export default blogStore = new class BlogStore {
         })
     }
     @action
-    getDetailBlog(slug){
+    getDetailBlog(id){
         this.isLoadingDetail = true;
         this.errorDetail = false;
-        detailBlogApi(slug).then(res => {
-            this.detailBlog = res.data.data.blog;
+        detailBlogApi(id).then(res => {
+            this.detailBlog = res.data;
             this.isLoadingDetail = false;
         })
         .catch(err => {
