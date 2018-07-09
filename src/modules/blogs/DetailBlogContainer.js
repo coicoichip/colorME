@@ -106,7 +106,8 @@ class DetailBlogContainer extends Component {
         const { navigate } = this.props.navigation;
         const { goBack } = this.props.navigation;
         const { detailBlog, isLoadingDetail } = blogStore;
-        
+        console.log(isLoadingDetail + "aaaaaaa");
+        console.log(commentStore.isLoading + "bbbbbbb");
         return (
 
             <Container style={styles.wrapperContainer}>
@@ -134,7 +135,7 @@ class DetailBlogContainer extends Component {
                     renderItem={() => { }}
                     ListHeaderComponent={() => {
                         return (
-                            isLoadingDetail || commentStore.isLoading
+                            isLoadingDetail || commentStore.isLoading 
                                 ?
                                 <Loading />
                                 :
