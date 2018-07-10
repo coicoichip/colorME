@@ -51,6 +51,7 @@ export const STRINGS = {
     FEEDBACK_TEACHER: "Nhận xét giảng viên",
     PRODUCTS: "Bài tập học viên",
     SURVEY: 'Khảo sát',
+    TEST: 'Kiểm tra',
     ATTENDANCE: (name, lesson, class_name) => `Chào ${name} hiện tại bạn đang học buổi ${lesson} của lớp ${class_name} bạn có muốn thực hiện điểm danh không?`,
     PROCESS: 'Tiến độ',
     ATTENDANCE: 'Điểm danh',

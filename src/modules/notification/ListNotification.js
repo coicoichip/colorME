@@ -19,7 +19,23 @@ class ListNotification extends Component {
         if (text)
             return text.replace(/<strong>/g, "").replace(/<\/strong>/g, "")
     }
-
+    routerNotification(type, id) {
+        const { navigate } = this.props.navigation;
+        switch (type) {
+            case 1:
+                navigate('DetailBlog', { id: id });
+                break;
+            case 6:
+                navigate('DetailBlog', { id: id });
+                break;
+            case 35:
+                navigate('DetailBlog', { id: id });
+                break;
+            case 5:
+                navigate('TopicInNotification', { id: id });
+                break;
+        }
+    }
     render() {
         const { navigate } = this.props.navigation;
         const { item } = this.props;
@@ -27,7 +43,11 @@ class ListNotification extends Component {
             <TouchableOpacity
                 activeOpacity={0.8}
                 onPress={() => {
-                    navigate('DetailBlog', { id: item.object_id });
+                    item.object_id
+                        ?
+                        this.routerNotification(item.type, item.object_id)
+                        :
+                        {}
                 }}
                 style={[styles.cardItem, styles.shadow,
                 { marginLeft: 5, marginBottom: 10, marginTop: 10, paddingLeft: 15, paddingTop: 15, backgroundColor: item.seen == 2 ? COLORS.GREEN : COLORS.LIGHT_COLOR }]}>

@@ -37,6 +37,9 @@ import RequestFunction from "../modules/support/RequestFunction";
 import FeedbackTeacher from "../modules/support/FeedbackTeacher";
 import ProductsContainer from '../modules/products/ProductsContainer';
 import ReplyCommentContainer from '../modules/comment/ReplyCommentContainer';
+import TopicContainer from '../modules/notification/TopicContainer';
+import TestContainer from '../modules/test/TestContainer';
+import TestDetailContainer from '../modules/test/TestDetailContainer';
 const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
@@ -59,7 +62,7 @@ const Blog = StackNavigator(
 );
 const Profile = StackNavigator(
     {
-        MyProfile: { screen: ProfileContainer, path : "myProfile" },
+        MyProfile: { screen: ProfileContainer, path: "myProfile" },
         DetailBlog: { screen: DetailBlogContainer },
     }, { initialRouteName: 'MyProfile', headerMode: 'none', mode: 'modal' }
 );
@@ -100,10 +103,10 @@ const Promotion = StackNavigator(
 )
 const Notifications = StackNavigator(
     {
-        NotificationContainer: { screen: NotificationContainer, path : "notification" },
-        DetailBlog: { screen: DetailBlogContainer , path : "product/:id" },
-        
-    }, { headerMode: 'none', mode: 'modal'}
+        NotificationContainer: { screen: NotificationContainer, path: "notification" },
+        DetailBlog: { screen: DetailBlogContainer, path: "product/:id" },
+        TopicInNotification: { screen: TopicContainer }
+    }, { headerMode: 'none', mode: 'modal' }
 )
 const Survey = StackNavigator(
     {
@@ -118,10 +121,17 @@ const Survey = StackNavigator(
 
 const Products = StackNavigator({
     Products: { screen: ProductsContainer },
-    DetailBlog: { screen: DetailBlogContainer, path : "product/:id" },
+    DetailBlog: { screen: DetailBlogContainer, path: "product/:id" },
     ListBlog: { screen: ListBlog },
     // ReplyComment: { screen: ReplyCommentContainer},
 }, { headerMode: 'none', mode: 'modal', initialRouteParams: { kind: 'post' } })
+
+const Exam = StackNavigator(
+    {
+        TestContainer: { screen: TestContainer, path: "test" },
+        TestDetailContainer: { screen : TestDetailContainer},
+    }, { headerMode: 'none', mode: 'modal' }
+)
 const Tab = TabNavigator({
     Course: {
         screen: Courses,
@@ -211,7 +221,7 @@ const Tab = TabNavigator({
     },
     Profile: {
         screen: Profile,
-        path : "profile",
+        path: "profile",
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
 
@@ -303,6 +313,12 @@ const Drawer = DrawerNavigator(
                 title: "Chỉ Đường"
             })
         },
+        Exam: {
+            screen: Exam,
+            navigationOptions: ({ navigation }) => ({
+                title: "Kiểm tra"
+            })
+        },
         Support: {
             screen: SupportContainer,
             navigationOptions: ({ navigation }) => ({
@@ -339,7 +355,7 @@ const Drawer = DrawerNavigator(
 export const RootStack = StackNavigator(
     {
         Splash: { screen: SplashContainer },
-        Login: { screen: LoginContainer, path : "login" },
+        Login: { screen: LoginContainer, path: "login" },
         Register: { screen: RegisterContainer },
         ReplyComment: { screen: ReplyCommentContainer },
         Drawer: { screen: Drawer, path: "main" },

@@ -21,7 +21,7 @@ import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
 import WebViewAutoHeight from '../../commons/WebViewAutoHeight';
 import styles from '../../styles/styles';
 import * as size from '../../styles/sizes';
-import { formatImageLink } from "../../helper/index"
+import { formatImageLink } from "../../helper/index";
 import blogStore from "./blogStore";
 import commentStore from "../comment/commentStore";
 import TextInputContainer from "../comment/TextInputContainer"
