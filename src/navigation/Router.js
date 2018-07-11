@@ -40,6 +40,7 @@ import ReplyCommentContainer from '../modules/comment/ReplyCommentContainer';
 import TopicContainer from '../modules/notification/TopicContainer';
 import TestContainer from '../modules/test/TestContainer';
 import TestDetailContainer from '../modules/test/TestDetailContainer';
+import QuestionTestContainer from '../modules/test/QuestionTestContainer';
 const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
@@ -128,8 +129,9 @@ const Products = StackNavigator({
 
 const Exam = StackNavigator(
     {
-        TestContainer: { screen: TestContainer, path: "test" },
-        TestDetailContainer: { screen : TestDetailContainer},
+        Test: { screen: TestContainer, path: "test" },
+        TestDetail: { screen : TestDetailContainer},
+        QuestionTest: { screen : QuestionTestContainer},
     }, { headerMode: 'none', mode: 'modal' }
 )
 const Tab = TabNavigator({
