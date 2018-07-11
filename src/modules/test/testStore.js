@@ -8,6 +8,9 @@ export default testStore = new class TestStore {
     @observable isLoadingExam = false;
     @observable errorExam = false;
 
+    @observable examDetail = {};
+    @observable isLoadingExamDetail = false;
+    @observable errorExamDetail = false;
     @action
     getExam() {
         this.isLoadingExam = true;
@@ -20,6 +23,20 @@ export default testStore = new class TestStore {
             .catch(err => {
                 this.isLoadingExam = false;
                 this.errorExam = true;
+            })
+    }
+    @action
+    getDetailExam(id) {
+        this.isLoadingExamDetail = true;
+        this.errorExamDetail = false;
+        getTestDetailApi(id).then(res => {
+            this.examDetail = res.data.exam;
+            this.isLoadingExamDetail = false;
+            this.errorExamDetail = false;
+        })
+            .catch(err => {
+                this.isLoadingExamDetail = false;
+                this.errorExamDetail = true;
             })
     }
 }

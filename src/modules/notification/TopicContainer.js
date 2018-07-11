@@ -40,7 +40,7 @@ class TopicContainer extends React.Component {
             return (
                 <Content style={{ backgroundColor: COLORS.BACKGROUND_GRAY }} showsVerticalScrollIndicator = {false}>
                     <View style={{}}>
-                        <Text style = {{fontSize : 12, fontFamily : FONTS.MAIN_FONT, marginLeft : 20, paddingTop : 10}}>{"Số người đã nộp :"}
+                        <Text style = {{fontSize : 12, fontFamily : FONTS.MAIN_FONT, marginLeft : 20, paddingTop : 10}}>{"Số người đã nộp : "}
                            <Text style = {{fontSize : 12, fontFamily : FONTS.MAIN_FONT_BOLD}}>{topicData.submitted_members + "/" + topicData.total_members}</Text>
                         </Text>
                         <FlatList

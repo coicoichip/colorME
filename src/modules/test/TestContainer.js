@@ -43,7 +43,7 @@ class TestContainer extends Component {
                                 renderItem={({ item }) =>
                                     <TouchableOpacity
                                         key={item.id}
-                                        onPress={() => navigate('TestDetailContainer', { data: item })}
+                                        onPress={() => navigate('TestDetail', { data: item })}
                                         activeOpacity={1}
                                         style={{ paddingHorizontal: 16, marginBottom: 24, width: SIZES.DEVICE_WIDTH_SIZE - 32 }}>
                                         <Image

@@ -856,6 +856,17 @@ export const style = {
         alignItems: 'center',
         borderRadius: 30,
     },
+    buttonBackAnswer: {
+        position: 'absolute',
+        bottom: 20,
+        left: 10,
+        backgroundColor: color.mainColor,
+        width: 60,
+        height: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 30,
+    },
     buttonSelect: {
         width: wid / 2,
         height: 48,

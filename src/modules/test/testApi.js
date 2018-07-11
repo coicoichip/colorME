@@ -7,11 +7,11 @@ export function getTestApi() {
     let url = APIS.API_COLOR_ME + '/exam';
     return axios.get(url);
 };
-export function getTestDetailApi() {
+export function getTestDetailApi(id) {
     let url = APIS.API_COLOR_ME + '/exam/' + id +  '/detail';
     return axios.get(url);
 };
-export function postTestDetailApi() {
+export function postTestDetailApi(id) {
     let url = APIS.API_COLOR_ME + '/exam/' + id +  '/store';
     return axios.post(url);
 };
