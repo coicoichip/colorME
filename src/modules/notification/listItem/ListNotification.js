@@ -5,12 +5,12 @@ import {
     View,
     TouchableOpacity, StyleSheet, Platform, WebView
 } from 'react-native';
-import { STRINGS, COLORS, SIZES, FONTS } from '../../constants';
+import { STRINGS, COLORS, SIZES, FONTS } from '../../../constants';
 import { Container, Item, Input } from 'native-base';
-import Header from '../../commons/Header';
-import Icon from "../../commons/Icon"
-import IconDefault from "../../commons/IconDefault"
-import { formatImageLink, dotNumber } from "../../helper/index"
+
+import Icon from "../../../commons/Icon"
+
+import { formatImageLink, dotNumber } from "../../../helper/index"
 class ListNotification extends Component {
     constructor() {
         super()
@@ -50,7 +50,7 @@ class ListNotification extends Component {
                         {}
                 }}
                 style={[styles.cardItem, styles.shadow,
-                { marginLeft: 5, marginBottom: 10, marginTop: 10, paddingLeft: 15, paddingTop: 15, backgroundColor: item.seen == 2 ? COLORS.GREEN : COLORS.LIGHT_COLOR }]}>
+                { marginLeft: 5, paddingLeft: 15, paddingTop: 15, backgroundColor: item.seen == 2 ? COLORS.LIGHT_COLOR : "#f2f2f2" }]}>
                 <View style={{ flexDirection: 'row' }}>
                     <View style={{ justifyContent: 'space-between', alignItems: 'center' }}>
                         <Image

@@ -9,7 +9,7 @@ import HamburgerButton from '../../commons/HamburgerButton';
 import { observer } from "mobx-react";
 import Error from '../../commons/Error';
 import TextNullData from '../../commons/TextNullData';
-import ListNotification from './ListNotification';
+import ListNotification from './listItem/ListNotification';
 import Analytics from 'appcenter-analytics';
 import OneSignal from "react-native-onesignal";
 @observer

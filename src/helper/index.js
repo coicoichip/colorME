@@ -67,8 +67,7 @@ export function formatImageLink(url) {
 export function editName(name) {
     if (name != null || name) {
         let a = name.split(" ");
-        if (a.length > 1) return (a[a.length - 2] + " " + a[a.length - 1]);
-        else return (a[a.length - 1]);
+         return a[a.length-1]
     }
     else return "chưa có";
 }
