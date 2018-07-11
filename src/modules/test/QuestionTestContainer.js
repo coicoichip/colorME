@@ -22,7 +22,6 @@ class QuestionTestContainer extends Component {
             questionNumber: 1,
             answer: '',
             index: -1,
-            selectedChk: [],
             isLoadingNextQuestion: false,
         }
     }
@@ -30,14 +29,12 @@ class QuestionTestContainer extends Component {
 
     answerRadioQuestion(value) {
         this.setState({ answer: value })
-
     }
     resetAnswer() {
         this.setState({
             answer: '',
             answerTxt: '',
             index: -1,
-            selectedChk: [],
         })
     }
 

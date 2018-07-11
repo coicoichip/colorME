@@ -1,22 +1,107 @@
 import React from "react";
 import { View, Text, StyleSheet, FlatList, RefreshControl, Image, TouchableOpacity, Dimensions, Modal, PanResponder, Platform } from "react-native";
-import { Container, Button, CardItem, Left, Right } from "native-base";
+import { Container, Button, CardItem, Left, Right, Content } from "native-base";
 import { STRINGS, COLORS, SIZES, FONTS } from "../../constants";
 import Header from "../../commons/Header";
 import { observer } from "mobx-react";
 import Loading from "../../commons/Loading";
 import IconDefault from '../../commons/IconDefault';
 import { notificationStore } from "./notificationStore";
-import { formatImageLink } from "../../helper/index";
+import { formatImageLink, editName } from "../../helper/index";
+import Error from "../../commons/Error";
+import TextNullData from "../../commons/TextNullData";
+import ListProductGroup from "./listItem/ListProductGroup";
 @observer
 class TopicContainer extends React.Component {
     componentWillMount() {
         const { params } = this.props.navigation.state;
         notificationStore.getTopicInNotification(params.id);
+        notificationStore.getProductsInTopic(params.id, 1);
+    }
+    getMoreProducts() {
+        const { params } = this.props.navigation.state;
+        if (notificationStore.current_page_group < notificationStore.total_pages_group && notificationStore.isLoadingProducts == false) {
+            notificationStore.getProductsInTopic(notificationStore.current_page_group + 1, params.id)
+        }
+    }
+    loadMore() {
+        if (notificationStore.isLoadingProducts && notificationStore.current_page_group >= 1)
+            return (<Loading />)
+        else
+            return null
+    }
+    renderProducts() {
+        const { isLoadingTopic, isLoadingProducts, groupProducts, topicData, errorTopic } = notificationStore;
+        const { navigate } = this.props.navigation;
+        if (isLoadingProducts && groupProducts.length == 0 || isLoadingTopic) {
+            return <Loading />
+        } else {
+            if (errorTopic) return <Error onPress={() => this.componentWillMount()} />
+            return (
+                <Content style={{ backgroundColor: COLORS.BACKGROUND_GRAY }} showsVerticalScrollIndicator = {false}>
+                    <View style={{}}>
+                        <Text style = {{fontSize : 12, fontFamily : FONTS.MAIN_FONT, marginLeft : 20, paddingTop : 10}}>{"Số người đã nộp : "}
+                           <Text style = {{fontSize : 12, fontFamily : FONTS.MAIN_FONT_BOLD}}>{topicData.submitted_members + "/" + topicData.total_members}</Text>
+                        </Text>
+                        <FlatList
+                            horizontal={true}
+                            style = {{marginTop : 10}}
+                            showsHorizontalScrollIndicator={false}
+                            data={groupProducts}
+                            onEndReached={() => this.getMoreProducts()}
+                            onEndReachedThreshold={0.2}
+                            renderItem={({ item }) => (
+                                <TouchableOpacity style={[{ marginLeft: 10, justifyContent: "center", alignItems: "center" }]} onPress={() =>  navigate("DetailBlog", {id : item.id})}>
+                                    <Image style={styles.avatarUser} source={{ uri: item.author ? formatImageLink(item.author.avatar_url) : "" }} />
+                                    <Text style={{ fontSize: 10 }}>{item.author ? editName(item.author.name.trim()) : ""}</Text>
+                                </TouchableOpacity>
+                            )}
+                        />
+                    </View>
+                    <View style={{ marginTop: 10 }}>
+                        <TouchableOpacity activeOpacity={0.8} style={{ marginBottom: 15 }}
+                        >
+                            <View >
+                                <Image source={{ uri: topicData.thumb_url ? formatImageLink(topicData.thumb_url) : "" }} style={styles.imageAvatarModuleEmails} />
+                            </View>
+                            <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
+                                <Text numberOfLines={2} style={styles.emailNameModuleEmail}>{topicData.title.trim()}</Text>
+                                <View style={{ marginTop: 5, flexDirection: 'row', alignItems: 'center' }}>
+                                    <Image
+                                        style={{ height: 20, width: 20, borderRadius: 10 }}
+                                        source={{ uri: topicData.creator.avatar_url ? formatImageLink(topicData.creator.avatar_url) : "" }}
+                                    />
+                                    <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5 }}>{topicData.creator.name.trim()}</Text>
+                                    <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5, color: 'gray' }}>{topicData.created_at.trim()}</Text>
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+                        {/* <View style={styles.footerCard}>
+                        </View> */}
+                        <Text style={{ marginLeft: 20, fontSize: 12, fontFamily: FONTS.MAIN_FONT }}>{"Danh sách đã nộp "}</Text>
+                        
+                        <FlatList
+                            style = {{marginTop : 15, flex : 1}}
+                            showsHorizontalScrollIndicator = {false}
+                            horizontal={true}
+                            data={groupProducts}
+                            onEndReached={() => this.getMoreProducts()}
+                            onEndReachedThreshold={0.2}
+                            renderItem={({item}) => 
+                                <ListProductGroup item = {item} navigate = {navigate} />
+                            }
+
+                        />
+
+                   
+                     
+                    </View>
+                </Content>
+            )
+        }
     }
     render() {
-        const { isLoadingTopic, topicData } = notificationStore;
-        let widthDeadlineProgress = isLoadingTopic ? 0 : ((SIZES.DEVICE_WIDTH_SIZE - 20) * topicData.submitted_members / topicData.total_members);
+        const { isLoadingTopic, topicData, groupProducts } = notificationStore;
         return (
             <Container style={styles.wrapperContainer}>
                 <View style={[styles.wrapperHeader, styles.paddingLeftRight, { flexDirection: 'row' }]}>
@@ -34,83 +119,12 @@ class TopicContainer extends React.Component {
                             />
                         </View>
                     </TouchableOpacity>
+
                 </View>
-                <FlatList
-                    keyExtractor={item => item.id + ''}
-                    showsVerticalScrollIndicator={false}
-                    data={[1]}
-                    renderItem={() => { }}
-                    ListHeaderComponent={() => {
-                        return (
-                            isLoadingTopic
-                                ?
-                                <Loading />
-                                :
-
-                                <View style={{ flex: 1 }}>
-                                    <View activeOpacity={0.8} style={{ marginBottom: 15 }}>
-                                        <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
+                {this.renderProducts()}
 
 
 
-                                            <View style={{ marginTop: 5, flexDirection: 'row', alignItems: 'center' }}>
-                                                <Image
-                                                    style={{ height: 30, width: 30, borderRadius: 15 }}
-                                                    source={topicData.creator ? { uri: formatImageLink(topicData.creator.avatar_url) } : require('../../../assets/image/colorMe.jpg')}
-                                                />
-                                                <View style={{ marginLeft: 10 }}>
-                                                    
-                                                    <View style={{flexDirection: 'row'}}>
-                                                    <Text style={{ fontFamily: FONTS.MAIN_FONT, fontSize: 12, marginLeft: 5, color: 'gray' }}>Đăng bởi</Text>
-                                                        <Text style={{ fontFamily: FONTS.MAIN_FONT_BOLD, fontSize: 12, marginLeft: 5, marginTop: 1}}>{topicData.creator ? topicData.creator.name.trim() : ""}</Text>
-                                                    </View>
-                                                    <Text style={{ fontFamily: FONTS.MAIN_FONT, fontSize: 12, marginLeft: 5, color: 'gray' }}>{topicData.created_at.trim()}</Text>
-                                                </View>
-                                            </View>
-                                        </View>
-
-                                        <View style={{ marginTop: 20 }}>
-                                            <CardItem style={[{ height: 20, justifyContent: 'center' }]}>
-                                                <View style={styles.wrapperDeadline}>
-                                                    <View
-                                                        style={[styles.deadlineProgress, { width: widthDeadlineProgress }]}>
-                                                    </View>
-                                                </View>
-                                            </CardItem>
-                                            <CardItem footer style={[styles.cardFooter]}>
-                                                <Left>
-                                                    <Right>
-                                                        <Text style={[styles.describeGray, { right: 0 }]}>
-                                                            {
-                                                                isLoadingTopic
-                                                                    ?
-                                                                    ''
-                                                                    :
-                                                                    `${topicData.deadline} - ${topicData.submitted_members}/${topicData.total_members} đã nộp`
-                                                            }
-
-                                                        </Text>
-                                                    </Right>
-                                                </Left>
-                                            </CardItem>
-
-                                        </View>
-                                        <View>
-                                            <Image
-                                                style={{
-                                                    width: SIZES.DEVICE_WIDTH_SIZE,
-                                                    height: 250,
-                                                }}
-                                                resizeMode={'cover'}
-                                                source={{
-                                                    uri: topicData.thumb_url
-                                                }} />
-                                        </View>
-                                    </View>
-                                </View>
-                        )
-                    }}
-                />
             </Container>
         )
     }
@@ -130,6 +144,27 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
     },
+    // coppy blog
+    imageAvatarModuleEmails: {
+        width: SIZES.DEVICE_WIDTH_SIZE + 2,
+        height: SIZES.DEVICE_HEIGHT_SIZE / 3.3,
+    },
+
+    contentCardImageInformation: {
+        flex: 2,
+        position: 'relative',
+        paddingRight: 10,
+        paddingTop: 5,
+    },
+    emailNameModuleEmail: {
+        fontSize: 20,
+        paddingTop: 10,
+    },
+    footerCard: {
+        height: 25,
+        backgroundColor: 'rgb(240, 240, 240)'
+    },
+
     wrapperHeader: {
         height: isIOS ? 80 : 60,
         paddingTop: isIOS ? 20 : 0,
@@ -154,6 +189,11 @@ const styles = StyleSheet.create({
         height: 10,
         borderRadius: 5,
         backgroundColor: '#dbdee0',
+    },
+    avatarUser: {
+        height: 50,
+        width: 50,
+        borderRadius: 25
     },
     deadlineProgress: {
         height: 10,

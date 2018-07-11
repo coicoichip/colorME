@@ -1,5 +1,5 @@
 import { observable, action, computed } from "mobx";
-import { notificationApi, getTopicApi } from "./notificationApi";
+import { notificationApi, getTopicApi , getProductsInTopic} from "./notificationApi";
 import { Alert, AsyncStorage } from "react-native";
 export const notificationStore = new class NotificationStore {
     @observable isLoading = false;
@@ -13,7 +13,10 @@ export const notificationStore = new class NotificationStore {
     @observable topicData = {};
     @observable isLoadingTopic = false;
     @observable errorTopic = false;
-
+    @observable isLoadingProducts = false;
+    @observable total_pages_group = 1;
+    @observable current_page_group = 0;
+    @observable groupProducts = [];
     @action
     getListNotification(page) {
         this.isLoading = true;
@@ -46,11 +49,15 @@ export const notificationStore = new class NotificationStore {
     }
     @action
     getProductsInTopic(id, page) {
-        this.getProductsInTopic(id, page).then(res => {
-
+        this.isLoadingProducts = true;
+        getProductsInTopic(id, page).then(res => {
+            this.isLoadingProducts = false;
+            this.current_page = res.data.paginator.current_page;
+            this.total_pages_group = res.data.paginator.total_pages;
+            this.groupProducts = res.data.paginator.current_page == 1 ? res.data.products : [...this.groupProducts, ...res.data.products]
         })
             .catch(err => {
-
+                this.errorTopic = true;
             })
     }
 }
