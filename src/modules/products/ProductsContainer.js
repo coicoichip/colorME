@@ -14,6 +14,7 @@ import ModalCheckInStudent from '../blogs/ModalCheckInStudent';
 import ModalAcceptCheckIn from '../blogs/ModalAcceptCheckIn';
 import OneSignal from "react-native-onesignal";
 import RenderItem from "./RenderItem";
+import ListProducts from "./listItem/ListProducts";
 @observer
 class ProductsContainer extends React.Component {
   @observable info_id = "";
@@ -88,9 +89,9 @@ class ProductsContainer extends React.Component {
   }
   scrollList() {
     this.refs.flatlist.scrollToOffset({ x: 0, y: 0, animated: true })
-}
+  }
   _renderItem = ({ item }) => (
-    <RenderItem item={item} navigate={this.props.navigation.navigate} gridPost = {this.gridPost()} />
+    <RenderItem item={item} navigate={this.props.navigation.navigate} gridPost={this.gridPost()} />
   );
   render() {
     const { navigate } = this.props.navigation;
@@ -127,47 +128,33 @@ class ProductsContainer extends React.Component {
           <ModalAcceptCheckIn />
         </View>
       </Modal>
-      <Header title={STRINGS.PRODUCTS} navigate={navigate} onPress = {this.scrollList.bind(this)} />
-      <View style={{ flexDirection: 'row' }}>
+      <Header title={STRINGS.PRODUCTS} navigate={navigate} onPress={this.scrollList.bind(this)} />
+      {/* <View style={{ flexDirection: 'row' }}>
         <Select haveInfo functionInfo={() => this.pickInfo()} />
         <Select haveDate={productsStore.info_id == 0 ? null : 'haveDate'} functionDate={() => this.pickDate()} />
-      </View>
+      </View> */}
       {productsStore.products.length === 0 || productsStore.isLoadingBegin ? <Loading />
         :
         <View style={styles.wrapperContent}>
           <FlatList
-            removeClippedSubviews
-            // disableVirtualization
-            keyExtractor={(item, key) => key}
-            initialNumToRender={1}
-            ref = {'flatlist'}
-            showsVerticalScrollIndicator={false}
-            data={this.gridPost()}
-            onEndReachedThreshold={50}
-            onEndReached={() => this.getMoreProducts()}
-            refreshControl={
-              <RefreshControl
-                refreshing={false}
-              // onRefresh={
-              //   () => this.refreshList()
-              // }
-              />
+            style={{ marginTop: 15, flex: 1 }}
+            showsHorizontalScrollIndicator={false}
+            horizontal={true}
+            data={productsStore.products}
+            // onEndReached={() => this.getMoreProducts()}
+            // onEndReachedThreshold={0.2}
+            renderItem={({ item }) =>
+              <ListProducts item={item} navigate={navigate} />
             }
-            // ListHeaderComponent={() => {
-            //   return (<HeaderProducts navigate = {navigate}/>)
-            // }}
-            ListFooterComponent={
-              this.loadMore()
-            }
-            renderItem={this._renderItem}
+
           />
         </View>
       }
     </Container>;
   }
-  componentDidMount(){
-        OneSignal.inFocusDisplaying(2);
-    }
+  componentDidMount() {
+    OneSignal.inFocusDisplaying(2);
+  }
 }
 
 const wrapperCenter = {
