@@ -13,34 +13,43 @@ import Icon from "../../../commons/Icon"
 import { formatImageLink, dotNumber } from "../../../helper/index"
 
 export default class ListProducts extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
     }
-    render(){
-        const{item, navigate} = this.props;
+    render() {
+        const { item, navigate } = this.props;
         return (
-        
 
-             <TouchableOpacity activeOpacity={0.8} style={[{ borderRadius : 5, marginBottom: 15, width : SIZES.DEVICE_WIDTH_SIZE / 2, marginLeft : 15 , backgroundColor : COLORS.LIGHT_COLOR}]}
-                        onPress = {() => navigate("DetailBlog", {id : item.id})}
-                        >
-                            <View >
-                                <Image source={{ uri: item.thumb_url ? formatImageLink(item.thumb_url) : "" }} style={styles.imageAvatarModuleEmails} />
-                            </View>
-                            <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
-                                <Text numberOfLines={2} style={styles.emailNameModuleEmail}>{item.title}</Text>
-                                <View style={{ marginTop: 5, flexDirection: 'row', alignItems: 'center' }}>
-                                    <Image
-                                        style={{ height: 20, width: 20, borderRadius: 10 }}
-                                        source={{ uri: item.author ? formatImageLink(item.author.avatar_url) : "" }}
-                                    />
-                                    <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5 }}>{item.author ? item.author.name.trim() : ""}</Text>
-                                    
-                                </View>
-                                <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, color: 'gray' }}>{item.created_at ? item.created_at.trim() : ""}</Text>
-                            </View>
-                        </TouchableOpacity>
-      
+            item.index != 3 ?
+            <TouchableOpacity activeOpacity={0.8} style={[{ borderWidth: 0.2, borderRadius: 10, marginBottom: 15, width: SIZES.DEVICE_WIDTH_SIZE * 2 / 3, marginLeft: 15, backgroundColor: COLORS.LIGHT_COLOR }]}
+                onPress={() => navigate("DetailBlog", { id: item.id })}
+            >
+                <View style={{ overflow: "hidden", borderTopLeftRadius: 10, borderTopRightRadius: 10, }} >
+                    <Image source={{ uri: item.thumb_url ? formatImageLink(item.thumb_url) : "" }} style={[styles.imageAvatarModuleEmails]} />
+                </View>
+                <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
+                    <View style={{ marginTop: 5,marginBottom: 10, flexDirection: 'row', alignItems: 'center' }}>
+                        <Image
+                            style={{ height: 30, width: 30, borderRadius: 15 }}
+                            source={{ uri: item.author ? formatImageLink(item.author.avatar_url) : "" }}
+                        />
+                        <View>
+                            <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5 }}>{item.author ? item.author.name.trim() : ""}</Text>
+                            <Text numberOfLines={1} style={{ marginTop: 3, marginLeft: 5, fontFamily: 'Roboto-Regular', fontSize: 12, color: 'gray' }}>{item.description ? item.description.trim() : "Không có mô tả "}</Text>
+                        </View>
+                    </View>
+
+                </View>
+            </TouchableOpacity>
+            :
+            <TouchableOpacity activeOpacity={0.8} style={[{ borderWidth: 0.2, borderRadius: 10, marginBottom: 15, width: SIZES.DEVICE_WIDTH_SIZE * 2 / 3, marginLeft: 15, backgroundColor: COLORS.LIGHT_COLOR }]}
+                    onPress={() => navigate("DetailBlog", { id: item.id })}
+                >
+                    <View style={{  overflow: "hidden", borderRadius: 5 }} >
+                        <View style={[styles.imageAvatarModuleEmails, {backgroundColor: 'gray'}]} />
+                    </View>
+                </TouchableOpacity>
+
         )
     }
 }
@@ -55,13 +64,14 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.LIGHT_COLOR,
     },
     paddingLeftRight: {
-        paddingLeft: 20,
+        paddingLeft: 10,
         paddingRight: 20,
     },
     // coppy blog
     imageAvatarModuleEmails: {
-        width: SIZES.DEVICE_WIDTH_SIZE / 2,
-        height: SIZES.DEVICE_HEIGHT_SIZE / 3.3,
+
+        width: SIZES.DEVICE_WIDTH_SIZE * 2 / 3,
+        height: SIZES.DEVICE_HEIGHT_SIZE / 4,
     },
 
     contentCardImageInformation: {

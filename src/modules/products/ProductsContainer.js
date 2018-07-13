@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, FlatList, RefreshControl, Image, TouchableOpacity, Dimensions, Modal, PanResponder, Platform } from "react-native";
-import { Container, Button } from "native-base";
-import { STRINGS, COLORS, SIZES } from "../../constants";
+import { Container, Button, Content } from "native-base";
+import { STRINGS, COLORS, SIZES, FONTS } from "../../constants";
 import Header from "../../commons/Header";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
@@ -15,6 +15,7 @@ import ModalAcceptCheckIn from '../blogs/ModalAcceptCheckIn';
 import OneSignal from "react-native-onesignal";
 import RenderItem from "./RenderItem";
 import ListProducts from "./listItem/ListProducts";
+import ListProductsNew from "./listItem/ListProductsNew";
 @observer
 class ProductsContainer extends React.Component {
   @observable info_id = "";
@@ -129,27 +130,106 @@ class ProductsContainer extends React.Component {
         </View>
       </Modal>
       <Header title={STRINGS.PRODUCTS} navigate={navigate} onPress={this.scrollList.bind(this)} />
-      {/* <View style={{ flexDirection: 'row' }}>
-        <Select haveInfo functionInfo={() => this.pickInfo()} />
-        <Select haveDate={productsStore.info_id == 0 ? null : 'haveDate'} functionDate={() => this.pickDate()} />
-      </View> */}
-      {productsStore.products.length === 0 || productsStore.isLoadingBegin ? <Loading />
-        :
-        <View style={styles.wrapperContent}>
-          <FlatList
-            style={{ marginTop: 15, flex: 1 }}
-            showsHorizontalScrollIndicator={false}
-            horizontal={true}
-            data={productsStore.products}
-            // onEndReached={() => this.getMoreProducts()}
-            // onEndReachedThreshold={0.2}
-            renderItem={({ item }) =>
-              <ListProducts item={item} navigate={navigate} />
-            }
+      <Content style={{ backgroundColor: COLORS.BACKGROUND_GRAY }} showsVerticalScrollIndicator = {false}>
+        {productsStore.products.length === 0 || productsStore.isLoadingBegin ? <Loading />
+          :
+          <View>
+            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingTop: 10}}>
+              <Text style = {styles.text}> Mới nhất </Text>
+              <View> </View>
+              <Text style = {styles.text}> Xem tất cả </Text>
+            </View>
+            <View style={styles.wrapperContent}>
 
-          />
-        </View>
-      }
+              <FlatList
+                style={{ marginTop: 15, flex: 1 }}
+                showsHorizontalScrollIndicator={false}
+                horizontal={true}
+                data={productsStore.products}
+                // onEndReached={() => this.getMoreProducts()}
+                // onEndReachedThreshold={0.2}
+                renderItem={({ item }) =>
+                  <ListProductsNew item={item} navigate={navigate} />
+                }
+
+              />
+            </View>
+          </View>
+        }
+        {productsStore.products.length === 0 || productsStore.isLoadingBegin ? <Loading />
+          :
+          <View>
+             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
+              <Text style = {styles.text}> Nổi bật hôm nay </Text>
+              <View> </View>
+              <Text style = {styles.text}> Xem tất cả </Text>
+            </View>
+            <View style={styles.wrapperContent}>
+              <FlatList
+                style={{ marginTop: 15, flex: 1 }}
+                showsHorizontalScrollIndicator={false}
+                horizontal={true}
+                data={productsStore.products}
+                // onEndReached={() => this.getMoreProducts()}
+                // onEndReachedThreshold={0.2}
+                renderItem={({ item }) =>
+                  <ListProducts item={item} navigate={navigate} />
+                }
+
+              />
+            </View>
+          </View>
+        }
+        {productsStore.products.length === 0 || productsStore.isLoadingBegin ? <Loading />
+          :
+          <View>
+             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
+              <Text style = {styles.text}> Nổi bật tuần qua </Text>
+              <View> </View>
+              <Text style = {styles.text}> Xem tất cả </Text>
+            </View>
+            <View style={styles.wrapperContent}>
+              <FlatList
+                style={{ marginTop: 15, flex: 1 }}
+                showsHorizontalScrollIndicator={false}
+                horizontal={true}
+                data={productsStore.products}
+                // onEndReached={() => this.getMoreProducts()}
+                // onEndReachedThreshold={0.2}
+                renderItem={({ item }) =>
+                  <ListProducts item={item} navigate={navigate} />
+                }
+
+              />
+            </View>
+          </View>
+        }
+        {productsStore.products.length === 0 || productsStore.isLoadingBegin ? <Loading />
+          :
+          <View>
+             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
+              <Text style = {styles.text}> Nổi bật tháng qua </Text>
+              <View> </View>
+              <Text style = {styles.text}> Xem tất cả </Text>
+            </View>
+            <View style={styles.wrapperContent}>
+
+              <FlatList
+                style={{ marginTop: 15, flex: 1 }}
+                showsHorizontalScrollIndicator={false}
+                horizontal={true}
+                data={productsStore.products}
+                // onEndReached={() => this.getMoreProducts()}
+                // onEndReachedThreshold={0.2}
+                renderItem={({ item }) =>
+                  <ListProducts item={item} navigate={navigate} />
+                }
+
+              />
+            </View>
+          </View>
+        }
+      </Content>
     </Container>;
   }
   componentDidMount() {
@@ -165,7 +245,6 @@ const wrapperCenter = {
 const styles = StyleSheet.create({
   wrapperContent: {
     flex: 1,
-    backgroundColor: COLORS.LIGHT_COLOR,
     flexDirection: "row"
   },
   wrapperCenter: {
@@ -190,6 +269,10 @@ const styles = StyleSheet.create({
     color: COLORS.MAIN_COLOR,
     fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
 
+  },
+  text:{
+    fontSize: 12, 
+    fontFamily: FONTS.MAIN_FONT_BOLD,
   },
   paddingLeft: {
     paddingLeft: 5,
