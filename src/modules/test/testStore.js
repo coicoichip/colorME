@@ -11,6 +11,10 @@ export default testStore = new class TestStore {
     @observable examDetail = {};
     @observable isLoadingExamDetail = false;
     @observable errorExamDetail = false;
+
+    // @observable data = [];
+    // @observable dataPost = {question_id = 0, answer_id = "0"};
+
     @action
     getExam() {
         this.isLoadingExam = true;
