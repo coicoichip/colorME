@@ -20,15 +20,25 @@ class QuestionTestContainer extends Component {
         super();
         this.state = {
             questionNumber: 1,
-            answer: '',
             index: -1,
             isLoadingNextQuestion: false,
+            answers : [],
+            post_answers : [],
+            
         }
     }
 
 
     answerRadioQuestion(value) {
-        this.setState({ answer: value })
+        const {examDetail}  = testStore;
+        let answers = this.state.answers;
+        let post_answers = this.state.post_answers;
+        answers[this.state.questionNumber - 1] = value;
+        post_answers[this.state.questionNumber - 1] = {
+            question_id : examDetail.questions[this.state.questionNumber - 1].id,
+            answer_id : examDetail.questions[this.state.questionNumber - 1].answers[value].id
+        }
+        this.setState({answers : answers, post_answers : post_answers})
     }
     resetAnswer() {
         this.setState({
@@ -39,11 +49,11 @@ class QuestionTestContainer extends Component {
     }
 
     questionType(type, data, id) {
-        const newData = data.map((item) => {
+        const newData = data.map((item ,index) => {
             return {
                 ...item,
                 label: item.content,
-                value: item.content,
+                value: index,
             }
         })
         const { isLoadingNextQuestion } = this.state;
@@ -58,7 +68,7 @@ class QuestionTestContainer extends Component {
                             style={{ justifyContent: 'flex-start', alignItems: 'flex-start' }}
                             buttonColor={'#000'}
                             radio_props={newData}
-                            initial={-1}
+                            initial={this.state.answers[this.state.questionNumber - 1] == undefined ? -1 : this.state.answers[this.state.questionNumber - 1]}
                             onPress={(value) => this.answerRadioQuestion(value)}
                         />
                 }
@@ -76,28 +86,27 @@ class QuestionTestContainer extends Component {
     }
 
     answerQuestion(number, type, id_question) {
-        const { questions_count, name, description, staff, today } = this.props.navigation.state.params;
+        const { questions_count, name, description, staff, today , id } = this.props.navigation.state.params;
         console.log('ANSWER : ' + this.state.answer);
         this.resetAnswer();
-        if (this.state.answer != '') {
+        
             this.isLoading()
             this.resetAnswer();
             if (this.state.questionNumber < questions_count) {
                 this.setState({ questionNumber: number + 1 });
             }
-            else {
-                this.closeSurveyLesson();
-                this.props.navigation.navigate('FinishSurvey', {
-                    name: name,
-                    description: description,
-                    staff: staff,
-                    questions_count: questions_count,
-                    today: today
-                });
-            }
-        } else {
-            alert('Bạn chưa nhập câu trả lời')
-        }
+            if(this.state.questionNumber == testStore.examDetail.questions.length){
+                this.props.navigation.navigate('FinalTest', {
+                            id : id,
+                            name: name,
+                            description: description,
+                            staff: staff,
+                            questions_count: questions_count,
+                            today: today,
+                            answers : this.state.answers,
+                            post_answers : this.state.post_answers,
+                        });
+                    }       
     }
     backAnserQuestion(number, type, id_question) {
         this.isLoading();
@@ -189,7 +198,7 @@ class QuestionTestContainer extends Component {
                     }
                 </Content>
                 <NextButton
-                    displayStatus={this.state.answer == '' ? 'none' : 'flex'}
+                    displayStatus={this.state.answers.length==0  ? 'none' : 'flex'}
                     function={
                         () =>
                             this.answerQuestion(

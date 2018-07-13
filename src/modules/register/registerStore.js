@@ -41,7 +41,8 @@ export default new class RegisterStore {
                 this.isLoading = false;
                 this.user = res.data.user;
                 AsyncStorage.setItem('@UserToken', res.data.token);
-                AsyncStorage.setItem('@username', res.data.user.username)
+                AsyncStorage.setItem('@ID', res.data.user.id.toString())
+                AsyncStorage.setItem('@email', res.data.user.email);
                 Alert.alert(STRINGS.WELCOME.TITLE, STRINGS.WELCOME.DESCRIPTION);
 
                 Analytics.trackEvent(STRINGS.ACTION_REGISTER_SUCCESS + res.user.name, {})

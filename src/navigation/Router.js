@@ -41,6 +41,7 @@ import TopicContainer from '../modules/notification/TopicContainer';
 import TestContainer from '../modules/test/TestContainer';
 import TestDetailContainer from '../modules/test/TestDetailContainer';
 import QuestionTestContainer from '../modules/test/QuestionTestContainer';
+import FinalTestQuestion from "../modules/test/FinalTestQuestion";
 const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
@@ -132,6 +133,7 @@ const Exam = StackNavigator(
         Test: { screen: TestContainer, path: "test" },
         TestDetail: { screen : TestDetailContainer},
         QuestionTest: { screen : QuestionTestContainer},
+        FinalTest : {screen : FinalTestQuestion}
     }, { headerMode: 'none', mode: 'modal' }
 )
 const Tab = TabNavigator({
