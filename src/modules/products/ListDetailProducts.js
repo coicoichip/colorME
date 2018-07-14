@@ -39,7 +39,14 @@ class ListDetailProducts extends Component {
                               source = {{uri : item.author.avatar_url ? formatImageLink(item.author.avatar_url) : ""}}
                               />
                               <Text style = {{fontFamily : 'Roboto-Regular', fontSize : 12 ,marginLeft : 5}}>{item.author.name.trim()}</Text>
+                              <Text style = {{fontFamily : 'Roboto-Regular', fontSize : 12 ,marginLeft : 5, color : 'gray'}}>{item.created_at}</Text>
                         </View>
+                       
+                        <Text style = {{marginTop : 5,fontFamily : 'Roboto-Regular', fontSize : 15}}>{item.description ? item.description : "Không có mô tả"}</Text>
+
+                        
+
+
                     </View>
                 </TouchableOpacity>
                 <View style={styles.footerCard}>

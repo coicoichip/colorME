@@ -27,7 +27,7 @@ class DetailProductsContainer extends Component {
 
     UNSAFE_componentWillMount() {
         const { params } = this.props.navigation.state;
-        console.log(params.filter + "<<<");
+        // console.log(params.filter + "<<<");
         params.filter !== 0 ? productsStore.getListDetailProducts(params.filter, 1)
         : productsStore.getListDetailProductsNew(1);
     }
@@ -49,11 +49,6 @@ class DetailProductsContainer extends Component {
         if (productsStore.products == 0 && productsStore.isLoading == true) {
             return <Loading />
         }
-        // if (blogStore.error) {
-        //     return (
-        //         <Error onPress={() => blogStore.getBlog(params.kind, 1, this.tag)} />
-        //     )
-        // }
         if (productsStore.products.length !== 0) {
             return (
                 <FlatList
@@ -62,14 +57,6 @@ class DetailProductsContainer extends Component {
                     showsVerticalScrollIndicator={false}
                     data={productsStore.products}
                     onEndReached={() => this.getMoreProducts()}
-                    // refreshControl={
-                    //     <RefreshControl
-                    //         refreshing={productsStore.isLoading && productsStore.products.length == 0}
-                    //         onRefresh={
-                    //             () => productsStore.getListDetailProductsNew(1)
-                    //         }
-                    //     />
-                    // }
                     renderItem={({ item }) =>
                         <ListDetailProducts item={item} navigation={this.props.navigation}/>
                     }
@@ -116,7 +103,7 @@ class DetailProductsContainer extends Component {
         return (
             <Container style={styles.wrapperContainer}>
                 <View style={[styles.wrapperHeader, styles.paddingLeftRight, { flexDirection: 'row' }]}>
-                    <TouchableOpacity style={{ flex: 8, justifyContent: 'center' }}>
+                    <TouchableOpacity style={{ flex: 8, justifyContent: 'center' }} activeOpacity = {0.8} onPress = {() => this.scrollList()}>
                         <Text style={[styles.textHeaderScreen, { fontSize: 20, fontWeight: 'bold' }]} >{this.titleProducts()}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={{ flex: 1, justifyContent: 'center' }}

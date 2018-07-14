@@ -49,7 +49,6 @@ export default testStore = new class TestStore {
          this.isLoading = true;
          this.error = false;
          postTestDetailApi(id, data,user).then((res) => {
-        // console.log(res)
           this.isLoading = false;
           this.checkAnswer = true;
          }).catch((err) => {
