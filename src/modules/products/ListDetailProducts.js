@@ -39,7 +39,6 @@ class ListDetailProducts extends Component {
                               source = {{uri : item.author.avatar_url ? formatImageLink(item.author.avatar_url) : ""}}
                               />
                               <Text style = {{fontFamily : 'Roboto-Regular', fontSize : 12 ,marginLeft : 5}}>{item.author.name.trim()}</Text>
-                             {/* <Text style = {{fontFamily : 'Roboto-Regular', fontSize : 12 ,marginLeft : 5, color : 'gray'}}>{item.time.trim()}</Text> */}
                         </View>
                     </View>
                 </TouchableOpacity>

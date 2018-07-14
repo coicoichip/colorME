@@ -6,7 +6,7 @@ import {
     TouchableOpacity,
     FlatList,
     RefreshControl,
-    StyleSheet, PanResponder, Modal
+    StyleSheet, PanResponder, Modal, Platform
 } from 'react-native';
 import * as color from '../../styles/colors';
 import * as size from '../../styles/sizes';
@@ -27,6 +27,7 @@ class DetailProductsContainer extends Component {
 
     UNSAFE_componentWillMount() {
         const { params } = this.props.navigation.state;
+        console.log(params.filter + "<<<");
         params.filter !== 0 ? productsStore.getListDetailProducts(params.filter, 1)
         : productsStore.getListDetailProductsNew(1);
     }
@@ -45,7 +46,7 @@ class DetailProductsContainer extends Component {
           return null
       }
     renderSubject() {
-        if (productsStore.products.length == 0) {
+        if (productsStore.isLoading == true) {
             return <Loading />
         }
         // if (blogStore.error) {
@@ -53,7 +54,7 @@ class DetailProductsContainer extends Component {
         //         <Error onPress={() => blogStore.getBlog(params.kind, 1, this.tag)} />
         //     )
         // }
-        if (productsStore.products.length !== 0) {
+        if (productsStore.products.length !== 0 && productsStore.isLoading == false) {
             return (
                 <FlatList
                     ref={'listBlog'}
@@ -78,11 +79,11 @@ class DetailProductsContainer extends Component {
                 />
             )
         }
-        if (blogStore.blogs.length == 0 && blogStore.isLoading == false && blogStore.error == false) {
-            return (
-                <TextNullData text={NULL_DATA} />
-            )
-        }
+        // if (blogStore.blogs.length == 0 && blogStore.isLoading == false && blogStore.error == false) {
+        //     return (
+        //         <TextNullData text={NULL_DATA} />
+        //     )
+        // }
     }
     scrollList() {
         this.refs.listBlog.scrollToOffset({ x: 0, y: 0, animated: true })
@@ -116,7 +117,7 @@ class DetailProductsContainer extends Component {
             <Container style={styles.wrapperContainer}>
                 <View style={[styles.wrapperHeader, styles.paddingLeftRight, { flexDirection: 'row' }]}>
                     <TouchableOpacity style={{ flex: 8, justifyContent: 'center' }}>
-                        <Text style={[styles.textHeaderScreen, { fontSize: 20 }]} >{this.titleProducts()}</Text>
+                        <Text style={[styles.textHeaderScreen, { fontSize: 20, fontWeight: 'bold' }]} >{this.titleProducts()}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={{ flex: 1, justifyContent: 'center' }}
                         onPress={() => this.props.navigation.goBack()}
@@ -131,7 +132,7 @@ class DetailProductsContainer extends Component {
                     </TouchableOpacity>
 
                 </View>
-                <View style={{ flex: 1, marginTop: 15 }}>
+                <View style={{ flex: 1}}>
                     {this.renderSubject()}
                 </View>
             </Container>
@@ -139,28 +140,12 @@ class DetailProductsContainer extends Component {
     }
 }
 export default DetailProductsContainer
+const isIOS = Platform.OS === 'ios';
 const wrapperCenter = {
     alignItems: 'center',
     justifyContent: 'center',
 };
-const textLogo = {
-    fontFamily: FONTS.LOGO_FONT,
-    backgroundColor: COLORS.NONE_COLOR,
-    color: COLORS.LIGHT_COLOR,
-}
-const buttonTab = {
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: "hidden",
-    borderWidth: 1,
-    borderRadius: 13,
-    padding: 15,
-    paddingTop: 5,
-    paddingBottom: 5,
-    fontSize: SIZES.DESCRIPTION_SIZE,
-    fontFamily: FONTS.FONT_MAIN,
-    color: color.BACKGROUND_COLOR,
-};
+
 
 const styles = StyleSheet.create({
     wrapperContainer: {
@@ -171,14 +156,16 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
     },
-    buttonSelected: {
-        ...buttonTab,
-        backgroundColor: 'black',
-        fontFamily: FONTS.FONT_MAIN_BOLD
+    wrapperHeader: {
+        height: isIOS ? 80 : 60,
+        paddingTop: isIOS ? 20 : 0,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: color.BACKGROUND_COLOR,
     },
-    buttonNotSelect: {
-        ...buttonTab,
-        backgroundColor: color.NONE_COLOR,
-        color: color.TEXT_COLOR
+    textHeaderScreen: {
+        color: color.TEXT_COLOR,
+        fontFamily: FONTS.MAIN_FONT,
+        fontSize: 25,
     },
 });
