@@ -95,6 +95,7 @@ class ProductsContainer extends React.Component {
               <View style={styles.wrapperContent}>
 
                 <FlatList
+                 keyExtractor = {item => item.id + ""}
                   style={{ marginTop: 15, flex: 1 }}
                   showsHorizontalScrollIndicator={false}
                   horizontal={true}
@@ -119,6 +120,7 @@ class ProductsContainer extends React.Component {
             <View>
               <View style={styles.wrapperContent}>
                 <FlatList
+                    keyExtractor = {item => item.id + ""}
                   style={{ marginTop: 15, flex: 1 }}
                   showsHorizontalScrollIndicator={false}
                   horizontal={true}
@@ -143,6 +145,7 @@ class ProductsContainer extends React.Component {
             <View>
               <View style={styles.wrapperContent}>
                 <FlatList
+                   keyExtractor = {item => item.id + ""}
                   style={{ marginTop: 15, flex: 1 }}
                   showsHorizontalScrollIndicator={false}
                   horizontal={true}
@@ -169,6 +172,7 @@ class ProductsContainer extends React.Component {
               <View style={styles.wrapperContent}>
 
                 <FlatList
+                   keyExtractor = {item => item.id + ""}
                   style={{ marginTop: 15, flex: 1 }}
                   showsHorizontalScrollIndicator={false}
                   horizontal={true}

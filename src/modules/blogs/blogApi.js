@@ -3,21 +3,21 @@ import { APIS } from "../../constants/env";
 import { AsyncStorage } from "react-native";
 export function blogApi(kind, page, tag) {
     let url = APIS.COLOR_ME_API + "/blog?kind=" + kind + "&page=" + page + "&tag=" + tag;
-    console.log(url);
+    // console.log(url);
     return axios.get(url)
 };
 export async function detailBlogApi(product_id) {
     let url = APIS.API_DATA + "/products/" + product_id + "/content";
-    console.log(url);
+    // console.log(url);
     return axios.get(url);
 }
 export async function checkAttendanceApi() {
     let url = "";
     await AsyncStorage.getItem('@UserToken').then((value) => {
-        console.log(value)
+        // console.log(value)
         url = APIS.COLOR_ME + "/user-current-study-class?token=" + value;
     })
-    console.log(url)
+    // console.log(url)
     return axios.get(url);
 }
 

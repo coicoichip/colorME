@@ -31,7 +31,7 @@ export default commentStore = new class commentStore {
     @observable modalDelete = false;
     @action
     getComment(products_id, name) {
-        console.log(name);
+        // console.log(name);
         this.isLoading = true;
         getCommentOnePost(products_id).then(async res => {
              this.comments = await res.data.comments.map((item) => {
@@ -109,7 +109,7 @@ export default commentStore = new class commentStore {
     likePost(product_id){
        if(this.liked){
             unlikePostApi(product_id).then((res)=> {
-                console.log(res)
+                // console.log(res)
                 this.liked = !this.liked;
                 this.dataInfoPost.likes_count -=1;
             }).catch(err => console.log(err))
