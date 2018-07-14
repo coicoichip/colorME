@@ -1,5 +1,5 @@
 import { observable, action, computed } from "mobx";
-import { getTestApi, getTestDetailApi } from "./testApi";
+import { getTestApi, getTestDetailApi, postTestDetailApi } from "./testApi";
 import { Alert, AsyncStorage } from "react-native";
 import { STRINGS } from "../../constants";
 
@@ -12,9 +12,10 @@ export default testStore = new class TestStore {
     @observable isLoadingExamDetail = false;
     @observable errorExamDetail = false;
 
-    // @observable data = [];
-    // @observable dataPost = {question_id = 0, answer_id = "0"};
+    @observable isLoading = false;
+    @observable error = false;
 
+    @observable checkAnswer = false;
     @action
     getExam() {
         this.isLoadingExam = true;
@@ -42,5 +43,18 @@ export default testStore = new class TestStore {
                 this.isLoadingExamDetail = false;
                 this.errorExamDetail = true;
             })
+    }
+    @action
+    postAnswer(id, data, user){
+         this.isLoading = true;
+         this.error = false;
+         postTestDetailApi(id, data,user).then((res) => {
+        // console.log(res)
+          this.isLoading = false;
+          this.checkAnswer = true;
+         }).catch((err) => {
+           this.error = true;
+           console.log(err)
+         })
     }
 }

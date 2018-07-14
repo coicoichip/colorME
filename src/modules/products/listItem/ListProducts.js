@@ -47,7 +47,7 @@ export default class ListProducts extends Component {
                 >
                     <View style={{overflow: "hidden", borderTopLeftRadius: 10, borderTopRightRadius: 10, }} >
                         <View style={[styles.imageAvatarModuleEmails, { backgroundColor: "rgb(227,227,227)", alignItems: 'center', justifyContent: 'center' }]}>
-                            <Text style={{ fontSize: 100, color: '#fff', marginBottom: 7 }}> +
+                            <Text style={{ fontSize: 100, color: '#fff'}}>+
                             </Text>
                         </View>
                     </View>

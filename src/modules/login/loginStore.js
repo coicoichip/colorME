@@ -32,6 +32,7 @@ export default loginStore = new class LoginStore {
         loginApi(this.login).then(async res => {
             await AsyncStorage.setItem('@UserToken', res.data.token);
             await AsyncStorage.setItem('@ID', res.data.user.id.toString())
+            await AsyncStorage.setItem("@email", res.data.user.email)
             if (navigation) {
                 resetScreen(navigation, 'Drawer');
             }

@@ -136,7 +136,7 @@ class ProductsContainer extends React.Component {
         <View style={{ flex: 1 }}>
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingTop: 10 }}>
             <Text style={styles.text}> Mới nhất </Text>
-            <View> </View>
+            <Text></Text>
             <Text style={styles.text}> Xem tất cả </Text>
           </View>
           {productsStore.productsNew.length === 0 ? <Loading />
@@ -161,7 +161,7 @@ class ProductsContainer extends React.Component {
         <View>
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
             <Text style={styles.text}> Nổi bật hôm nay </Text>
-            <View> </View>
+            <Text></Text>
             <Text style={styles.text}> Xem tất cả </Text>
           </View>
           {productsStore.products1.length === 0 ? <Loading />
@@ -185,7 +185,7 @@ class ProductsContainer extends React.Component {
         <View>
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
             <Text style={styles.text}> Nổi bật tuần qua </Text>
-            <View> </View>
+            <Text></Text>
             <Text style={styles.text}> Xem tất cả </Text>
           </View>
           {productsStore.products7.length === 0 ? <Loading />
@@ -209,7 +209,7 @@ class ProductsContainer extends React.Component {
         <View>
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
             <Text style={styles.text}> Nổi bật tháng qua </Text>
-            <View> </View>
+            <Text></Text>
             <Text style={styles.text}> Xem tất cả </Text>
           </View>
           {productsStore.products30.length === 0 ? <Loading />
