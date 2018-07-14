@@ -81,8 +81,7 @@ export const productsStore = new class productsStore {
             this.errorProducts = false;
 
             this.products = this.page == 1 ? res.data.products : [...this.products, ...res.data.products];
-            this.products = this.products.map((data, index) => { return ({ ...data, index: index }) });
-            this.products = this.products.filter((data) => { return (data.index < 4) })
+            this.testproducts = res.data.products;
         })
             .catch(err => {
                 this.isLoading = false;

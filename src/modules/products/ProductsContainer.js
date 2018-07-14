@@ -28,7 +28,6 @@ class ProductsContainer extends React.Component {
   }
 
   UNSAFE_componentWillMount() {
-    productsStore.page = 1;
     productsStore.getListProductsNew(1);
     productsStore.getListProducts(1, 1);
     productsStore.getListProducts(7, 1);
@@ -45,57 +44,9 @@ class ProductsContainer extends React.Component {
   setModalContact = (visible) => {
     blogStore.modalVisible = visible;
   }
-  async pickInfo() {
-    productsStore.products = [];
-    productsStore.page = 1;
-    if (productsStore.products.length == 0) {
-      await returnInfo(info_value => { productsStore.info_id = info_value; });
-      productsStore.info_id == 7 ? productsStore.getListProducts(productsStore.data_id, 1)
-        : productsStore.getListProductsNew(1);
-    }
-  }
-  async pickDate() {
-    productsStore.products = [];
-    productsStore.page = 1;
-    if (productsStore.products.length == 0) {
-      await returnInfo(date_value => { productsStore.data_id = date_value });
-      productsStore.getListProducts(productsStore.data_id, 1);
-    }
-  }
-  gridPost() {
-    if (productsStore.products.length !== 0)
-      posts = productsStore.products.map((post, index) => {
-        return {
-          ...post,
-          key: index
-        }
-      });
-    postsGrid = posts.filter((value, key) => key > 0)
-    postsGrid = _.groupBy(postsGrid, ({ element, key }) => {
-      return Math.floor((key - 1) / 3);
-    });
-    postsGrid = [posts[0], ..._.toArray(postsGrid)];
-    return postsGrid;
-  }
-  getMoreProducts() {
-    if (productsStore.testproducts.length !== 0) {
-      productsStore.page = productsStore.page + 1;
-      productsStore.info_id == 0 ? productsStore.getListProductsNew(productsStore.page)
-        : productsStore.getListProducts(productsStore.data_id, productsStore.page)
-    }
-  }
-  loadMore() {
-    if (productsStore.isLoading && productsStore.page >= 1)
-      return (<Loading />)
-    else
-      return null
-  }
   scrollList() {
     this.refs.flatlist.scrollToOffset({ x: 0, y: 0, animated: true })
   }
-  _renderItem = ({ item }) => (
-    <RenderItem item={item} navigate={this.props.navigation.navigate} gridPost={this.gridPost()} />
-  );
   render() {
     const { navigate } = this.props.navigation;
     return <Container style={{ backgroundColor: COLORS.LIGHT_COLOR }}>
@@ -150,7 +101,7 @@ class ProductsContainer extends React.Component {
                   horizontal={true}
                   data={productsStore.productsNew}
                   renderItem={({ item }) =>
-                    <ListProductsNew item={item} navigate={navigate} />
+                    <ListProductsNew item={item} navigate={navigate} filter={0} />
                   }
 
                 />
@@ -174,7 +125,7 @@ class ProductsContainer extends React.Component {
                   horizontal={true}
                   data={productsStore.products1}
                   renderItem={({ item }) =>
-                    <ListProducts item={item} navigate={navigate} />
+                    <ListProducts item={item} navigate={navigate} filter={1} />
                   }
 
                 />
@@ -198,7 +149,7 @@ class ProductsContainer extends React.Component {
                   horizontal={true}
                   data={productsStore.products7}
                   renderItem={({ item }) =>
-                    <ListProducts item={item} navigate={navigate} />
+                    <ListProducts item={item} navigate={navigate} filter={7} />
                   }
 
                 />
@@ -224,7 +175,7 @@ class ProductsContainer extends React.Component {
                   horizontal={true}
                   data={productsStore.products30}
                   renderItem={({ item }) =>
-                    <ListProducts item={item} navigate={navigate} />
+                    <ListProducts item={item} navigate={navigate} filter={30}/>
                   }
 
                 />

@@ -42,6 +42,7 @@ import TestContainer from '../modules/test/TestContainer';
 import TestDetailContainer from '../modules/test/TestDetailContainer';
 import QuestionTestContainer from '../modules/test/QuestionTestContainer';
 import FinalTestQuestion from "../modules/test/FinalTestQuestion";
+import DetailProductsContainer from "../modules/products/DetailProductsContainer";
 const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
@@ -123,6 +124,7 @@ const Survey = StackNavigator(
 
 const Products = StackNavigator({
     Products: { screen: ProductsContainer },
+    DetailProducts: { screen: DetailProductsContainer},
     DetailBlog: { screen: DetailBlogContainer, path: "product/:id" },
     ListBlog: { screen: ListBlog },
     // ReplyComment: { screen: ReplyCommentContainer},

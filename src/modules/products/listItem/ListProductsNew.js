@@ -30,7 +30,7 @@ export default class ListProductsNew extends Component {
                 </TouchableOpacity>
                 :
                 <TouchableOpacity activeOpacity={0.8} style={[{ borderWidth: 0.2, borderRadius: 10, marginBottom: 15, width: SIZES.DEVICE_WIDTH_SIZE * 1 / 3, marginHorizontal: 15, backgroundColor: COLORS.LIGHT_COLOR }]}
-                    onPress={() => navigate("DetailBlog", { id: item.id })}
+                    onPress={() => navigate("DetailProducts", { filter: this.props.filter })}
                 >
                     <View style={{ overflow: "hidden", borderRadius: 5 }} >
                         <View style={[styles.imageAvatarModuleEmails, { backgroundColor: "rgb(227,227,227)", alignItems: 'center', justifyContent: 'center' }]}>
