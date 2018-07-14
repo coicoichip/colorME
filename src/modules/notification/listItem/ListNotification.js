@@ -50,7 +50,7 @@ class ListNotification extends Component {
                         {}
                 }}
                 style={[styles.cardItem, styles.shadow,
-                { marginLeft: 5, paddingLeft: 15, paddingTop: 15, backgroundColor: item.seen == 2 ? COLORS.LIGHT_COLOR : "#f2f2f2" }]}>
+                { marginLeft: 5, paddingLeft: 15, paddingTop: 15, backgroundColor: item.seen == 0 ? "#f2f2f2" : COLORS.LIGHT_COLOR }]}>
                 <View style={{ flexDirection: 'row' }}>
                     <View style={{ justifyContent: 'space-between', alignItems: 'center' }}>
                         <Image
@@ -67,11 +67,12 @@ class ListNotification extends Component {
                         <Text style={{ height: 3 }} />
                     </View>
                     {
-                        item.seen == 2
+                        item.seen == 0
                             ?
-                            null
-                            :
                             <Icon name={"FontAwesome|circle"} size={10} color={COLORS.GREEN_COLOR} style={{ position: "absolute", elevation: 5, left: 2, top: -3, backgroundColor: 'transparent' }} />
+                            :
+                            null
+                            
                     }
                 </View>
             </TouchableOpacity>

@@ -93,16 +93,6 @@ class QuestionTestContainer extends Component {
                         ?
                         <Loading />
                         :
-                        // <RadioForm
-                        //     style={{ justifyContent: 'flex-start', alignItems: 'flex-start' }}
-                        //     buttonColor={'#000'}
-                        //     // selectedButtonColor = {"#50C900"}
-                        //     radio_props={newData}
-                        //     initial={this.state.answers[this.state.questionNumber - 1] == undefined ? -1 : this.state.answers[this.state.questionNumber - 1]}
-                        //     onPress={(value) => this.answerRadioQuestion(value)}
-                        // />
-
-
                         <RadioForm
                             formHorizontal={false}
                             animation={true}

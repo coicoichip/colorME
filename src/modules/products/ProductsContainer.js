@@ -45,45 +45,45 @@ class ProductsContainer extends React.Component {
   setModalContact = (visible) => {
     blogStore.modalVisible = visible;
   }
-  async pickInfo() {
-    productsStore.products = [];
-    productsStore.page = 1;
-    if (productsStore.products.length == 0) {
-      await returnInfo(info_value => { productsStore.info_id = info_value; });
-      productsStore.info_id == 7 ? productsStore.getListProducts(productsStore.data_id, 1)
-        : productsStore.getListProductsNew(1);
-    }
-  }
-  async pickDate() {
-    productsStore.products = [];
-    productsStore.page = 1;
-    if (productsStore.products.length == 0) {
-      await returnInfo(date_value => { productsStore.data_id = date_value });
-      productsStore.getListProducts(productsStore.data_id, 1);
-    }
-  }
-  gridPost() {
-    if (productsStore.products.length !== 0)
-      posts = productsStore.products.map((post, index) => {
-        return {
-          ...post,
-          key: index
-        }
-      });
-    postsGrid = posts.filter((value, key) => key > 0)
-    postsGrid = _.groupBy(postsGrid, ({ element, key }) => {
-      return Math.floor((key - 1) / 3);
-    });
-    postsGrid = [posts[0], ..._.toArray(postsGrid)];
-    return postsGrid;
-  }
-  getMoreProducts() {
-    if (productsStore.testproducts.length !== 0) {
-      productsStore.page = productsStore.page + 1;
-      productsStore.info_id == 0 ? productsStore.getListProductsNew(productsStore.page)
-        : productsStore.getListProducts(productsStore.data_id, productsStore.page)
-    }
-  }
+  // async pickInfo() {
+  //   productsStore.products = [];
+  //   productsStore.page = 1;
+  //   if (productsStore.products.length == 0) {
+  //     await returnInfo(info_value => { productsStore.info_id = info_value; });
+  //     productsStore.info_id == 7 ? productsStore.getListProducts(productsStore.data_id, 1)
+  //       : productsStore.getListProductsNew(1);
+  //   }
+  // }
+  // async pickDate() {
+  //   productsStore.products = [];
+  //   productsStore.page = 1;
+  //   if (productsStore.products.length == 0) {
+  //     await returnInfo(date_value => { productsStore.data_id = date_value });
+  //     productsStore.getListProducts(productsStore.data_id, 1);
+  //   }
+  // }
+  // gridPost() {
+  //   if (productsStore.products.length !== 0)
+  //     posts = productsStore.products.map((post, index) => {
+  //       return {
+  //         ...post,
+  //         key: index
+  //       }
+  //     });
+  //   postsGrid = posts.filter((value, key) => key > 0)
+  //   postsGrid = _.groupBy(postsGrid, ({ element, key }) => {
+  //     return Math.floor((key - 1) / 3);
+  //   });
+  //   postsGrid = [posts[0], ..._.toArray(postsGrid)];
+  //   return postsGrid;
+  // }
+  // getMoreProducts() {
+  //   if (productsStore.testproducts.length !== 0) {
+  //     productsStore.page = productsStore.page + 1;
+  //     productsStore.info_id == 0 ? productsStore.getListProductsNew(productsStore.page)
+  //       : productsStore.getListProducts(productsStore.data_id, productsStore.page)
+  //   }
+  // }
   loadMore() {
     if (productsStore.isLoading && productsStore.page >= 1)
       return (<Loading />)
@@ -131,7 +131,7 @@ class ProductsContainer extends React.Component {
           <ModalAcceptCheckIn />
         </View>
       </Modal>
-      <Header title={STRINGS.PRODUCTS} navigate={navigate} onPress={this.scrollList.bind(this)} />
+      <Header title={STRINGS.PRODUCTS} navigate={navigate}/>
       <Content style={{ backgroundColor: COLORS.BACKGROUND_GRAY }} showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1 }}>
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingTop: 10 }}>
