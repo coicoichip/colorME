@@ -46,7 +46,7 @@ class DetailProductsContainer extends Component {
           return null
       }
     renderSubject() {
-        if (productsStore.isLoading == true) {
+        if (productsStore.products == 0 && productsStore.isLoading == true) {
             return <Loading />
         }
         // if (blogStore.error) {
@@ -54,7 +54,7 @@ class DetailProductsContainer extends Component {
         //         <Error onPress={() => blogStore.getBlog(params.kind, 1, this.tag)} />
         //     )
         // }
-        if (productsStore.products.length !== 0 && productsStore.isLoading == false) {
+        if (productsStore.products.length !== 0) {
             return (
                 <FlatList
                     ref={'listBlog'}

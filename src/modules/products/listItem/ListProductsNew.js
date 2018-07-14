@@ -9,7 +9,7 @@ import { STRINGS, COLORS, SIZES, FONTS } from '../../../constants';
 import { Container, Item, Input } from 'native-base';
 
 import Icon from "../../../commons/Icon"
-
+import {productsStore} from "../productsStore";
 import { formatImageLink, dotNumber } from "../../../helper/index"
 
 export default class ListProductsNew extends Component {
@@ -30,7 +30,7 @@ export default class ListProductsNew extends Component {
                 </TouchableOpacity>
                 :
                 <TouchableOpacity activeOpacity={0.8} style={[{ borderColor: "rgb(240, 240, 240)", borderWidth: 1, borderRadius: 10, marginBottom: 15, width: SIZES.DEVICE_WIDTH_SIZE * 1 / 3, marginHorizontal: 15, backgroundColor: COLORS.LIGHT_COLOR }]}
-                    onPress={() => navigate("DetailProducts", { filter: this.props.filter })}
+                    onPress={() => {productsStore.products =[] ; navigate("DetailProducts", { filter: this.props.filter })}}
                 >
                     <View style={{ overflow: "hidden", borderRadius: 5 }} >
                         <View style={[styles.imageAvatarModuleEmails, { backgroundColor: "rgb(227,227,227)", alignItems: 'center', justifyContent: 'center' }]}>
