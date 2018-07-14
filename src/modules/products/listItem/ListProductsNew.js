@@ -24,16 +24,19 @@ export default class ListProductsNew extends Component {
                 <TouchableOpacity activeOpacity={0.8} style={[{ borderWidth: 0.2, borderRadius: 10, marginBottom: 15, width: SIZES.DEVICE_WIDTH_SIZE * 1 / 3, marginLeft: 15, backgroundColor: COLORS.LIGHT_COLOR }]}
                     onPress={() => navigate("DetailBlog", { id: item.id })}
                 >
-                    <View style={{ overflow: "hidden", borderRadius: 5}}>
+                    <View style={{ overflow: "hidden", borderRadius: 5 }}>
                         <Image source={{ uri: item.thumb_url ? formatImageLink(item.thumb_url) : "" }} style={[styles.imageAvatarModuleEmails]} />
                     </View>
                 </TouchableOpacity>
                 :
-                <TouchableOpacity activeOpacity={0.8} style={[{ borderWidth: 0.2, borderRadius: 10, marginBottom: 15, width: SIZES.DEVICE_WIDTH_SIZE * 1 / 3, marginLeft: 15, backgroundColor: COLORS.LIGHT_COLOR }]}
+                <TouchableOpacity activeOpacity={0.8} style={[{ borderWidth: 0.2, borderRadius: 10, marginBottom: 15, width: SIZES.DEVICE_WIDTH_SIZE * 1 / 3, marginHorizontal: 15, backgroundColor: COLORS.LIGHT_COLOR }]}
                     onPress={() => navigate("DetailBlog", { id: item.id })}
                 >
-                    <View style={{  overflow: "hidden", borderRadius: 5 }} >
-                        <View style={[styles.imageAvatarModuleEmails, {backgroundColor: 'gray'}]} />
+                    <View style={{ overflow: "hidden", borderRadius: 5 }} >
+                        <View style={[styles.imageAvatarModuleEmails, { backgroundColor: "rgb(227,227,227)", alignItems: 'center', justifyContent: 'center' }]}>
+                            <Text style={{ fontSize: 70, color: '#fff', marginBottom: 7 }}> +
+                            </Text>
+                        </View>
                     </View>
                 </TouchableOpacity>
 

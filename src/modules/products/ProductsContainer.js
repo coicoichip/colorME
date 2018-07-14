@@ -29,8 +29,10 @@ class ProductsContainer extends React.Component {
 
   UNSAFE_componentWillMount() {
     productsStore.page = 1;
+    productsStore.getListProductsNew(1);
+    productsStore.getListProducts(1, 1);
     productsStore.getListProducts(7, 1);
-    //console.log(getProfileStore.portfolioData);
+    productsStore.getListProducts(30, 1);
     blogStore.checkAttendance()
 
   }
@@ -130,105 +132,106 @@ class ProductsContainer extends React.Component {
         </View>
       </Modal>
       <Header title={STRINGS.PRODUCTS} navigate={navigate} onPress={this.scrollList.bind(this)} />
-      <Content style={{ backgroundColor: COLORS.BACKGROUND_GRAY }} showsVerticalScrollIndicator = {false}>
-        {productsStore.products.length === 0 || productsStore.isLoadingBegin ? <Loading />
-          :
-          <View>
-            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingTop: 10}}>
-              <Text style = {styles.text}> Mới nhất </Text>
-              <View> </View>
-              <Text style = {styles.text}> Xem tất cả </Text>
-            </View>
-            <View style={styles.wrapperContent}>
-
-              <FlatList
-                style={{ marginTop: 15, flex: 1 }}
-                showsHorizontalScrollIndicator={false}
-                horizontal={true}
-                data={productsStore.products}
-                // onEndReached={() => this.getMoreProducts()}
-                // onEndReachedThreshold={0.2}
-                renderItem={({ item }) =>
-                  <ListProductsNew item={item} navigate={navigate} />
-                }
-
-              />
-            </View>
+      <Content style={{ backgroundColor: COLORS.BACKGROUND_GRAY }} showsVerticalScrollIndicator={false}>
+        <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingTop: 10 }}>
+            <Text style={styles.text}> Mới nhất </Text>
+            <View> </View>
+            <Text style={styles.text}> Xem tất cả </Text>
           </View>
-        }
-        {productsStore.products.length === 0 || productsStore.isLoadingBegin ? <Loading />
-          :
-          <View>
-             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
-              <Text style = {styles.text}> Nổi bật hôm nay </Text>
-              <View> </View>
-              <Text style = {styles.text}> Xem tất cả </Text>
-            </View>
-            <View style={styles.wrapperContent}>
-              <FlatList
-                style={{ marginTop: 15, flex: 1 }}
-                showsHorizontalScrollIndicator={false}
-                horizontal={true}
-                data={productsStore.products}
-                // onEndReached={() => this.getMoreProducts()}
-                // onEndReachedThreshold={0.2}
-                renderItem={({ item }) =>
-                  <ListProducts item={item} navigate={navigate} />
-                }
+          {productsStore.productsNew.length === 0 ? <Loading />
+            :
+            <View>
+              <View style={styles.wrapperContent}>
 
-              />
+                <FlatList
+                  style={{ marginTop: 15, flex: 1 }}
+                  showsHorizontalScrollIndicator={false}
+                  horizontal={true}
+                  data={productsStore.productsNew}
+                  renderItem={({ item }) =>
+                    <ListProductsNew item={item} navigate={navigate} />
+                  }
+
+                />
+              </View>
             </View>
+          }
+        </View>
+        <View>
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
+            <Text style={styles.text}> Nổi bật hôm nay </Text>
+            <View> </View>
+            <Text style={styles.text}> Xem tất cả </Text>
           </View>
-        }
-        {productsStore.products.length === 0 || productsStore.isLoadingBegin ? <Loading />
-          :
-          <View>
-             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
-              <Text style = {styles.text}> Nổi bật tuần qua </Text>
-              <View> </View>
-              <Text style = {styles.text}> Xem tất cả </Text>
-            </View>
-            <View style={styles.wrapperContent}>
-              <FlatList
-                style={{ marginTop: 15, flex: 1 }}
-                showsHorizontalScrollIndicator={false}
-                horizontal={true}
-                data={productsStore.products}
-                // onEndReached={() => this.getMoreProducts()}
-                // onEndReachedThreshold={0.2}
-                renderItem={({ item }) =>
-                  <ListProducts item={item} navigate={navigate} />
-                }
+          {productsStore.products1.length === 0 ? <Loading />
+            :
+            <View>
+              <View style={styles.wrapperContent}>
+                <FlatList
+                  style={{ marginTop: 15, flex: 1 }}
+                  showsHorizontalScrollIndicator={false}
+                  horizontal={true}
+                  data={productsStore.products1}
+                  renderItem={({ item }) =>
+                    <ListProducts item={item} navigate={navigate} />
+                  }
 
-              />
+                />
+              </View>
             </View>
+          }
+        </View>
+        <View>
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
+            <Text style={styles.text}> Nổi bật tuần qua </Text>
+            <View> </View>
+            <Text style={styles.text}> Xem tất cả </Text>
           </View>
-        }
-        {productsStore.products.length === 0 || productsStore.isLoadingBegin ? <Loading />
-          :
-          <View>
-             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
-              <Text style = {styles.text}> Nổi bật tháng qua </Text>
-              <View> </View>
-              <Text style = {styles.text}> Xem tất cả </Text>
-            </View>
-            <View style={styles.wrapperContent}>
+          {productsStore.products7.length === 0 ? <Loading />
+            :
+            <View>
+              <View style={styles.wrapperContent}>
+                <FlatList
+                  style={{ marginTop: 15, flex: 1 }}
+                  showsHorizontalScrollIndicator={false}
+                  horizontal={true}
+                  data={productsStore.products7}
+                  renderItem={({ item }) =>
+                    <ListProducts item={item} navigate={navigate} />
+                  }
 
-              <FlatList
-                style={{ marginTop: 15, flex: 1 }}
-                showsHorizontalScrollIndicator={false}
-                horizontal={true}
-                data={productsStore.products}
-                // onEndReached={() => this.getMoreProducts()}
-                // onEndReachedThreshold={0.2}
-                renderItem={({ item }) =>
-                  <ListProducts item={item} navigate={navigate} />
-                }
-
-              />
+                />
+              </View>
             </View>
+          }
+        </View>
+        <View>
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
+            <Text style={styles.text}> Nổi bật tháng qua </Text>
+            <View> </View>
+            <Text style={styles.text}> Xem tất cả </Text>
           </View>
-        }
+          {productsStore.products30.length === 0 ? <Loading />
+            :
+            <View>
+
+              <View style={styles.wrapperContent}>
+
+                <FlatList
+                  style={{ marginTop: 15, flex: 1 }}
+                  showsHorizontalScrollIndicator={false}
+                  horizontal={true}
+                  data={productsStore.products30}
+                  renderItem={({ item }) =>
+                    <ListProducts item={item} navigate={navigate} />
+                  }
+
+                />
+              </View>
+            </View>
+          }
+        </View>
       </Content>
     </Container>;
   }
@@ -270,8 +273,8 @@ const styles = StyleSheet.create({
     fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
 
   },
-  text:{
-    fontSize: 12, 
+  text: {
+    fontSize: 12,
     fontFamily: FONTS.MAIN_FONT_BOLD,
   },
   paddingLeft: {
