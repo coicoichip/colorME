@@ -21,7 +21,7 @@ export default class ListProductsNew extends Component {
         return (
 
             item.index != 3 ?
-                <TouchableOpacity activeOpacity={0.8} style={[{ borderWidth: 0.2, borderRadius: 10, marginBottom: 15, width: SIZES.DEVICE_WIDTH_SIZE * 1 / 3, marginLeft: 15, backgroundColor: COLORS.LIGHT_COLOR }]}
+                <TouchableOpacity activeOpacity={0.8} style={[{ borderColor: "rgb(240, 240, 240)", borderWidth: 1, borderRadius: 10, marginBottom: 15, width: SIZES.DEVICE_WIDTH_SIZE * 1 / 3, marginLeft: 15, backgroundColor: COLORS.LIGHT_COLOR }]}
                     onPress={() => navigate("DetailBlog", { id: item.id })}
                 >
                     <View style={{ overflow: "hidden", borderRadius: 5 }}>
@@ -29,7 +29,7 @@ export default class ListProductsNew extends Component {
                     </View>
                 </TouchableOpacity>
                 :
-                <TouchableOpacity activeOpacity={0.8} style={[{ borderWidth: 0.2, borderRadius: 10, marginBottom: 15, width: SIZES.DEVICE_WIDTH_SIZE * 1 / 3, marginHorizontal: 15, backgroundColor: COLORS.LIGHT_COLOR }]}
+                <TouchableOpacity activeOpacity={0.8} style={[{ borderColor: "rgb(240, 240, 240)", borderWidth: 1, borderRadius: 10, marginBottom: 15, width: SIZES.DEVICE_WIDTH_SIZE * 1 / 3, marginHorizontal: 15, backgroundColor: COLORS.LIGHT_COLOR }]}
                     onPress={() => navigate("DetailProducts", { filter: this.props.filter })}
                 >
                     <View style={{ overflow: "hidden", borderRadius: 5 }} >

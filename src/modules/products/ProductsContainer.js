@@ -82,7 +82,7 @@ class ProductsContainer extends React.Component {
           <ModalAcceptCheckIn />
         </View>
       </Modal>
-      <Header title={STRINGS.PRODUCTS} navigate={navigate} onPress={this.scrollList.bind(this)} />
+      <Header title={STRINGS.PRODUCTS} navigate={navigate}/>
       <Content style={{ backgroundColor: COLORS.BACKGROUND_GRAY }} showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1 }}>
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingTop: 10 }}>

@@ -191,6 +191,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#dbdee0',
     },
     avatarUser: {
+        borderColor : "rgb(240, 240, 240)", 
+        borderWidth : 1,
         height: 50,
         width: 50,
         borderRadius: 25

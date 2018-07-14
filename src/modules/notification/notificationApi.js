@@ -15,7 +15,6 @@ export async function getTopicApi(id) {
     await AsyncStorage.getItem('@UserToken').then((value) => {
         url = APIS.COLOR_ME + "/topic/" + id + '?token='+ value;
     })
-    console.log(url + "<<<<<");
     return axios.get(url);
 }
 export async function getProductsInTopic(id, page) {

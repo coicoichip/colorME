@@ -15,6 +15,7 @@ export default class BackAnswerButton extends Component{
     render(){
         return(
             <TouchableOpacity
+              
                 activeOpacity={1}
                 style={[general.buttonBackAnswer, general.shadow, {display: this.props.displayStatus}]}
                 onPress={this.props.function}
