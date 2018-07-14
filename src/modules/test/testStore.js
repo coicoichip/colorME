@@ -14,6 +14,8 @@ export default testStore = new class TestStore {
 
     @observable isLoading = false;
     @observable error = false;
+
+    @observable checkAnswer = false;
     @action
     getExam() {
         this.isLoadingExam = true;
@@ -47,8 +49,9 @@ export default testStore = new class TestStore {
          this.isLoading = true;
          this.error = false;
          postTestDetailApi(id, data,user).then((res) => {
-        console.log(res)
+        // console.log(res)
           this.isLoading = false;
+          this.checkAnswer = true;
          }).catch((err) => {
            this.error = true;
            console.log(err)

@@ -9,6 +9,7 @@ import general from '../../Style/generalStyle';
 import { STRINGS } from "../../constants";
 import styles from '../../styles/styles';
 import IconDefault from '../../commons/IconDefault';
+import testStore from './testStore';
 
 class TestDetailContainer extends Component {
     constructor() {
@@ -92,14 +93,14 @@ class TestDetailContainer extends Component {
                     </View>
                 </Content>
                 <TouchableOpacity
-                    onPress={() => navigate('QuestionTest', {
+                    onPress={() => {navigate('QuestionTest', {
                         id: data.id,
                         name: data.name,
                         description: data.description,
                         staff: data.staff,
                         questions_count: data.questions_count,
                         today: this.state.today
-                    })}
+                    }); testStore.checkAnswer = false;}}
                     activeOpacity={0.9}
                     style={[general.buttonDownload, {backgroundColor: '#c50000', borderRadius: 0}]}>
                     <Text style={[general.textTitleCardLight, {fontSize: 16}]}

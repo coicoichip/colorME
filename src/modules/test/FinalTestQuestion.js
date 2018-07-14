@@ -27,9 +27,7 @@ export default class FinalTestQuestion extends Component {
     componentWillMount(){
         const {params} = this.props.navigation.state;
         testStore.postAnswer(params.id, params.post_answers, getProfileStore.user);
-
     }
-
     renderScore() {
         const {params} = this.props.navigation.state;
         const {examDetail} = testStore ;
