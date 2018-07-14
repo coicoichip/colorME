@@ -102,14 +102,14 @@ class QuestionTestContainer extends Component {
                             {newData.map((obj, i) => {
 
                                 return (
-                                <RadioButton labelHorizontal={true} key={i} >
+                                <RadioButton labelHorizontal={true} key={i} style = {{marginTop : 5}} >
                                     {/*  You can set RadioButtonLabel before RadioButtonInput */}
                                     <RadioButtonInput
                                         obj={obj}  
                                         index={i}
                                         isSelected={this.checkAnswerSelected(obj.correct, i)}
                                         onPress={(value) => testStore.checkAnswer ? {} :  this.answerRadioQuestion(value)}
-                                        borderWidth={1}
+                                        borderWidth={2}
                                         buttonInnerColor={this.checkAnswer(obj.correct, i)}
                                         buttonOuterColor={this.checkAnswer(obj.correct, i)}
                                         
@@ -254,7 +254,13 @@ class QuestionTestContainer extends Component {
                             </View>
                     }
                 </Content>
-                <NextButton
+
+                {
+                    this.state.answers.length == 0
+                    ?
+                    null 
+                    :
+                    <NextButton
                     displayStatus={this.state.answers.length == 0 ? 'none' : 'flex'}
                     function={
                         () =>
@@ -263,16 +269,25 @@ class QuestionTestContainer extends Component {
                                 examDetail.questions[questionNumber - 1].type,
                                 examDetail.questions[questionNumber - 1].id
                             )} />
-                <BackAnswerButton
-                    displayStatus={this.state.questionNumber === 1 ? 'none' : 'flex'}
-                    function={
-                        () => this.backAnserQuestion(
-                            this.state.questionNumber,
-                            examDetail.questions[questionNumber - 1].type,
-                            examDetail.questions[questionNumber - 1].id
-                        )
-                    } />
-            </Container>
+
+                }
+                {
+                   this.state.questionNumber == 1
+                   ?
+                   null
+                   :
+                   <BackAnswerButton
+                   displayStatus={this.state.questionNumber === 1 ? 'none' : 'flex'}
+                   function={
+                       () => this.backAnserQuestion(
+                           this.state.questionNumber,
+                           examDetail.questions[questionNumber - 1].type,
+                           examDetail.questions[questionNumber - 1].id
+                       )
+                   } />
+                }
+
+            </Container> 
         );
     }
 }
