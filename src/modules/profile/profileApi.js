@@ -8,7 +8,7 @@ export async function userProfileApi(){
   await AsyncStorage.getItem('@UserToken').then((value)=> {
       url = APIS.COLOR_ME_API1 + "/user/profile?token=" + value
   })
-  console.log(url)
+  // console.log(url)
   return axios.get(url)
 }
 export async function updateProfileApi(user){

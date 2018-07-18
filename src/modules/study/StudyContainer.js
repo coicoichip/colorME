@@ -121,7 +121,7 @@ class StudyContainer extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    console.log(getProfileStore.registers)
+    
     return (
       <View style={styles.wrapperContainer}>
         <Header title={STRINGS.STUDY} navigate={navigate} />

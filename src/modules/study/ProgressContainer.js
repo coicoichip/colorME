@@ -31,7 +31,6 @@ class ProgressContainer extends Component {
     renderProgress(){
         
         const {isLoading, error, progress, registers} = this.props;
-        console.log(registers)
         if (isLoading) {
             return <Loading />
         }

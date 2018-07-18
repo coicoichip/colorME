@@ -38,7 +38,7 @@ export default blogStore = new class BlogStore {
             this.top_tags = res.data.top_tags
             this.isLoading = false;
             this.isSearch = false;
-            console.log(this.blogs);
+            // console.log(this.blogs);
         })
         .catch(err => {
             this.error = true;
@@ -64,21 +64,21 @@ export default blogStore = new class BlogStore {
     checkAttendance(){
         checkAttendanceApi().then(res => {
             this.attendanceData = res.data.data;
-            console.log(res.data.data)
+            // console.log(res.data.data)
             this.modalVisible = res.data.data.id ? true : false
         })
         .catch(err => {
-            console.log(err)
+            // console.log(err)
         })
     }
     
     @action 
     attendance(class_id, class_lesson_id, mac_wifi){
         this.isLoadingAttendent = true;
-        console.log(class_id, class_lesson_id)
+        // console.log(class_id, class_lesson_id)
         attendanceApi(class_id, class_lesson_id, mac_wifi)
         .then(res => {
-            console.log(res);
+            // console.log(res);
             this.check = 1;
             this.modalVisible1 = true;
             this.modalVisible = false;
@@ -87,7 +87,7 @@ export default blogStore = new class BlogStore {
             // alert(STRINGS.ATTENDANCE_SUCCESS)
         })
         .catch(err => {
-            console.log(err)
+            // console.log(err)
             this.isLoadingAttendent = false;
             this.check = 0;
             this.modalVisible = false;

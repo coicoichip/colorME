@@ -6,14 +6,13 @@ import Header from "../../commons/Header";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
 import { productsStore } from "./productsStore";
-import Select, { returnInfo, returnDate } from "./Select";
+
 import Loading from "../../commons/Loading";
 
 import blogStore from "../blogs/blogStore";
 import ModalCheckInStudent from '../blogs/ModalCheckInStudent';
 import ModalAcceptCheckIn from '../blogs/ModalAcceptCheckIn';
 import OneSignal from "react-native-onesignal";
-import RenderItem from "./RenderItem";
 import ListProducts from "./listItem/ListProducts";
 import ListProductsNew from "./listItem/ListProductsNew";
 @observer
@@ -88,7 +87,7 @@ class ProductsContainer extends React.Component {
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingTop: 10 }}>
             <Text style={styles.text}> Mới nhất </Text>
             <Text></Text>
-            <Text style={styles.text}> Xem tất cả </Text>
+            <Text style={styles.text} onPress = {() => { productsStore.products =[] ;navigate("DetailProducts", { filter: 0 })}}> Xem tất cả </Text>
           </View>
           {productsStore.productsNew.length === 0 ? <Loading />
             :
@@ -96,6 +95,7 @@ class ProductsContainer extends React.Component {
               <View style={styles.wrapperContent}>
 
                 <FlatList
+                 keyExtractor = {item => item.id + ""}
                   style={{ marginTop: 15, flex: 1 }}
                   showsHorizontalScrollIndicator={false}
                   horizontal={true}
@@ -113,13 +113,14 @@ class ProductsContainer extends React.Component {
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
             <Text style={styles.text}> Nổi bật hôm nay </Text>
             <Text></Text>
-            <Text style={styles.text}> Xem tất cả </Text>
+            <Text style={styles.text} onPress = {() => { productsStore.products =[]; navigate("DetailProducts", { filter: 1 })}}> Xem tất cả </Text>
           </View>
           {productsStore.products1.length === 0 ? <Loading />
             :
             <View>
               <View style={styles.wrapperContent}>
                 <FlatList
+                    keyExtractor = {item => item.id + ""}
                   style={{ marginTop: 15, flex: 1 }}
                   showsHorizontalScrollIndicator={false}
                   horizontal={true}
@@ -137,13 +138,14 @@ class ProductsContainer extends React.Component {
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
             <Text style={styles.text}> Nổi bật tuần qua </Text>
             <Text></Text>
-            <Text style={styles.text}> Xem tất cả </Text>
+            <Text style={styles.text} onPress = {() => {productsStore.products =[]; navigate("DetailProducts", { filter: 7 })}} > Xem tất cả </Text>
           </View>
           {productsStore.products7.length === 0 ? <Loading />
             :
             <View>
               <View style={styles.wrapperContent}>
                 <FlatList
+                   keyExtractor = {item => item.id + ""}
                   style={{ marginTop: 15, flex: 1 }}
                   showsHorizontalScrollIndicator={false}
                   horizontal={true}
@@ -161,7 +163,7 @@ class ProductsContainer extends React.Component {
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
             <Text style={styles.text}> Nổi bật tháng qua </Text>
             <Text></Text>
-            <Text style={styles.text}> Xem tất cả </Text>
+            <Text style={styles.text} onPress = {() => {productsStore.products =[]; navigate("DetailProducts", { filter: 30 })}}> Xem tất cả </Text>
           </View>
           {productsStore.products30.length === 0 ? <Loading />
             :
@@ -170,6 +172,7 @@ class ProductsContainer extends React.Component {
               <View style={styles.wrapperContent}>
 
                 <FlatList
+                   keyExtractor = {item => item.id + ""}
                   style={{ marginTop: 15, flex: 1 }}
                   showsHorizontalScrollIndicator={false}
                   horizontal={true}
