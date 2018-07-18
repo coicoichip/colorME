@@ -58,7 +58,7 @@ class Avatar extends React.Component {
             // :
             this.percent > 0 ?
                 <View style={{ alignItems: 'center' }}>
-                    <PercentageCircle children={<Text>{this.percent + "%"}</Text>} radius={50} percent={90} color={"#c50000"}></PercentageCircle>
+                    <PercentageCircle children={<Text>{this.percent + "%"}</Text>} radius={50} percent={this.percent} color={"#c50000"}></PercentageCircle>
                 </View>
                 :
                 <TouchableOpacity style={{ alignItems: 'center' }} activeOpacity={0.8} onPress={() => this.handleFileUpload()}>

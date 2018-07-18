@@ -59,7 +59,7 @@
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Your message to user when the microphone is accessed for the first time</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Your message to user when the photo library is accessed for the first time</string>
+	<string>You can change profile image</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
