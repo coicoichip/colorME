@@ -17,7 +17,7 @@ import { observer } from 'mobx-react';
 import getProfileStore from "../../modules/profile/profileStore";
 import PercentageCircle from 'react-native-percentage-circle';
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
-
+import {  NavigationActions } from 'react-navigation';
 @observer
 export default class FinalTestQuestion extends Component {
     constructor() {
@@ -125,7 +125,7 @@ export default class FinalTestQuestion extends Component {
         if (error) return <Error onPress={() => this.componentWillMount()} />
         return (
             <View style={{ flex: 1, marginBottom: 20 }}>
-                <View style={{ justifyContent : "center" ,alignItems: "center", height : SIZES.DEVICE_HEIGHT_SIZE / 4 }}>
+                <View style={{ justifyContent: "center", alignItems: "center", height: SIZES.DEVICE_HEIGHT_SIZE / 4 }}>
                     {
                         this.renderScore() < examDetail.questions.length ?
                             <PercentageCircle
@@ -156,7 +156,7 @@ export default class FinalTestQuestion extends Component {
                 <FlatList
                     horizontal={true}
                     ref="__list_questions"
-                    style={{ marginTop: 20, marginLeft: 20 }}
+                    style={{ marginTop: 20, marginLeft: 10 }}
                     data={examDetail.questions}
                     getItemLayout={(data, index) => (
                         { length: SIZES.DEVICE_WIDTH_SIZE / 5, offset: SIZES.DEVICE_WIDTH_SIZE / 5 * index, index }
@@ -237,7 +237,15 @@ export default class FinalTestQuestion extends Component {
                         </Text>
                     </View>
                     <TouchableOpacity style={{ flex: 1, justifyContent: 'center' }}
-                        onPress={() => this.props.navigation.goBack()}
+                        onPress={() => {
+                            const resetAction = NavigationActions.reset({
+                                index: 0,
+                                actions: [NavigationActions.navigate({ routeName: 'Test' })],
+
+                            });
+                            this.props.navigation.dispatch(resetAction);
+
+                        }}
                     >
                         <View style={{ alignItems: 'flex-end' }}>
                             <IconDefault
