@@ -1,6 +1,7 @@
 import { observable, action, computed } from "mobx";
 import { getProducts, getProductsNew } from "./productsApi";
 import { Alert, AsyncStorage } from "react-native";
+import { unlikePostApi, likePostApi } from "../comment/commentApi";
 
 export const productsStore = new class productsStore {
     @observable products = [];
@@ -103,5 +104,27 @@ export const productsStore = new class productsStore {
                 this.isLoading = false;
                 this.errorProducts = true;
             })
+    }
+    @action
+    likePost(item) {
+        let index = this.products.findIndex(products => products.id == item.id);
+        console.log(index + "<<<<");
+        if (item.liked) {
+            unlikePostApi(item.id).then((res) => {
+                // console.log(res)
+                item.likes_count = item.likes_count - 1;
+                item.liked = false;
+                this.products[index] = item;
+                this.products = this.products.map(item => { return item });
+            }).catch(err => console.log(err))
+        }
+        else {
+            likePostApi(item.id).then((res) => {
+                item.likes_count = item.likes_count + 1;
+                item.liked = true;
+                this.products[index] = item;
+                this.products = this.products.map(item => { return item });
+            }).catch(err => console.log(err))
+        }
     }
 }

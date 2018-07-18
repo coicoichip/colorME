@@ -14,6 +14,7 @@ export async function getProducts(filter, page) {
     let url = "";
     await AsyncStorage.getItem('@ID').then((value) => {
        url = "http://colorme.vn:8000/products?user_id=" + value + "&page=" + page;
+       console.log(url);
     })
     
     return axios.get(url);

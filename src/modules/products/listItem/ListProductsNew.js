@@ -33,7 +33,7 @@ export default class ListProductsNew extends Component {
                     onPress={() => {productsStore.products =[] ; navigate("DetailProducts", { filter: this.props.filter })}}
                 >
                     <View style={{ overflow: "hidden", borderRadius: 5 }} >
-                        <View style={[styles.imageAvatarModuleEmails, { backgroundColor: "rgb(227,227,227)", alignItems: 'center', justifyContent: 'center' }]}>
+                        <View style={[styles.imageAvatarModuleEmails, { backgroundColor: COLORS.GRAY_COLOR_CARD, alignItems: 'center', justifyContent: 'center' }]}>
                             <Text style={[{ fontSize: 70, color: '#fff' }, styles.wrapperCenter]}>+
                             </Text>
                         </View>
