@@ -56,7 +56,7 @@ class ListDetailProducts extends Component {
                         {/* <View>
                                 <IconDefault name={(commentStore.liked) ? 'FontAwesome|heart' : 'FontAwesome|heart-o'} size={20}
                                     color={(commentStore.liked) ? COLORS.MAIN_COLOR : COLORS.ICON} /> </View> */}
-                        <TouchableOpacity onPress = {() => {productsStore.likePost(item)}}>
+                        <TouchableOpacity activeOpacity = {0.8} onPress = {() => {productsStore.likePost(item)}}>
                             <IconDefault name={(item.liked) ? 'FontAwesome|heart' : 'FontAwesome|heart-o'} size={30}
                                 color={(item.liked) ? COLORS.MAIN_COLOR : COLORS.ICON} /> </TouchableOpacity>
                     </View>
