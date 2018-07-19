@@ -18,6 +18,8 @@ import styles from '../../styles/styles';
 import { observer } from "mobx-react";
 import IconDefault from '../../commons/IconDefault';
 import { COLORS, FONTS, SIZES } from "../../constants";
+import {  NavigationActions } from 'react-navigation';
+
 @observer
 class QuestionTestContainer extends Component {
     constructor() {
@@ -162,17 +164,27 @@ class QuestionTestContainer extends Component {
             this.setState({ questionNumber: number + 1 });
         }
         if (this.state.questionNumber == testStore.examDetail.questions.length) {
-            this.props.navigation.navigate('FinalTest', {
-                // id: id,
-                // name: name,
-                // description: description,
-                // staff: staff,
-                // questions_count: questions_count,
-                // today: today,
-                answers: this.state.answers,
-                post_answers: this.state.post_answers,
-                questionType : this.questionType.bind(this)
-            });
+
+
+
+            const resetAction = NavigationActions.reset({
+                index: 0,
+                actions: [NavigationActions.navigate({ routeName: 'FinalTest',  params : { id :id, answers: this.state.answers,
+                    post_answers: this.state.post_answers,} })],
+               
+              });
+              this.props.navigation.dispatch(resetAction);
+            // this.props.navigation.navigate('FinalTest', {
+            //     id: id,
+            //     // name: name,
+            //     // description: description,
+            //     // staff: staff,
+            //     // questions_count: questions_count,
+            //     // today: today,
+            //     answers: this.state.answers,
+            //     post_answers: this.state.post_answers,
+               
+            // });
         }
     }
     backAnserQuestion(number, type, id_question) {
