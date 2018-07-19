@@ -106,6 +106,14 @@ export const productsStore = new class productsStore {
             })
     }
     @action
+    changeLiked(item) {
+        let index = this.products.findIndex(products => products.id == item.id);
+        item.liked == true ? item.likes_count = item.likes_count - 1 : item.likes_count = item.likes_count + 1;
+        item.liked = !item.liked;
+        this.products[index] = item;
+        this.products = this.products.map(item => { return item });
+    }
+    @action
     likePost(item) {
         let index = this.products.findIndex(products => products.id == item.id);
         console.log(index + "<<<<");

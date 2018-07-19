@@ -15,15 +15,15 @@ import IconDefault from '../../commons/IconDefault';
 import { formatImageLink } from "../../helper/index";
 import Analytics from 'appcenter-analytics';
 import { observer } from "mobx-react";
-import {productsStore} from './productsStore';
-import commentStore from '../comment/commentStore'; 
+import { productsStore } from './productsStore';
+import commentStore from '../comment/commentStore';
 import _ from "lodash";
 @observer
 class ListDetailProducts extends Component {
     goDetailBlog = () => {
         const { item, navigation } = this.props;
         Analytics.trackEvent(`${STRINGS.ACTION_GO_DETAIL_BLOG} ->  ${item.title.trim()}`, {})
-        navigation.navigate('DetailBlog', { id: item.id })
+        navigation.navigate('DetailBlog', { id: item.id, data : item })
     }
     render() {
         const { item } = this.props;
@@ -37,7 +37,14 @@ class ListDetailProducts extends Component {
                 </TouchableOpacity>
                 <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
                     <Text numberOfLines={2} style={styles.emailNameModuleEmail}>{item.title.trim()}</Text>
-                    <View style={{ marginTop: 5, flexDirection: 'row', alignItems: 'center' }}>
+                    <View style={{ flexDirection: 'row', flex: 1, alignItems: 'center', marginTop: 3 }}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12}}>{item.likes_count} Thích</Text>
+                            <Text style={{fontSize: 15}}> · </Text>
+                            <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12 }}>{item.views_count} Lượt xem </Text>
+                        </View>
+                    </View>
+                    <View style={{ marginTop: 5, flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
                         <Image
                             style={{ height: 20, width: 20, borderRadius: 10 }}
                             source={{ uri: item.author.avatar_url ? formatImageLink(item.author.avatar_url) : "" }}
@@ -45,26 +52,12 @@ class ListDetailProducts extends Component {
                         <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5 }}>{item.author.name.trim()}</Text>
                         <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5, color: 'gray' }}>{item.created_at}</Text>
                     </View>
-                    <View style={{ flexDirection: 'row',flex: 1, justifyContent: 'space-between', alignItems: 'center' }}>
-                        <View style={{ flexDirection: 'row' }}>
-                            <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5 }}>
-                            {item.likes_count} Thích</Text>
-                            <IconDefault name={'FontAwesome|circle'} size={6}/>
-                            <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12}}> {item.views_count} Lượt xem </Text>
-                        </View>
-                        <Text> </Text>
-                        {/* <View>
-                                <IconDefault name={(commentStore.liked) ? 'FontAwesome|heart' : 'FontAwesome|heart-o'} size={20}
-                                    color={(commentStore.liked) ? COLORS.MAIN_COLOR : COLORS.ICON} /> </View> */}
-                        <TouchableOpacity onPress = {() => {productsStore.likePost(item)}}>
+                    <View style = {styles.positionHeart}>
+                        <TouchableOpacity onPress={() => { productsStore.likePost(item) }}>
                             <IconDefault name={(item.liked) ? 'FontAwesome|heart' : 'FontAwesome|heart-o'} size={30}
-                                color={(item.liked) ? COLORS.MAIN_COLOR : COLORS.ICON} /> </TouchableOpacity>
+                                color={(item.liked) ? COLORS.MAIN_COLOR : COLORS.ICON} />
+                        </TouchableOpacity>
                     </View>
-                    <Text style={{ marginTop: 5, fontFamily: 'Roboto-Regular', fontSize: 15 }}>{item.description ? item.description : "Không có mô tả"}</Text>
-
-
-
-
                 </View>
                 <View style={styles.footerCard}>
                 </View>
@@ -107,6 +100,11 @@ const styles = StyleSheet.create({
         borderRadius: 13,
         overflow: "hidden"
     },
+    positionHeart:{
+        position: 'absolute',
+        top : 10,
+        right: 10,
+    },
     textDescriptionLightBold: {
         color: '#FFF',
         fontFamily: FONTS.FONT_MAIN_BOLD,
@@ -116,7 +114,6 @@ const styles = StyleSheet.create({
         flex: 2,
         position: 'relative',
         paddingRight: 10,
-        paddingTop: 5,
     },
     paddingLeftRight: {
         paddingLeft: 20,

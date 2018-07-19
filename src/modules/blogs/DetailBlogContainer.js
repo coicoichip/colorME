@@ -166,7 +166,7 @@ class DetailBlogContainer extends Component {
                     }}
                     // onEndReached={() => this.getMoreSubjects()}
                     ListFooterComponent={
-                        <CommentContainer id={params.id} navigate={navigate} />
+                        <CommentContainer id={params.id} navigate={navigate} item={params.data}/>
                     }
                 />
                 <KeyboardAvoidingView

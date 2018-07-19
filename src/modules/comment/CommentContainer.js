@@ -24,6 +24,7 @@ import commentStore from "./commentStore";
 import IconDefault from '../../commons/IconDefault';
 import { observer } from "mobx-react";
 import getProfileStore from "../profile/profileStore";
+import { productsStore } from "../products/productsStore";
 
 @observer
 export default class CommentContainer extends Component {
@@ -64,6 +65,7 @@ export default class CommentContainer extends Component {
     }
     render() {
         const { navigate } = this.props;
+        console.log(this.props.item);
         return (
             commentStore.isLoading == true ? null :
                 <View style={{ flex: 1, marginTop: -10 }}>
@@ -71,7 +73,7 @@ export default class CommentContainer extends Component {
                         <View style={{ justifyContent: 'flex-start', flexDirection: 'row', flex: 1 }}>
                             <TouchableOpacity
                                 style={{ paddingRight: 10, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingTop: 1 }}
-                                onPress = {() => commentStore.likePost(this.props.id)}
+                                onPress = {() => {this.props.item ? productsStore.changeLiked(this.props.item) : {};  commentStore.likePost(this.props.id)}}
                             >
                                 <IconDefault name={(commentStore.liked) ? 'FontAwesome|heart' : 'FontAwesome|heart-o'} size={20}
                                     color={(commentStore.liked) ? COLORS.MAIN_COLOR : COLORS.ICON} />
