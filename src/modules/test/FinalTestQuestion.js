@@ -245,7 +245,7 @@ export default class FinalTestQuestion extends Component {
                 <View style={[styles.wrapperHeader, styles.paddingLeftRight, { flexDirection: 'row' }]}>
                     <View style={{ flex: 8, justifyContent: 'center' }}>
                         <Text numberOfLines={1} style={[styles.textHeaderScreen, { fontSize: 17, fontFamily: FONTS.MAIN_FONT_BOLD }]} numberOfLines={1}>
-                            {examDetail.survey_lessons[0].lesson.name}
+                            {examDetail.name}
                         </Text>
                     </View>
                     <TouchableOpacity style={{ flex: 1, justifyContent: 'center' }}
