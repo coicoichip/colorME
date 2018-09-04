@@ -34,8 +34,8 @@ export default class ListProducts extends Component {
                                 source={{ uri: item.author ? formatImageLink(item.author.avatar_url) : "" }}
                             />
                             <View style={{paddingRight: 10}}>
-                                <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5 }}>{item.author ? item.author.name.trim() : ""}</Text>
-                                <Text numberOfLines={1} style={{ marginTop: 3, marginLeft: 5, fontFamily: 'Roboto-Regular', fontSize: 12, color: 'gray' }}>{item.description ? item.description.trim() : "Không có mô tả "}</Text>
+                                <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5 }}>{(item.author && item.author.name !== null) ? item.author.name.trim() : ""}</Text>
+                                <Text numberOfLines={1} style={{ marginTop: 3, marginLeft: 5, fontFamily: 'Roboto-Regular', fontSize: 12, color: 'gray' }}>{(item.description && item.description !== null)  ? item.description.trim() : "Không có mô tả "}</Text>
                             </View>
                         </View>
 

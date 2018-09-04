@@ -36,7 +36,7 @@ class ListDetailProducts extends Component {
                     </View>
                 </TouchableOpacity>
                 <View style={[styles.contentCardImageInformation, styles.paddingLeftRight]}>
-                    <Text numberOfLines={2} style={styles.emailNameModuleEmail}>{item.title.trim()}</Text>
+                    <Text numberOfLines={2} style={styles.emailNameModuleEmail}>{item.title ? item.title.trim() : ""}</Text>
                     <View style={{ flexDirection: 'row', flex: 1, alignItems: 'center', marginTop: 3 }}>
                         <View style={{ flexDirection: 'row' }}>
                             <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12}}>{item.likes_count} Thích</Text>
@@ -49,7 +49,7 @@ class ListDetailProducts extends Component {
                             style={{ height: 20, width: 20, borderRadius: 10 }}
                             source={{ uri: item.author.avatar_url ? formatImageLink(item.author.avatar_url) : "" }}
                         />
-                        <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5 }}>{item.author.name.trim()}</Text>
+                        <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5 }}>{item.author.name ? item.author.name.trim() : ""}</Text>
                         <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 12, marginLeft: 5, color: 'gray' }}>{item.created_at}</Text>
                     </View>
                     <View style = {styles.positionHeart}>
